@@ -65,3 +65,13 @@ official = true
 subreddit = "soccer"
 env_id = "REDDIT_CLIENT_ID"
 env_secret = "REDDIT_CLIENT_SECRET"
+
+# 인스타 앱에서 붙일 추천 곡(2026-11-26 사용자) — 영상은 무음 자동 · 곡은 직접 붙여 올림
+# 분위기: 공격(경질·로마노 이적) · 어두움(몰락·이탈) · 웅장(잔류·빅클럽 스타) · 신남(위트·갈등·루머) · 비면 '기본'
+# 곡 추가: "곡 이름 — 아티스트" 형식으로 목록에 넣기(인스타 음악 검색에 그대로 치면 나오게)
+[songs]
+"기본" = ["SLAVA FUNK! (Slowed) — MVSTERIOUS, Hxmr, yngastrobeatz"]   # tpl_sports_news 95.2만 조회 릴스(해리 케인 500골)에 쓴 곡
+"공격" = []
+"어두움" = []
+"웅장" = []
+"신남" = []

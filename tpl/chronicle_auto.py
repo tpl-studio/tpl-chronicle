@@ -66,6 +66,22 @@ def day_of(st: dict, day: str) -> dict:
 
 
 # ── 개인 봇
+MOOD_OF = {"경질": "공격", "로마노 이적": "공격", "몰락·위기": "어두움", "서러움·이탈": "어두움", "충성·잔류": "웅장",
+           "빅클럽 스타 화제": "웅장", "이적+위트": "신남", "갈등·유머": "신남", "소방수 감독": "신남", "조건부 루머": "신남"}
+
+
+def song_pick(c: dict, kind: str, no: int) -> tuple[str, list[str]]:
+    """릴스 분위기 → 인스타 앱에서 붙일 추천 곡(2026-11-26 사용자: 곡 고르기 직전까지 자동 · 곡은 인스타 앱에서 직접).
+    config [songs] 의 분위기별 목록 · 비면 '기본' 목록 · 편마다 돌아가며 순서를 바꿔 같은 곡만 나오지 않게."""
+    songs = c.get("songs") or {}
+    mood = MOOD_OF.get(kind, "웅장")
+    pool = list(songs.get(mood) or []) + [x for x in songs.get("기본", []) if x not in (songs.get(mood) or [])]
+    if not pool:
+        return mood, []
+    k = no % len(pool)
+    return mood, (pool[k:] + pool[:k])[:3]
+
+
 def _bot():
     tok, chat = os.environ.get("PERSONAL_BOT_TOKEN", "").strip(), os.environ.get("PERSONAL_CHAT_ID", "").strip()
     if not tok or not chat:
@@ -336,6 +352,9 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     lines += [f"🗺 대륙: {shs.get('continent', '-')}", f"🛡 신분: {shs.get('rank', '-')}", f"🎬 사건 장면: {shs.get('event_scene', '-')}"]
     if prev:
         lines.append(f"🔗 제{no}장 후속 · 이전 장: 제{prev[-1]['no']}장")
+    mood, picks = song_pick(c, x.get("kind") or ("로마노 이적" if x.get("tier") == 1 else x.get("type", "")), no)
+    if picks:
+        lines += ["", f"🎵 추천 곡({mood}) — 인스타 앱에서 음악 검색해 붙이기:"] + [f"   {i + 1}. {sg}" for i, sg in enumerate(picks)]
     lines += ["", "📌 고정 댓글: " + w.get("pinned", ""), "☑️ 인스타 올릴 때 'AI 정보 라벨' 켜기", f"💰 {m.krw:.0f}원"]
     if not chk.get("likeness", True):
         lines.insert(0, "⚠️ 얼굴 닮음 낮음")
