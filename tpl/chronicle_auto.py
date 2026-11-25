@@ -497,12 +497,13 @@ def run_once(force: bool = False, dry: bool = False, log=print) -> dict:
         dd["judge_alerted"] = True
         say(f"⚠️ 연대기 판정 비용 오늘 {dd['judge_krw']:.0f}원 — 하루 {c.get('judge_daily_alert_krw', 200)}원 넘음")
     for x in scored:
-        st["seen"][x["key"]] = {"at": now.isoformat(timespec="seconds"), "total": x["total"], "subject": x.get("subject_ko", "")}
+        st["seen"][x["key"]] = {"at": now.isoformat(timespec="seconds"), "total": x["total"], "subject": x.get("subject_ko", ""),
+                                "title": str((x.get("titles") or [""])[0])[:140]}      # 2026-11-25 사용자: 나중에 '왜 안 만들었나' 확인용
     keep = [x for x in scored if not x.get("exclude") and x.get("total", 0) >= float(c.get("fill_min_score", 14))]
     bench[:] = sorted({x["key"]: x for x in bench + keep}.values(), key=lambda x: -x.get("total", 0))[:15]
     pool = list({x["key"]: x for x in bench + scored}.values())       # 대기 줄 + 이번에 새로 매긴 후보(1순위 HWG 는 점수 낮아도)
     best, others, why = choose(pool, st, c, now)
-    rep.update(why=why, scored=[(x.get("subject_ko"), x["total"]) for x in scored])
+    rep.update(why=why, scored=[(x.get("subject_ko"), x["total"], str((x.get("titles") or [""])[0])[:80]) for x in scored])
     if best is None or dry:
         save_state(d, st, "chronicle scored")
         return rep
