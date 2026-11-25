@@ -57,7 +57,12 @@ def save_state(d, st: dict, msg: str = "chronicle") -> None:
 
 
 def day_of(st: dict, day: str) -> dict:
-    return st.setdefault("days", {}).setdefault(day, {"made": [], "errors": {}})
+    dd = st.setdefault("days", {}).setdefault(day, {"made": [], "errors": {}})
+    if not dd.get("made") and not dd.get("_seeded"):        # 2026-11-25: PC 에서 만든 편이 하루 기록(made)에 없던 일 — 연재 기록으로 채움
+        dd["_seeded"] = True
+        dd["made"] = [{"at": ch.get("at", ""), "tier": 2, "subject": ch.get("subject", ""), "team": ch.get("team", ""),
+                       "rumor": False, "transfer": False} for ch in st.get("chapters", []) if str(ch.get("at", "")).startswith(day)]
+    return dd
 
 
 # ── 개인 봇
@@ -464,11 +469,17 @@ def run_once(force: bool = False, dry: bool = False, log=print) -> dict:
     lim = (now - timedelta(days=3)).isoformat()
     st["item_seen"] = {k: v for k, v in seen_items.items() if k and v >= lim}
     st["seen"] = {k: v for k, v in st.get("seen", {}).items() if v.get("at", "") >= lim}
-    bench = day_of(st, day).setdefault("bench", [])          # 오늘 점수 매긴 후보(채우기용) — 다시 판정하지 않음(비용 0)
+    bench = day_of(st, day).setdefault("bench", [])          # 오늘 점수 매긴 후보(대기 줄) — 다시 판정하지 않음(비용 0)
+    def _fresh(x):                                            # 24시간 지난 소식은 대기 줄에서 뺌
+        try:
+            return now - datetime.fromisoformat(str(x["latest"])) <= timedelta(hours=float(c.get("fresh_hours", 24)))
+        except (KeyError, ValueError, TypeError):
+            return True
+    bench[:] = [x for x in bench if _fresh(x)]
     if not cands:
-        if bench and behind(len(day_of(st, day)["made"]), now, c):
+        if bench:              # 2026-11-25 사용자: 간격·쉼 때문에 보류된 후보(대기 줄)는 풀리면 다시 — 점수는 다시 안 매김(비용 0)
             best, others, why = choose(bench, st, c, now)
-            rep.update(why=f"새 후보 없음 → 오늘 후보로 채우기: {why}")
+            rep.update(why=f"새 후보 없음 → 대기 줄({len(bench)}건): {why}")
             if best is not None and not dry:
                 return _make(best, others, st, d, c, day, now, rep, log)
         save_state(d, st, "chronicle no new")
@@ -489,7 +500,8 @@ def run_once(force: bool = False, dry: bool = False, log=print) -> dict:
         st["seen"][x["key"]] = {"at": now.isoformat(timespec="seconds"), "total": x["total"], "subject": x.get("subject_ko", "")}
     keep = [x for x in scored if not x.get("exclude") and x.get("total", 0) >= float(c.get("fill_min_score", 14))]
     bench[:] = sorted({x["key"]: x for x in bench + keep}.values(), key=lambda x: -x.get("total", 0))[:15]
-    best, others, why = choose(bench if behind(len(day_of(st, day)["made"]), now, c) else scored, st, c, now)
+    pool = list({x["key"]: x for x in bench + scored}.values())       # 대기 줄 + 이번에 새로 매긴 후보(1순위 HWG 는 점수 낮아도)
+    best, others, why = choose(pool, st, c, now)
     rep.update(why=why, scored=[(x.get("subject_ko"), x["total"]) for x in scored])
     if best is None or dry:
         save_state(d, st, "chronicle scored")
