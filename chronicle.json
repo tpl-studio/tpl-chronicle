@@ -47,7 +47,65 @@
     "레딧": "공식 API 키 없음 → 건너뜀(로그인 없는 RSS 는 레딧이 막음)"
    },
    "_seeded": true,
-   "bench": []
+   "bench": [
+    {
+     "key": "bellingham-best-does-in-midfielder-rank-where-world",
+     "titles": [
+      "[BBC Sport] 'Best midfielder in the world' - where does Bellingham rank?",
+      "[BBC] 'Best midfielder in the world' - where does Bellingham rank?"
+     ],
+     "outlets": [
+      "BBC Sport",
+      "BBC"
+     ],
+     "credible": [
+      "BBC Sport",
+      "BBC"
+     ],
+     "summaries": [
+      "Jose Mourinho called Real Madrid's Jude Bellingham \"the best midfielder in the world\", but where would you rank him?"
+     ],
+     "stars": [
+      "벨링엄"
+     ],
+     "clubs": [],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-25T16:46:36+00:00",
+     "ids": [
+      "31be77e74552e769",
+      "4f6d9a2bb21733bd"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "주드 벨링햄",
+     "subject_en": "Jude Bellingham",
+     "team_ko": "레알 마드리드",
+     "team_en": "Real Madrid",
+     "league_ko": "라리가",
+     "role": "선수",
+     "type": "기타",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 2,
+      "divide": 1,
+      "share": 4,
+      "surprise": 3,
+      "korea": 5
+     },
+     "reason": "모리뉴가 최고라 평판·관심↑",
+     "base": 20.0,
+     "bonus": 0,
+     "total": 20.0
+    }
+   ],
+   "judge_krw": 0.0
   }
  },
  "corrections": {},
@@ -76,11 +134,17 @@
    "at": "2026-11-25T14:56:16+09:00",
    "total": 10.0,
    "subject": "최철순"
+  },
+  "bellingham-best-does-in-midfielder-rank-where-world": {
+   "at": "2026-11-26T02:21:37+09:00",
+   "total": 20.0,
+   "subject": "주드 벨링햄",
+   "title": "[BBC Sport] 'Best midfielder in the world' - where does Bellingham rank?"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-25T15:04:05+09:00",
- "last_run_at": "2026-11-26T01:51:26+09:00",
+ "last_run_at": "2026-11-26T02:21:37+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -2565,6 +2629,35 @@
   "3673115825bf5cf5": "2026-11-26T01:51:26+09:00",
   "a5c9101318836380": "2026-11-26T01:51:26+09:00",
   "f8e916f0851eca18": "2026-11-26T01:51:26+09:00",
-  "2682014fb7ffa5f2": "2026-11-26T01:51:26+09:00"
+  "2682014fb7ffa5f2": "2026-11-26T01:51:26+09:00",
+  "23bdade45a0c371a": "2026-11-26T02:21:37+09:00",
+  "08c700e4f898a3bc": "2026-11-26T02:21:37+09:00",
+  "2d465bcd199c3ddf": "2026-11-26T02:21:37+09:00",
+  "aad6728013da94d6": "2026-11-26T02:21:37+09:00",
+  "9f53bd0268ec4cec": "2026-11-26T02:21:37+09:00",
+  "34d3cca1134ef651": "2026-11-26T02:21:37+09:00",
+  "a357473f09dce376": "2026-11-26T02:21:37+09:00",
+  "6487d525ac2447c8": "2026-11-26T02:21:37+09:00",
+  "9f46ca6dd28e8e94": "2026-11-26T02:21:37+09:00",
+  "02b11cac9144ca26": "2026-11-26T02:21:37+09:00",
+  "4cb627284e832fe2": "2026-11-26T02:21:37+09:00",
+  "adbc40b0c01c5907": "2026-11-26T02:21:37+09:00",
+  "4f6d9a2bb21733bd": "2026-11-26T02:21:37+09:00",
+  "37284709afb2fd7f": "2026-11-26T02:21:37+09:00",
+  "a727a17b00c0dd32": "2026-11-26T02:21:37+09:00",
+  "fc291786254403d7": "2026-11-26T02:21:37+09:00",
+  "92481e2e4c1f36d9": "2026-11-26T02:21:37+09:00",
+  "717c30392742448f": "2026-11-26T02:21:37+09:00",
+  "89f747804793c428": "2026-11-26T02:21:37+09:00",
+  "fa5b2326ee39d392": "2026-11-26T02:21:37+09:00",
+  "670caa7be419e34b": "2026-11-26T02:21:37+09:00",
+  "955e5cc5f7d08a61": "2026-11-26T02:21:37+09:00",
+  "943b4218a76a0f3e": "2026-11-26T02:21:37+09:00",
+  "8266779d3f2cbade": "2026-11-26T02:21:37+09:00",
+  "473ed9eed13a8b63": "2026-11-26T02:21:37+09:00",
+  "f9d3da0a1d5dd207": "2026-11-26T02:21:37+09:00",
+  "787d8cbd680a6bd1": "2026-11-26T02:21:37+09:00",
+  "dd40e2e71d5889f6": "2026-11-26T02:21:37+09:00",
+  "db59bd6a3078868c": "2026-11-26T02:21:37+09:00"
  }
 }
