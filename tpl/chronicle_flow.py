@@ -191,16 +191,17 @@ def flux_redraw(w: dict, team_en: str) -> bytes:
 def check_image(png: bytes, w: dict, pk: dict, meter: art.Meter) -> dict:
     """그림 점검(Claude 가 그림을 봄): 얼굴 닮음 · 유니폼 보임 · 의상 상징 · 표정·자세 · 화풍 → 하나라도 아니면 다시(1번만)."""
     import anthropic
-    meter.check(25, "그림 점검(Claude)")
+    meter.check(3, "그림 점검(Claude Haiku)")
     client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY", "").strip())
-    msg = client.messages.create(
-        model=art.CLAUDE_MODEL, max_tokens=4000, output_config={"effort": "low"},
+    msg = client.messages.create(              # 2026-11-25: 그림 보는 점검은 Groq 가 못 해서 가장 싼 Claude Haiku(예전 Opus)
+        model=art.HAIKU, max_tokens=4000, output_config={"effort": "low"},
         messages=[{"role": "user", "content": [
             {"type": "image", "source": {"type": "base64", "media_type": "image/png", "data": base64.b64encode(png).decode()}},
             {"type": "text", "text": f"이 그림은 {pk['subject_en']}({pk['team_en']}, {pk['role']})의 판타지 포스터여야 한다. 시트: {json.dumps(w['sheet'], ensure_ascii=False)}\n"
                                      '각 항목 true/false 와 한 줄 이유를 JSON 으로: {"likeness":true,"kit":true,"costume":true,"emotion":true,"style":true,"wings":false,"text_in_image":false,"why":""}'}]}])
     u = msg.usage
-    meter.add((u.input_tokens * 4.0 + u.output_tokens * 20.0) / 1e6 * art._rate(), "그림 점검(Claude)")
+    pin, pout = art.CLAUDE_PRICE[art.HAIKU]
+    meter.add((u.input_tokens * pin + u.output_tokens * pout) / 1e6 * art._rate(), "그림 점검(Claude Haiku)")
     t = "".join(b.text for b in msg.content if b.type == "text")
     res = json.loads(t[t.find("{"): t.rfind("}") + 1])
     wings_ok = str((w.get("sheet") or {}).get("rank", "")).startswith("신화")

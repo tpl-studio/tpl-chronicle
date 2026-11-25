@@ -23,6 +23,10 @@ VIDEO_CAP_KRW = float(os.environ.get("TPL_REEL_VIDEO_CAP", "300"))
 MONTH_WARN_KRW = float(os.environ.get("TPL_REEL_MONTH_WARN", "30000"))   # Gemini+Claude 합계(사용자 결정 2026-11-25)
 CLAUDE_MODEL = os.environ.get("TPL_CLAUDE_MODEL", "claude-opus-5-5")
 EST_CLAUDE_KRW = 60.0
+# 글·판정 엔진(2026-11-25 사용자: '글 작성 돈 안 내고 Groq 로') — groq(무료) 먼저, 실패하면 Claude Haiku 로만 대신(Opus 안 씀)
+TEXT_ENGINE = os.environ.get("TPL_TEXT_ENGINE", "groq").strip().lower()
+GROQ_MODELS = [m for m in (os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b"), os.environ.get("GROQ_FALLBACK_MODEL", "openai/gpt-oss-20b")) if m]
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 EST_IMAGE_KRW = 110.0      # 2K 세로 1장 보수 추정(호출 전 확인용)
 EST_TEXT_KRW = 15.0
 
@@ -182,8 +186,57 @@ CLAUDE_PRICE = {"claude-opus-5-5": (4.0, 20.0), "claude-sonnet-5-5": (2.0, 10.0)
 HAIKU = "claude-haiku-5-5"
 
 
+def _json_of(text: str, who: str) -> dict:
+    raw = text[text.find("{"): text.rfind("}") + 1]
+    if not raw:
+        raise RuntimeError(f"{who} 응답에 JSON 없음")
+    return json.loads(raw)
+
+
+def groq_json(system: str, prompt: str, what: str = "Groq 문구") -> dict:
+    """Groq 무료 모델 → JSON. 분당 한도(429)면 65초 쉬고 한 번 더, 큰 모델 일일 한도면 작은 무료 모델로. 비용 0원."""
+    import time
+    key = os.environ.get("GROQ_API_KEY", "").strip()
+    if not key:
+        raise RuntimeError("GROQ_API_KEY 없음")
+    last = ""
+    for model in GROQ_MODELS:
+        body = {"model": model, "temperature": 0.4, "max_completion_tokens": 6000,
+                "response_format": {"type": "json_object"},
+                "messages": [{"role": "system", "content": system + "\nJSON 만 출력."}, {"role": "user", "content": prompt}]}
+        if model.startswith("openai/gpt-oss"):
+            body["reasoning_effort"] = "low"
+        for attempt in range(2):
+            r = requests.post(GROQ_URL, json=body, timeout=120, headers={"Authorization": f"Bearer {key}"})
+            if r.status_code == 200:
+                content = (r.json()["choices"][0]["message"].get("content") or "")
+                if content.strip():
+                    return _json_of(content, "Groq")
+                last = "빈 응답"
+                break
+            msg = ""
+            try:
+                msg = str((r.json().get("error") or {}).get("message", ""))
+            except ValueError:
+                pass
+            last = f"HTTP {r.status_code} {msg[:80]}"
+            if r.status_code == 429 and "per day" not in msg.lower() and attempt == 0:
+                time.sleep(65)
+                continue
+            break
+    raise RuntimeError(f"Groq 실패({what}): {last}")
+
+
 def claude_json(system: str, prompt: str, meter: Meter, what: str = "Claude 문구", model: str | None = None) -> dict:
-    """Claude(기본 claude-opus-5-5 · 판정은 claude-haiku-5-5, effort low) → JSON. 비용은 같은 장부에(모델별 요금)."""
+    """글·판정 → JSON. 기본은 Groq(무료) · 실패하면 Claude Haiku. TPL_TEXT_ENGINE=claude 면 예전처럼 Claude(Opus · 판정 Haiku)."""
+    if TEXT_ENGINE == "groq" and model in (None, HAIKU):
+        try:
+            out = groq_json(system, prompt, what)
+            meter.add(0.0, what.replace("Claude Haiku", "Groq").replace("Claude", "Groq"))
+            return out
+        except Exception as e:  # noqa: BLE001
+            print(f"  {what}: Groq 실패 → Claude Haiku 로 대신 ({str(e)[:100]})")
+            model = HAIKU
     import anthropic
     model = model or CLAUDE_MODEL
     pin, pout = CLAUDE_PRICE.get(model, (4.0, 20.0))
