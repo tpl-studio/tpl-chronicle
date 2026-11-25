@@ -1,0 +1,87 @@
+name: chronicle
+# 축구 왕국 연대기 — Cloudflare 감시(tpl-live-watch)가 새 후보를 보면 부름(workflow_dispatch). 예약(cron) 없음.
+# 공개 저장소라 Actions 시간은 무료. 상태는 chronicle-state 브랜치(state/)에 이어서 저장.
+on:
+  workflow_dispatch:
+    inputs:
+      trigger:
+        description: "부른 곳(watch · tick · manual)"
+        required: false
+        default: "manual"
+      mode:
+        description: "run · dry(판정만) · force(시간 규칙 무시하고 판정)"
+        required: false
+        default: "run"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chronicle
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 상태 브랜치 받기(state/)
+        run: |
+          git config user.name "tpl-chronicle-bot"
+          git config user.email "tpl-chronicle-bot@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin chronicle-state >/dev/null 2>&1; then
+            git fetch -q origin chronicle-state
+            git worktree add -q state origin/chronicle-state
+          else
+            mkdir -p state
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 배경 분리 모델 캐시
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/tpl_reel
+          key: isnet-v1
+
+      - name: 설치
+        run: pip install -q -r requirements.txt
+
+      - name: 판단·제작
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PERSONAL_BOT_TOKEN: ${{ secrets.PERSONAL_BOT_TOKEN }}
+          PERSONAL_CHAT_ID: ${{ secrets.PERSONAL_CHAT_ID }}
+          PERSONAL_BOT_NAME: ${{ secrets.PERSONAL_BOT_NAME }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          TPL_CHRONICLE_STATE: ${{ github.workspace }}/state/chronicle.json
+          TPL_REEL_LEDGER: ${{ github.workspace }}/state/ledger.json
+          TPL_REEL_MODEL_DIR: /home/runner/.cache/tpl_reel
+          TZ: Asia/Seoul
+        run: |
+          MODE="${{ github.event.inputs.mode || 'run' }}"
+          ARGS=""
+          [ "$MODE" = "dry" ] && ARGS="--dry"
+          [ "$MODE" = "force" ] && ARGS="--force"
+          python chronicle_run.py $ARGS
+
+      - name: 상태 올리기(chronicle-state)
+        if: always()
+        run: |
+          cd state
+          if [ ! -d .git ] && [ ! -f .git ]; then
+            git init -q -b chronicle-state
+            git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          fi
+          git add -A
+          git -c user.name="tpl-chronicle-bot" -c user.email="tpl-chronicle-bot@users.noreply.github.com" commit -q -m "state $(date +%m-%d_%H:%M)" || exit 0
+          git push -q origin HEAD:chronicle-state

@@ -1,0 +1,181 @@
+{
+ "_note": "축구 왕국 연대기 — 기사 피드(tpl-factory config/transfer_live.toml 에서 연대기에 필요한 부분만 2026-11-25 복사)",
+ "feeds": [
+  {
+   "name": "Google 뉴스 · Here we go",
+   "url": "https://news.google.com/rss/search?q=%22here+we+go%22+Romano+when:1d&hl=en-GB&gl=GB&ceid=GB:en",
+   "aggregator": true
+  },
+  {
+   "name": "Google 뉴스 · 로마노 경질·사임",
+   "url": "https://news.google.com/rss/search?q=Romano+(sacked+OR+fired+OR+dismissed+OR+%22parted+ways%22+OR+resigns+OR+%22steps+down%22)+when:1d&hl=en-GB&gl=GB&ceid=GB:en",
+   "aggregator": true
+  },
+  {
+   "name": "Google 뉴스 · 로마노 보도",
+   "url": "https://news.google.com/rss/search?q=%22Fabrizio+Romano%22+when:1d&hl=en-GB&gl=GB&ceid=GB:en",
+   "aggregator": true
+  },
+  {
+   "name": "Google 뉴스 · 공식 발표",
+   "url": "https://news.google.com/rss/search?q=football+(%22completes+move%22+OR+%22confirm+signing%22+OR+%22confirms+signing%22+OR+%22officially+joins%22+OR+%22signs+for%22+OR+%22sacked%22+OR+%22appointed%22+OR+%22new+head+coach%22+OR+%22new+contract%22)+when:1d&hl=en-GB&gl=GB&ceid=GB:en",
+   "aggregator": true
+  },
+  {
+   "name": "Sky Sports Transfers",
+   "url": "https://www.skysports.com/rss/12691",
+   "outlet": "Sky Sports"
+  },
+  {
+   "name": "BBC Sport Football",
+   "url": "https://feeds.bbci.co.uk/sport/football/rss.xml",
+   "outlet": "BBC Sport"
+  },
+  {
+   "name": "Guardian Transfer window",
+   "url": "https://www.theguardian.com/football/transfer-window/rss",
+   "outlet": "The Guardian"
+  },
+  {
+   "name": "구글 뉴스 · 해외축구",
+   "url": "https://news.google.com/rss/search?q=%ED%95%B4%EC%99%B8%EC%B6%95%EA%B5%AC+when:1d&hl=ko&gl=KR&ceid=KR:ko",
+   "aggregator": true
+  },
+  {
+   "name": "구글 뉴스 · 국내축구",
+   "url": "https://news.google.com/rss/search?q=K%EB%A6%AC%EA%B7%B8+OR+%EC%B6%95%EA%B5%AC%EB%8C%80%ED%91%9C%ED%8C%80+when:1d&hl=ko&gl=KR&ceid=KR:ko",
+   "aggregator": true
+  },
+  {
+   "name": "구글 뉴스 · KBO",
+   "url": "https://news.google.com/rss/search?q=KBO+OR+%ED%94%84%EB%A1%9C%EC%95%BC%EA%B5%AC+when:1d&hl=ko&gl=KR&ceid=KR:ko",
+   "aggregator": true
+  },
+  {
+   "name": "구글 뉴스 · MLB",
+   "url": "https://news.google.com/rss/search?q=MLB+OR+%EB%A9%94%EC%9D%B4%EC%A0%80%EB%A6%AC%EA%B7%B8+when:1d&hl=ko&gl=KR&ceid=KR:ko",
+   "aggregator": true
+  },
+  {
+   "name": "구글 뉴스 · NBA",
+   "url": "https://news.google.com/rss/search?q=NBA+when:1d&hl=ko&gl=KR&ceid=KR:ko",
+   "aggregator": true
+  },
+  {
+   "name": "구글 뉴스 · UFC",
+   "url": "https://news.google.com/rss/search?q=UFC+when:1d&hl=ko&gl=KR&ceid=KR:ko",
+   "aggregator": true
+  },
+  {
+   "name": "Google News · Big clubs",
+   "url": "https://news.google.com/rss/search?q=(%22Real+Madrid%22+OR+Barcelona+OR+Arsenal+OR+Liverpool+OR+%22Manchester+City%22+OR+%22Manchester+United%22+OR+Chelsea+OR+Tottenham+OR+Bayern+OR+PSG)+when:1d&hl=en-GB&gl=GB&ceid=GB:en",
+   "aggregator": true
+  }
+ ],
+ "major_outlets": [
+  "BBC",
+  "BBC Sport",
+  "Sky Sports",
+  "Sky Sports News",
+  "ESPN",
+  "The Guardian",
+  "Guardian",
+  "The Athletic",
+  "Reuters",
+  "Associated Press",
+  "AP News",
+  "The Times",
+  "The Telegraph",
+  "Telegraph",
+  "The Independent",
+  "Independent",
+  "Evening Standard",
+  "Daily Mail",
+  "Mail Sport",
+  "Mirror",
+  "talkSPORT",
+  "Goal",
+  "GOAL",
+  "CBS Sports",
+  "Fox Sports",
+  "Yahoo Sports",
+  "NBC Sports",
+  "The Sun",
+  "ABC News",
+  "AFP",
+  "Marca",
+  "AS",
+  "Diario AS",
+  "Mundo Deportivo",
+  "Diario Sport",
+  "El País",
+  "Gazzetta dello Sport",
+  "La Gazzetta dello Sport",
+  "Corriere dello Sport",
+  "Tuttosport",
+  "Sky Sport Italia",
+  "Kicker",
+  "Bild",
+  "Sky Sport Germany",
+  "L'Équipe",
+  "L'Equipe",
+  "RMC Sport",
+  "Record",
+  "A Bola",
+  "O Jogo",
+  "Manchester Evening News",
+  "Liverpool Echo",
+  "football.london"
+ ],
+ "not_confirming": [
+  "Fabrizio Romano",
+  "Romano",
+  "CaughtOffside",
+  "Here We Go"
+ ],
+ "major_extra": [
+  "연합뉴스",
+  "뉴스1",
+  "뉴시스",
+  "스포츠조선",
+  "스포츠서울",
+  "스포츠동아",
+  "스포츠경향",
+  "일간스포츠",
+  "OSEN",
+  "스타뉴스",
+  "마이데일리",
+  "엑스포츠뉴스",
+  "MK스포츠",
+  "매일경제",
+  "조선일보",
+  "중앙일보",
+  "동아일보",
+  "한겨레",
+  "경향신문",
+  "한국일보",
+  "KBS",
+  "MBC",
+  "SBS",
+  "JTBC",
+  "YTN",
+  "인터풋볼",
+  "베스트일레븐",
+  "풋볼리스트",
+  "스포탈코리아",
+  "STN뉴스",
+  "STN스포츠",
+  "MLB.com",
+  "NBA.com",
+  "UFC.com",
+  "MMA Junkie",
+  "MMA Fighting",
+  "Bleacher Report",
+  "USA Today",
+  "New York Post",
+  "Los Angeles Times",
+  "The New York Times",
+  "Washington Post",
+  "Sports Illustrated"
+ ]
+}

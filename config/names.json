@@ -1,0 +1,256 @@
+{
+ "_note": "빅클럽·스타·감독·공신력 매체(tpl-factory config/live_rules.toml 에서 복사)",
+ "big_clubs": {
+  "아스널": [
+   "Arsenal"
+  ],
+  "첼시": [
+   "Chelsea"
+  ],
+  "리버풀": [
+   "Liverpool"
+  ],
+  "맨시티": [
+   "Manchester City",
+   "Man City"
+  ],
+  "맨유": [
+   "Manchester United",
+   "Man United",
+   "Man Utd"
+  ],
+  "토트넘": [
+   "Tottenham",
+   "Spurs"
+  ],
+  "레알 마드리드": [
+   "Real Madrid"
+  ],
+  "바르셀로나": [
+   "Barcelona",
+   "Barça",
+   "Barca"
+  ],
+  "아틀레티코": [
+   "Atlético Madrid",
+   "Atletico Madrid",
+   "Atlético de Madrid",
+   "Atleti"
+  ],
+  "바이에른 뮌헨": [
+   "Bayern Munich",
+   "Bayern München",
+   "FC Bayern",
+   "Bayern"
+  ],
+  "도르트문트": [
+   "Borussia Dortmund",
+   "Dortmund",
+   "BVB"
+  ],
+  "PSG": [
+   "Paris Saint-Germain",
+   "PSG"
+  ],
+  "인테르": [
+   "Inter Milan",
+   "Internazionale",
+   "Inter"
+  ],
+  "AC 밀란": [
+   "AC Milan",
+   "Milan"
+  ],
+  "유벤투스": [
+   "Juventus",
+   "Juve"
+  ],
+  "나폴리": [
+   "Napoli"
+  ]
+ },
+ "stars": {
+  "호날두": [
+   "Cristiano Ronaldo",
+   "Ronaldo"
+  ],
+  "메시": [
+   "Lionel Messi",
+   "Messi"
+  ],
+  "네이마르": [
+   "Neymar"
+  ],
+  "음바페": [
+   "Kylian Mbappé",
+   "Kylian Mbappe",
+   "Mbappé",
+   "Mbappe"
+  ],
+  "홀란": [
+   "Erling Haaland",
+   "Haaland"
+  ],
+  "비니시우스": [
+   "Vinícius Júnior",
+   "Vinicius Junior",
+   "Vinícius Jr",
+   "Vinicius Jr",
+   "Vinicius"
+  ],
+  "야말": [
+   "Lamine Yamal",
+   "Yamal"
+  ],
+  "벨링엄": [
+   "Jude Bellingham",
+   "Bellingham"
+  ],
+  "살라": [
+   "Mohamed Salah",
+   "Salah"
+  ],
+  "케인": [
+   "Harry Kane"
+  ],
+  "더 브라위너": [
+   "Kevin De Bruyne",
+   "De Bruyne"
+  ],
+  "레반도프스키": [
+   "Robert Lewandowski",
+   "Lewandowski"
+  ],
+  "모드리치": [
+   "Luka Modrić",
+   "Luka Modric",
+   "Modric",
+   "Modrić"
+  ],
+  "그리즈만": [
+   "Antoine Griezmann",
+   "Griezmann"
+  ],
+  "페드리": [
+   "Pedri"
+  ],
+  "로드리": [
+   "Rodri"
+  ],
+  "사카": [
+   "Bukayo Saka",
+   "Saka"
+  ],
+  "포든": [
+   "Phil Foden",
+   "Foden"
+  ],
+  "라이스": [
+   "Declan Rice"
+  ],
+  "반 다이크": [
+   "Virgil van Dijk",
+   "Van Dijk"
+  ],
+  "브루노 페르난데스": [
+   "Bruno Fernandes"
+  ],
+  "무시알라": [
+   "Jamal Musiala",
+   "Musiala"
+  ],
+  "비르츠": [
+   "Florian Wirtz",
+   "Wirtz"
+  ],
+  "라우타로 마르티네스": [
+   "Lautaro Martínez",
+   "Lautaro Martinez",
+   "Lautaro"
+  ],
+  "하키미": [
+   "Achraf Hakimi",
+   "Hakimi"
+  ]
+ },
+ "managers": {
+  "과르디올라": [
+   "Pep Guardiola",
+   "Guardiola"
+  ],
+  "안첼로티": [
+   "Carlo Ancelotti",
+   "Ancelotti"
+  ],
+  "시메오네": [
+   "Diego Simeone",
+   "Simeone"
+  ],
+  "무리뉴": [
+   "José Mourinho",
+   "Jose Mourinho",
+   "Mourinho"
+  ],
+  "클롭": [
+   "Jürgen Klopp",
+   "Jurgen Klopp",
+   "Klopp"
+  ],
+  "아르테타": [
+   "Mikel Arteta",
+   "Arteta"
+  ],
+  "엔리케": [
+   "Luis Enrique"
+  ],
+  "알론소": [
+   "Xabi Alonso"
+  ]
+ },
+ "credible": [
+  "BBC",
+  "Sky Sports",
+  "The Athletic",
+  "ESPN",
+  "The Guardian",
+  "Guardian",
+  "Marca",
+  "AS.com",
+  "Diario AS",
+  "kicker",
+  "L'Équipe",
+  "L'Equipe",
+  "Gazzetta",
+  "연합뉴스",
+  "뉴시스",
+  "뉴스1",
+  "스포츠조선",
+  "스포츠서울",
+  "스포츠동아",
+  "스포츠경향",
+  "일간스포츠",
+  "OSEN",
+  "스타뉴스",
+  "마이데일리",
+  "엑스포츠뉴스",
+  "MK스포츠",
+  "베스트일레븐",
+  "인터풋볼",
+  "풋볼리스트"
+ ],
+ "foreign": [
+  "BBC",
+  "Sky Sports",
+  "The Athletic",
+  "ESPN",
+  "The Guardian",
+  "Guardian",
+  "Marca",
+  "AS.com",
+  "Diario AS",
+  "kicker",
+  "L'Équipe",
+  "L'Equipe",
+  "Gazzetta"
+ ]
+}

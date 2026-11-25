@@ -1,0 +1,21 @@
+{
+ "_note": "코리안리거 소속팀·등번호 — 2026-11-24 확인. status: 공식 = 구단 공식 발표(기사) + ESPN 일치 · 일치 = ESPN 선수 자료 + 위키 기록 일치(구단 공식 발표 기사는 못 찾음) · 미확인 = 번호 못 찾음(표지에 이름만). team = TPL 스코어 한글 팀 이름(없으면 영어). 이적 시즌(1월·여름)엔 tools/korean_check.py 가 ESPN 과 대조해 바뀌면 [TPL 알림].",
+ "checked": "2026-11-24",
+ "players": [
+  {"ko": "손흥민", "en": ["Son Heung-min", "Heung-min Son", "Son Heung-Min"], "team": "LAFC", "team_espn": "LAFC", "number": 7, "status": "공식", "source": "LAFC 공식 발표(2025-08) · ESPN", "espn_id": 149945},
+  {"ko": "이강인", "en": ["Lee Kang-in", "Kang-in Lee"], "team": "아틀레티코", "team_espn": "Atlético de Madrid", "number": 7, "status": "공식", "source": "아틀레티코 공식 발표(2026-07-25, 5년 계약) · ESPN", "espn_id": 274197},
+  {"ko": "김민재", "en": ["Kim Min-jae", "Min-jae Kim"], "team": "바이에른 뮌헨", "team_espn": "Bayern München", "number": 3, "status": "일치", "source": "ESPN · 위키백과", "espn_id": 157688},
+  {"ko": "이재성", "en": ["Lee Jae-sung", "Jae-sung Lee"], "team": "마인츠", "team_espn": "Mainz", "number": 7, "status": "일치", "source": "ESPN · 나무위키(2026-02 재계약, 2028년까지)", "espn_id": 134103},
+  {"ko": "황희찬", "en": ["Hwang Hee-chan", "Hee-chan Hwang"], "team": "샬케", "team_espn": "Schalke 04", "number": 7, "status": "공식", "source": "샬케 공식 발표(2026-09-02, 울버햄튼에서 임대) · ESPN", "espn_id": 237224},
+  {"ko": "정우영", "en": ["Jeong Woo-yeong", "Woo-yeong Jeong"], "team": "우니온 베를린", "team_espn": "1. FC Union Berlin", "number": 11, "status": "일치", "source": "ESPN · 위키백과", "espn_id": 276323},
+  {"ko": "황인범", "en": ["Hwang In-beom", "In-beom Hwang"], "team": "포르투", "team_espn": "FC Porto", "number": 16, "status": "공식", "source": "포르투 공식 발표(2026-07-21, 페예노르트에서 이적) · ESPN", "espn_id": 280061},
+  {"ko": "오현규", "en": ["Oh Hyeon-gyu", "Hyeon-gyu Oh"], "team": "Beşiktaş", "team_espn": "Besiktas", "number": 9, "status": "공식", "source": "베식타스 공식 발표(2026-02, 헹크에서 이적) · ESPN", "espn_id": 302434},
+  {"ko": "양현준", "en": ["Yang Hyun-jun", "Hyun-jun Yang"], "team": "셀틱", "team_espn": "Celtic", "number": 13, "status": "일치", "source": "ESPN · 위키백과", "espn_id": 350711},
+  {"ko": "배준호", "en": ["Bae Jun-ho", "Jun-ho Bae"], "team": "Stoke City", "team_espn": "Stoke City", "number": 10, "status": "일치", "source": "ESPN · 나무위키", "espn_id": 362208},
+  {"ko": "양민혁", "en": ["Yang Min-hyeok", "Min-hyeok Yang"], "team": "KVC Westerlo", "team_espn": "KVC Westerlo", "number": 47, "status": "일치", "source": "ESPN · 나무위키(토트넘에서 임대)", "espn_id": 371578},
+  {"ko": "설영우", "en": ["Seol Young-woo", "Young-woo Seol"], "team": "아우크스부르크", "team_espn": "FC Augsburg", "number": 7, "status": "공식", "source": "아우크스부르크 공식 발표(2026-08-27, 2030년까지) · ESPN", "espn_id": 302793},
+  {"ko": "조규성", "en": ["Cho Gue-sung", "Gue-sung Cho"], "team": "FC Midtjylland", "team_espn": "FC Midtjylland", "number": 10, "status": "일치", "source": "ESPN · 나무위키", "espn_id": 303464},
+  {"ko": "엄지성", "en": ["Eom Ji-sung", "Ji-sung Eom"], "team": "Swansea City", "team_espn": "Swansea City", "number": 10, "status": "일치", "source": "ESPN · 위키백과", "espn_id": 297791},
+  {"ko": "김지수", "en": ["Kim Ji-soo"], "team": "브렌트퍼드", "team_espn": "Brentford U21", "number": null, "status": "미확인", "source": "ESPN 은 브렌트퍼드 U21(번호 없음) · 나무위키 36번 — 2026-27 1군 번호 확인 못 함", "espn_id": 362203}
+ ]
+}

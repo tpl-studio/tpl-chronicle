@@ -1,0 +1,63 @@
+# 신화 포스터 릴스 '축구 왕국 연대기' 자동 판단·제작 설정 (2026-11-25 사용자 최종)
+# 코드: cardnews/hot_reel/chronicle_auto.py · 규칙: prompts/tpl_chronicle_style.md
+
+auto_on = true                  # 2026-11-25: Cloudflare 감시(tpl-live-watch) → 이 저장소 Actions(공개 저장소 · 무료)
+daily_max = 4                   # 하루 최대 4편
+rumor_max = 1                   # 비이적 루머는 하루 1편
+reserve_romano_until = "21:00"  # 4번째 자리는 이 시각까지 로마노 HWG 용으로 비움
+gap_hours = 2                   # 후순위(2·3순위)끼리 최소 간격
+night = ["00:00", "07:00"]      # 이 사이 소식(로마노 HWG 제외)은 night_send 이후 제작
+night_send = "07:30"
+quiet = ["18:30", "19:30"]      # 로마노 HWG 제외 쉼
+min_score = 20                  # 터질 각 20점 이상만(2·3순위)
+judge_daily_alert_krw = 200     # 판정 비용(Claude Haiku)이 하루 이 금액을 넘으면 봇 알림
+resume_gap_min = 90             # 마지막 실행 뒤 이만큼 비면 꺼져 있던 것으로 보고, 다시 켜진 뒤 나온 소식부터(클라우드: 감시기가 최소 1시간마다 부르므로 90분 · PC 땐 20분)
+any_type_score = 24             # 2·3순위 유형에 안 맞아도 이 점수면 제작
+fresh_hours = 24
+video_cap_krw = 300             # 1편 300원 넘으면 멈춤(2026-11-25: 다시 그리기는 FLUX)
+
+# 터질 각 6항목(각 0~5, 30점 만점) — 2주마다 조정안을 봇으로 보내고 사용자 오케이 뒤 적용
+[weights]
+name = 1.0          # 이름값
+drama = 1.0         # 감정·드라마
+divide = 1.0        # 편 갈림
+share = 1.0         # 공유각(DM)
+surprise = 1.0      # 의외성
+korea = 1.0         # 한국 팬 관심
+
+[bonus]
+reddit_top = 2      # 레딧 r/soccer 상위권(공식 API 키가 있을 때만)
+burst_1h = 2        # 1시간 안에 여러 매체(3곳 이상)가 받아씀
+google_trends = 0   # 구글 트렌드: 무료 공식 API 없음·스크래핑 금지 → 쓰지 않음
+
+# 추가 감지 소스(기존 실시간 피드 18개에 더함) — 2026-11-25 실제로 열리는 것만
+[[feeds]]
+name = "ESPN"
+url = "https://www.espn.com/espn/rss/soccer/news"
+[[feeds]]
+name = "Marca"
+url = "https://e00-marca.uecdn.es/rss/futbol/primera-division.xml"
+[[feeds]]
+name = "AS"
+url = "https://feeds.as.com/mrss-s/pages/as/site/as.com/section/futbol/portada/"
+[[feeds]]
+name = "L'Équipe"
+url = "https://dwh.lequipe.fr/api/edito/rss?path=/Football/"
+[[feeds]]
+name = "Bild"
+url = "https://www.bild.de/feed/sport.xml"
+[[feeds]]
+name = "kicker"
+url = "https://newsfeed.kicker.de/news/fussball"
+[[feeds]]
+name = "Gazzetta"
+url = "https://www.gazzetta.it/rss/calcio.xml"
+[[feeds]]                       # 구단 공식 뉴스 RSS — 빅클럽 중 공식 RSS 가 열리는 곳은 토트넘뿐(아스널·첼시·리버풀·맨시티·바르샤·레알·PSG·유벤투스·밀란·인테르·도르트문트 없음, 바이에른 응답 없음)
+name = "Tottenham Hotspur"
+url = "https://www.tottenhamhotspur.com/rss/"
+official = true
+
+[reddit]                        # r/soccer: 로그인 없는 RSS 는 레딧이 막음(403·404·429) → 공식 API(무료) 앱 키가 있을 때만
+subreddit = "soccer"
+env_id = "REDDIT_CLIENT_ID"
+env_secret = "REDDIT_CLIENT_SECRET"
