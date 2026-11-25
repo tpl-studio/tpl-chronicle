@@ -219,9 +219,22 @@ def _between(t: datetime, rng) -> bool:
     return a <= hm < b if a <= b else (hm >= a or hm < b)
 
 
+PACE = [["11:00", 1], ["15:00", 2], ["19:00", 3], ["22:00", 4]]   # 2026-11-25 사용자 '하루 4개씩': 이 시각까지 이만큼 못 만들었으면 채우기
+
+
+def behind(n: int, now: datetime, c: dict) -> bool:
+    """하루 4편 채우기: 지금 시각까지 목표 편수보다 적게 만들었나."""
+    if not c.get("fill_daily", True):
+        return False
+    hm = now.strftime("%H:%M")
+    need = max([int(k) for t, k in (c.get("pace") or PACE) if hm >= t] or [0])
+    return n < min(need, int(c["daily_max"]))
+
+
 def choose(scored: list[dict], st: dict, c: dict, now: datetime) -> tuple[dict | None, list[dict], str]:
     day = now.strftime("%Y-%m-%d")
     made = day_of(st, day)["made"]
+    fill = behind(len(made), now, c)          # 목표보다 뒤처졌으면 기준을 낮춰(fill_min_score) 그날 후보 중 가장 높은 것으로 채움
     subj_today = {m.get("subject") for m in made} | {m.get("team") for m in made}
     rumor_today = sum(1 for m in made if m.get("rumor") and not m.get("transfer"))
     n = len(made)
@@ -231,6 +244,8 @@ def choose(scored: list[dict], st: dict, c: dict, now: datetime) -> tuple[dict |
             continue
         tier = 1 if x["hwg"] else 2 if x.get("type") in TIER2 else 3 if x.get("type") == "빅클럽 스타 화제" else 0
         ok = tier == 1 or (tier in (2, 3) and x["total"] >= c["min_score"]) or x["total"] >= c["any_type_score"]
+        if not ok and fill and x["total"] >= float(c.get("fill_min_score", 14)):
+            ok = True                              # 채우기(유형 상관없이 그날 후보 중 점수 높은 순)
         if not ok:
             continue
         x = {**x, "tier": tier or 3}
@@ -248,16 +263,16 @@ def choose(scored: list[dict], st: dict, c: dict, now: datetime) -> tuple[dict |
     if n >= int(c["daily_max"]):
         return None, losers, f"오늘 {n}편 — 하루 최대"
     if best["tier"] != 1:
-        if n >= int(c["daily_max"]) - 1 and now.strftime("%H:%M") < c["reserve_romano_until"]:
+        if n >= int(c["daily_max"]) - 1 and now.strftime("%H:%M") < c["reserve_romano_until"] and not fill:
             return None, losers, f"4번째 자리는 {c['reserve_romano_until']}까지 로마노용"
         last = max((m["at"] for m in made if m.get("tier", 2) != 1), default="")
-        if last and now - datetime.fromisoformat(last) < timedelta(hours=float(c["gap_hours"])):
+        if last and now - datetime.fromisoformat(last) < timedelta(hours=float(c.get("fill_gap_hours", 1) if fill else c["gap_hours"])):
             return None, losers, f"후순위끼리 {c['gap_hours']}시간 간격"
         if _between(now, c["quiet"]):
             return None, losers, f"{c['quiet'][0]}~{c['quiet'][1]} 쉼"
         if _between(now, [c["night"][0], c["night_send"]]):
             return None, losers, f"새벽 소식은 {c['night_send']} 이후"
-    return best, [x for x in pool[1:3]] or losers, "제작"
+    return best, [x for x in pool[1:3]] or losers, "제작(4편 채우기)" if fill and best["total"] < c["min_score"] and best["tier"] != 1 else "제작"
 
 
 # ── 5) 제작·보내기
@@ -447,9 +462,15 @@ def run_once(force: bool = False, dry: bool = False, log=print) -> dict:
     lim = (now - timedelta(days=3)).isoformat()
     st["item_seen"] = {k: v for k, v in seen_items.items() if k and v >= lim}
     st["seen"] = {k: v for k, v in st.get("seen", {}).items() if v.get("at", "") >= lim}
+    bench = day_of(st, day).setdefault("bench", [])          # 오늘 점수 매긴 후보(채우기용) — 다시 판정하지 않음(비용 0)
     if not cands:
+        if bench and behind(len(day_of(st, day)["made"]), now, c):
+            best, others, why = choose(bench, st, c, now)
+            rep.update(why=f"새 후보 없음 → 오늘 후보로 채우기: {why}")
+            if best is not None and not dry:
+                return _make(best, others, st, d, c, day, now, rep, log)
         save_state(d, st, "chronicle no new")
-        return {**rep, "why": "1차 거르기를 통과한 새 후보 없음(Claude 안 부름)"}
+        return {**rep, "why": rep["why"] or "1차 거르기를 통과한 새 후보 없음(Claude 안 부름)"}
     pre = art.month_precheck(200)
     if pre and not st.get("month_warned") == now.strftime("%Y-%m"):
         say(pre)
@@ -464,12 +485,20 @@ def run_once(force: bool = False, dry: bool = False, log=print) -> dict:
         say(f"⚠️ 연대기 판정 비용 오늘 {dd['judge_krw']:.0f}원 — 하루 {c.get('judge_daily_alert_krw', 200)}원 넘음")
     for x in scored:
         st["seen"][x["key"]] = {"at": now.isoformat(timespec="seconds"), "total": x["total"], "subject": x.get("subject_ko", "")}
-    best, others, why = choose(scored, st, c, now)
+    keep = [x for x in scored if not x.get("exclude") and x.get("total", 0) >= float(c.get("fill_min_score", 14))]
+    bench[:] = sorted({x["key"]: x for x in bench + keep}.values(), key=lambda x: -x.get("total", 0))[:15]
+    best, others, why = choose(bench if behind(len(day_of(st, day)["made"]), now, c) else scored, st, c, now)
     rep.update(why=why, scored=[(x.get("subject_ko"), x["total"]) for x in scored])
     if best is None or dry:
         save_state(d, st, "chronicle scored")
         return rep
+    return _make(best, others, st, d, c, day, now, rep, log)
+
+
+def _make(best: dict, others: list, st: dict, d, c: dict, day: str, now: datetime, rep: dict, log=print) -> dict:
     best["_losers"] = others
+    dd = day_of(st, day)
+    dd["bench"] = [x for x in dd.get("bench", []) if x.get("key") != best.get("key")]
     r = produce(best, st, c, log)
     day_of(st, day)["made"].append({"at": now.isoformat(timespec="seconds"), "tier": best["tier"], "subject": best["subject_ko"],
                                     "team": best["team_ko"], "rumor": bool(best.get("rumor")), "transfer": bool(best.get("transfer"))})
