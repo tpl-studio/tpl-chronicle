@@ -163,6 +163,62 @@
      "total": 21.0
     },
     {
+     "key": "16-agreed-agrees-as-barhama-deal-declares-fabrizio",
+     "titles": [
+      "[Sky Sports] Liverpool transfer news: Sidy Barhama Ndiaye agrees deal to sign for Reds - Paper Talk",
+      "[AllFootball] Here we go! Romano: Liverpool agreed deal to sign 16 year old winger Sidy Barhama Ndiaye",
+      "[TEAMtalk] Liverpool seal deal to sign new winger as Fabrizio Romano declares ‘here we go’"
+     ],
+     "outlets": [
+      "Sky Sports",
+      "AllFootball",
+      "TEAMtalk"
+     ],
+     "credible": [
+      "Sky Sports"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "리버풀"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-25T21:57:04+00:00",
+     "ids": [
+      "0c8ea762b4a6670c",
+      "082ff89c307ae972",
+      "63ce7fca248434ba"
+     ],
+     "i": 1,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "시디 바라마 은다예",
+     "subject_en": "Sidy Barhama Ndiaye",
+     "team_ko": "리버풀",
+     "team_en": "Liverpool",
+     "league_ko": "프리미어리그",
+     "role": "선수",
+     "type": "이적+위트",
+     "rumor": true,
+     "transfer": true,
+     "scores": {
+      "name": 4,
+      "drama": 3,
+      "divide": 2,
+      "share": 4,
+      "surprise": 3,
+      "korea": 5
+     },
+     "reason": "16세 윙어 이적 루머",
+     "base": 21.0,
+     "bonus": 0,
+     "total": 21.0
+    },
+    {
      "key": "bellingham-best-does-in-midfielder-rank-where-world",
      "titles": [
       "[BBC Sport] 'Best midfielder in the world' - where does Bellingham rank?",
@@ -380,11 +436,29 @@
    "total": 0.0,
    "subject": "",
    "title": "[London Evening Standard] Fresh Liverpool injury blow as star forced off in Champions League"
+  },
+  "analysis-brugge-champions-club-commentary-league-lineups-live": {
+   "at": "2026-11-26T07:11:34+09:00",
+   "total": 0.0,
+   "subject": "",
+   "title": "[Sky Sports] Club Brugge vs Liverpool LIVE! Champions League lineups, match updates, news, score and analysis"
+  },
+  "16-agreed-agrees-as-barhama-deal-declares-fabrizio": {
+   "at": "2026-11-26T07:11:34+09:00",
+   "total": 21.0,
+   "subject": "시디 바라마 은다예",
+   "title": "[Sky Sports] Liverpool transfer news: Sidy Barhama Ndiaye agrees deal to sign for Reds - Paper Talk"
+  },
+  "26-27-bayern-champions-fc-gallery-head-league": {
+   "at": "2026-11-26T07:11:34+09:00",
+   "total": 0.0,
+   "subject": "",
+   "title": "[BBC] Lille vs Bayern Munich: UEFA Champions League stats & head-to-head"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-25T15:04:05+09:00",
- "last_run_at": "2026-11-26T06:56:33+09:00",
+ "last_run_at": "2026-11-26T07:11:34+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -3324,6 +3398,69 @@
   "c9d240dd55a21f6c": "2026-11-26T06:56:33+09:00",
   "9e254a61f58945ee": "2026-11-26T06:56:33+09:00",
   "b72f06a559d03894": "2026-11-26T06:56:33+09:00",
-  "75a3f82f51586f86": "2026-11-26T06:56:33+09:00"
+  "75a3f82f51586f86": "2026-11-26T06:56:33+09:00",
+  "67a23f360f8baaca": "2026-11-26T07:11:34+09:00",
+  "d4dfb74f85ef862a": "2026-11-26T07:11:34+09:00",
+  "9ad4fdbd8039ee38": "2026-11-26T07:11:34+09:00",
+  "efb71fd404e951c3": "2026-11-26T07:11:34+09:00",
+  "79739b678d0ac1ae": "2026-11-26T07:11:34+09:00",
+  "75843c5ddefed08a": "2026-11-26T07:11:34+09:00",
+  "e61b5f4112db949b": "2026-11-26T07:11:34+09:00",
+  "c8678fdb084bd010": "2026-11-26T07:11:34+09:00",
+  "4a27fffe94edf34d": "2026-11-26T07:11:34+09:00",
+  "3ed2a64cdeb39fde": "2026-11-26T07:11:34+09:00",
+  "184ef560aca7bfe2": "2026-11-26T07:11:34+09:00",
+  "c27ca16a82f3fe1d": "2026-11-26T07:11:34+09:00",
+  "597ca441e4f267cb": "2026-11-26T07:11:34+09:00",
+  "a132d1747b53984a": "2026-11-26T07:11:34+09:00",
+  "44ece49e7cc72c6c": "2026-11-26T07:11:34+09:00",
+  "93f52dcd743ccb4a": "2026-11-26T07:11:34+09:00",
+  "0277f2476b3a8ab9": "2026-11-26T07:11:34+09:00",
+  "80efa5210d7cb525": "2026-11-26T07:11:34+09:00",
+  "0c8ea762b4a6670c": "2026-11-26T07:11:34+09:00",
+  "bc2813f0b9a8187b": "2026-11-26T07:11:34+09:00",
+  "088ed8cde1d49458": "2026-11-26T07:11:34+09:00",
+  "6b19f2d538236b36": "2026-11-26T07:11:34+09:00",
+  "1f92706754d97e98": "2026-11-26T07:11:34+09:00",
+  "a66573cf798cd163": "2026-11-26T07:11:34+09:00",
+  "92b0d771a88772f8": "2026-11-26T07:11:34+09:00",
+  "faf87a231cdabe92": "2026-11-26T07:11:34+09:00",
+  "9c2fb5c0f6030e36": "2026-11-26T07:11:34+09:00",
+  "09e3ba6fa935eec1": "2026-11-26T07:11:34+09:00",
+  "81d43b70043dde26": "2026-11-26T07:11:34+09:00",
+  "33f9f46c80dd5bb6": "2026-11-26T07:11:34+09:00",
+  "5783418c0573aff4": "2026-11-26T07:11:34+09:00",
+  "f4b1cb5f4a838b5d": "2026-11-26T07:11:34+09:00",
+  "0b8660c762895629": "2026-11-26T07:11:34+09:00",
+  "9fcd3c3cee41612b": "2026-11-26T07:11:34+09:00",
+  "d1a1293a026489cc": "2026-11-26T07:11:34+09:00",
+  "6c7101d7790d3eae": "2026-11-26T07:11:34+09:00",
+  "ee9073f487d621a7": "2026-11-26T07:11:34+09:00",
+  "c625e50a637a8c29": "2026-11-26T07:11:34+09:00",
+  "22becdd03488cff4": "2026-11-26T07:11:34+09:00",
+  "d4c38d1dc4c5f158": "2026-11-26T07:11:34+09:00",
+  "c9077186feb26baa": "2026-11-26T07:11:34+09:00",
+  "1fa56f3a8ffa512f": "2026-11-26T07:11:34+09:00",
+  "edd3ff50ac62d552": "2026-11-26T07:11:34+09:00",
+  "6cf5a5467627f782": "2026-11-26T07:11:34+09:00",
+  "0f9c1754825b278a": "2026-11-26T07:11:34+09:00",
+  "ff36f2ee442e5964": "2026-11-26T07:11:34+09:00",
+  "355b50d96d680fb6": "2026-11-26T07:11:34+09:00",
+  "be49f0f3db7b7659": "2026-11-26T07:11:34+09:00",
+  "9aa653bc965768d2": "2026-11-26T07:11:34+09:00",
+  "8ba04bfe07de4e7d": "2026-11-26T07:11:34+09:00",
+  "d0228156564ce6f1": "2026-11-26T07:11:34+09:00",
+  "dd146b4f0b055cd3": "2026-11-26T07:11:34+09:00",
+  "81f8b691684acf3c": "2026-11-26T07:11:34+09:00",
+  "d0f649dda201e5fd": "2026-11-26T07:11:34+09:00",
+  "06a35e9d2d257993": "2026-11-26T07:11:34+09:00",
+  "a78c169c3e25fc8f": "2026-11-26T07:11:34+09:00",
+  "3d9fb87fa477eb8a": "2026-11-26T07:11:34+09:00",
+  "872327e8001e0686": "2026-11-26T07:11:34+09:00",
+  "158214fc93cfc5b5": "2026-11-26T07:11:34+09:00",
+  "56c69d434c4f5b33": "2026-11-26T07:11:34+09:00",
+  "56b1c6bc7243ba99": "2026-11-26T07:11:34+09:00",
+  "e7b6086bcb7d0740": "2026-11-26T07:11:34+09:00",
+  "0816fdc7e625d203": "2026-11-26T07:11:34+09:00"
  }
 }
