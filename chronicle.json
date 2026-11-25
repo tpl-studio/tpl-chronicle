@@ -217,6 +217,60 @@
      "base": 20.0,
      "bonus": 0,
      "total": 20.0
+    },
+    {
+     "key": "at-barcelona-champions-cruise-double-gordon-helps-in",
+     "titles": [
+      "[The Guardian] Champions League: Gordon twice on target in Barcelona’s cruise at Sabah",
+      "[Reuters] Gordon double helps Barcelona cruise past Sabah 4-1 in Champions League"
+     ],
+     "outlets": [
+      "The Guardian",
+      "Reuters"
+     ],
+     "credible": [
+      "The Guardian",
+      "Reuters"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "바르셀로나"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-25T20:22:00+00:00",
+     "ids": [
+      "027d5f7eb8c4ade3",
+      "1a3082a07adc101b"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "고든",
+     "subject_en": "Gordon",
+     "team_ko": "바르셀로나",
+     "team_en": "Barcelona",
+     "league_ko": "챔피언스리그",
+     "role": "선수",
+     "type": "기타",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 4,
+      "drama": 2,
+      "divide": 1,
+      "share": 3,
+      "surprise": 2,
+      "korea": 3
+     },
+     "reason": "고든 득점 중심 기사",
+     "base": 15.0,
+     "bonus": 0,
+     "total": 15.0
     }
    ],
    "judge_krw": 0.0
@@ -290,11 +344,23 @@
    "total": 0.0,
    "subject": "",
    "title": "[Liverpool FC] Liverpool tee up deal for Senegal wonderkid as transfer 'option' agreed"
+  },
+  "at-barcelona-champions-cruise-double-gordon-helps-in": {
+   "at": "2026-11-26T05:31:26+09:00",
+   "total": 15.0,
+   "subject": "고든",
+   "title": "[The Guardian] Champions League: Gordon twice on target in Barcelona’s cruise at Sabah"
+  },
+  "barcelona-champions-channel-details-early-free-how-kick": {
+   "at": "2026-11-26T05:31:26+09:00",
+   "total": 11.0,
+   "subject": "고든",
+   "title": "[Yahoo Sports] How to watch PSG vs Roma: Champions League, live stream, TV channel"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-25T15:04:05+09:00",
- "last_run_at": "2026-11-26T05:16:24+09:00",
+ "last_run_at": "2026-11-26T05:31:26+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -3060,6 +3126,31 @@
   "8d89296e8ab72ec4": "2026-11-26T05:16:24+09:00",
   "436ee8cb71e1a603": "2026-11-26T05:16:24+09:00",
   "9d27be4a2b037972": "2026-11-26T05:16:24+09:00",
-  "edac7754809d7b66": "2026-11-26T05:16:24+09:00"
+  "edac7754809d7b66": "2026-11-26T05:16:24+09:00",
+  "d8468ee33dfb81d1": "2026-11-26T05:31:26+09:00",
+  "07307c26f2e4ba0d": "2026-11-26T05:31:26+09:00",
+  "0820bfcc952e4b11": "2026-11-26T05:31:26+09:00",
+  "027d5f7eb8c4ade3": "2026-11-26T05:31:26+09:00",
+  "cb7b2bf4e3b485e1": "2026-11-26T05:31:26+09:00",
+  "bc67ed342d56aa8d": "2026-11-26T05:31:26+09:00",
+  "98bed9108f02bb89": "2026-11-26T05:31:26+09:00",
+  "018e1783bd2528d9": "2026-11-26T05:31:26+09:00",
+  "ce755af490b2e658": "2026-11-26T05:31:26+09:00",
+  "2dd13fd88d9c7355": "2026-11-26T05:31:26+09:00",
+  "0e68cfa39dd6f89a": "2026-11-26T05:31:26+09:00",
+  "e36100d5daf04440": "2026-11-26T05:31:26+09:00",
+  "9f23ee30f9e6e76c": "2026-11-26T05:31:26+09:00",
+  "3ffb37666b61aac9": "2026-11-26T05:31:26+09:00",
+  "6a89dfbdcf0ad798": "2026-11-26T05:31:26+09:00",
+  "0215662602e19766": "2026-11-26T05:31:26+09:00",
+  "c4b8f2bedf44fdfe": "2026-11-26T05:31:26+09:00",
+  "04df98c39e0d526f": "2026-11-26T05:31:26+09:00",
+  "fe1c214ddb8d3ae9": "2026-11-26T05:31:26+09:00",
+  "ca2a20ad5d4ea9d2": "2026-11-26T05:31:26+09:00",
+  "3f2d31c661d8d107": "2026-11-26T05:31:26+09:00",
+  "46020586c7ba67c8": "2026-11-26T05:31:26+09:00",
+  "5b5ca04ea2aa43c8": "2026-11-26T05:31:26+09:00",
+  "9969a4eba04f4a43": "2026-11-26T05:31:26+09:00",
+  "a1507ae5072de940": "2026-11-26T05:31:26+09:00"
  }
 }
