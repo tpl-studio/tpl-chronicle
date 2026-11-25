@@ -49,6 +49,65 @@
    "_seeded": true,
    "bench": [
     {
+     "key": "barcelona-brugge-champions-club-fk-head-isn-lamine",
+     "titles": [
+      "[Sports Illustrated] Why Lamine Yamal Isn’t Playing for Barcelona vs. Sabah—Champions League",
+      "[BBC] Sabah FK vs Barcelona: UEFA Champions League stats & head-to-head",
+      "[BBC] Club Brugge vs Liverpool: UEFA Champions League stats & head-to-head"
+     ],
+     "outlets": [
+      "Sports Illustrated",
+      "BBC"
+     ],
+     "credible": [
+      "Sports Illustrated",
+      "BBC"
+     ],
+     "summaries": [],
+     "stars": [
+      "야말"
+     ],
+     "clubs": [
+      "리버풀",
+      "바르셀로나"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-25T17:10:00+00:00",
+     "ids": [
+      "60970cfba6e60770",
+      "158e5072103eeb79",
+      "c2da4bcc50aaad64"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "라민 야말",
+     "subject_en": "Lamine Yamal",
+     "team_ko": "바르셀로나",
+     "team_en": "Barcelona",
+     "league_ko": "UEFA 챔피언스리그",
+     "role": "선수",
+     "type": "충성·잔류",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 3,
+      "divide": 2,
+      "share": 4,
+      "surprise": 2,
+      "korea": 5
+     },
+     "reason": "바르셀로나 잔류 논란",
+     "base": 21.0,
+     "bonus": 0,
+     "total": 21.0
+    },
+    {
      "key": "bellingham-best-does-in-midfielder-rank-where-world",
      "titles": [
       "[BBC Sport] 'Best midfielder in the world' - where does Bellingham rank?",
@@ -140,11 +199,17 @@
    "total": 20.0,
    "subject": "주드 벨링햄",
    "title": "[BBC Sport] 'Best midfielder in the world' - where does Bellingham rank?"
+  },
+  "barcelona-brugge-champions-club-fk-head-isn-lamine": {
+   "at": "2026-11-26T02:51:29+09:00",
+   "total": 21.0,
+   "subject": "라민 야말",
+   "title": "[Sports Illustrated] Why Lamine Yamal Isn’t Playing for Barcelona vs. Sabah—Champions League"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-25T15:04:05+09:00",
- "last_run_at": "2026-11-26T02:36:30+09:00",
+ "last_run_at": "2026-11-26T02:51:29+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -2673,6 +2738,25 @@
   "4c88a37e6b0a1eb1": "2026-11-26T02:36:30+09:00",
   "d8d7cc8c81e2581d": "2026-11-26T02:36:30+09:00",
   "6ef272aa09d58bd4": "2026-11-26T02:36:30+09:00",
-  "e1e6840cfc1b8700": "2026-11-26T02:36:30+09:00"
+  "e1e6840cfc1b8700": "2026-11-26T02:36:30+09:00",
+  "6ac6715633c2082a": "2026-11-26T02:51:29+09:00",
+  "b7163a4e3ee839f3": "2026-11-26T02:51:29+09:00",
+  "30269509438eb418": "2026-11-26T02:51:29+09:00",
+  "4da80c358a5776ba": "2026-11-26T02:51:29+09:00",
+  "2069441075af4f41": "2026-11-26T02:51:29+09:00",
+  "d80a38c84945d96f": "2026-11-26T02:51:29+09:00",
+  "187d6b5599db543f": "2026-11-26T02:51:29+09:00",
+  "086c662f5a4f379a": "2026-11-26T02:51:29+09:00",
+  "4c681dd959097626": "2026-11-26T02:51:29+09:00",
+  "60970cfba6e60770": "2026-11-26T02:51:29+09:00",
+  "231f3741cd70b542": "2026-11-26T02:51:29+09:00",
+  "4e47f5d2909b2b56": "2026-11-26T02:51:29+09:00",
+  "a62aada46c3fcd82": "2026-11-26T02:51:29+09:00",
+  "7c3c61edcfbef886": "2026-11-26T02:51:29+09:00",
+  "45ed23617e109894": "2026-11-26T02:51:29+09:00",
+  "f8656d53d5c3a117": "2026-11-26T02:51:29+09:00",
+  "eeafe6c63e70d4d0": "2026-11-26T02:51:29+09:00",
+  "3dfa356ada290f1d": "2026-11-26T02:51:29+09:00",
+  "c7e2dfe5c5249712": "2026-11-26T02:51:29+09:00"
  }
 }
