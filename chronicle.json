@@ -108,6 +108,61 @@
      "total": 21.0
     },
     {
+     "key": "barca-barcelona-champions-eight-isn-lamine-league-live",
+     "titles": [
+      "[beIN SPORTS] Sabah vs Barcelona LIVE: Barça Target a Champions League Top-Eight Spot Without Lamine Yamal",
+      "[Sports Illustrated] Why Lamine Yamal Isn’t Playing for Barcelona vs. Sabah—Champions League"
+     ],
+     "outlets": [
+      "beIN SPORTS",
+      "Sports Illustrated"
+     ],
+     "credible": [
+      "Sports Illustrated"
+     ],
+     "summaries": [],
+     "stars": [
+      "야말"
+     ],
+     "clubs": [
+      "바르셀로나"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-25T17:12:08+00:00",
+     "ids": [
+      "e564abbdc3101611",
+      "60970cfba6e60770"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "라민 야말",
+     "subject_en": "Lamine Yamal",
+     "team_ko": "바르셀로나",
+     "team_en": "Barcelona",
+     "league_ko": "챔피언스리그",
+     "role": "선수",
+     "type": "충성·잔류",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 3,
+      "divide": 2,
+      "share": 4,
+      "surprise": 3,
+      "korea": 4
+     },
+     "reason": "라민 야말 결장 소식, 팬 관심 높음",
+     "base": 21.0,
+     "bonus": 0,
+     "total": 21.0
+    },
+    {
      "key": "bellingham-best-does-in-midfielder-rank-where-world",
      "titles": [
       "[BBC Sport] 'Best midfielder in the world' - where does Bellingham rank?",
@@ -205,11 +260,17 @@
    "total": 21.0,
    "subject": "라민 야말",
    "title": "[Sports Illustrated] Why Lamine Yamal Isn’t Playing for Barcelona vs. Sabah—Champions League"
+  },
+  "barca-barcelona-champions-eight-isn-lamine-league-live": {
+   "at": "2026-11-26T03:11:34+09:00",
+   "total": 21.0,
+   "subject": "라민 야말",
+   "title": "[beIN SPORTS] Sabah vs Barcelona LIVE: Barça Target a Champions League Top-Eight Spot Without Lamine Yamal"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-25T15:04:05+09:00",
- "last_run_at": "2026-11-26T02:51:29+09:00",
+ "last_run_at": "2026-11-26T03:11:34+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -2757,6 +2818,28 @@
   "f8656d53d5c3a117": "2026-11-26T02:51:29+09:00",
   "eeafe6c63e70d4d0": "2026-11-26T02:51:29+09:00",
   "3dfa356ada290f1d": "2026-11-26T02:51:29+09:00",
-  "c7e2dfe5c5249712": "2026-11-26T02:51:29+09:00"
+  "c7e2dfe5c5249712": "2026-11-26T02:51:29+09:00",
+  "3b79aeffc0da538d": "2026-11-26T03:11:34+09:00",
+  "9a24e90bba81f71e": "2026-11-26T03:11:34+09:00",
+  "632d362f49b14531": "2026-11-26T03:11:34+09:00",
+  "f90c74502af2fddb": "2026-11-26T03:11:34+09:00",
+  "3b1213c9fb9d7acf": "2026-11-26T03:11:34+09:00",
+  "b8e7c079157ad37f": "2026-11-26T03:11:34+09:00",
+  "b2bedaa9f6e030f5": "2026-11-26T03:11:34+09:00",
+  "e564abbdc3101611": "2026-11-26T03:11:34+09:00",
+  "19e2d12ed933cf10": "2026-11-26T03:11:34+09:00",
+  "4edb8ac2fafd1418": "2026-11-26T03:11:34+09:00",
+  "2a58438bef4f2bfd": "2026-11-26T03:11:34+09:00",
+  "f60c7398479bacdd": "2026-11-26T03:11:34+09:00",
+  "eaef426b2668daf9": "2026-11-26T03:11:34+09:00",
+  "e01d01c3dd4e7095": "2026-11-26T03:11:34+09:00",
+  "dfd940015a7ff1c4": "2026-11-26T03:11:34+09:00",
+  "1ae9d0cec382b0a8": "2026-11-26T03:11:34+09:00",
+  "aba2f14086dca1f0": "2026-11-26T03:11:34+09:00",
+  "7f1c99ea529b96f9": "2026-11-26T03:11:34+09:00",
+  "ad24b7962bf9cd5d": "2026-11-26T03:11:34+09:00",
+  "a0354a040421b206": "2026-11-26T03:11:34+09:00",
+  "9df5833ddd7460eb": "2026-11-26T03:11:34+09:00",
+  "47fe8fee77ab5c7d": "2026-11-26T03:11:34+09:00"
  }
 }
