@@ -451,6 +451,8 @@ def run_once(force: bool = False, dry: bool = False, log=print) -> dict:
     st["last_run_at"] = now.isoformat(timespec="seconds")
     errs = day_of(st, day)["errors"]
     items = collect(c, errs, log)
+    if FD.FETCH_LOG:
+        log(f"[연대기] 구글 뉴스 받기: {FD.FETCH_LOG}")
     check_corrections(st, items)
     recent = {ch.get("subject_en", "").split(" ")[-1].lower() for ch in st.get("chapters", [])
               if ch.get("at", "") >= (now - timedelta(hours=48)).isoformat() and ch.get("subject_en")}

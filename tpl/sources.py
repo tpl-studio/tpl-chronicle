@@ -19,9 +19,10 @@ def _clean(s: str) -> str:
 
 
 def _rss(url: str) -> list[dict]:
+    from .feeds import fetch          # 구글 뉴스가 막히면 Bing 뉴스로(2026-11-25)
     try:
-        x = requests.get(url, headers=UA, timeout=30).content.decode("utf-8", "replace")
-    except requests.RequestException:
+        x = fetch(url, 30)
+    except Exception:  # noqa: BLE001
         return []
     out = []
     for it in re.findall(r"<item>(.*?)</item>", x, re.S):

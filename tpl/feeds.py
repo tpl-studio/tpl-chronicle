@@ -41,10 +41,67 @@ def names() -> dict:
 
 
 # ── 피드
-def fetch(url: str, timeout: int = 20) -> str:
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/rss+xml, application/xml, text/xml"})
+BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36"
+FETCH_LOG: dict = {}      # 이번 실행: 구글 뉴스 → 어디서 받았나(google · bing · fail) 개수
+
+
+def _fetch1(url: str, timeout: int, ua: str) -> str:
+    req = urllib.request.Request(url, headers={"User-Agent": ua, "Accept": "application/rss+xml, application/xml, text/xml",
+                                               "Accept-Language": "ko-KR,ko;q=0.9,en;q=0.8"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read().decode("utf-8", errors="replace")
+
+
+def bing_url(google_url: str) -> str | None:
+    """구글 뉴스 RSS 검색 주소 → 같은 검색어의 Bing 뉴스 RSS 주소(없으면 None)."""
+    u = urllib.parse.urlparse(google_url)
+    if "news.google." not in u.netloc:
+        return None
+    qs = urllib.parse.parse_qs(u.query)
+    q = (qs.get("q") or [""])[0]
+    if not q:
+        return None
+    q = re.sub(r"\bwhen:\d+[hd]\b", "", q).strip()            # 구글 전용 기간 표시는 빼고(Bing 은 qft 로)
+    ko = (qs.get("hl") or [""])[0].lower().startswith("ko")
+    return ("https://www.bing.com/news/search?" + urllib.parse.urlencode(
+        {"q": q, "format": "rss", "qft": 'interval="7"', "setlang": "ko" if ko else "en-GB", "cc": "KR" if ko else "GB"}))
+
+
+def bing_to_rss(x: str) -> str:
+    """Bing 뉴스 RSS → 구글 뉴스와 같은 모양(<source> 언론사 · 실제 기사 주소)."""
+    x = re.sub(r"<(/?)News:Source>", r"<\1source>", x)
+
+    def real(m):
+        q = urllib.parse.parse_qs(urllib.parse.urlparse(html.unescape(m.group(1))).query)
+        return "<link>" + html.escape((q.get("url") or [html.unescape(m.group(1))])[0]) + "</link>"
+    return re.sub(r"<link>(https?://www\.bing\.com/news/apiclick[^<]*)</link>", real, x)
+
+
+def fetch(url: str, timeout: int = 20) -> str:
+    """피드 받기. 구글 뉴스는 GitHub 서버에서 막히는 일이 많아(2026-11-25 클라우드 이전 후 전부 HTTPError)
+    → 브라우저 모양으로 한 번 더 → 그래도 안 되면 같은 검색어로 Bing 뉴스 RSS(무료 · 키 없음)."""
+    try:
+        x = _fetch1(url, timeout, UA)
+        if "news.google." in url:
+            FETCH_LOG["google"] = FETCH_LOG.get("google", 0) + 1
+        return x
+    except Exception as e:  # noqa: BLE001
+        alt = bing_url(url)
+        if not alt:
+            raise
+        try:
+            x = _fetch1(url, timeout, BROWSER_UA)
+            FETCH_LOG["google"] = FETCH_LOG.get("google", 0) + 1
+            return x
+        except Exception:  # noqa: BLE001
+            pass
+        try:
+            x = bing_to_rss(_fetch1(alt, timeout, BROWSER_UA))
+            FETCH_LOG["bing"] = FETCH_LOG.get("bing", 0) + 1
+            return x
+        except Exception:  # noqa: BLE001
+            FETCH_LOG["fail"] = FETCH_LOG.get("fail", 0) + 1
+            raise e
 
 
 def _text(el, tag: str) -> str:
