@@ -430,7 +430,7 @@ def run_once(force: bool = False, dry: bool = False, log=print) -> dict:
         return {**rep, "why": "자동 실행 꺼짐(auto_on=false)"}
     # PC 가 꺼져(잠들어) 있다 켜졌으면: 그동안 나온 소식은 몰아서 만들지 않고, 켜진 뒤 새로 나온 것부터(로마노 HWG 는 3시간 안이면 예외)
     last_run = st.get("last_run_at", "")
-    if not last_run or now - datetime.fromisoformat(last_run) > timedelta(minutes=float(c.get("resume_gap_min", 20))):
+    if not last_run or now - datetime.fromisoformat(last_run) > timedelta(minutes=float(os.environ.get("TPL_RESUME_GAP_MIN") or c.get("resume_gap_min", 20))):
         st["online_since"] = now.isoformat(timespec="seconds")
         log(f"[연대기] PC 켜짐(또는 첫 실행) — {now:%H:%M} 이후 나온 소식부터 처리")
     st["last_run_at"] = now.isoformat(timespec="seconds")
