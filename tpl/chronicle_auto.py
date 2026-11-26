@@ -19,6 +19,7 @@ from pathlib import Path
 
 import requests
 
+from . import quality as Q
 from . import art, chronicle as C, chronicle_flow as F, feeds as FD
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -201,6 +202,10 @@ def candidates(c: dict, items: list[dict], st: dict, log=print) -> list[dict]:
                 continue
             if len(cred) < 1 and not official:
                 continue
+        if not ver and Q.is_transfer_rumor(text):          # 이적은 로마노 HWG 만(2026-11-26) — 이적 루머는 RUMOR 로도 안 만듦
+            continue
+        if Q.is_minor(text):                                # 18세 미만(영어 '16-year-old' 등) 제외
+            continue
         times = sorted(a.get("published", "") for a in g if a.get("published"))
         burst = False
         try:
@@ -228,7 +233,8 @@ def score(cands: list[dict], meter: art.Meter, weights: dict) -> list[dict]:
                       + "\n".join(c["titles"][:4]) + ("\n요약: " + " / ".join(c.get("summaries", [])) if c.get("summaries") else "")
                       for i, c in enumerate(cands))
     p = (f"[후보 소식]\n{lst}\n\n각 후보를 판정해라. 반드시 이름 있는 주인공 1명(선수 또는 감독, 두 명이 함께 핵심이면 A&B) — 못 정하면 exclude.\n"
-         "제외: 범죄·성범죄·음주운전·사망·심각한 부상·건강 의혹·사생활·18세 미만.\n"
+         "제외: 범죄·성범죄·음주운전·사망·심각한 부상·건강 의혹·사생활·18세 미만 · 로마노 HWG 가 아닌 이적 소식(관심·협상·임박·옵션 등 이적 루머).\n"
+         "rumor 는 이적이 아닌 소식의 루머일 때만 true.\n"
          f"type: 2순위 유형 {TIER2} 중 하나, 아니면 '빅클럽 스타 화제'(3순위), 그것도 아니면 '기타'. 로마노 이적·감독 부임·경질 확정이면 '로마노 이적'.\n"
          "※ i·pick·best 는 0부터 시작하는 숫자만(태그 이름·매체 이름·글자 쓰지 말 것).\n"
          "scores(각 0~5): name 이름값 / drama 감정·드라마 / divide 편 갈림 / share 공유각(DM으로 보낼 만함) / surprise 의외성 / korea 한국 팬 관심.\n"
@@ -283,6 +289,11 @@ def choose(scored: list[dict], st: dict, c: dict, now: datetime) -> tuple[dict |
     for x in scored:
         if x.get("exclude"):
             continue
+        if x.get("transfer") and not x["hwg"]:                 # 이적은 로마노 HWG 만
+            continue
+        okn, _why = Q.name_ok(x)                               # 주인공 이름값: 명단에 있거나 이름값 3점 이상
+        if not okn:
+            continue
         tier = 1 if x["hwg"] else 2 if x.get("type") in TIER2 else 3 if x.get("type") == "빅클럽 스타 화제" else 0
         ok = tier == 1 or (tier in (2, 3) and x["total"] >= c["min_score"]) or x["total"] >= c["any_type_score"]
         if not ok and fill and x["total"] >= float(c.get("fill_min_score", 14)):
@@ -317,6 +328,40 @@ def choose(scored: list[dict], st: dict, c: dict, now: datetime) -> tuple[dict |
 
 
 # ── 5) 제작·보내기
+def pick_draft(w: dict, x: dict, log=print) -> dict:
+    """시안 고르기(2026-11-26): best 부터 — 한국어(태그 + 2~3줄 + 한국어 이름)·화면 폭 안. 넘치면 짧게 다시 쓰기, 영어면 다른 시안.
+    이름 상자는 국내 매체 한국어 표기(주인공 한국어 이름). 맞는 시안이 없으면 이 기사는 건너뜀."""
+    from . import safe
+    drafts = [d for d in (w.get("drafts") or []) if isinstance(d, dict)]
+    first = safe.as_index(w.get("best"), len(drafts), drafts, "tag", default=0)
+    order = [first] + [i for i in range(len(drafts)) if i != first]
+    why = ""
+    for i in order:
+        dr = dict(drafts[i])
+        if not Q.HANGUL.search(str(dr.get("name") or "")) and Q.HANGUL.search(x.get("subject_ko", "")):
+            dr["name"] = x["subject_ko"]                     # 이름 상자는 한국어
+        if x["tier"] == 1:
+            dr["tag"] = "HERE WE GO"
+        elif x.get("rumor") and not x.get("transfer"):
+            dr["tag"] = "RUMOR"
+        elif str(dr.get("tag", "")).upper() in ("HERE WE GO", "RUMOR"):
+            dr["tag"] = ""                                   # HWG 아닌데 HWG 태그 · 이적 루머 태그는 떼어 냄
+        why = Q.korean_problems(dr)
+        if why:
+            log(f"  [연대기] 시안 {i} 제외: {why}")
+            continue
+        for _ in range(2):                                   # 화면 폭을 넘으면 문장을 짧게(글자는 디자인 최소 크기까지만)
+            too = Q.overflow_lines(dr)
+            if not too:
+                return dr
+            log(f"  [연대기] 시안 {i} 넘침 {too} → 짧게 다시 쓰기")
+            dr = Q.shorten(dr, too, lambda s_, p_: art.claude_json(s_, p_, art.Meter(cap=50), "썸네일 글 줄이기"))
+            if Q.korean_problems(dr):
+                break
+        why = "짧게 다시 써도 화면 폭을 넘음"
+    raise RuntimeError(f"쓸 수 있는 한국어 시안 없음({why}) → 이 기사는 건너뜀")
+
+
 def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     m = art.Meter(cap=float(c.get("video_cap_krw", 300)))
     pk = {"subject_ko": x["subject_ko"], "subject_en": x["subject_en"], "team_ko": x["team_ko"], "team_en": x["team_en"], "role": x["role"],
@@ -327,7 +372,7 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     mythic_used = sum(1 for ch in st.get("chapters", []) if ch.get("at", "").startswith(month) and str(ch.get("rank", "")).startswith("신화"))
     w = F.write(pk, m, mythic_ok=mythic_used < 2)                        # 신화(날개·빛기둥)는 한 달 최대 2번
     from . import safe
-    dr = w["drafts"][safe.as_index(w.get("best"), len(w["drafts"]), w["drafts"], "tag", default=0)]
+    dr = pick_draft(w, x, log)
     if x["tier"] == 1 and dr.get("tag") != "HERE WE GO":
         dr["tag"] = "HERE WE GO"
     if x.get("rumor") and dr.get("tag") != "RUMOR":
@@ -335,11 +380,12 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     no = int(st.get("next", 1))
     out = C.HOME / f"ch{no:02d}_{re.sub(r'[^0-9A-Za-z]+', '', x['subject_en'])[:20].lower() or 'story'}"
     out.mkdir(parents=True, exist_ok=True)
+    gem_failed = False
     try:
         png, prompt = F.image(w["prompt_en"], x["team_en"], m)
     except Exception as e:  # noqa: BLE001 — Gemini 그림 실패 → Gemini 다시 안 부르고 무료 FLUX 로
         log(f"  [연대기] 그림 실패({type(e).__name__}) → 무료 FLUX 실루엣")
-        png, prompt = b"", ""
+        png, prompt, gem_failed = b"", "", True
     chk = {"ok": False, "likeness": True, "why": "Gemini 그림 실패"}
     if png:
         try:
@@ -354,7 +400,12 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
         except Exception as e:  # noqa: BLE001 — 실패하면 첫 그림 그대로 + 표시
             chk = {**chk, "redraw": f"FLUX 다시 그리기 실패({type(e).__name__}) → 첫 그림 그대로"}
     (out / "art.png").write_bytes(png)
-    C.compose(out / "art.png", dr, out / "thumbnail.png")
+    comp = C.compose(out / "art.png", dr, out / "thumbnail.png")
+    if Q.render_overflow(comp.get("rects", {})):          # 렌더 뒤 넘침 검사 → 문장 짧게 다시 쓰고 다시 합성(1번)
+        dr = Q.shorten(dr, Q.overflow_lines(dr) or list(dr.get("lines", [])), lambda s_, p_: art.claude_json(s_, p_, m, "썸네일 글 줄이기"))
+        comp = C.compose(out / "art.png", dr, out / "thumbnail.png")
+        if Q.render_overflow(comp.get("rects", {})):
+            raise RuntimeError("썸네일 글이 줄여 써도 화면 폭을 넘음 → 이 기사는 건너뜀")
     vid = out / f"tpl_chronicle_ch{no:02d}.mp4"
     tmp = Path(os.environ.get("TEMP", "/tmp")) / vid.name
     C.video(out / "art.png", dr, tmp, log=log)
@@ -391,6 +442,8 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
         lines.insert(0, "⚠️ 얼굴 닮음 낮음")
     if chk.get("redraw"):
         lines.insert(0, f"🔁 다시 그림: {chk['redraw']}")
+    lines.insert(0, ("🎨 그림: 무료 FLUX 대체 — " + ("Gemini 그림 실패" if gem_failed else "Gemini 그림 점검 탈락") +
+                     (f"({chk.get('why', '')[:60]})" if chk.get("why") else "")) if prompt.startswith("FLUX") else "🎨 그림: Gemini")
     say("\n".join(lines))
     art.record(m, f"연대기 제{no}장 {x['subject_ko']}", True)
     C.record_chapter(no, x["subject_ko"], x["team_ko"], " / ".join(dr["lines"]))

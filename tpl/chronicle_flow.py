@@ -125,6 +125,8 @@ def write(pk: dict, meter: art.Meter, mythic_ok: bool = False) -> dict:
          "best · why · sheet{continent(대륙), rank(신분 — 주장·신예·골키퍼는 기사에서 확인될 때만, 모르면 기사), event_scene(사건 장면), "
          "concept, emotion, face, pose, costume, costume_why, background{front,middle,back}, light_color, hidden_detail, looks} · "
          "prompt_en · question(편이 갈리는 질문 1줄) · facts2(캡션용 기사 핵심 2줄) · pinned(고정 댓글용 사실 1줄) · hashtags(5개: 선수·팀·리그·해외축구·축구릴스)\n"
+         "drafts 의 tag·lines·name 은 모두 한국어(기사 영어 원문을 옮기지 말고 한국어로 요약 · 한 줄 9~12자 안팎) · name 은 국내 매체 한국어 표기 · "
+         "tag 는 HERE WE GO(로마노 HWG 일 때만)·RUMOR(이적 아닌 소식의 루머만)·오피셜·BBC 중 하나 또는 빈칸.\n"
          "best 는 drafts 안 시안 번호(0, 1, 2 중 숫자 하나). ※ i·pick·best 는 0부터 시작하는 숫자만(태그 이름·매체 이름·글자 쓰지 말 것).")
     from . import safe
     out = safe.ask_valid(lambda: art.claude_json(SYS, p, meter, "요약·글·시트(Claude)"), safe.v_write, None, "요약·글·시트")

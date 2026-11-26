@@ -1,0 +1,1077 @@
+{
+ "_note": "FOOTBALL LEGEND ARCHIVE 선수 명단(tpl-factory config/football_players.json 에서 이름만 복사 · 2026-11-26) — 연대기 주인공 이름값 검사용",
+ "players": [
+  {
+   "ko": "리오넬 메시",
+   "en": "Lionel Messi"
+  },
+  {
+   "ko": "크리스티아누 호날두",
+   "en": "Cristiano Ronaldo"
+  },
+  {
+   "ko": "루카 모드리치",
+   "en": "Luka Modrić"
+  },
+  {
+   "ko": "카림 벤제마",
+   "en": "Karim Benzema"
+  },
+  {
+   "ko": "로드리 에르난데스",
+   "en": "Rodri"
+  },
+  {
+   "ko": "우스만 뎀벨레",
+   "en": "Ousmane Dembélé"
+  },
+  {
+   "ko": "호나우지뉴",
+   "en": "Ronaldinho"
+  },
+  {
+   "ko": "카카",
+   "en": "Kaká"
+  },
+  {
+   "ko": "파비오 칸나바로",
+   "en": "Fabio Cannavaro"
+  },
+  {
+   "ko": "안드리 셰우첸코",
+   "en": "Andriy Shevchenko"
+  },
+  {
+   "ko": "파벨 네드베트",
+   "en": "Pavel Nedvěd"
+  },
+  {
+   "ko": "마이클 오언",
+   "en": "Michael Owen"
+  },
+  {
+   "ko": "루이스 피구",
+   "en": "Luís Figo"
+  },
+  {
+   "ko": "히바우두",
+   "en": "Rivaldo"
+  },
+  {
+   "ko": "호나우두",
+   "en": "Ronaldo (Brazilian footballer)"
+  },
+  {
+   "ko": "지네딘 지단",
+   "en": "Zinedine Zidane"
+  },
+  {
+   "ko": "로베르토 바조",
+   "en": "Roberto Baggio"
+  },
+  {
+   "ko": "장피에르 파팽",
+   "en": "Jean-Pierre Papin"
+  },
+  {
+   "ko": "마르코 판 바스턴",
+   "en": "Marco van Basten"
+  },
+  {
+   "ko": "뤼트 휠릿",
+   "en": "Ruud Gullit"
+  },
+  {
+   "ko": "미셸 플라티니",
+   "en": "Michel Platini"
+  },
+  {
+   "ko": "파올로 로시",
+   "en": "Paolo Rossi"
+  },
+  {
+   "ko": "카를하인츠 루메니게",
+   "en": "Karl-Heinz Rummenigge"
+  },
+  {
+   "ko": "케빈 키건",
+   "en": "Kevin Keegan"
+  },
+  {
+   "ko": "요한 크라위프",
+   "en": "Johan Cruyff"
+  },
+  {
+   "ko": "프란츠 베켄바워",
+   "en": "Franz Beckenbauer"
+  },
+  {
+   "ko": "게르트 뮐러",
+   "en": "Gerd Müller"
+  },
+  {
+   "ko": "에우제비우",
+   "en": "Eusébio"
+  },
+  {
+   "ko": "보비 찰턴",
+   "en": "Bobby Charlton"
+  },
+  {
+   "ko": "알프레도 디 스테파노",
+   "en": "Alfredo Di Stéfano"
+  },
+  {
+   "ko": "레프 야신",
+   "en": "Lev Yashin"
+  },
+  {
+   "ko": "푸슈카시 페렌츠",
+   "en": "Ferenc Puskás"
+  },
+  {
+   "ko": "로타어 마테우스",
+   "en": "Lothar Matthäus"
+  },
+  {
+   "ko": "차비 에르난데스",
+   "en": "Xavi (footballer, born 1980)"
+  },
+  {
+   "ko": "안드레스 이니에스타",
+   "en": "Andrés Iniesta"
+  },
+  {
+   "ko": "프랑크 리베리",
+   "en": "Franck Ribéry"
+  },
+  {
+   "ko": "로베르트 레반도프스키",
+   "en": "Robert Lewandowski"
+  },
+  {
+   "ko": "엘링 홀란",
+   "en": "Erling Haaland"
+  },
+  {
+   "ko": "킬리안 음바페",
+   "en": "Kylian Mbappé"
+  },
+  {
+   "ko": "모하메드 살라",
+   "en": "Mohamed Salah"
+  },
+  {
+   "ko": "비니시우스 주니오르",
+   "en": "Vinícius Júnior"
+  },
+  {
+   "ko": "주드 벨링엄",
+   "en": "Jude Bellingham"
+  },
+  {
+   "ko": "해리 케인",
+   "en": "Harry Kane"
+  },
+  {
+   "ko": "케빈 더 브라위너",
+   "en": "Kevin De Bruyne"
+  },
+  {
+   "ko": "마누엘 노이어",
+   "en": "Manuel Neuer"
+  },
+  {
+   "ko": "버질 판 데이크",
+   "en": "Virgil van Dijk"
+  },
+  {
+   "ko": "앙투안 그리즈만",
+   "en": "Antoine Griezmann"
+  },
+  {
+   "ko": "에덴 아자르",
+   "en": "Eden Hazard"
+  },
+  {
+   "ko": "루이스 알베르토 수아레스",
+   "en": "Luis Suárez (Uruguayan footballer)"
+  },
+  {
+   "ko": "네이마르",
+   "en": "Neymar"
+  },
+  {
+   "ko": "라민 야말",
+   "en": "Lamine Yamal"
+  },
+  {
+   "ko": "페드리",
+   "en": "Pedri"
+  },
+  {
+   "ko": "잔루이지 부폰",
+   "en": "Gianluigi Buffon"
+  },
+  {
+   "ko": "티에리 앙리",
+   "en": "Thierry Henry"
+  },
+  {
+   "ko": "라울 곤살레스",
+   "en": "Raúl González"
+  },
+  {
+   "ko": "흐리스토 스토이치코프",
+   "en": "Hristo Stoichkov"
+  },
+  {
+   "ko": "안드레아 피를로",
+   "en": "Andrea Pirlo"
+  },
+  {
+   "ko": "프란체스코 토티",
+   "en": "Francesco Totti"
+  },
+  {
+   "ko": "알레산드로 델 피에로",
+   "en": "Alessandro Del Piero"
+  },
+  {
+   "ko": "파올로 말디니",
+   "en": "Paolo Maldini"
+  },
+  {
+   "ko": "알레산드로 네스타",
+   "en": "Alessandro Nesta"
+  },
+  {
+   "ko": "젠나로 가투소",
+   "en": "Gennaro Gattuso"
+  },
+  {
+   "ko": "미로슬라프 클로제",
+   "en": "Miroslav Klose"
+  },
+  {
+   "ko": "필리프 람",
+   "en": "Philipp Lahm"
+  },
+  {
+   "ko": "바스티안 슈바인슈타이거",
+   "en": "Bastian Schweinsteiger"
+  },
+  {
+   "ko": "토마스 뮐러",
+   "en": "Thomas Müller"
+  },
+  {
+   "ko": "토니 크로스",
+   "en": "Toni Kroos"
+  },
+  {
+   "ko": "메수트 외질",
+   "en": "Mesut Özil"
+  },
+  {
+   "ko": "마리오 괴체",
+   "en": "Mario Götze"
+  },
+  {
+   "ko": "마츠 후멜스",
+   "en": "Mats Hummels"
+  },
+  {
+   "ko": "이케르 카시야스",
+   "en": "Iker Casillas"
+  },
+  {
+   "ko": "카를레스 푸욜",
+   "en": "Carles Puyol"
+  },
+  {
+   "ko": "샤비 알론소",
+   "en": "Xabi Alonso"
+  },
+  {
+   "ko": "세스크 파브레가스",
+   "en": "Cesc Fàbregas"
+  },
+  {
+   "ko": "다비드 비야",
+   "en": "David Villa"
+  },
+  {
+   "ko": "페르난도 토레스",
+   "en": "Fernando Torres"
+  },
+  {
+   "ko": "세르히오 라모스",
+   "en": "Sergio Ramos"
+  },
+  {
+   "ko": "제라르드 피케",
+   "en": "Gerard Piqué"
+  },
+  {
+   "ko": "세르히오 부스케츠",
+   "en": "Sergio Busquets"
+  },
+  {
+   "ko": "가비",
+   "en": "Gavi (footballer)"
+  },
+  {
+   "ko": "은골로 캉테",
+   "en": "N'Golo Kanté"
+  },
+  {
+   "ko": "위고 요리스",
+   "en": "Hugo Lloris"
+  },
+  {
+   "ko": "라파엘 바란",
+   "en": "Raphaël Varane"
+  },
+  {
+   "ko": "올리비에 지루",
+   "en": "Olivier Giroud"
+  },
+  {
+   "ko": "파트리크 비에라",
+   "en": "Patrick Vieira"
+  },
+  {
+   "ko": "릴리앙 튀람",
+   "en": "Lilian Thuram"
+  },
+  {
+   "ko": "마르셀 드사이",
+   "en": "Marcel Desailly"
+  },
+  {
+   "ko": "디디에 데샹",
+   "en": "Didier Deschamps"
+  },
+  {
+   "ko": "카푸",
+   "en": "Cafu"
+  },
+  {
+   "ko": "호베르투 카를루스",
+   "en": "Roberto Carlos"
+  },
+  {
+   "ko": "앙헬 디 마리아",
+   "en": "Ángel Di María"
+  },
+  {
+   "ko": "세르히오 아궤로",
+   "en": "Sergio Agüero"
+  },
+  {
+   "ko": "후안 로만 리켈메",
+   "en": "Juan Román Riquelme"
+  },
+  {
+   "ko": "가브리엘 바티스투타",
+   "en": "Gabriel Batistuta"
+  },
+  {
+   "ko": "하비에르 사네티",
+   "en": "Javier Zanetti"
+  },
+  {
+   "ko": "에밀리아노 마르티네스",
+   "en": "Emiliano Martínez"
+  },
+  {
+   "ko": "훌리안 알바레스",
+   "en": "Julián Alvarez"
+  },
+  {
+   "ko": "알렉시스 마크 알리스테르",
+   "en": "Alexis Mac Allister"
+  },
+  {
+   "ko": "엔소 페르난데스",
+   "en": "Enzo Fernández"
+  },
+  {
+   "ko": "디에고 마라도나",
+   "en": "Diego Maradona"
+  },
+  {
+   "ko": "펠레",
+   "en": "Pelé"
+  },
+  {
+   "ko": "가린샤",
+   "en": "Garrincha"
+  },
+  {
+   "ko": "지쿠",
+   "en": "Zico (footballer)"
+  },
+  {
+   "ko": "소크라치스",
+   "en": "Sócrates"
+  },
+  {
+   "ko": "다보르 슈케르",
+   "en": "Davor Šuker"
+  },
+  {
+   "ko": "게오르게 하지",
+   "en": "Gheorghe Hagi"
+  },
+  {
+   "ko": "호드리구 고이스",
+   "en": "Rodrygo"
+  },
+  {
+   "ko": "에두아르도 카마빙가",
+   "en": "Eduardo Camavinga"
+  },
+  {
+   "ko": "오렐리앵 추아메니",
+   "en": "Aurélien Tchouaméni"
+  },
+  {
+   "ko": "다니 카르바할",
+   "en": "Dani Carvajal"
+  },
+  {
+   "ko": "페데리코 발베르데",
+   "en": "Federico Valverde"
+  },
+  {
+   "ko": "티보 쿠르투아",
+   "en": "Thibaut Courtois"
+  },
+  {
+   "ko": "루카 요비치",
+   "en": "Luka Jović"
+  },
+  {
+   "ko": "디디에 드로그바",
+   "en": "Didier Drogba"
+  },
+  {
+   "ko": "프랭크 램퍼드",
+   "en": "Frank Lampard"
+  },
+  {
+   "ko": "존 테리",
+   "en": "John Terry"
+  },
+  {
+   "ko": "페트르 체흐",
+   "en": "Petr Čech"
+  },
+  {
+   "ko": "잔프랑코 졸라",
+   "en": "Gianfranco Zola"
+  },
+  {
+   "ko": "애슐리 콜",
+   "en": "Ashley Cole"
+  },
+  {
+   "ko": "콜 파머",
+   "en": "Cole Palmer"
+  },
+  {
+   "ko": "데니스 베르흐캄프",
+   "en": "Dennis Bergkamp"
+  },
+  {
+   "ko": "로베르 피레스",
+   "en": "Robert Pires"
+  },
+  {
+   "ko": "토니 애덤스",
+   "en": "Tony Adams"
+  },
+  {
+   "ko": "부카요 사카",
+   "en": "Bukayo Saka"
+  },
+  {
+   "ko": "마르틴 외데고르",
+   "en": "Martin Ødegaard"
+  },
+  {
+   "ko": "이언 라이트",
+   "en": "Ian Wright"
+  },
+  {
+   "ko": "윌리암 살리바",
+   "en": "William Saliba"
+  },
+  {
+   "ko": "데클런 라이스",
+   "en": "Declan Rice"
+  },
+  {
+   "ko": "라이언 긱스",
+   "en": "Ryan Giggs"
+  },
+  {
+   "ko": "폴 스콜스",
+   "en": "Paul Scholes"
+  },
+  {
+   "ko": "에리크 캉토나",
+   "en": "Eric Cantona"
+  },
+  {
+   "ko": "데이비드 베컴",
+   "en": "David Beckham"
+  },
+  {
+   "ko": "웨인 루니",
+   "en": "Wayne Rooney"
+  },
+  {
+   "ko": "게리 네빌",
+   "en": "Gary Neville"
+  },
+  {
+   "ko": "페테르 슈마이켈",
+   "en": "Peter Schmeichel"
+  },
+  {
+   "ko": "리오 퍼디난드",
+   "en": "Rio Ferdinand"
+  },
+  {
+   "ko": "네마냐 비디치",
+   "en": "Nemanja Vidić"
+  },
+  {
+   "ko": "브루누 페르난드스",
+   "en": "Bruno Fernandes"
+  },
+  {
+   "ko": "스티븐 제라드",
+   "en": "Steven Gerrard"
+  },
+  {
+   "ko": "케니 댈글리시",
+   "en": "Kenny Dalglish"
+  },
+  {
+   "ko": "이언 러시",
+   "en": "Ian Rush"
+  },
+  {
+   "ko": "제이미 캐러거",
+   "en": "Jamie Carragher"
+  },
+  {
+   "ko": "알리송 베케르",
+   "en": "Alisson Becker"
+  },
+  {
+   "ko": "로비 파울러",
+   "en": "Robbie Fowler"
+  },
+  {
+   "ko": "트렌트 알렉산더아널드",
+   "en": "Trent Alexander-Arnold"
+  },
+  {
+   "ko": "사디오 마네",
+   "en": "Sadio Mané"
+  },
+  {
+   "ko": "호베르투 피르미누",
+   "en": "Roberto Firmino"
+  },
+  {
+   "ko": "뱅상 콩파니",
+   "en": "Vincent Kompany"
+  },
+  {
+   "ko": "다비드 실바",
+   "en": "David Silva"
+  },
+  {
+   "ko": "야야 투레",
+   "en": "Yaya Touré"
+  },
+  {
+   "ko": "필 포든",
+   "en": "Phil Foden"
+  },
+  {
+   "ko": "베르나르두 실바",
+   "en": "Bernardo Silva"
+  },
+  {
+   "ko": "후벵 디아스",
+   "en": "Rúben Dias"
+  },
+  {
+   "ko": "리야드 마레즈",
+   "en": "Riyad Mahrez"
+  },
+  {
+   "ko": "가레스 베일",
+   "en": "Gareth Bale"
+  },
+  {
+   "ko": "글렌 호들",
+   "en": "Glenn Hoddle"
+  },
+  {
+   "ko": "게리 리네커",
+   "en": "Gary Lineker"
+  },
+  {
+   "ko": "위르겐 클린스만",
+   "en": "Jürgen Klinsmann"
+  },
+  {
+   "ko": "마르셀루 비에이라",
+   "en": "Marcelo (footballer, born 1988)"
+  },
+  {
+   "ko": "페르난도 이에로",
+   "en": "Fernando Hierro"
+  },
+  {
+   "ko": "카제미루",
+   "en": "Casemiro"
+  },
+  {
+   "ko": "이케르 무니아인",
+   "en": "Iker Muniain"
+  },
+  {
+   "ko": "사뮈엘 에토",
+   "en": "Samuel Eto'o"
+  },
+  {
+   "ko": "프렝키 더 용",
+   "en": "Frenkie de Jong"
+  },
+  {
+   "ko": "하파에우 지아스 벨롤리",
+   "en": "Raphinha"
+  },
+  {
+   "ko": "코케",
+   "en": "Koke (footballer, born 1992)"
+  },
+  {
+   "ko": "디에고 고딘",
+   "en": "Diego Godín"
+  },
+  {
+   "ko": "디에고 시메오네",
+   "en": "Diego Simeone"
+  },
+  {
+   "ko": "얀 오블라크",
+   "en": "Jan Oblak"
+  },
+  {
+   "ko": "라다멜 팔카오",
+   "en": "Radamel Falcao"
+  },
+  {
+   "ko": "올리버 칸",
+   "en": "Oliver Kahn"
+  },
+  {
+   "ko": "아르연 로번",
+   "en": "Arjen Robben"
+  },
+  {
+   "ko": "자말 무시알라",
+   "en": "Jamal Musiala"
+  },
+  {
+   "ko": "요주아 키미히",
+   "en": "Joshua Kimmich"
+  },
+  {
+   "ko": "미하엘 발라크",
+   "en": "Michael Ballack"
+  },
+  {
+   "ko": "마르코 로이스",
+   "en": "Marco Reus"
+  },
+  {
+   "ko": "피에르에므리크 오바메양",
+   "en": "Pierre-Emerick Aubameyang"
+  },
+  {
+   "ko": "조르조 키엘리니",
+   "en": "Giorgio Chiellini"
+  },
+  {
+   "ko": "다비드 트레제게",
+   "en": "David Trezeguet"
+  },
+  {
+   "ko": "레오나르도 보누치",
+   "en": "Leonardo Bonucci"
+  },
+  {
+   "ko": "프랑코 바레시",
+   "en": "Franco Baresi"
+  },
+  {
+   "ko": "클라렌스 세이도르프",
+   "en": "Clarence Seedorf"
+  },
+  {
+   "ko": "프랑크 레이카르트",
+   "en": "Frank Rijkaard"
+  },
+  {
+   "ko": "하파엘 레앙",
+   "en": "Rafael Leão"
+  },
+  {
+   "ko": "필리포 인차기",
+   "en": "Filippo Inzaghi"
+  },
+  {
+   "ko": "베슬리 스네이더르",
+   "en": "Wesley Sneijder"
+  },
+  {
+   "ko": "디에고 밀리토",
+   "en": "Diego Milito"
+  },
+  {
+   "ko": "라우타로 마르티네스",
+   "en": "Lautaro Martínez"
+  },
+  {
+   "ko": "니콜로 바렐라",
+   "en": "Nicolò Barella"
+  },
+  {
+   "ko": "알레산드로 바스토니",
+   "en": "Alessandro Bastoni"
+  },
+  {
+   "ko": "즐라탄 이브라히모비치",
+   "en": "Zlatan Ibrahimović"
+  },
+  {
+   "ko": "에딘손 카바니",
+   "en": "Edinson Cavani"
+  },
+  {
+   "ko": "치아구 시우바",
+   "en": "Thiago Silva"
+  },
+  {
+   "ko": "마르키뉴스",
+   "en": "Marquinhos"
+  },
+  {
+   "ko": "아슈라프 하키미",
+   "en": "Achraf Hakimi"
+  },
+  {
+   "ko": "비티냐",
+   "en": "Vitinha"
+  },
+  {
+   "ko": "흐비차 크바라츠헬리아",
+   "en": "Khvicha Kvaratskhelia"
+  },
+  {
+   "ko": "잔루이지 돈나룸마",
+   "en": "Gianluigi Donnarumma"
+  },
+  {
+   "ko": "주앙 네베스",
+   "en": "João Neves"
+  },
+  {
+   "ko": "데지레 두에",
+   "en": "Désiré Doué"
+  },
+  {
+   "ko": "마레크 함시크",
+   "en": "Marek Hamšík"
+  },
+  {
+   "ko": "로렌초 인시녜",
+   "en": "Lorenzo Insigne"
+  },
+  {
+   "ko": "빅터 오시멘",
+   "en": "Victor Osimhen"
+  },
+  {
+   "ko": "드리스 메르턴스",
+   "en": "Dries Mertens"
+  },
+  {
+   "ko": "에드빈 판 데르 사르",
+   "en": "Edwin van der Sar"
+  },
+  {
+   "ko": "파트릭 클라위버르트",
+   "en": "Patrick Kluivert"
+  },
+  {
+   "ko": "마테이스 더 리흐트",
+   "en": "Matthijs de Ligt"
+  },
+  {
+   "ko": "헨리크 라르손",
+   "en": "Henrik Larsson"
+  },
+  {
+   "ko": "미카엘 라우드루프",
+   "en": "Michael Laudrup"
+  },
+  {
+   "ko": "앨런 시어러",
+   "en": "Alan Shearer"
+  },
+  {
+   "ko": "플로리안 비르츠",
+   "en": "Florian Wirtz"
+  },
+  {
+   "ko": "마이클 올리세",
+   "en": "Michael Olise"
+  },
+  {
+   "ko": "빅토르 요케레스",
+   "en": "Viktor Gyökeres"
+  },
+  {
+   "ko": "알렉산데르 이사크",
+   "en": "Alexander Isak"
+  },
+  {
+   "ko": "소보슬러이 도미니크",
+   "en": "Dominik Szoboszlai"
+  },
+  {
+   "ko": "라이언 흐라번베르흐",
+   "en": "Ryan Gravenberch"
+  },
+  {
+   "ko": "요슈코 그바르디올",
+   "en": "Joško Gvardiol"
+  },
+  {
+   "ko": "가브리엘 마르티넬리",
+   "en": "Gabriel Martinelli"
+  },
+  {
+   "ko": "코디 학포",
+   "en": "Cody Gakpo"
+  },
+  {
+   "ko": "알폰소 데이비스",
+   "en": "Alphonso Davies"
+  },
+  {
+   "ko": "크리스천 풀리식",
+   "en": "Christian Pulisic"
+  },
+  {
+   "ko": "로멜루 루카쿠",
+   "en": "Romelu Lukaku"
+  },
+  {
+   "ko": "하메스 로드리게스",
+   "en": "James Rodríguez"
+  },
+  {
+   "ko": "알렉시스 산체스",
+   "en": "Alexis Sánchez"
+  },
+  {
+   "ko": "디에고 포를란",
+   "en": "Diego Forlán"
+  },
+  {
+   "ko": "위고 에키티케",
+   "en": "Hugo Ekitike"
+  },
+  {
+   "ko": "브라이언 음뵈모",
+   "en": "Bryan Mbeumo"
+  },
+  {
+   "ko": "니코 윌리암스",
+   "en": "Nico Williams"
+  },
+  {
+   "ko": "다니 올모",
+   "en": "Dani Olmo"
+  },
+  {
+   "ko": "미켈 메리노",
+   "en": "Mikel Merino"
+  },
+  {
+   "ko": "마르틴 수비멘디",
+   "en": "Martín Zubimendi"
+  },
+  {
+   "ko": "모이세스 카이세도",
+   "en": "Moisés Caicedo"
+  },
+  {
+   "ko": "베냐민 셰슈코",
+   "en": "Benjamin Šeško"
+  },
+  {
+   "ko": "케난 이을드즈",
+   "en": "Kenan Yıldız"
+  },
+  {
+   "ko": "아르다 귈레르",
+   "en": "Arda Güler"
+  },
+  {
+   "ko": "와렌 자이르에므리",
+   "en": "Warren Zaïre-Emery"
+  },
+  {
+   "ko": "브라들레 바르콜라",
+   "en": "Bradley Barcola"
+  },
+  {
+   "ko": "아데몰라 루크먼",
+   "en": "Ademola Lookman"
+  },
+  {
+   "ko": "손흥민",
+   "en": "Son Heung-min"
+  },
+  {
+   "ko": "박지성",
+   "en": "Park Ji-sung"
+  },
+  {
+   "ko": "이강인",
+   "en": "Lee Kang-in"
+  },
+  {
+   "ko": "김민재",
+   "en": "Kim Min-jae (footballer)"
+  },
+  {
+   "ko": "차범근",
+   "en": "Cha Bum-kun"
+  },
+  {
+   "ko": "안정환",
+   "en": "Ahn Jung-hwan"
+  },
+  {
+   "ko": "황희찬",
+   "en": "Hwang Hee-chan"
+  },
+  {
+   "ko": "황인범",
+   "en": "Hwang In-beom"
+  },
+  {
+   "ko": "기성용",
+   "en": "Ki Sung-yueng"
+  },
+  {
+   "ko": "이영표",
+   "en": "Lee Young-pyo"
+  },
+  {
+   "ko": "홍명보",
+   "en": "Hong Myung-bo"
+  },
+  {
+   "ko": "설기현",
+   "en": "Seol Ki-hyeon"
+  },
+  {
+   "ko": "박주영",
+   "en": "Park Chu-young"
+  },
+  {
+   "ko": "이청용",
+   "en": "Lee Chung-yong"
+  },
+  {
+   "ko": "구자철",
+   "en": "Koo Ja-cheol"
+  },
+  {
+   "ko": "조규성",
+   "en": "Cho Gue-sung"
+  },
+  {
+   "ko": "오현규",
+   "en": "Oh Hyeon-gyu"
+  },
+  {
+   "ko": "양민혁",
+   "en": "Yang Min-hyeok"
+  },
+  {
+   "ko": "배준호",
+   "en": "Bae Jun-ho"
+  },
+  {
+   "ko": "이재성",
+   "en": "Lee Jae-sung"
+  },
+  {
+   "ko": "나카타 히데토시",
+   "en": "Hidetoshi Nakata"
+  },
+  {
+   "ko": "혼다 게이스케",
+   "en": "Keisuke Honda"
+  },
+  {
+   "ko": "가가와 신지",
+   "en": "Shinji Kagawa"
+  },
+  {
+   "ko": "미토마 가오루",
+   "en": "Kaoru Mitoma"
+  },
+  {
+   "ko": "구보 다케후사",
+   "en": "Takefusa Kubo"
+  },
+  {
+   "ko": "엔도 와타루",
+   "en": "Wataru Endo"
+  },
+  {
+   "ko": "도미야스 다케히로",
+   "en": "Takehiro Tomiyasu"
+  },
+  {
+   "ko": "메흐디 타레미",
+   "en": "Mehdi Taremi"
+  },
+  {
+   "ko": "알리 다에이",
+   "en": "Ali Daei"
+  },
+  {
+   "ko": "나카무라 슌스케",
+   "en": "Shunsuke Nakamura"
+  }
+ ]
+}
