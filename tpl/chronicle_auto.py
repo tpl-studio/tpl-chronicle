@@ -392,8 +392,8 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     gem_failed = False
     try:
         png, prompt = F.image(w["prompt_en"], x["team_en"], m)
-    except Exception as e:  # noqa: BLE001 — Gemini 그림 실패 → Gemini 다시 안 부르고 무료 FLUX 로
-        log(f"  [연대기] 그림 실패({type(e).__name__}) → 무료 FLUX 실루엣")
+    except Exception as e:  # noqa: BLE001 — Gemini 그림 실패 → 아래에서 Gemini 1번 다시, 그래도 안 되면 FLUX
+        log(f"  [연대기] 그림 실패({type(e).__name__}) → Gemini 1번 다시")
         png, prompt, gem_failed = b"", "", True
     chk = {"ok": False, "likeness": True, "why": "Gemini 그림 실패"}
     if png:
@@ -402,7 +402,23 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
         except Exception as e:  # noqa: BLE001 — 점검만 실패하면 이미 그린 그림 그대로(돈 쓴 그림 버리지 않음)
             log(f"  [연대기] 그림 점검 실패({type(e).__name__}) → 첫 그림 그대로")
             chk = {"ok": True, "likeness": True, "why": f"그림 점검 실패({type(e).__name__}) → 점검 못 함"}
-    if not chk["ok"] or not png:                         # 다시 그리기는 Cloudflare FLUX(무료) — 실존 인물 얼굴은 못 그려서 뒷모습·실루엣 구도
+    if not chk["ok"] or not png:                         # 2026-11-26 사용자: 연대기는 얼굴이 핵심 → Gemini 로 1번 다시(정면·팀 색) 먼저
+        fix = (f"IMPORTANT retry: {x['subject_en']} exact real likeness, face clearly visible from the front or three-quarter view, NOT from behind. "
+               f"Wearing the CURRENT real {x['team_en']} home kit colours (no other club's stripes or colours). "
+               + (f"Fix this problem from the last try: {str(chk.get('why', ''))[:200]}. " if chk.get("why") else ""))
+        try:
+            png2, prompt2 = F.image(fix + w["prompt_en"], x["team_en"], m, "그림 다시(Gemini)")
+            chk2 = {"ok": True, "likeness": True, "why": ""}
+            try:
+                chk2 = F.check_image(png2, w, pk, m)
+            except Exception as e:  # noqa: BLE001
+                log(f"  [연대기] 다시 그린 그림 점검 실패({type(e).__name__}) → 그대로 씀")
+            png, prompt = png2, prompt2                  # 얼굴 보이는 Gemini 그림을 우선(점검이 완벽하지 않아도 표시만)
+            chk = {**chk2, "ok": True, "redraw": "Gemini 1번 다시" + ("" if chk2.get("ok") else f" · 점검 지적: {str(chk2.get('why', ''))[:60]}")}
+            gem_failed = False
+        except Exception as e:  # noqa: BLE001
+            log(f"  [연대기] Gemini 다시 그리기 실패({type(e).__name__}) → 무료 FLUX 실루엣")
+    if not chk["ok"] or not png:                         # Gemini 가 두 번 다 그림을 못 줄 때만 Cloudflare FLUX(뒷모습·실루엣)
         try:
             png, prompt = F.flux_redraw(w, x["team_en"]), "FLUX 실루엣 다시 그리기"
             chk = {**chk, "ok": True, "redraw": "FLUX 실루엣(얼굴 안 보임)"}

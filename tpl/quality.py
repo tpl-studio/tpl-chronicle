@@ -15,6 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HANGUL = re.compile(r"[가-힣]")
+ODD_ABBR = re.compile(r"(?<![A-Za-z])[Xx×][가-힣]")   # X득·X골 같은 줄임말
 TAGS_OK = {"HERE WE GO", "RUMOR", "BBC", "OFFICIAL", "오피셜"}
 LATIN_WORD = re.compile(r"[A-Za-z][A-Za-z'’\-]{2,}")
 ALLOW_LATIN = re.compile(r"^(PSG|UEFA|FIFA|VAR|MVP|EPL|UCL|BBC|ESPN|PK|K리그|VS|vs)$", re.I)
@@ -102,6 +103,8 @@ def korean_problems(draft: dict) -> str:
         bad = [w for w in LATIN_WORD.findall(ln) if not ALLOW_LATIN.match(w)]
         if len(bad) >= 2:
             return f"영어 낱말이 섞인 줄: {ln[:40]}"
+        if ODD_ABBR.search(ln):                     # 2026-11-26 '57분 교체, X득' 같은 기호 줄임말
+            return f"이상한 줄임말: {ln[:40]}"
     tag = str(draft.get("tag") or "").strip()
     if tag and not HANGUL.search(tag) and tag.upper() not in TAGS_OK:
         return f"태그가 정해진 것 아님: {tag}"

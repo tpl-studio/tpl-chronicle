@@ -128,7 +128,8 @@ def write(pk: dict, meter: art.Meter, mythic_ok: bool = False) -> dict:
          "concept, emotion, face, pose, costume, costume_why, background{front,middle,back}, light_color, hidden_detail, looks} · "
          "prompt_en · question(편이 갈리는 질문 1줄) · facts2(캡션용 기사 핵심 2줄) · pinned(고정 댓글용 사실 1줄) · hashtags(5개: 선수·팀·리그·해외축구·축구릴스)\n"
          "drafts 의 tag·lines·name 은 모두 한국어(기사 영어 원문을 옮기지 말고 한국어로 요약 · 한 줄 9~12자 안팎) · name 은 국내 매체 한국어 표기 · "
-         "tag 는 HERE WE GO(로마노 HWG 일 때만)·RUMOR(이적 아닌 소식의 루머만)·오피셜·BBC 중 하나 또는 빈칸.\n"
+         "tag 는 HERE WE GO(로마노 HWG 일 때만)·RUMOR(이적 아닌 소식의 루머만)·오피셜(구단·리그·협회 공식 발표일 때만 — 경기 결과·활약·출전 기사는 금지)·BBC 중 하나 또는 빈칸.\n"
+         "lines 는 자연스러운 한국어 문장 — 'X득' 같은 기호·줄임말·영어 섞기 금지(무득점·공격포인트 없이처럼 풀어 쓰기).\n"
          "best 는 drafts 안 시안 번호(0, 1, 2 중 숫자 하나). ※ i·pick·best 는 0부터 시작하는 숫자만(태그 이름·매체 이름·글자 쓰지 말 것).")
     from . import safe
     out = safe.ask_valid(lambda: art.claude_json(SYS, p, meter, "요약·글·시트(Claude)"), safe.v_write, None, "요약·글·시트")
@@ -142,7 +143,7 @@ def write(pk: dict, meter: art.Meter, mythic_ok: bool = False) -> dict:
 
 def image(prompt: str, team_en: str, meter: art.Meter, what: str = "그림(Gemini)") -> tuple[bytes, str]:
     """Gemini 3.1 flash image · 9:16 2K. style_refs 에 그림이 있으면 화풍 참고로 같이(얼굴·날개는 따라 하지 않게)."""
-    must = ["accurate real likeness", f"real {team_en} kit visible between armor pieces", "ultra detailed skin, metal and fur textures",
+    must = ["accurate real likeness", "face clearly visible, front or three-quarter view (never from behind)", f"real {team_en} kit visible between armor pieces", "ultra detailed skin, metal and fur textures",
             "sharp logos", "only one main costume, one background and one symbolic prop so the person stays clearly visible",
             "No text, no stadium name signs"]
     for s in must:

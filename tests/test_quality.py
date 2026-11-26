@@ -67,5 +67,9 @@ try:
 except RuntimeError:
     check(True, "쓸 시안이 없으면 이 기사 건너뜀(예외)")
 
+print("[+] 이상한 줄임말(X득) 금지")
+check("줄임말" in Q.korean_problems({"tag": "", "lines": ["이강인 선발 2-0", "57분 교체, X득"], "name": "이강인"}), "X득 → 다시 쓰기")
+check(Q.korean_problems({"tag": "", "lines": ["이강인 선발 2-0", "57분 교체, 무득점"], "name": "이강인"}) == "", "무득점 → 통과")
 print("\n결과:", "모두 통과" if not fails else f"실패 {len(fails)}건: {fails}")
 sys.exit(1 if fails else 0)
+
