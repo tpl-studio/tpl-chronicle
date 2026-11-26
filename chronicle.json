@@ -424,6 +424,60 @@
      "base": 15.0,
      "bonus": 0,
      "total": 15.0
+    },
+    {
+     "key": "at-by-card-defender-fa-leny-liverpool-manchester",
+     "titles": [
+      "[Radio Royal] Leny Yoro red card: Written reasons why Manchester United defender's red card at Liverpool was overturned published by the FA",
+      "[Sky Sports] Leny Yoro red card: Written reasons why Manchester United defender's red card at Liverpool was overturned published by the FA"
+     ],
+     "outlets": [
+      "Radio Royal",
+      "Sky Sports"
+     ],
+     "credible": [
+      "Sky Sports"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "리버풀",
+      "맨유"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-26T12:56:57+00:00",
+     "ids": [
+      "274f279ea1ada9a5",
+      "36e140abf0ad27ce"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "레니 요로",
+     "subject_en": "Leny Yoro",
+     "team_ko": "맨체스터 유나이티드",
+     "team_en": "Manchester United",
+     "league_ko": "프리미어리그",
+     "role": "선수",
+     "type": "기타",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 4,
+      "drama": 2,
+      "divide": 1,
+      "share": 3,
+      "surprise": 2,
+      "korea": 3
+     },
+     "reason": "레니 요로 레드카드 판정 뒤집힘",
+     "base": 15.0,
+     "bonus": 0,
+     "total": 15.0
     }
    ],
    "judge_krw": 0.0
@@ -581,11 +635,17 @@
    "total": 0.0,
    "subject": "",
    "title": "[Talk Chelsea] Chelsea’s “meek” defenders “not good enough in individual duels”"
+  },
+  "at-by-card-defender-fa-leny-liverpool-manchester": {
+   "at": "2026-11-26T22:31:20+09:00",
+   "total": 15.0,
+   "subject": "레니 요로",
+   "title": "[Radio Royal] Leny Yoro red card: Written reasons why Manchester United defender's red card at Liverpool was overturned published by the FA"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-26T22:21:43+09:00",
+ "last_run_at": "2026-11-26T22:31:20+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -6128,7 +6188,40 @@
   "d43d0b9d650737f8": "2026-11-26T22:21:43+09:00",
   "39863f1af790d891": "2026-11-26T22:21:43+09:00",
   "f93cc220270fa007": "2026-11-26T22:21:43+09:00",
-  "dc2cd4c6d3394d22": "2026-11-26T22:21:43+09:00"
+  "dc2cd4c6d3394d22": "2026-11-26T22:21:43+09:00",
+  "e86eafee1a41fc41": "2026-11-26T22:31:20+09:00",
+  "04f5b86eb669a51d": "2026-11-26T22:31:20+09:00",
+  "9e1db8bed51bfcf1": "2026-11-26T22:31:20+09:00",
+  "e3846af5fd6e68f0": "2026-11-26T22:31:20+09:00",
+  "b5c7130d17d58b5e": "2026-11-26T22:31:20+09:00",
+  "e6ea96cb7d72844c": "2026-11-26T22:31:20+09:00",
+  "b844de20ff4012c3": "2026-11-26T22:31:20+09:00",
+  "cad95fedbcbe438f": "2026-11-26T22:31:20+09:00",
+  "f1b0d554c7621036": "2026-11-26T22:31:20+09:00",
+  "3801f92c27efb328": "2026-11-26T22:31:20+09:00",
+  "fcb6ee9eac8e6821": "2026-11-26T22:31:20+09:00",
+  "f577a2a583ceacb4": "2026-11-26T22:31:20+09:00",
+  "e3a980a140bf5edd": "2026-11-26T22:31:20+09:00",
+  "3175ae101c3e52a0": "2026-11-26T22:31:20+09:00",
+  "b1e8a854160591bc": "2026-11-26T22:31:20+09:00",
+  "992fc5103a254acf": "2026-11-26T22:31:20+09:00",
+  "262d6ad8f8d71dab": "2026-11-26T22:31:20+09:00",
+  "6547f7425b4599b6": "2026-11-26T22:31:20+09:00",
+  "24adc2fe174f3fcd": "2026-11-26T22:31:20+09:00",
+  "7fe3177f65cc7ddc": "2026-11-26T22:31:20+09:00",
+  "4939f41a59f84a3b": "2026-11-26T22:31:20+09:00",
+  "fbd98a0208c8ed4f": "2026-11-26T22:31:20+09:00",
+  "27e3da7a3d5d6201": "2026-11-26T22:31:20+09:00",
+  "274f279ea1ada9a5": "2026-11-26T22:31:20+09:00",
+  "03a54bdf6142788c": "2026-11-26T22:31:20+09:00",
+  "c49af1055b3abec8": "2026-11-26T22:31:20+09:00",
+  "fb30298a34024449": "2026-11-26T22:31:20+09:00",
+  "35c78e692b45396c": "2026-11-26T22:31:20+09:00",
+  "b176fbbcec0ebca2": "2026-11-26T22:31:20+09:00",
+  "f302932ee1ab5c4a": "2026-11-26T22:31:20+09:00",
+  "18abdb3d0cede640": "2026-11-26T22:31:20+09:00",
+  "8664f49147fe31a4": "2026-11-26T22:31:20+09:00",
+  "b5f60397e56be8df": "2026-11-26T22:31:20+09:00"
  },
  "discarded": [
   {
