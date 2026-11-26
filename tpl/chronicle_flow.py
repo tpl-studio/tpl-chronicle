@@ -146,6 +146,8 @@ def image(prompt: str, team_en: str, meter: art.Meter, what: str = "그림(Gemin
     must = ["accurate real likeness", "face clearly visible, front or three-quarter view (never from behind)", f"real {team_en} kit visible between armor pieces", "ultra detailed skin, metal and fur textures",
             "sharp logos", "only one main costume, one background and one symbolic prop so the person stays clearly visible",
             "No text, no stadium name signs"]
+    if not re.search(r"우승|champions?\b(?!\s*league)|won the (league|title|cup|final)|title[- ]winn", prompt, re.I):
+        must.append("No trophy, no cup, no chalice, no winner's medal anywhere in the image (not a title win)")
     for s in must:
         if s.lower() not in prompt.lower():
             prompt = prompt.rstrip(". ") + ". " + s + "."
