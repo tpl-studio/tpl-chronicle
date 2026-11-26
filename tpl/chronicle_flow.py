@@ -107,6 +107,8 @@ def write(pk: dict, meter: art.Meter, mythic_ok: bool = False) -> dict:
     names = [n.strip().split()[-1].lower() for n in (pk["subject_ko"].split("&") + pk["subject_en"].split("&")) if n.strip()]
     arts = [a for a in arts if any(n in (a["title"] + a["summary"]).lower() for n in names)]
     base = [{"outlet": t.split("]")[0].strip("["), "title": t.split("] ", 1)[-1], "summary": ""} for t in pk["cand"]["titles"]]
+    if pk.get("body") and base:                     # 직접 요청: 보내 준 기사 본문을 첫 자료로
+        base[0]["summary"] = pk["body"][:600]
     seen, uniq = set(), []
     for a in base + [{"outlet": a["outlet"], "title": a["title"], "summary": a["summary"][:300]} for a in arts]:
         k = re.sub(r"\W", "", a["title"].lower())[:40]

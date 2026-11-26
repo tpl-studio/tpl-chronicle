@@ -2,6 +2,8 @@ name: chronicle
 # 축구 왕국 연대기 — Cloudflare 감시(tpl-live-watch)가 새 후보를 보면 부름(workflow_dispatch). 예약(cron) 없음.
 # 공개 저장소라 Actions 시간은 무료. 상태는 chronicle-state 브랜치(state/)에 이어서 저장.
 on:
+  schedule:
+    - cron: "*/5 * * * *"      # 2026-11-26: 5분마다 개인 봇 확인(직접 요청 기사) — 새 메시지 없으면 몇 초 만에 끝(공개 저장소 · 무료)
   workflow_dispatch:
     inputs:
       trigger:
@@ -9,7 +11,7 @@ on:
         required: false
         default: "manual"
       mode:
-        description: "run · dry(판정만) · force(시간 규칙 무시하고 판정)"
+        description: "run · dry(판정만) · force(시간 규칙 무시하고 판정) · inbox(개인 봇 직접 요청만)"
         required: false
         default: "run"
 
@@ -38,21 +40,34 @@ jobs:
             mkdir -p state
           fi
 
+      - name: 봇 확인(예약 실행만 · 새 메시지 없으면 여기서 끝)
+        id: peek
+        env:
+          PERSONAL_BOT_TOKEN: ${{ secrets.PERSONAL_BOT_TOKEN }}
+          PERSONAL_CHAT_ID: ${{ secrets.PERSONAL_CHAT_ID }}
+          TPL_CHRONICLE_STATE: ${{ github.workspace }}/state/chronicle.json
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then python3 tools/inbox_peek.py; else echo "run=true" >> "$GITHUB_OUTPUT"; fi
+
       - uses: actions/setup-python@v5
+        if: steps.peek.outputs.run == 'true'
         with:
           python-version: "3.12"
           cache: pip
 
       - name: 배경 분리 모델 캐시
+        if: steps.peek.outputs.run == 'true'
         uses: actions/cache@v4
         with:
           path: ~/.cache/tpl_reel
           key: isnet-v1
 
       - name: 설치
+        if: steps.peek.outputs.run == 'true'
         run: pip install -q -r requirements.txt
 
       - name: 판단·제작
+        if: steps.peek.outputs.run == 'true'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -70,13 +85,15 @@ jobs:
           TZ: Asia/Seoul
         run: |
           MODE="${{ github.event.inputs.mode || 'run' }}"
+          [ "${{ github.event_name }}" = "schedule" ] && MODE="inbox"
           ARGS=""
+          [ "$MODE" = "inbox" ] && ARGS="--inbox"
           [ "$MODE" = "dry" ] && ARGS="--dry"
           [ "$MODE" = "force" ] && ARGS="--force"
           python chronicle_run.py $ARGS
 
       - name: 상태 올리기(chronicle-state)
-        if: always()
+        if: always() && steps.peek.outputs.run == 'true'
         run: |
           cd state
           if [ ! -d .git ] && [ ! -f .git ]; then

@@ -153,3 +153,23 @@ def render_overflow(rects: dict) -> bool:
         if r and (r[0] < C.SAFE[0] - 20 or r[2] > C.SAFE[2] + 1):
             return True
     return False
+
+
+
+def korean_name(subject_en: str, subject_ko: str = "") -> str:
+    """이름 상자: 선수 명단(football_players · legends · 코리안리거 · 스타)의 국내 매체 한국어 표기 → 없으면 subject_ko(한글일 때)."""
+    if "&" in (subject_en or ""):
+        return subject_ko if HANGUL.search(subject_ko or "") else ""
+    key = _norm(subject_en)
+    last = _norm((subject_en or "").split()[-1]) if subject_en and " " in subject_en else ""
+    for f in ("football_players.json", "legends.json", "korean_players.json"):
+        try:
+            d = json.loads((ROOT / "config" / f).read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        for p in d.get("players", []) + d.get("managers", []):
+            ens = p.get("en", [])
+            ens = ens if isinstance(ens, list) else [ens]
+            if any(_norm(e) == key or (last and len(last) >= 4 and _norm(e) == last) for e in ens if e):
+                return p.get("ko", "") or subject_ko
+    return subject_ko if HANGUL.search(subject_ko or "") else ""

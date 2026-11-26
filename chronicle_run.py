@@ -30,7 +30,10 @@ def main() -> int:
                 os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
     from tpl import chronicle_auto as A
     try:
-        r = A.run_once(log=log, force="--force" in sys.argv, dry="--dry" in sys.argv)
+        if "--inbox" in sys.argv:                 # 5분마다: 개인 봇에 보낸 기사만 확인·제작
+            r = A.run_inbox(log=log)
+        else:
+            r = A.run_once(log=log, force="--force" in sys.argv, dry="--dry" in sys.argv)
         log(f"결과: {r.get('why')}" + (f" · 제작 제{r['made']['no']}장 {r['made']['krw']:.0f}원" if r.get("made") else ""))
         return 0
     except Exception as e:  # noqa: BLE001 — 실패는 기록 + 개인 봇

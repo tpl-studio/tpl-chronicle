@@ -295,6 +295,8 @@ def choose(scored: list[dict], st: dict, c: dict, now: datetime) -> tuple[dict |
         if not okn:
             continue
         tier = 1 if x["hwg"] else 2 if x.get("type") in TIER2 else 3 if x.get("type") == "빅클럽 스타 화제" else 0
+        if (tier or 3) not in [int(v) for v in c.get("auto_tiers", [1, 2, 3])]:   # 2026-11-26 사용자: 자동은 로마노 HWG(1순위)만
+            continue
         ok = tier == 1 or (tier in (2, 3) and x["total"] >= c["min_score"]) or x["total"] >= c["any_type_score"]
         if not ok and fill and x["total"] >= float(c.get("fill_min_score", 14)):
             ok = True                              # 채우기(유형 상관없이 그날 후보 중 점수 높은 순)
@@ -313,6 +315,8 @@ def choose(scored: list[dict], st: dict, c: dict, now: datetime) -> tuple[dict |
         return None, losers, "터질 각 기준을 넘는 소식 없음"
     best = pool[0]
     if n >= int(c["daily_max"]):
+        if best["tier"] == 1:
+            return None, [best], f"ASK:오늘 {n}편 — 하루 최대"
         return None, losers, f"오늘 {n}편 — 하루 최대"
     if best["tier"] != 1:
         if n >= int(c["daily_max"]) - 1 and now.strftime("%H:%M") < c["reserve_romano_until"] and not fill:
@@ -338,8 +342,9 @@ def pick_draft(w: dict, x: dict, log=print) -> dict:
     why = ""
     for i in order:
         dr = dict(drafts[i])
-        if not Q.HANGUL.search(str(dr.get("name") or "")) and Q.HANGUL.search(x.get("subject_ko", "")):
-            dr["name"] = x["subject_ko"]                     # 이름 상자는 한국어
+        ko_name = Q.korean_name(x.get("subject_en", ""), x.get("subject_ko", ""))
+        if ko_name:
+            dr["name"] = ko_name                             # 이름 상자는 국내 매체 한국어 표기(선수 명단 우선)
         if x["tier"] == 1:
             dr["tag"] = "HERE WE GO"
         elif x.get("rumor") and not x.get("transfer"):
@@ -367,7 +372,8 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     pk = {"subject_ko": x["subject_ko"], "subject_en": x["subject_en"], "team_ko": x["team_ko"], "team_en": x["team_en"], "role": x["role"],
           "kind": "로마노 이적" if x["tier"] == 1 else x.get("type", ""), "rumor": x.get("rumor", False), "why": x.get("reason", ""),
           "queries_ko": [f"{x['subject_ko']} {x['team_ko']}", x["subject_ko"]], "queries_en": [f"{x['subject_en']} {x['team_en']}", x["subject_en"]],
-          "cand": {"titles": x["titles"]}, "league_ko": x.get("league_ko", "")}
+          "cand": {"titles": x["titles"]}, "league_ko": x.get("league_ko", ""),
+          "body": ((x.get("article") or {}).get("text") or "")[:900]}
     month = now_kst().strftime("%Y-%m")
     mythic_used = sum(1 for ch in st.get("chapters", []) if ch.get("at", "").startswith(month) and str(ch.get("rank", "")).startswith("신화"))
     w = F.write(pk, m, mythic_ok=mythic_used < 2)                        # 신화(날개·빛기둥)는 한 달 최대 2번
@@ -424,10 +430,14 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     with open(out / "thumbnail.png", "rb") as f:
         requests.post(f"{api}/sendDocument", data={"chat_id": chat, "caption": f"🖼 썸네일 PNG (제{no}장)"},
                       files={"document": (f"ch{no:02d}_thumbnail.png", f, "image/png")}, timeout=120)
-    tier_ko = {1: "1순위 로마노 HWG", 2: "2순위 터진 유형", 3: "3순위 빅클럽 스타 화제"}[x["tier"]]
+    tier_ko = "📨 직접 요청" + (" · 로마노 HWG" if x.get("hwg") else "") if x.get("request") else \
+        {1: "1순위 로마노 HWG", 2: "2순위 터진 유형", 3: "3순위 빅클럽 스타 화제"}.get(x["tier"], "")
     sc = x.get("scores") or {}
-    lines = [f"🏷 {tier_ko} · 터질 각 {x['total']:.0f}점 — {x.get('reason', '')}",
-             "   " + " · ".join(f"{ITEM_KO[k]} {sc.get(k, 0)}" for k in ITEMS) + (f" · 가산 +{x['bonus']}" if x["bonus"] else "")]
+    lines = [f"🏷 {tier_ko}" + ("" if x.get("request") else f" · 터질 각 {x['total']:.0f}점") + f" — {x.get('reason', '')}"]
+    if not x.get("request"):
+        lines.append("   " + " · ".join(f"{ITEM_KO[k]} {sc.get(k, 0)}" for k in ITEMS) + (f" · 가산 +{x['bonus']}" if x["bonus"] else ""))
+    others_n = len({s_ for s_ in (w.get("sources") or []) if s_} - set((x.get("outlets") or [])[:1]))
+    lines.append(f"🔎 교차 확인: 다른 매체 {others_n}곳" if others_n else "⚠️ 교차 확인 못 함 — 다른 매체 기사를 찾지 못했어요(사실 직접 확인 필요)")
     for lx in x.get("_losers", [])[:2]:
         lines.append(f"   탈락: {lx.get('subject_ko') or lx['titles'][0][:40]} {lx.get('total', 0):.0f}점 — {lx.get('reason', lx.get('why_exclude', ''))[:60]}")
     shs = w.get("sheet") or {}
@@ -481,6 +491,12 @@ def read_views(st: dict) -> None:
         msg = u.get("message") or {}
         if str((msg.get("chat") or {}).get("id")) != str(chat):
             continue
+        try:
+            from . import inbox as IB
+            if IB.take(msg, st, say):               # 기사 링크·캡처·'만들어' → 직접 요청 대기 줄
+                continue
+        except Exception as e:  # noqa: BLE001
+            print(f"[연대기] 봇 메시지 처리 실패: {type(e).__name__}")
         t = (msg.get("text") or "").strip()
         for no, num, unit in re.findall(r"제?\s*(\d+)\s*장\D{0,6}?([\d.,]+)\s*(만|천|k|K|M)?", t):
             v = float(num.replace(",", "")) * {"만": 1e4, "천": 1e3, "k": 1e3, "K": 1e3, "M": 1e6}.get(unit, 1)
@@ -548,6 +564,9 @@ def run_once(force: bool = False, dry: bool = False, log=print) -> dict:
     weekly(st, now)
     biweekly(st, now, weights)
     error_summary(st, now)
+    req = process_inbox(st, d, c, now, log)               # 직접 요청(개인 봇 기사)이 있으면 먼저 1건
+    if req and req.get("made"):
+        return {**rep, **req}
     if not (c.get("auto_on") or force):
         save_state(d, st, "chronicle housekeeping")
         return {**rep, "why": "자동 실행 꺼짐(auto_on=false)"}
@@ -606,6 +625,13 @@ def run_once(force: bool = False, dry: bool = False, log=print) -> dict:
     bench[:] = sorted({x["key"]: x for x in bench + keep}.values(), key=lambda x: -x.get("total", 0))[:15]
     pool = list({x["key"]: x for x in bench + scored}.values())       # 대기 줄 + 이번에 새로 매긴 후보(1순위 HWG 는 점수 낮아도)
     best, others, why = choose(pool, st, c, now)
+    if why.startswith("ASK:") and others:                 # HWG 인데 하루 최대가 찼음 → 봇이 물어봄('만들어' 답하면 만듦)
+        hx = others[0]
+        q = st.setdefault("inbox", [])
+        if not any(r.get("key") == hx.get("key") for r in q):
+            q.append({"status": "ask", "key": hx.get("key"), "cand": hx, "at": now.isoformat(timespec="seconds")})
+            say(f"❓ 오늘 {len(day_of(st, day)['made'])}편이 다 찼어요. 로마노 HWG '{hx.get('subject_ko')}' 소식도 만들까요? '만들어'라고 답하면 바로 만들어요.")
+        why = why[4:]
     rep.update(why=why, scored=[(x.get("subject_ko"), x["total"], str((x.get("titles") or [""])[0])[:80]) for x in scored])
     if best is None or dry:
         save_state(d, st, "chronicle scored")
@@ -641,3 +667,59 @@ def _make(best: dict, others: list, st: dict, d, c: dict, day: str, now: datetim
             st.setdefault("hwg_seen", {})[p.get("url", "")] = now.isoformat(timespec="seconds")
     save_state(d, st, f"chronicle ch{r['no']}")
     return {**rep, "made": r}
+
+
+
+# ── 직접 요청(개인 봇으로 받은 기사) — 2026-11-26 사용자
+def process_inbox(st: dict, d, c: dict, now: datetime, log=print) -> dict | None:
+    """대기 줄에서 1건: 하루 최대(HWG + 직접 요청 합산)가 찼으면 물어봄 · 아니면 기사 읽기 → 후보 → 바로 제작."""
+    from . import inbox as IB
+    q = st.setdefault("inbox", [])
+    todo = IB.pending(st)
+    if not todo:
+        return None
+    r = todo[0]
+    day = now.strftime("%Y-%m-%d")
+    made = day_of(st, day)["made"]
+    if len(made) >= int(c["daily_max"]) and r["status"] != "approved":
+        r["status"] = "ask"
+        say(f"❓ 오늘 {len(made)}편이 다 찼어요. 보내 주신 기사도 만들까요? '만들어'라고 답하면 바로 만들어요.")
+        save_state(d, st, "chronicle inbox ask")
+        return {"why": "하루 최대 → 물어봄"}
+    try:
+        if r.get("cand"):                                  # 물어봤던 로마노 HWG
+            x = r["cand"]
+        else:
+            tok, _chat = _bot()
+            a = IB.read_url(r["url"]) if r.get("url") else IB.read_image(r["file_id"], tok)
+            if not (a.get("title") or a.get("text")):
+                raise RuntimeError("기사 글을 읽지 못했어요")
+            x, why = IB.to_candidate(a, art.Meter(cap=float(c.get("video_cap_krw", 300))))
+            if x is None:
+                r["status"] = "skipped"
+                say(f"🙅 보내 주신 기사는 만들지 않았어요 — {why}")
+                save_state(d, st, "chronicle inbox skip")
+                return {"why": why}
+        out = produce(x, st, c, log)
+        r["status"] = "done"
+        made.append({"at": now.isoformat(timespec="seconds"), "tier": x.get("tier", 2), "subject": x.get("subject_ko", ""),
+                     "team": x.get("team_ko", ""), "rumor": bool(x.get("rumor")), "transfer": bool(x.get("transfer")), "request": True})
+        save_state(d, st, f"chronicle request ch{out['no']}")
+        return {"why": "직접 요청 제작", "made": out}
+    except Exception as e:  # noqa: BLE001
+        r["status"] = "failed"
+        say(f"⚠️ 보내 주신 기사로 만들지 못했어요: {type(e).__name__}: {str(e)[:150]}")
+        save_state(d, st, "chronicle inbox fail")
+        return {"why": f"직접 요청 실패: {e}"}
+
+
+def run_inbox(log=print) -> dict:
+    """5분마다(예약): 봇 메시지 확인 → 직접 요청이 있으면 1건 제작. 기사 감시·판정은 하지 않음."""
+    c = conf()
+    d, st = load_state()
+    read_views(st)
+    r = process_inbox(st, d, c, now_kst(), log)
+    if r is None:
+        save_state(d, st, "chronicle inbox")
+        return {"why": "새 요청 없음"}
+    return r
