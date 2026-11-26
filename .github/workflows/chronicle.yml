@@ -18,14 +18,37 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: chronicle
-  cancel-in-progress: false
-
 jobs:
+  # 1) 봇 확인 — 줄(concurrency) 밖에서 몇 초: 예약·감시기 inbox 호출은 새 메시지·대기 요청이 있을 때만 2)로 넘어감
+  #    (확인만 하는 실행이 줄에 서서 대기 중인 로마노 HWG 실행을 밀어내지 않게 · 2026-11-26)
+  peek:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      run: ${{ steps.p.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        env:
+          PERSONAL_BOT_TOKEN: ${{ secrets.PERSONAL_BOT_TOKEN }}
+          PERSONAL_CHAT_ID: ${{ secrets.PERSONAL_CHAT_ID }}
+          TPL_CHRONICLE_STATE: /tmp/chronicle.json
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.trigger }}" = "inbox" ]; then
+            git fetch -q origin chronicle-state 2>/dev/null && git show origin/chronicle-state:chronicle.json > /tmp/chronicle.json 2>/dev/null || true
+            python3 tools/inbox_peek.py
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
   run:
+    needs: peek
+    if: needs.peek.outputs.run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    concurrency:
+      group: chronicle
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
 
@@ -40,34 +63,21 @@ jobs:
             mkdir -p state
           fi
 
-      - name: 봇 확인(예약 실행만 · 새 메시지 없으면 여기서 끝)
-        id: peek
-        env:
-          PERSONAL_BOT_TOKEN: ${{ secrets.PERSONAL_BOT_TOKEN }}
-          PERSONAL_CHAT_ID: ${{ secrets.PERSONAL_CHAT_ID }}
-          TPL_CHRONICLE_STATE: ${{ github.workspace }}/state/chronicle.json
-        run: |
-          if [ "${{ github.event_name }}" = "schedule" ]; then python3 tools/inbox_peek.py; else echo "run=true" >> "$GITHUB_OUTPUT"; fi
-
       - uses: actions/setup-python@v5
-        if: steps.peek.outputs.run == 'true'
         with:
           python-version: "3.12"
           cache: pip
 
       - name: 배경 분리 모델 캐시
-        if: steps.peek.outputs.run == 'true'
         uses: actions/cache@v4
         with:
           path: ~/.cache/tpl_reel
           key: isnet-v1
 
       - name: 설치
-        if: steps.peek.outputs.run == 'true'
         run: pip install -q -r requirements.txt
 
       - name: 판단·제작
-        if: steps.peek.outputs.run == 'true'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -93,7 +103,7 @@ jobs:
           python chronicle_run.py $ARGS
 
       - name: 상태 올리기(chronicle-state)
-        if: always() && steps.peek.outputs.run == 'true'
+        if: always()
         run: |
           cd state
           if [ ! -d .git ] && [ ! -f .git ]; then
