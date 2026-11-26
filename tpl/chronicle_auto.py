@@ -354,6 +354,10 @@ def pick_draft(w: dict, x: dict, log=print) -> dict:
             dr["tag"] = "RUMOR"
         elif str(dr.get("tag", "")).upper() in ("HERE WE GO", "RUMOR"):
             dr["tag"] = ""                                   # HWG 아닌데 HWG 태그 · 이적 루머 태그는 떼어 냄
+        if str(dr.get("tag", "")).upper() in ("오피셜", "OFFICIAL"):     # 2026-11-26: '징계 위기'에 오피셜 → 공식 발표 낱말이 기사에 있을 때만
+            src = " ".join((x.get("titles") or []) + (x.get("summaries") or []) + [((x.get("article") or {}).get("text") or "")[:3000]])
+            if not re.search(r"공식|오피셜|발표|\bofficial(ly)?\b|confirm(s|ed)|announce", src, re.I) or re.search(r"위기|가능성|유력|설\b", " ".join(dr.get("lines", []))):
+                dr["tag"] = ""
         why = Q.korean_problems(dr)
         if why:
             log(f"  [연대기] 시안 {i} 제외: {why}")

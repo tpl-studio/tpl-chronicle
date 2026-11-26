@@ -143,7 +143,9 @@ def write(pk: dict, meter: art.Meter, mythic_ok: bool = False) -> dict:
 
 def image(prompt: str, team_en: str, meter: art.Meter, what: str = "그림(Gemini)") -> tuple[bytes, str]:
     """Gemini 3.1 flash image · 9:16 2K. style_refs 에 그림이 있으면 화풍 참고로 같이(얼굴·날개는 따라 하지 않게)."""
-    must = ["accurate real likeness", "face clearly visible, front or three-quarter view (never from behind)", f"real {team_en} kit visible between armor pieces", "ultra detailed skin, metal and fur textures",
+    must = ["photorealistic cinematic photograph, NOT illustration, NOT cartoon, NOT comic, NOT painting style",
+            "TPL football kingdom chronicle: fantasy armour pieces (pauldrons, chest plate, cape) worn over the real kit",
+            "accurate real likeness", "face clearly visible, front or three-quarter view (never from behind)", (f"real {team_en} kit visible between armor pieces" if team_en else "plain football kit visible between armor pieces, no club crest"), "ultra detailed skin, metal and fur textures",
             "sharp logos", "only one main costume, one background and one symbolic prop so the person stays clearly visible",
             "No text, no stadium name signs"]
     if not re.search(r"우승|champions?\b(?!\s*league)|won the (league|title|cup|final)|title[- ]winn", prompt, re.I):

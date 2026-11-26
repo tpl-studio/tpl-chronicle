@@ -78,5 +78,12 @@ check(Q.korean_name("Kylian Mbappé", "킬리안 음바페") in ("킬리안 음�
 check(Q.korean_name("Unknown Player", "알수없음") == "알수없음", "명단에 없으면 기사 한국어 이름")
 check(Q.korean_name("Unknown Player", "Unknown") == "", "한국어 이름이 없으면 빈칸(시안 이름 그대로)")
 
+print("[+] 팀은 기사 시점 현재 소속팀(호날두 레알 오류)")
+from tpl import inbox as _I
+check(_I.current_team({"subject_en": "Cristiano Ronaldo", "team_ko": "레알 마드리드", "team_en": "Real Madrid"},
+                      "호날두 알 나스르 경기 도중 부심 조롱")[0].get("team_en") == "Al Nassr", "기사에 없는 레알 → 기사의 알나스르")
+check(_I.current_team({"subject_en": "Lee Kang-in", "team_ko": "PSG", "team_en": "PSG"}, "이강인 선발")[0].get("team_ko") == "아틀레티코",
+      "코리안리거는 공식 확인 명단 팀")
+check(_I.current_team({"subject_en": "Bukayo Saka", "team_ko": "아스널", "team_en": "Arsenal"}, "아스널 사카 결승골")[0] == {}, "기사에 나온 팀이면 그대로")
 print("\n결과:", "모두 통과" if not fails else f"실패 {len(fails)}건: {fails}")
 sys.exit(1 if fails else 0)

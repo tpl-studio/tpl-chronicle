@@ -93,6 +93,39 @@ def read_image(file_id: str, tok: str) -> dict:
 ANALYZE_SYS = "너는 한국 축구 SNS 'TPL'의 릴스 편집장이다. 기사에 있는 사실만 근거로 판단한다. JSON 만 답한다."
 
 
+def current_team(out: dict, whole: str) -> tuple[dict, str]:
+    """2026-11-26: AI 가 호날두 팀을 기억으로 '레알 마드리드'라고 씀(기사는 알나스르) → 코리안리거 명단(공식 확인) 우선,
+    아니면 AI 가 고른 팀 이름이 기사에 실제로 나와야 함. 안 나오면 기사에서 찾은 팀으로 바꾸거나, 못 찾으면 팀 칸을 비움(유니폼 색 지시 안 함)."""
+    import json as _j
+    from pathlib import Path as _P
+    en = (out.get("subject_en") or "").lower()
+    try:
+        kp = _j.loads((_P(__file__).resolve().parents[1] / "config" / "korean_players.json").read_text(encoding="utf-8"))
+        for p in kp.get("players", []):
+            if any(e.lower() == en for e in p.get("en", [])) and p.get("team"):
+                return {"team_ko": p["team"], "team_en": p.get("team_espn") or out.get("team_en", "")}, ""
+    except (OSError, ValueError):
+        pass
+    low = whole.lower()
+    tk, te = (out.get("team_ko") or "").strip(), (out.get("team_en") or "").strip()
+    def seen(name):
+        name = name.lower()
+        return bool(name) and (name in low or any(len(w) >= 4 and w in low for w in re.split(r"[\s.\-]+", name)))
+    if seen(tk) or seen(te):
+        return {}, ""
+    clubs = {"알나스르": "Al Nassr", "알 나스르": "Al Nassr", "알힐랄": "Al Hilal", "알 힐랄": "Al Hilal", "알이티하드": "Al Ittihad",
+             "인터 마이애미": "Inter Miami", "LAFC": "LAFC", "산투스": "Santos"}
+    try:
+        for ko, ens in _j.loads((_P(__file__).resolve().parents[1] / "config" / "names.json").read_text(encoding="utf-8")).get("big_clubs", {}).items():
+            clubs.setdefault(ko, ens[0] if ens else "")
+    except (OSError, ValueError):
+        pass
+    for ko, en_ in clubs.items():                       # 기사에 실제로 나온 팀(처음 나온 것)
+        if ko.lower() in low or (en_ and en_.lower() in low):
+            return {"team_ko": ko.replace(" ", ""), "team_en": en_}, ""
+    return {"team_ko": "", "team_en": ""}, ""         # 못 찾으면 팀 비움(특정 구단 유니폼 안 그림)
+
+
 def to_candidate(a: dict, meter) -> tuple[dict | None, str]:
     from . import art, quality as Q, safe
     from . import chronicle_flow as F
@@ -104,6 +137,7 @@ def to_candidate(a: dict, meter) -> tuple[dict | None, str]:
          "이 기사로 릴스 1편을 만든다. 주인공 1명(선수 또는 감독, 둘이 함께 핵심이면 A&B)을 정해라.\n"
          "제외(exclude=true): 범죄·성범죄·음주운전·사망·심각한 부상·건강 의혹·사생활·18세 미만.\n"
          "subject_ko·team_ko 는 국내 매체 한국어 표기. hwg 는 로마노 'Here we go' 확정 이적일 때만 true.\n"
+         "team 은 기사 시점 현재 소속팀(기사 제목·본문에 나온 팀). 예전 소속팀·유명했던 팀을 기억으로 쓰지 말 것(예: 알나스르 호날두를 레알로 쓰면 안 됨).\n"
          'JSON: {"exclude":false,"why_exclude":"","subject_ko":"","subject_en":"","team_ko":"","team_en":"","league_ko":"","role":"선수|감독",'
          '"type":"","rumor":false,"transfer":false,"hwg":false,"reason":"이유 20자 안팎"}')
     out = safe.ask_valid(lambda: art.claude_json(ANALYZE_SYS, p, meter, "직접 요청 기사 읽기"),
@@ -112,6 +146,11 @@ def to_candidate(a: dict, meter) -> tuple[dict | None, str]:
         return None, "기사에서 주인공을 못 찾음"
     if out.get("exclude"):
         return None, f"제외 규칙: {out.get('why_exclude', '')[:60]}"
+    team, why_team = current_team(out, whole)
+    if team:
+        out.update(team)
+    elif why_team:
+        return None, why_team
     x = {"key": "req-" + re.sub(r"\W+", "", (a["url"] or a["title"]))[:40], "titles": [f"[{a['outlet']}] {a['title']}"],
          "outlets": [a["outlet"]], "credible": [a["outlet"]], "summaries": [a["text"][:300]], "stars": [], "clubs": [],
          "hwg": bool(out.get("hwg")), "hwg_posts": [], "official": False, "reddit_top": False, "burst": False,
