@@ -41,6 +41,11 @@ def take(msg: dict, st: dict, say) -> bool:
     img_id = photos[-1]["file_id"] if photos else (doc.get("file_id") if str(doc.get("mime_type", "")).startswith("image/") else "")
     if not urls and not img_id:
         return False
+    if urls:                                   # 같은 링크를 다시 보냄 → 두 번 만들지 않음(2026-11-26 이강인 2·3장 중복)
+        same = [r for r in q if r.get("url") == urls[0] and r.get("status") in ("new", "approved", "ask", "done")]
+        if same:
+            say("이미 받은 기사예요 — " + ("만들고 있어요, 조금만 기다려 주세요." if same[-1]["status"] != "done" else "벌써 만들어 보냈어요."))
+            return True
     q.append({"id": msg.get("message_id"), "at": datetime.now().isoformat(timespec="seconds"), "status": "new",
               "url": urls[0] if urls else "", "file_id": img_id, "note": t[:300]})
     say("받았어요, 10분 안에 보낼게요.")

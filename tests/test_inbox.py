@@ -31,6 +31,9 @@ check(IB.take({"message_id": 1, "text": "이거 만들어줘 https://www.bbc.com
 check(st["inbox"][0]["url"].startswith("https://www.bbc.com") and said[-1] == "받았어요, 10분 안에 보낼게요.", "링크 저장 · 답장")
 check(IB.take({"message_id": 2, "photo": [{"file_id": "s"}, {"file_id": "big"}]}, st, A.say) and st["inbox"][1]["file_id"] == "big", "캡처 → 가장 큰 그림")
 check(not IB.take({"message_id": 3, "text": "제1장 12.3만"}, st, A.say), "조회수 메시지는 요청 아님(예전 기능 그대로)")
+n0 = len(st["inbox"])
+check(IB.take({"message_id": 4, "text": "https://www.bbc.com/sport/football/123"}, st, A.say) and len(st["inbox"]) == n0 and "이미 받은" in said[-1],
+      "같은 링크 다시 → 두 번 만들지 않고 답장")
 
 print("[2] 하루 최대가 찼으면 물어봄 → '만들어' 답하면 만듦")
 c = {"daily_max": 4, "video_cap_krw": 300}
