@@ -1,5 +1,5 @@
 {
- "next": 3,
+ "next": 2,
  "chapters": [
   {
    "no": 1,
@@ -9,27 +9,6 @@
    "title": "“오피셜” 데뷔전 8분 만의 퇴장 / 결국 오심이었다",
    "subject_en": "Mauricio Pochettino",
    "team_en": "Manchester United"
-  },
-  {
-   "no": 2,
-   "at": "2026-11-26T11:05:18+09:00",
-   "subject": "라민 야말",
-   "team": "바르셀로나",
-   "title": "라민 야말 부상으로 경기 결장 / 바르셀로나는 승리 / 구단은 회복 시기 미공개",
-   "score": 21.0,
-   "scores": {
-    "name": 5,
-    "drama": 3,
-    "divide": 2,
-    "share": 4,
-    "surprise": 3,
-    "korea": 4
-   },
-   "tier": 2,
-   "subject_en": "Lamine Yamal",
-   "team_en": "Barcelona",
-   "rank": "기사",
-   "continent": "태양의 대륙"
   }
  ],
  "days": {
@@ -63,16 +42,7 @@
    "err_sent": true
   },
   "2026-11-26": {
-   "made": [
-    {
-     "at": "2026-11-26T11:02:38+09:00",
-     "tier": 2,
-     "subject": "라민 야말",
-     "team": "바르셀로나",
-     "rumor": false,
-     "transfer": false
-    }
-   ],
+   "made": [],
    "errors": {
     "레딧": "공식 API 키 없음 → 건너뜀(로그인 없는 RSS 는 레딧이 막음)"
    },
@@ -4013,6 +3983,12 @@
    "subject": "시디 바라마 은다예",
    "at": "2026-11-26",
    "why": "사용자 폐기: 영어 글·이적 루머·16세"
+  },
+  {
+   "no": 2,
+   "subject": "라민 야말",
+   "at": "2026-11-26",
+   "why": "사용자 운영 변경(자동은 HWG 만) 직전 옛 규칙으로 만든 편 → 폐기, 다음 제작부터 제2장"
   }
  ]
 }
