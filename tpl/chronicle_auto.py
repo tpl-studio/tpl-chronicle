@@ -77,6 +77,9 @@ def song_pick(c: dict, kind: str, no: int) -> tuple[str, list[str]]:
     songs = c.get("songs") or {}
     mood = MOOD_OF.get(kind, "웅장")
     pool = list(songs.get(mood) or []) + [x for x in songs.get("기본", []) if x not in (songs.get(mood) or [])]
+    if kind == "로마노 이적":                     # Here we go 소식은 'Here we go' 곡을 맨 앞에(2026-11-26 사용자)
+        hwg = [x for x in (songs.get("here_we_go") or []) if x not in pool]
+        return "Here we go", (hwg + pool)[:3]
     if not pool:
         return mood, []
     k = no % len(pool)
