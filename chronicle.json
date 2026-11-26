@@ -1,5 +1,5 @@
 {
- "next": 5,
+ "next": 6,
  "chapters": [
   {
    "no": 1,
@@ -51,6 +51,20 @@
    "team_en": "Real Madrid",
    "rank": "기사",
    "continent": "태양의 대륙"
+  },
+  {
+   "no": 5,
+   "at": "2026-11-26T13:29:04+09:00",
+   "subject": "모리야스",
+   "team": "일본 대표팀",
+   "title": "모리야스, 8년 마무리·유럽 / 유럽 구단 관심·차기 후보",
+   "score": 0,
+   "scores": {},
+   "tier": 2,
+   "subject_en": "Moritaka Moriyasu",
+   "team_en": "Japan National Team",
+   "rank": "대원수",
+   "continent": "동방의 대륙"
   }
  ],
  "days": {
@@ -109,6 +123,15 @@
      "subject": "크리스티아노 호날두",
      "team": "레알 마드리드",
      "rumor": false,
+     "transfer": false,
+     "request": true
+    },
+    {
+     "at": "2026-11-26T13:26:51+09:00",
+     "tier": 2,
+     "subject": "모리야스",
+     "team": "일본 대표팀",
+     "rumor": true,
      "transfer": false,
      "request": true
     }
@@ -4297,7 +4320,15 @@
    "url": "https://naver.me/5WUMQ1tH",
    "file_id": "",
    "note": "https://naver.me/5WUMQ1tH"
+  },
+  {
+   "id": 553,
+   "at": "2026-11-26T13:26:50",
+   "status": "done",
+   "url": "https://naver.me/IFELCx2a",
+   "file_id": "",
+   "note": "https://naver.me/IFELCx2a"
   }
  ],
- "updates_offset": 98137726
+ "updates_offset": 98137727
 }
