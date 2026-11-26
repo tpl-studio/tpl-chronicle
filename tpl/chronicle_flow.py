@@ -132,7 +132,7 @@ def write(pk: dict, meter: art.Meter, mythic_ok: bool = False) -> dict:
          "lines 는 자연스러운 한국어 문장 — 'X득' 같은 기호·줄임말·영어 섞기 금지(무득점·공격포인트 없이처럼 풀어 쓰기).\n"
          "best 는 drafts 안 시안 번호(0, 1, 2 중 숫자 하나). ※ i·pick·best 는 0부터 시작하는 숫자만(태그 이름·매체 이름·글자 쓰지 말 것).")
     from . import safe
-    out = safe.ask_valid(lambda: art.claude_json(SYS, p, meter, "요약·글·시트(Claude)"), safe.v_write, None, "요약·글·시트")
+    out = safe.ask_valid(lambda: safe.fix_write(art.claude_json(SYS, p, meter, "요약·글·시트(Claude)")), safe.v_write, None, "요약·글·시트")
     if out is None:
         raise RuntimeError("요약·글·시트 형식이 두 번 다 틀림 → 이 기사는 건너뜀")
     out["best"] = safe.as_index(out.get("best"), len(out["drafts"]), out["drafts"], "tag", default=0)

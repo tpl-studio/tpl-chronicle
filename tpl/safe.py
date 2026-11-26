@@ -72,6 +72,39 @@ def v_pick(out: dict) -> str:
     return ""
 
 
+def fix_write(out):
+    """2026-11-26 호날두 기사: AI 가 시안 글을 'lines' 말고 다른 이름(line1·line2·text·copy·headline 등)이나 문자열로 줘서
+    '형식 틀림'으로 기사 전체가 건너뜀 → 검사 전에 흔한 모양을 lines 목록으로 맞춤. 고칠 수 없는 시안만 빼고 나머지로 진행."""
+    if not isinstance(out, dict):
+        return out
+    d = out.get("drafts") or out.get("draft") or out.get("thumbnails") or out.get("options")
+    if isinstance(d, dict):
+        d = list(d.values()) if all(isinstance(v, (dict, str, list)) for v in d.values()) else [d]
+    fixed = []
+    for x in d if isinstance(d, list) else []:
+        if isinstance(x, str):
+            x = {"lines": x}
+        elif isinstance(x, list):
+            x = {"lines": x}
+        if not isinstance(x, dict):
+            continue
+        x = dict(x)
+        ls = x.get("lines")
+        if not ls:
+            nums = [x.get(k) for k in ("line1", "line2", "line3", "line_1", "line_2", "line_3", "줄1", "줄2", "줄3") if x.get(k)]
+            ls = nums or next((x.get(k) for k in ("line", "text", "copy", "headline", "title", "thumbnail", "body", "글", "문구") if x.get(k)), None)
+        if isinstance(ls, str):
+            ls = [p.strip() for p in re.split(r"\s*(?:/|\n|\|)\s*", ls) if p.strip()]
+        if isinstance(ls, list):
+            ls = [str(v).strip() for v in ls if str(v).strip()]
+        if ls:
+            x["lines"] = ls
+            fixed.append(x)
+    if fixed:
+        out = {**out, "drafts": fixed}
+    return out
+
+
 def v_write(out: dict) -> str:
     d = out.get("drafts")
     if not isinstance(d, list) or not d:

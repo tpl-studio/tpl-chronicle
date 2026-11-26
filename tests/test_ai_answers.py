@@ -137,5 +137,12 @@ names = [f["name"] for f in FD.load_conf()["feeds"]]
 check(sum(n.startswith("Google News · Big clubs ") for n in names) == 4 and "Google News · Big clubs" not in names, "Big clubs → 4개")
 check("구글 뉴스 · K리그" in names and "구글 뉴스 · 축구대표팀" in names and "구글 뉴스 · 국내축구" not in names, "국내축구 → K리그·축구대표팀")
 
+print("[+] 시안 글이 lines 말고 다른 이름·문자열로 와도 맞춤(호날두 기사)")
+from tpl import safe as _S
+for c in [{"drafts": [{"line1": "41세 호날두", "line2": "부심 조롱에 징계 위기"}], "prompt_en": "x", "sheet": {}},
+          {"drafts": [{"text": "41세 호날두 / 징계 위기"}], "prompt_en": "x", "sheet": {}},
+          {"drafts": ["41세 호날두 / 징계 위기"], "prompt_en": "x", "sheet": {}}]:
+    f = _S.fix_write(c)
+    check(_S.v_write(f) == "" and len(f["drafts"][0]["lines"]) == 2, f"맞춤: {f['drafts'][0]['lines']}")
 print("\n결과:", "모두 통과" if not fails else f"실패 {len(fails)}건: {fails}")
 sys.exit(1 if fails else 0)
