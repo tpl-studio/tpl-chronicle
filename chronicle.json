@@ -650,6 +650,68 @@
      "base": 23.0,
      "bonus": 0,
      "total": 23.0
+    },
+    {
+     "key": "anthony-barcelona-but-champions-confirmed-display-duo-european",
+     "titles": [
+      "[Yahoo Sports] Confirmed: Real Madrid duo named in UEFA Champions League Team of the Week",
+      "[Yahoo Sports] Confirmed: Barcelona star Anthony Gordon named UEFA Champions League Player of the Week",
+      "[LiveScore] Not Kylian Mbappe, but Anthony Gordon! Barcelona forward wins Champions League Player of the Week after stunning European display",
+      "[Goal.com] Not Kylian Mbappe, but Anthony Gordon! Barcelona forward wins Champions League Player of the Week after stunning European display"
+     ],
+     "outlets": [
+      "Yahoo Sports",
+      "LiveScore",
+      "Goal.com"
+     ],
+     "credible": [
+      "Yahoo Sports",
+      "Goal.com"
+     ],
+     "summaries": [],
+     "stars": [
+      "음바페"
+     ],
+     "clubs": [
+      "레알 마드리드",
+      "바르셀로나"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-26T17:14:00+00:00",
+     "ids": [
+      "9e23e1a7d7580fba",
+      "683b278c7e8f485b",
+      "ba8ddd887f01c277",
+      "88f5f70b91aa3f87"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "앤서니 고든",
+     "subject_en": "Anthony Gordon",
+     "team_ko": "바르셀로나",
+     "team_en": "Barcelona",
+     "league_ko": "UEFA 챔피언스리그",
+     "role": "선수",
+     "type": "빅클럽 스타 화제",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 3,
+      "divide": 1,
+      "share": 4,
+      "surprise": 4,
+      "korea": 5
+     },
+     "reason": "바르셀로나 선수 고든, 챔피언스리그 주간 최우수선수 선정",
+     "base": 22.0,
+     "bonus": 0,
+     "total": 22.0
     }
    ],
    "judge_krw": 0.0
@@ -879,11 +941,17 @@
    "total": 0.0,
    "subject": "",
    "title": "[The Pride of London] Nottingham Forest vs Chelsea: Premier League preview, predictions, team news and TV info"
+  },
+  "anthony-barcelona-but-champions-confirmed-display-duo-european": {
+   "at": "2026-11-27T02:36:38+09:00",
+   "total": 22.0,
+   "subject": "앤서니 고든",
+   "title": "[Yahoo Sports] Confirmed: Real Madrid duo named in UEFA Champions League Team of the Week"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-27T02:11:37+09:00",
+ "last_run_at": "2026-11-27T02:36:38+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -7140,7 +7208,59 @@
   "0221b27c53810d03": "2026-11-27T02:11:37+09:00",
   "76adb325d25522f5": "2026-11-27T02:11:37+09:00",
   "1ea58c48e0945066": "2026-11-27T02:11:37+09:00",
-  "9a976975beb41a63": "2026-11-27T02:11:37+09:00"
+  "9a976975beb41a63": "2026-11-27T02:11:37+09:00",
+  "8fd3d87cb9087b8c": "2026-11-27T02:36:38+09:00",
+  "a15f1cd42ed27921": "2026-11-27T02:36:38+09:00",
+  "faecb4fd6193cd1e": "2026-11-27T02:36:38+09:00",
+  "2b8c7975be49a46c": "2026-11-27T02:36:38+09:00",
+  "6dbf87c2e921cefe": "2026-11-27T02:36:38+09:00",
+  "510e244afb988d66": "2026-11-27T02:36:38+09:00",
+  "76acb6fee6eb8514": "2026-11-27T02:36:38+09:00",
+  "f57952a1424e549a": "2026-11-27T02:36:38+09:00",
+  "69f1c09b2b4e6b89": "2026-11-27T02:36:38+09:00",
+  "58f08a1a6f8c3fef": "2026-11-27T02:36:38+09:00",
+  "1bf9df2c4690180b": "2026-11-27T02:36:38+09:00",
+  "541d24ef21273cee": "2026-11-27T02:36:38+09:00",
+  "ae24a11f5981d88f": "2026-11-27T02:36:38+09:00",
+  "d53772f3d4112746": "2026-11-27T02:36:38+09:00",
+  "872bf2c7da2196b9": "2026-11-27T02:36:38+09:00",
+  "eac89e244d5df589": "2026-11-27T02:36:38+09:00",
+  "7a2b7777136661d5": "2026-11-27T02:36:38+09:00",
+  "683b278c7e8f485b": "2026-11-27T02:36:38+09:00",
+  "ba8ddd887f01c277": "2026-11-27T02:36:38+09:00",
+  "9e23e1a7d7580fba": "2026-11-27T02:36:38+09:00",
+  "7865a1c568c0fd53": "2026-11-27T02:36:38+09:00",
+  "fbd0062b60d15c1c": "2026-11-27T02:36:38+09:00",
+  "ca2a0129e743927b": "2026-11-27T02:36:38+09:00",
+  "feb715b37479a049": "2026-11-27T02:36:38+09:00",
+  "438d0f4726ea4bf3": "2026-11-27T02:36:38+09:00",
+  "02324dd324933976": "2026-11-27T02:36:38+09:00",
+  "cc06e3dcfed6f2d7": "2026-11-27T02:36:38+09:00",
+  "e5150a94d9e8443d": "2026-11-27T02:36:38+09:00",
+  "c5b686c6fdc0e175": "2026-11-27T02:36:38+09:00",
+  "4ce2c5826abb28ec": "2026-11-27T02:36:38+09:00",
+  "6acd72f3af991553": "2026-11-27T02:36:38+09:00",
+  "37c809195e0208be": "2026-11-27T02:36:38+09:00",
+  "3d335065ad18e7e6": "2026-11-27T02:36:38+09:00",
+  "b60fde6f259cc318": "2026-11-27T02:36:38+09:00",
+  "544c2184a584a436": "2026-11-27T02:36:38+09:00",
+  "20511b3dbac2c99a": "2026-11-27T02:36:38+09:00",
+  "58c01cf39c0da92a": "2026-11-27T02:36:38+09:00",
+  "b5ea0ebfc71ec4b2": "2026-11-27T02:36:38+09:00",
+  "6fd01ce86306228b": "2026-11-27T02:36:38+09:00",
+  "e1cfa5678363dce6": "2026-11-27T02:36:38+09:00",
+  "d35339174dffcd24": "2026-11-27T02:36:38+09:00",
+  "b11f355f72bba861": "2026-11-27T02:36:38+09:00",
+  "4408b8f8800054df": "2026-11-27T02:36:38+09:00",
+  "e80c06d0d6a93b6b": "2026-11-27T02:36:38+09:00",
+  "6042171bc3b0b9a9": "2026-11-27T02:36:38+09:00",
+  "5f133d975cdd5f07": "2026-11-27T02:36:38+09:00",
+  "7e0cbd72dafc4186": "2026-11-27T02:36:38+09:00",
+  "d2a5102f2483e57b": "2026-11-27T02:36:38+09:00",
+  "fe9baf39e53cbded": "2026-11-27T02:36:38+09:00",
+  "99940c07e08424b8": "2026-11-27T02:36:38+09:00",
+  "d928e15be2bdc488": "2026-11-27T02:36:38+09:00",
+  "0493d68b377b1d97": "2026-11-27T02:36:38+09:00"
  },
  "discarded": [
   {
