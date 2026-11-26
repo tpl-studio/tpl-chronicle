@@ -337,10 +337,16 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     out.mkdir(parents=True, exist_ok=True)
     try:
         png, prompt = F.image(w["prompt_en"], x["team_en"], m)
-        chk = F.check_image(png, w, pk, m)
-    except Exception as e:  # noqa: BLE001 — Gemini 그림·점검 실패 → Gemini 다시 안 부르고 무료 FLUX 로
+    except Exception as e:  # noqa: BLE001 — Gemini 그림 실패 → Gemini 다시 안 부르고 무료 FLUX 로
         log(f"  [연대기] 그림 실패({type(e).__name__}) → 무료 FLUX 실루엣")
-        png, prompt, chk = b"", "", {"ok": False, "likeness": True, "why": f"Gemini 그림 실패({type(e).__name__})"}
+        png, prompt = b"", ""
+    chk = {"ok": False, "likeness": True, "why": "Gemini 그림 실패"}
+    if png:
+        try:
+            chk = F.check_image(png, w, pk, m)
+        except Exception as e:  # noqa: BLE001 — 점검만 실패하면 이미 그린 그림 그대로(돈 쓴 그림 버리지 않음)
+            log(f"  [연대기] 그림 점검 실패({type(e).__name__}) → 첫 그림 그대로")
+            chk = {"ok": True, "likeness": True, "why": f"그림 점검 실패({type(e).__name__}) → 점검 못 함"}
     if not chk["ok"] or not png:                         # 다시 그리기는 Cloudflare FLUX(무료) — 실존 인물 얼굴은 못 그려서 뒷모습·실루엣 구도
         try:
             png, prompt = F.flux_redraw(w, x["team_en"]), "FLUX 실루엣 다시 그리기"

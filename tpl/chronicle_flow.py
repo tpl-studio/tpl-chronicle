@@ -196,6 +196,17 @@ def flux_redraw(w: dict, team_en: str) -> bytes:
     raise RuntimeError("FLUX 실패 " + last)
 
 
+def _small_jpeg(png: bytes, side: int = 1024) -> bytes:
+    """그림 점검용: 2K PNG 는 Claude 그림 크기 한도를 넘어 BadRequest(2026-11-26) → 긴 변 1024 JPEG 로 줄여 보냄."""
+    import io
+    from PIL import Image
+    im = Image.open(io.BytesIO(png)).convert("RGB")
+    im.thumbnail((side, side))
+    b = io.BytesIO()
+    im.save(b, "JPEG", quality=85)
+    return b.getvalue()
+
+
 def check_image(png: bytes, w: dict, pk: dict, meter: art.Meter) -> dict:
     """그림 점검(Claude 가 그림을 봄): 얼굴 닮음 · 유니폼 보임 · 의상 상징 · 표정·자세 · 화풍 → 하나라도 아니면 다시(1번만)."""
     import anthropic
@@ -204,7 +215,7 @@ def check_image(png: bytes, w: dict, pk: dict, meter: art.Meter) -> dict:
     msg = client.messages.create(              # 2026-11-25: 그림 보는 점검은 Groq 가 못 해서 가장 싼 Claude Haiku(예전 Opus)
         model=art.HAIKU, max_tokens=4000, output_config={"effort": "low"},
         messages=[{"role": "user", "content": [
-            {"type": "image", "source": {"type": "base64", "media_type": "image/png", "data": base64.b64encode(png).decode()}},
+            {"type": "image", "source": {"type": "base64", "media_type": "image/jpeg", "data": base64.b64encode(_small_jpeg(png)).decode()}},
             {"type": "text", "text": f"이 그림은 {pk['subject_en']}({pk['team_en']}, {pk['role']})의 판타지 포스터여야 한다. 시트: {json.dumps(w['sheet'], ensure_ascii=False)}\n"
                                      '각 항목 true/false 와 한 줄 이유를 JSON 으로: {"likeness":true,"kit":true,"costume":true,"emotion":true,"style":true,"wings":false,"text_in_image":false,"why":""}'}]}])
     u = msg.usage
