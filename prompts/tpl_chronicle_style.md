@@ -97,7 +97,7 @@
 
 ## 8. 보내기 (개인 봇으로만 — 봇 이름은 Secrets PERSONAL_BOT_NAME)
 15초 영상 + 썸네일 PNG + 캡션("TPL 연대기 · 제N장" → 편이 갈리는 질문 1줄 → 기사 핵심 2줄 → 출처 → "AI로 제작한 이미지 포함" →
-해시태그 5개: 선수·팀·리그·#해외축구·#축구릴스) + 고정 댓글용 사실 1줄. 장 번호는 data/hot_reel/chronicle.json 으로 이어감.
+해시태그 5개: 선수·팀 + 고정 #유럽축구 #해외축구 #축구소식 — 2026-11-26 사용자 통일) + 고정 댓글용 사실 1줄. 장 번호는 data/hot_reel/chronicle.json 으로 이어감.
 
 ## 9. 비용
 1편 약 130원(Gemini 그림 1장 + Claude 글·시트). 1편 500원 넘으면 멈춤. 월 알림 3만 원(Gemini+Claude 합계, art.month_precheck).

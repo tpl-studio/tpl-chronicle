@@ -317,4 +317,23 @@ def record_chapter(no: int, subject: str, team: str, title: str) -> None:
 def caption(no: int, question: str, facts2: list[str], outlets: list[str], tags5: list[str]) -> str:
     src = "·".join(outlets[:5]) + (f" 등 {len(outlets)}곳" if len(outlets) > 5 else "")
     return (f"TPL 연대기 · 제{no}장\n{question}\n\n" + "\n".join(facts2[:2]) + f"\n\n출처: {src}\nAI로 제작한 이미지 포함\n\n"
-            + " ".join("#" + t.lstrip("#") for t in tags5[:5]))
+            + " ".join(sports_tags(tags5)))
+
+
+FIXED_TAGS = ["#유럽축구", "#해외축구", "#축구소식"]        # 2026-11-26 사용자: 스포츠 계정 태그 통일
+GENERIC_TAGS = {"#축구", "#축구릴스", "#스포츠", "#tpl", "#연대기", "#릴스", "#reels", "#shorts", "#쇼츠"}
+
+
+def sports_tags(tags: list) -> list[str]:
+    """내용 맞춤 2개(선수·팀 순서 그대로) + 고정 3개 = 5개."""
+    import re as _re
+    taken = {t.lower() for t in FIXED_TAGS} | GENERIC_TAGS
+    mine: list[str] = []
+    for t in list(tags or []) + ["축구이슈"]:
+        h = "#" + _re.sub(r"[^\w가-힣]", "", str(t or "").lstrip("#"))
+        if len(h) > 1 and not h[1:].isdigit() and h.lower() not in taken:
+            mine.append(h)
+            taken.add(h.lower())
+        if len(mine) == 2:
+            break
+    return mine + FIXED_TAGS

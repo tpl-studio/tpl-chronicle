@@ -126,7 +126,7 @@ def write(pk: dict, meter: art.Meter, mythic_ok: bool = False) -> dict:
          "JSON 으로: facts[{fact, outlets[]}] 4~6개 · summary(3줄 이내) · drafts 3개[{tag, lines(2~3줄), name, score{hook,accuracy,rhythm,emotion}, note}] · "
          "best · why · sheet{continent(대륙), rank(신분 — 주장·신예·골키퍼는 기사에서 확인될 때만, 모르면 기사), event_scene(사건 장면), "
          "concept, emotion, face, pose, costume, costume_why, background{front,middle,back}, light_color, hidden_detail, looks} · "
-         "prompt_en · question(편이 갈리는 질문 1줄) · facts2(캡션용 기사 핵심 2줄) · pinned(고정 댓글용 사실 1줄) · hashtags(5개: 선수·팀·리그·해외축구·축구릴스)\n"
+         "prompt_en · question(편이 갈리는 질문 1줄) · facts2(캡션용 기사 핵심 2줄) · pinned(고정 댓글용 사실 1줄) · hashtags(2개: 선수·팀 — #유럽축구 #해외축구 #축구소식 은 코드가 붙임)\n"
          "drafts 의 tag·lines·name 은 모두 한국어(기사 영어 원문을 옮기지 말고 한국어로 요약 · 한 줄 9~12자 안팎) · name 은 국내 매체 한국어 표기 · "
          "tag 는 HERE WE GO(로마노 HWG 일 때만)·RUMOR(이적 아닌 소식의 루머만)·오피셜(구단·리그·협회 공식 발표일 때만 — 경기 결과·활약·출전 기사는 금지)·BBC 중 하나 또는 빈칸.\n"
          "lines 는 자연스러운 한국어 문장 — 'X득' 같은 기호·줄임말·영어 섞기 금지(무득점·공격포인트 없이처럼 풀어 쓰기).\n"
