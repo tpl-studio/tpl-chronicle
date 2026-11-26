@@ -1,5 +1,5 @@
 {
- "next": 3,
+ "next": 2,
  "chapters": [
   {
    "no": 1,
@@ -9,27 +9,6 @@
    "title": "“오피셜” 데뷔전 8분 만의 퇴장 / 결국 오심이었다",
    "subject_en": "Mauricio Pochettino",
    "team_en": "Manchester United"
-  },
-  {
-   "no": 2,
-   "at": "2026-11-26T10:56:12+09:00",
-   "subject": "시디 바라마 은다예",
-   "team": "리버풀",
-   "title": "Liverpool secured an option to sign 16‑year‑old winger Sidy Barhama Ndiaye after his U17 World Cup performances. / The club will have the right to sign him in 2028 once he turns 18.",
-   "score": 21.0,
-   "scores": {
-    "name": 4,
-    "drama": 3,
-    "divide": 2,
-    "share": 4,
-    "surprise": 3,
-    "korea": 5
-   },
-   "tier": 2,
-   "subject_en": "Sidy Barhama Ndiaye",
-   "team_en": "Liverpool",
-   "rank": "신예",
-   "continent": "프리미어리그"
   }
  ],
  "days": {
@@ -63,16 +42,7 @@
    "err_sent": true
   },
   "2026-11-26": {
-   "made": [
-    {
-     "at": "2026-11-26T10:53:28+09:00",
-     "tier": 2,
-     "subject": "시디 바라마 은다예",
-     "team": "리버풀",
-     "rumor": true,
-     "transfer": true
-    }
-   ],
+   "made": [],
    "errors": {
     "레딧": "공식 API 키 없음 → 건너뜀(로그인 없는 RSS 는 레딧이 막음)"
    },
@@ -3960,5 +3930,13 @@
   "78159f4ce118794e": "2026-11-26T10:53:28+09:00",
   "31dc4ac1d9ed605f": "2026-11-26T10:53:28+09:00",
   "a15a0a34d70cf27e": "2026-11-26T10:53:28+09:00"
- }
+ },
+ "discarded": [
+  {
+   "no": 2,
+   "subject": "시디 바라마 은다예",
+   "at": "2026-11-26",
+   "why": "사용자 폐기: 영어 글·이적 루머·16세"
+  }
+ ]
 }
