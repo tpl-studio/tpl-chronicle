@@ -257,6 +257,59 @@
      "total": 23.0
     },
     {
+     "key": "alejandro-balde-barcelona-champions-confirm-highlights-injury-league",
+     "titles": [
+      "[Barca Blaugranes] Barcelona confirm Alejandro Balde injury after Champions League win over Sabah",
+      "[BBC] Champions League highlights: Sabah 1-4 Barcelona"
+     ],
+     "outlets": [
+      "Barca Blaugranes",
+      "BBC"
+     ],
+     "credible": [
+      "BBC"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "바르셀로나"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-26T13:49:34+00:00",
+     "ids": [
+      "ff85dbc5d079d600",
+      "51cad172b66d7114"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "알레한드로 발데",
+     "subject_en": "Alejandro Balde",
+     "team_ko": "바르셀로나",
+     "team_en": "Barcelona",
+     "league_ko": "챔피언스리그",
+     "role": "선수",
+     "type": "몰락·위기",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 4,
+      "divide": 2,
+      "share": 4,
+      "surprise": 3,
+      "korea": 5
+     },
+     "reason": "발데 부상으로 위기감",
+     "base": 23.0,
+     "bonus": 0,
+     "total": 23.0
+    },
+    {
      "key": "barcelona-brugge-champions-club-fk-head-isn-lamine",
      "titles": [
       "[Sports Illustrated] Why Lamine Yamal Isn’t Playing for Barcelona vs. Sabah—Champions League",
@@ -641,11 +694,23 @@
    "total": 15.0,
    "subject": "레니 요로",
    "title": "[Radio Royal] Leny Yoro red card: Written reasons why Manchester United defender's red card at Liverpool was overturned published by the FA"
+  },
+  "alejandro-balde-barcelona-champions-confirm-highlights-injury-league": {
+   "at": "2026-11-26T23:16:39+09:00",
+   "total": 23.0,
+   "subject": "알레한드로 발데",
+   "title": "[Barca Blaugranes] Barcelona confirm Alejandro Balde injury after Champions League win over Sabah"
+  },
+  "ahead-appeal-arsenal-as-city-clash-crunch-expulsion": {
+   "at": "2026-11-26T23:16:39+09:00",
+   "total": 0.0,
+   "subject": "",
+   "title": "[Naharnet] Man City's form unravels ahead of crunch Premier League clash with Arsenal"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-26T22:51:37+09:00",
+ "last_run_at": "2026-11-26T23:16:39+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -6285,7 +6350,58 @@
   "9655534d872e60d1": "2026-11-26T22:51:37+09:00",
   "2f38741736a290c5": "2026-11-26T22:51:37+09:00",
   "5b80e89f82da8ff8": "2026-11-26T22:51:37+09:00",
-  "8d6248ff7db71cd6": "2026-11-26T22:51:37+09:00"
+  "8d6248ff7db71cd6": "2026-11-26T22:51:37+09:00",
+  "390c967b9378212b": "2026-11-26T23:16:39+09:00",
+  "a40b46b2e5d3a2d4": "2026-11-26T23:16:39+09:00",
+  "8206c4e90cc1c353": "2026-11-26T23:16:39+09:00",
+  "aa4e2687db3642dd": "2026-11-26T23:16:39+09:00",
+  "c449ee86cdafbde9": "2026-11-26T23:16:39+09:00",
+  "70d005f488ce9bc8": "2026-11-26T23:16:39+09:00",
+  "82fb308e1784f4a9": "2026-11-26T23:16:39+09:00",
+  "1e6418c95d7904ab": "2026-11-26T23:16:39+09:00",
+  "ebd23b26699d0060": "2026-11-26T23:16:39+09:00",
+  "5f6af78d7c4c76ba": "2026-11-26T23:16:39+09:00",
+  "732a671033dc877d": "2026-11-26T23:16:39+09:00",
+  "c148f3684173e1b8": "2026-11-26T23:16:39+09:00",
+  "ba565e1dbfcd1ac2": "2026-11-26T23:16:39+09:00",
+  "ade28f6076f41bd6": "2026-11-26T23:16:39+09:00",
+  "dc5347b2b1399f99": "2026-11-26T23:16:39+09:00",
+  "81d20649bc257eb7": "2026-11-26T23:16:39+09:00",
+  "8da12b56d994e85f": "2026-11-26T23:16:39+09:00",
+  "fce0a39d143324bf": "2026-11-26T23:16:39+09:00",
+  "2b1e98093f40ff63": "2026-11-26T23:16:39+09:00",
+  "ff85dbc5d079d600": "2026-11-26T23:16:39+09:00",
+  "9411d02937efbbc3": "2026-11-26T23:16:39+09:00",
+  "92f909055bc6b62f": "2026-11-26T23:16:39+09:00",
+  "09d7f6dbf32f862f": "2026-11-26T23:16:39+09:00",
+  "294e5e60083227a7": "2026-11-26T23:16:39+09:00",
+  "30bb7b01f7f6fc18": "2026-11-26T23:16:39+09:00",
+  "1c583e7e583eac01": "2026-11-26T23:16:39+09:00",
+  "38e48c0fb6339554": "2026-11-26T23:16:39+09:00",
+  "f9d1dedc01c82241": "2026-11-26T23:16:39+09:00",
+  "e0dfe546e39b0774": "2026-11-26T23:16:39+09:00",
+  "638249d51aebfa2e": "2026-11-26T23:16:39+09:00",
+  "8e7ca0763eb87a89": "2026-11-26T23:16:39+09:00",
+  "c5e86cc1156bd1ec": "2026-11-26T23:16:39+09:00",
+  "bef88cc7f1c28b92": "2026-11-26T23:16:39+09:00",
+  "427fdfb7c733f277": "2026-11-26T23:16:39+09:00",
+  "e152fdaae9c1d495": "2026-11-26T23:16:39+09:00",
+  "1cb4808c17135143": "2026-11-26T23:16:39+09:00",
+  "533459d95dd17d4c": "2026-11-26T23:16:39+09:00",
+  "74044f0a39f0a130": "2026-11-26T23:16:39+09:00",
+  "871ef9ed1a7cfd3f": "2026-11-26T23:16:39+09:00",
+  "ac7393f3c3a87ef5": "2026-11-26T23:16:39+09:00",
+  "37e324eeb62c0600": "2026-11-26T23:16:39+09:00",
+  "c6f8eb1738855729": "2026-11-26T23:16:39+09:00",
+  "e66bfaa6321b4aee": "2026-11-26T23:16:39+09:00",
+  "ad77ffed5bdfd37b": "2026-11-26T23:16:39+09:00",
+  "0dfc952467903949": "2026-11-26T23:16:39+09:00",
+  "ded958779c6f50d8": "2026-11-26T23:16:39+09:00",
+  "bc1e43bee4df6427": "2026-11-26T23:16:39+09:00",
+  "b42b75c3137187d5": "2026-11-26T23:16:39+09:00",
+  "dd8c47fa5a2d634e": "2026-11-26T23:16:39+09:00",
+  "5ad16f94951c4ae1": "2026-11-26T23:16:39+09:00",
+  "4d8fa5d3923517fc": "2026-11-26T23:16:39+09:00"
  },
  "discarded": [
   {
