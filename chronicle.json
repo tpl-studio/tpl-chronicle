@@ -425,6 +425,59 @@
      "total": 20.0
     },
     {
+     "key": "blasts-florentino-football-madrid-real-rocks-spanish-urtasun",
+     "titles": [
+      "[OneFootball] Urtasun rocks Spanish football: blasts Real Madrid and Florentino 🔥",
+      "[Yahoo Sports] Urtasun rocks Spanish football: blasts Real Madrid and Florentino 🔥"
+     ],
+     "outlets": [
+      "OneFootball",
+      "Yahoo Sports"
+     ],
+     "credible": [
+      "Yahoo Sports"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "레알 마드리드"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-26T12:14:25+00:00",
+     "ids": [
+      "6ccd90256886572d",
+      "094143680163a078"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "우르타순",
+     "subject_en": "Urtasun",
+     "team_ko": "",
+     "team_en": "",
+     "league_ko": "",
+     "role": "선수",
+     "type": "갈등·유머",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 4,
+      "drama": 3,
+      "divide": 2,
+      "share": 4,
+      "surprise": 3,
+      "korea": 2
+     },
+     "reason": "우르타순이 레알·플로렌티노 비난",
+     "base": 18.0,
+     "bonus": 0,
+     "total": 18.0
+    },
+    {
      "key": "at-barcelona-champions-cruise-double-gordon-helps-in",
      "titles": [
       "[The Guardian] Champions League: Gordon twice on target in Barcelona’s cruise at Sabah",
@@ -706,11 +759,17 @@
    "total": 0.0,
    "subject": "",
    "title": "[Naharnet] Man City's form unravels ahead of crunch Premier League clash with Arsenal"
+  },
+  "blasts-florentino-football-madrid-real-rocks-spanish-urtasun": {
+   "at": "2026-11-26T23:31:39+09:00",
+   "total": 18.0,
+   "subject": "우르타순",
+   "title": "[OneFootball] Urtasun rocks Spanish football: blasts Real Madrid and Florentino 🔥"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-26T23:16:39+09:00",
+ "last_run_at": "2026-11-26T23:31:39+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -6401,7 +6460,58 @@
   "b42b75c3137187d5": "2026-11-26T23:16:39+09:00",
   "dd8c47fa5a2d634e": "2026-11-26T23:16:39+09:00",
   "5ad16f94951c4ae1": "2026-11-26T23:16:39+09:00",
-  "4d8fa5d3923517fc": "2026-11-26T23:16:39+09:00"
+  "4d8fa5d3923517fc": "2026-11-26T23:16:39+09:00",
+  "04eb1f9942dfd65a": "2026-11-26T23:31:39+09:00",
+  "eadbb4d96552b0f9": "2026-11-26T23:31:39+09:00",
+  "abd9025a7649ea87": "2026-11-26T23:31:39+09:00",
+  "fc7db6ecb8b3ab3e": "2026-11-26T23:31:39+09:00",
+  "fc4d98ebc5f5c454": "2026-11-26T23:31:39+09:00",
+  "d17236b7db98a95f": "2026-11-26T23:31:39+09:00",
+  "7f8de1c251947e49": "2026-11-26T23:31:39+09:00",
+  "1b462cda660c0749": "2026-11-26T23:31:39+09:00",
+  "9a8c92cae1f8bc08": "2026-11-26T23:31:39+09:00",
+  "bb223b5639c7d586": "2026-11-26T23:31:39+09:00",
+  "c73114ce1e028e03": "2026-11-26T23:31:39+09:00",
+  "f2c1e0740d34cf35": "2026-11-26T23:31:39+09:00",
+  "1ebe237d221542a7": "2026-11-26T23:31:39+09:00",
+  "d2cbcc3e2bc3ec6b": "2026-11-26T23:31:39+09:00",
+  "d0b1e896266228e1": "2026-11-26T23:31:39+09:00",
+  "01a92ade94471f52": "2026-11-26T23:31:39+09:00",
+  "3b2cc8399dc0dbe1": "2026-11-26T23:31:39+09:00",
+  "c4dfcc8314bafda9": "2026-11-26T23:31:39+09:00",
+  "094143680163a078": "2026-11-26T23:31:39+09:00",
+  "54cf20f834ddda62": "2026-11-26T23:31:39+09:00",
+  "e18719e74f0091e6": "2026-11-26T23:31:39+09:00",
+  "9b8a7290c7821af6": "2026-11-26T23:31:39+09:00",
+  "51efcea2d97aa72e": "2026-11-26T23:31:39+09:00",
+  "bc6b928106fdd125": "2026-11-26T23:31:39+09:00",
+  "0d9e0f113c10e576": "2026-11-26T23:31:39+09:00",
+  "532e51d254bf3959": "2026-11-26T23:31:39+09:00",
+  "8e2b93ce075b3ceb": "2026-11-26T23:31:39+09:00",
+  "b78b1e86f981f6ae": "2026-11-26T23:31:39+09:00",
+  "cd5458a92c692bd3": "2026-11-26T23:31:39+09:00",
+  "fdccd7a07c8c8ddc": "2026-11-26T23:31:39+09:00",
+  "fa081ab789bc7f16": "2026-11-26T23:31:39+09:00",
+  "3e0c74b0739268f0": "2026-11-26T23:31:39+09:00",
+  "ec2132ac7ce12135": "2026-11-26T23:31:39+09:00",
+  "ef6042e57ed892ed": "2026-11-26T23:31:39+09:00",
+  "187e83111453d126": "2026-11-26T23:31:39+09:00",
+  "27c644146c455853": "2026-11-26T23:31:39+09:00",
+  "fbb9a4f7e2d4e092": "2026-11-26T23:31:39+09:00",
+  "2253fc12acfbdc69": "2026-11-26T23:31:39+09:00",
+  "af6ae27ba641d243": "2026-11-26T23:31:39+09:00",
+  "1f4cf3c544462344": "2026-11-26T23:31:39+09:00",
+  "a6a83b104963326c": "2026-11-26T23:31:39+09:00",
+  "8bce86faf0700234": "2026-11-26T23:31:39+09:00",
+  "2edc6736827ad941": "2026-11-26T23:31:39+09:00",
+  "ea90355fedc237cf": "2026-11-26T23:31:39+09:00",
+  "904f0424cce61df0": "2026-11-26T23:31:39+09:00",
+  "2972b1523b22b4d2": "2026-11-26T23:31:39+09:00",
+  "ff0bd8ebdeec229c": "2026-11-26T23:31:39+09:00",
+  "086cdbcb0b5e90ae": "2026-11-26T23:31:39+09:00",
+  "45dc8df3ed5917d9": "2026-11-26T23:31:39+09:00",
+  "c249866a7a26b532": "2026-11-26T23:31:39+09:00",
+  "b68de8879e2349b0": "2026-11-26T23:31:39+09:00"
  },
  "discarded": [
   {
