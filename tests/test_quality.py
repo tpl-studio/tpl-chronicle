@@ -70,6 +70,13 @@ except RuntimeError:
 print("[+] 이상한 줄임말(X득) 금지")
 check("줄임말" in Q.korean_problems({"tag": "", "lines": ["이강인 선발 2-0", "57분 교체, X득"], "name": "이강인"}), "X득 → 다시 쓰기")
 check(Q.korean_problems({"tag": "", "lines": ["이강인 선발 2-0", "57분 교체, 무득점"], "name": "이강인"}) == "", "무득점 → 통과")
+print("[+] 한 줄로 온 시안은 2줄로 나눔(호날두 기사)")
+d = Q.normalize_lines({"tag": "", "lines": ["41세 호날두 또 사고 쳤다, 부심 조롱에 징계 위기"], "name": "호날두"})
+check(len(d["lines"]) == 2 and Q.korean_problems(d) == "", f"쉼표에서 나눔: {d['lines']}")
+d = Q.normalize_lines({"tag": "", "lines": "41세 호날두 또 사고 / 부심 조롱에 징계 위기", "name": "호날두"})
+check(d["lines"] == ["41세 호날두 또 사고", "부심 조롱에 징계 위기"], f"문자열·슬래시 나눔: {d['lines']}")
+d = Q.normalize_lines({"tag": "", "lines": ["부심 조롱 끝에 징계 위기"], "name": "호날두"})
+check(len(d["lines"]) == 2, f"가운데 띄어쓰기에서 나눔: {d['lines']}")
 print("\n결과:", "모두 통과" if not fails else f"실패 {len(fails)}건: {fails}")
 sys.exit(1 if fails else 0)
 

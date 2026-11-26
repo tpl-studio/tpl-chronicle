@@ -176,3 +176,30 @@ def korean_name(subject_en: str, subject_ko: str = "") -> str:
             if any(_norm(e) == key or (last and len(last) >= 4 and _norm(e) == last) for e in ens if e):
                 return p.get("ko", "") or subject_ko
     return subject_ko if HANGUL.search(subject_ko or "") else ""
+
+
+def normalize_lines(draft: dict) -> dict:
+    """2026-11-26 호날두 기사: AI 가 lines 를 한 줄(또는 문자열)로 줘서 '줄 수 1' 로 기사 전체가 건너뜀 →
+    문자열이면 나누고, 한 줄이면 ' / '·'→'·쉼표·가운데 띄어쓰기에서 2줄로 나눔(글은 그대로, 나누기만)."""
+    d = dict(draft)
+    ls = d.get("lines")
+    if isinstance(ls, str):
+        ls = [ls]
+    ls = [str(x).strip() for x in (ls or []) if str(x).strip()]
+    out = []
+    for ln in ls:
+        out += [p.strip() for p in re.split(r"\s*(?:/|\n|\|)\s*", ln) if p.strip()]
+    if len(out) == 1:
+        ln = out[0]
+        m = re.search(r"(→|,|·|!|\?)\s*", ln)
+        if m and 3 <= m.end() <= len(ln) - 3:
+            out = [ln[:m.end()].strip(" ,·"), ln[m.end():].strip()]
+        else:
+            sp = [i for i, ch in enumerate(ln) if ch == " "]
+            if sp:
+                mid = min(sp, key=lambda i: abs(i - len(ln) / 2))
+                out = [ln[:mid].strip(), ln[mid + 1:].strip()]
+    if len(out) > 3:
+        out = out[:2] + [" ".join(out[2:])]
+    d["lines"] = out
+    return d

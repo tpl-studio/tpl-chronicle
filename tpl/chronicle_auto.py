@@ -344,7 +344,7 @@ def pick_draft(w: dict, x: dict, log=print) -> dict:
     order = [first] + [i for i in range(len(drafts)) if i != first]
     why = ""
     for i in order:
-        dr = dict(drafts[i])
+        dr = Q.normalize_lines(dict(drafts[i]))             # 한 줄·문자열로 온 시안도 2줄로(2026-11-26 호날두 기사)
         ko_name = Q.korean_name(x.get("subject_en", ""), x.get("subject_ko", ""))
         if ko_name:
             dr["name"] = ko_name                             # 이름 상자는 국내 매체 한국어 표기(선수 명단 우선)
