@@ -35,7 +35,11 @@ def main() -> int:
         return 0
     except Exception as e:  # noqa: BLE001 — 실패는 기록 + 개인 봇
         log("오류: " + "".join(traceback.format_exception(type(e), e, e.__traceback__))[-1500:])
-        A.say(f"⚠️ 연대기(클라우드) 오류: {type(e).__name__}: {str(e)[:200]}")
+        try:                                     # 같은 오류 알림은 하루 1번만(2026-11-26 사용자)
+            d, st = A.load_state()
+            A.say_once(st, d, f"run:{type(e).__name__}:{str(e)[:60]}", f"⚠️ 연대기(클라우드) 오류: {type(e).__name__}: {str(e)[:200]}")
+        except Exception:  # noqa: BLE001 — 상태를 못 읽으면 예전처럼 바로 알림
+            A.say(f"⚠️ 연대기(클라우드) 오류: {type(e).__name__}: {str(e)[:200]}")
         return 1
 
 

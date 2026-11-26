@@ -162,13 +162,27 @@ def parse_rss(xml_text: str, feed: dict) -> list[dict]:
     return out
 
 
-def collect(conf: dict, fetcher=fetch, log=lambda m: None) -> list[dict]:
+FEED_GAP = (1.0, 2.0)          # 피드 사이 간격(초) — 구글 뉴스가 한꺼번에 부르면 막음(2026-11-26)
+FEED_RETRY_WAIT = 5.0          # 실패하면 5초 뒤 1번 다시
+
+
+def collect(conf: dict, fetcher=fetch, log=lambda m: None, sleep=time.sleep) -> list[dict]:
+    import random
     items, seen = [], set()
-    for f in conf.get("feeds", []):
-        try:
-            got = parse_rss(fetcher(f["url"]), f)
-        except Exception as e:  # noqa: BLE001 — 피드 하나가 막혀도 나머지로 계속
-            log(f"피드 실패 {f.get('name')}: {type(e).__name__}")
+    for n, f in enumerate(conf.get("feeds", [])):
+        if n:
+            sleep(random.uniform(*FEED_GAP))
+        got = None
+        for attempt in (1, 2):
+            try:
+                got = parse_rss(fetcher(f["url"]), f)
+                break
+            except Exception as e:  # noqa: BLE001 — 피드 하나가 막혀도 나머지로 계속
+                if attempt == 1:
+                    sleep(FEED_RETRY_WAIT)
+                    continue
+                log(f"피드 실패 {f.get('name')}: {type(e).__name__}")
+        if got is None:
             continue
         for x in got:
             if x["id"] not in seen:

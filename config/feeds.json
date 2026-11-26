@@ -42,8 +42,13 @@
    "aggregator": true
   },
   {
-   "name": "구글 뉴스 · 국내축구",
-   "url": "https://news.google.com/rss/search?q=K%EB%A6%AC%EA%B7%B8+OR+%EC%B6%95%EA%B5%AC%EB%8C%80%ED%91%9C%ED%8C%80+when:1d&hl=ko&gl=KR&ceid=KR:ko",
+   "name": "구글 뉴스 · K리그",
+   "url": "https://news.google.com/rss/search?q=K%EB%A6%AC%EA%B7%B8+when:1d&hl=ko&gl=KR&ceid=KR:ko",
+   "aggregator": true
+  },
+  {
+   "name": "구글 뉴스 · 축구대표팀",
+   "url": "https://news.google.com/rss/search?q=%EC%B6%95%EA%B5%AC%EB%8C%80%ED%91%9C%ED%8C%80+when:1d&hl=ko&gl=KR&ceid=KR:ko",
    "aggregator": true
   },
   {
@@ -67,8 +72,23 @@
    "aggregator": true
   },
   {
-   "name": "Google News · Big clubs",
-   "url": "https://news.google.com/rss/search?q=(%22Real+Madrid%22+OR+Barcelona+OR+Arsenal+OR+Liverpool+OR+%22Manchester+City%22+OR+%22Manchester+United%22+OR+Chelsea+OR+Tottenham+OR+Bayern+OR+PSG)+when:1d&hl=en-GB&gl=GB&ceid=GB:en",
+   "name": "Google News · Big clubs 1",
+   "url": "https://news.google.com/rss/search?q=(\"Real+Madrid\"+OR+Barcelona+OR+Bayern)+when:1d&hl=en-GB&gl=GB&ceid=GB:en",
+   "aggregator": true
+  },
+  {
+   "name": "Google News · Big clubs 2",
+   "url": "https://news.google.com/rss/search?q=(Arsenal+OR+Chelsea+OR+Tottenham)+when:1d&hl=en-GB&gl=GB&ceid=GB:en",
+   "aggregator": true
+  },
+  {
+   "name": "Google News · Big clubs 3",
+   "url": "https://news.google.com/rss/search?q=(Liverpool+OR+\"Manchester+City\")+when:1d&hl=en-GB&gl=GB&ceid=GB:en",
+   "aggregator": true
+  },
+  {
+   "name": "Google News · Big clubs 4",
+   "url": "https://news.google.com/rss/search?q=(\"Manchester+United\"+OR+PSG)+when:1d&hl=en-GB&gl=GB&ceid=GB:en",
    "aggregator": true
   }
  ],

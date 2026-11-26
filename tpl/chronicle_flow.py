@@ -71,14 +71,17 @@ def pick(cands: list[dict], meter: art.Meter, today_subjects: list[str]) -> dict
                       for i, c in enumerate(cands))
     p = (f"[최근 24시간 축구 소식 후보]\n{lst}\n\n[고르는 기준]\n{_rules('## 4.', '## 5.')}\n"
          f"오늘 이미 만든 주인공·팀(같은 날 1편): {', '.join(today_subjects) or '없음'}\n"
-         "좋은 소식이 없으면 pick 에 -1.\n"
+         "좋은 소식이 없으면 pick 에 -1. ※ i·pick·best 는 0부터 시작하는 숫자만(태그 이름·매체 이름·글자 쓰지 말 것).\n"
          'JSON: {"pick": 번호, "subject_ko": "", "subject_en": "", "team_ko": "", "team_en": "", "league_ko": "", "role": "선수|감독", '
          '"kind": "로마노 이적|몰락·위기|충성·잔류|서러움·이탈|이적+위트|경질|갈등·유머|소방수|오심·징계|기록|기타", "rumor": false, "why": "", '
          '"queries_ko": ["",""], "queries_en": ["",""]}')
-    out = art.claude_json(SYS, p, meter, "기사 고르기(Claude)")
-    if int(out.get("pick", -1)) < 0:
+    from . import safe
+    out = safe.ask_valid(lambda: art.claude_json(SYS, p, meter, "기사 고르기(Claude)"), safe.v_pick, {"pick": -1}, "기사 고르기")
+    i = safe.as_index(out.get("pick"), len(cands), default=0, allow_none_pick=True)   # 숫자 아니면 0번 · 음수면 고를 것 없음
+    if i is None:
         return None
-    out["cand"] = cands[int(out["pick"])]
+    out["pick"] = i
+    out["cand"] = cands[i]
     return out
 
 
@@ -121,8 +124,13 @@ def write(pk: dict, meter: art.Meter, mythic_ok: bool = False) -> dict:
          "JSON 으로: facts[{fact, outlets[]}] 4~6개 · summary(3줄 이내) · drafts 3개[{tag, lines(2~3줄), name, score{hook,accuracy,rhythm,emotion}, note}] · "
          "best · why · sheet{continent(대륙), rank(신분 — 주장·신예·골키퍼는 기사에서 확인될 때만, 모르면 기사), event_scene(사건 장면), "
          "concept, emotion, face, pose, costume, costume_why, background{front,middle,back}, light_color, hidden_detail, looks} · "
-         "prompt_en · question(편이 갈리는 질문 1줄) · facts2(캡션용 기사 핵심 2줄) · pinned(고정 댓글용 사실 1줄) · hashtags(5개: 선수·팀·리그·해외축구·축구릴스)")
-    out = art.claude_json(SYS, p, meter, "요약·글·시트(Claude)")
+         "prompt_en · question(편이 갈리는 질문 1줄) · facts2(캡션용 기사 핵심 2줄) · pinned(고정 댓글용 사실 1줄) · hashtags(5개: 선수·팀·리그·해외축구·축구릴스)\n"
+         "best 는 drafts 안 시안 번호(0, 1, 2 중 숫자 하나). ※ i·pick·best 는 0부터 시작하는 숫자만(태그 이름·매체 이름·글자 쓰지 말 것).")
+    from . import safe
+    out = safe.ask_valid(lambda: art.claude_json(SYS, p, meter, "요약·글·시트(Claude)"), safe.v_write, None, "요약·글·시트")
+    if out is None:
+        raise RuntimeError("요약·글·시트 형식이 두 번 다 틀림 → 이 기사는 건너뜀")
+    out["best"] = safe.as_index(out.get("best"), len(out["drafts"]), out["drafts"], "tag", default=0)
     out["sources"] = list(dict.fromkeys(a["outlet"] for a in uniq))
     out["articles"] = uniq[:35]
     return out
@@ -203,7 +211,13 @@ def check_image(png: bytes, w: dict, pk: dict, meter: art.Meter) -> dict:
     pin, pout = art.CLAUDE_PRICE[art.HAIKU]
     meter.add((u.input_tokens * pin + u.output_tokens * pout) / 1e6 * art._rate(), "그림 점검(Claude Haiku)")
     t = "".join(b.text for b in msg.content if b.type == "text")
-    res = json.loads(t[t.find("{"): t.rfind("}") + 1])
+    from . import safe
+    try:
+        res = json.loads(t[t.find("{"): t.rfind("}") + 1])
+    except ValueError:
+        res = {}
+    if safe.v_check(res):                      # 점검 답 형식이 틀리면 첫 그림 그대로(점검 못 함 표시) — 이 기사를 멈추지 않음
+        return {"ok": True, "likeness": True, "why": "그림 점검 답 형식 틀림 → 점검 못 함(첫 그림 그대로)"}
     wings_ok = str((w.get("sheet") or {}).get("rank", "")).startswith("신화")
     res["ok"] = all(res.get(k) for k in ("likeness", "kit", "costume", "emotion", "style")) and (wings_ok or not res.get("wings"))
     return res

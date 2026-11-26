@@ -92,6 +92,20 @@ def _bot():
     return tok, chat
 
 
+def say_once(st: dict, d, key: str, text: str) -> bool:
+    """같은 오류 알림은 하루 1번만(2026-11-26 사용자). key 가 같으면 그날 두 번째부터는 기록만."""
+    day = now_kst().strftime("%Y-%m-%d")
+    sent = day_of(st, day).setdefault("alerted", [])
+    if key in sent:
+        return False
+    sent.append(key)
+    try:
+        save_state(d, st, "chronicle alert")
+    except Exception:  # noqa: BLE001
+        pass
+    return say(text)
+
+
 def say(text: str) -> bool:
     try:
         tok, chat = _bot()
@@ -216,16 +230,22 @@ def score(cands: list[dict], meter: art.Meter, weights: dict) -> list[dict]:
     p = (f"[후보 소식]\n{lst}\n\n각 후보를 판정해라. 반드시 이름 있는 주인공 1명(선수 또는 감독, 두 명이 함께 핵심이면 A&B) — 못 정하면 exclude.\n"
          "제외: 범죄·성범죄·음주운전·사망·심각한 부상·건강 의혹·사생활·18세 미만.\n"
          f"type: 2순위 유형 {TIER2} 중 하나, 아니면 '빅클럽 스타 화제'(3순위), 그것도 아니면 '기타'. 로마노 이적·감독 부임·경질 확정이면 '로마노 이적'.\n"
+         "※ i·pick·best 는 0부터 시작하는 숫자만(태그 이름·매체 이름·글자 쓰지 말 것).\n"
          "scores(각 0~5): name 이름값 / drama 감정·드라마 / divide 편 갈림 / share 공유각(DM으로 보낼 만함) / surprise 의외성 / korea 한국 팬 관심.\n"
          'JSON: {"items":[{"i":0,"exclude":false,"why_exclude":"","subject_ko":"","subject_en":"","team_ko":"","team_en":"","league_ko":"","role":"선수|감독",'
          '"type":"","rumor":false,"transfer":false,"scores":{"name":0,"drama":0,"divide":0,"share":0,"surprise":0,"korea":0},"reason":"이유 20자 안팎"}]} — 짧게')
-    out = art.claude_json(SCORE_SYS, p, meter, "터질 각 판정(Claude Haiku)", model=art.HAIKU)
+    from . import safe
+    out = safe.ask_valid(lambda: art.claude_json(SCORE_SYS, p, meter, "터질 각 판정(Claude Haiku)", model=art.HAIKU),
+                         safe.v_score, {"items": []}, "터질 각 판정")
     res = []
     for x in out.get("items") or []:
-        try:
-            c = cands[int(x["i"])]
-        except (KeyError, ValueError, IndexError):
+        if not isinstance(x, dict):
             continue
+        k = safe.as_index(x.get("i"), len(cands), default=None)     # 번호를 못 읽으면 그 판정만 버림(다른 후보 점수로 잘못 붙지 않게)
+        if k is None:
+            continue
+        c = cands[k]
+        x = {**x, "i": k}
         sc = x.get("scores") or {}
         base_ = sum(float(sc.get(k, 0) or 0) * float(weights.get(k, 1.0)) for k in ITEMS)
         bonus = (2 if c["reddit_top"] else 0) + (2 if c["burst"] else 0)
@@ -306,7 +326,8 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     month = now_kst().strftime("%Y-%m")
     mythic_used = sum(1 for ch in st.get("chapters", []) if ch.get("at", "").startswith(month) and str(ch.get("rank", "")).startswith("신화"))
     w = F.write(pk, m, mythic_ok=mythic_used < 2)                        # 신화(날개·빛기둥)는 한 달 최대 2번
-    dr = w["drafts"][int(w.get("best", 0))]
+    from . import safe
+    dr = w["drafts"][safe.as_index(w.get("best"), len(w["drafts"]), w["drafts"], "tag", default=0)]
     if x["tier"] == 1 and dr.get("tag") != "HERE WE GO":
         dr["tag"] = "HERE WE GO"
     if x.get("rumor") and dr.get("tag") != "RUMOR":
@@ -314,9 +335,13 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     no = int(st.get("next", 1))
     out = C.HOME / f"ch{no:02d}_{re.sub(r'[^0-9A-Za-z]+', '', x['subject_en'])[:20].lower() or 'story'}"
     out.mkdir(parents=True, exist_ok=True)
-    png, prompt = F.image(w["prompt_en"], x["team_en"], m)
-    chk = F.check_image(png, w, pk, m)
-    if not chk["ok"]:                                    # 다시 그리기는 Cloudflare FLUX(무료) — 실존 인물 얼굴은 못 그려서 뒷모습·실루엣 구도
+    try:
+        png, prompt = F.image(w["prompt_en"], x["team_en"], m)
+        chk = F.check_image(png, w, pk, m)
+    except Exception as e:  # noqa: BLE001 — Gemini 그림·점검 실패 → Gemini 다시 안 부르고 무료 FLUX 로
+        log(f"  [연대기] 그림 실패({type(e).__name__}) → 무료 FLUX 실루엣")
+        png, prompt, chk = b"", "", {"ok": False, "likeness": True, "why": f"Gemini 그림 실패({type(e).__name__})"}
+    if not chk["ok"] or not png:                         # 다시 그리기는 Cloudflare FLUX(무료) — 실존 인물 얼굴은 못 그려서 뒷모습·실루엣 구도
         try:
             png, prompt = F.flux_redraw(w, x["team_en"]), "FLUX 실루엣 다시 그리기"
             chk = {**chk, "ok": True, "redraw": "FLUX 실루엣(얼굴 안 보임)"}
@@ -533,7 +558,23 @@ def _make(best: dict, others: list, st: dict, d, c: dict, day: str, now: datetim
     best["_losers"] = others
     dd = day_of(st, day)
     dd["bench"] = [x for x in dd.get("bench", []) if x.get("key") != best.get("key")]
-    r = produce(best, st, c, log)
+    r, tried = None, []
+    for cand in [best] + [o for o in others if not o.get("exclude")][:2]:      # 기사 하나가 실패하면 그 기사만 건너뛰고 다음 후보
+        try:
+            r = produce(cand, st, c, log)
+            best = cand
+            break
+        except Exception as e:  # noqa: BLE001
+            tried.append(f"{cand.get('subject_ko') or cand.get('key')}: {type(e).__name__}: {str(e)[:80]}")
+            log(f"[연대기] 이 기사 건너뜀 — {tried[-1]}")
+            st.setdefault("seen", {})[cand.get("key", "")] = {"at": now.isoformat(timespec="seconds"), "failed": str(e)[:120],
+                                                              "subject": cand.get("subject_ko", "")}
+            dd["bench"] = [x for x in dd.get("bench", []) if x.get("key") != cand.get("key")]
+    if r is None:
+        save_state(d, st, "chronicle skip")
+        say_once(st, d, "produce:" + (tried[0].split(":")[1].strip() if tried else "?"),
+                 "⚠️ 연대기: 후보 기사 제작이 모두 실패해 이번 회차는 건너뜀\n" + "\n".join("· " + t for t in tried))
+        return {**rep, "why": "후보 기사 제작 실패 → 건너뜀(" + "; ".join(tried)[:200] + ")"}
     day_of(st, day)["made"].append({"at": now.isoformat(timespec="seconds"), "tier": best["tier"], "subject": best["subject_ko"],
                                     "team": best["team_ko"], "rumor": bool(best.get("rumor")), "transfer": bool(best.get("transfer"))})
     if best["hwg"]:
