@@ -712,6 +712,59 @@
      "base": 22.0,
      "bonus": 0,
      "total": 22.0
+    },
+    {
+     "key": "answered-chelsea-danny-estevao-fofana-more-on-questions",
+     "titles": [
+      "[Sky Sports] Chelsea Q&A: Your questions answered on Wesley Fofana, transfers, Danny Welbeck, Estevao and more",
+      "[V2 Radio] Chelsea Q&A: Your questions answered on Wesley Fofana, transfers, Danny Welbeck, Estevao and more"
+     ],
+     "outlets": [
+      "Sky Sports",
+      "V2 Radio"
+     ],
+     "credible": [
+      "Sky Sports"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "첼시"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-26T17:58:21+00:00",
+     "ids": [
+      "bd4fb2786151779a",
+      "ad7d7b34a8ff84d0"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "웨슬리 포파나",
+     "subject_en": "Wesley Fofana",
+     "team_ko": "첼시",
+     "team_en": "Chelsea",
+     "league_ko": "프리미어리그",
+     "role": "선수",
+     "type": "이적+위트",
+     "rumor": true,
+     "transfer": true,
+     "scores": {
+      "name": 5,
+      "drama": 3,
+      "divide": 2,
+      "share": 4,
+      "surprise": 3,
+      "korea": 4
+     },
+     "reason": "첼시 이적 관련 질문 다수",
+     "base": 21.0,
+     "bonus": 0,
+     "total": 21.0
     }
    ],
    "judge_krw": 0.0
@@ -953,11 +1006,17 @@
    "total": 2.0,
    "subject": "",
    "title": "[Yahoo Sports] Nottingham Forest vs Chelsea: Premier League Preview, Team News, Prediction & How To Watch"
+  },
+  "answered-chelsea-danny-estevao-fofana-more-on-questions": {
+   "at": "2026-11-27T04:01:13+09:00",
+   "total": 21.0,
+   "subject": "웨슬리 포파나",
+   "title": "[Sky Sports] Chelsea Q&A: Your questions answered on Wesley Fofana, transfers, Danny Welbeck, Estevao and more"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-27T03:51:13+09:00",
+ "last_run_at": "2026-11-27T04:01:13+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -7402,7 +7461,28 @@
   "9b20538ec17063d1": "2026-11-27T03:51:13+09:00",
   "311fc680e51cbe41": "2026-11-27T03:51:13+09:00",
   "3a32fefb7e84a7f6": "2026-11-27T03:51:13+09:00",
-  "00ec1f67abc6cd23": "2026-11-27T03:51:13+09:00"
+  "00ec1f67abc6cd23": "2026-11-27T03:51:13+09:00",
+  "382f5734e22ad3f1": "2026-11-27T04:01:13+09:00",
+  "ece12cc7ac4630f8": "2026-11-27T04:01:13+09:00",
+  "277fd69eaffb1159": "2026-11-27T04:01:13+09:00",
+  "ccd0003ebfd2c806": "2026-11-27T04:01:13+09:00",
+  "c050f5add217b997": "2026-11-27T04:01:13+09:00",
+  "b863a0fcd15a8aa8": "2026-11-27T04:01:13+09:00",
+  "8c049676bd77aca2": "2026-11-27T04:01:13+09:00",
+  "719579f2c75b5c95": "2026-11-27T04:01:13+09:00",
+  "ca6abad0226781fe": "2026-11-27T04:01:13+09:00",
+  "56372ae6df79d081": "2026-11-27T04:01:13+09:00",
+  "118285e632c4e972": "2026-11-27T04:01:13+09:00",
+  "9e473046329084cf": "2026-11-27T04:01:13+09:00",
+  "4ef83cb62e8356a8": "2026-11-27T04:01:13+09:00",
+  "6b13c7a0f97e2d2f": "2026-11-27T04:01:13+09:00",
+  "ad7d7b34a8ff84d0": "2026-11-27T04:01:13+09:00",
+  "a0a2851db06651be": "2026-11-27T04:01:13+09:00",
+  "24695bca1b0d9ff7": "2026-11-27T04:01:13+09:00",
+  "d32a9f1468808861": "2026-11-27T04:01:13+09:00",
+  "ebc295bc1f417e8c": "2026-11-27T04:01:13+09:00",
+  "89efbeaca9488273": "2026-11-27T04:01:13+09:00",
+  "8df01885a2e321d8": "2026-11-27T04:01:13+09:00"
  },
  "discarded": [
   {
