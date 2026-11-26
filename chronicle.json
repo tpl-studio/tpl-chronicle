@@ -1,5 +1,5 @@
 {
- "next": 3,
+ "next": 4,
  "chapters": [
   {
    "no": 1,
@@ -21,6 +21,20 @@
    "tier": 2,
    "subject_en": "Lee Kang-in",
    "team_en": "Atletico Madrid",
+   "rank": "기사",
+   "continent": "태양의 대륙"
+  },
+  {
+   "no": 3,
+   "at": "2026-11-26T11:39:05+09:00",
+   "subject": "이강인",
+   "team": "아틀레티코",
+   "title": "이강인 57분 교체, 2-0 완승 / 아틀레티코 3경기 승리 / 시메오네 수비 활용",
+   "score": 0,
+   "scores": {},
+   "tier": 2,
+   "subject_en": "Lee Kang-in",
+   "team_en": "Atletico",
    "rank": "기사",
    "continent": "태양의 대륙"
   }
@@ -62,6 +76,15 @@
      "tier": 2,
      "subject": "이강인",
      "team": "아틀레티코 마드리드",
+     "rumor": false,
+     "transfer": false,
+     "request": true
+    },
+    {
+     "at": "2026-11-26T11:36:36+09:00",
+     "tier": 2,
+     "subject": "이강인",
+     "team": "아틀레티코",
      "rumor": false,
      "transfer": false,
      "request": true
@@ -4023,7 +4046,15 @@
    "url": "https://naver.me/5DZYIJlE",
    "file_id": "",
    "note": "https://naver.me/5DZYIJlE"
+  },
+  {
+   "id": 536,
+   "at": "2026-11-26T11:36:37",
+   "status": "done",
+   "url": "https://naver.me/5DZYIJlE",
+   "file_id": "",
+   "note": "https://naver.me/5DZYIJlE"
   }
  ],
- "updates_offset": 98137721
+ "updates_offset": 98137722
 }
