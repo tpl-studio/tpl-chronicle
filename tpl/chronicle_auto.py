@@ -123,8 +123,7 @@ def _reddit(c: dict, errs: dict) -> list[dict]:
     rc = c.get("reddit") or {}
     cid, sec = os.environ.get(rc.get("env_id", ""), "").strip(), os.environ.get(rc.get("env_secret", ""), "").strip()
     if not cid or not sec:
-        errs["레딧"] = "공식 API 키 없음 → 건너뜀(로그인 없는 RSS 는 레딧이 막음)"
-        return []
+        return []          # 키 없음 = 일부러 안 씀(2026-11-27 사용자: 매일 오류 요약에 뜨지 않게 조용히 건너뜀)
     ua = {"User-Agent": "tpl-chronicle/1.0 (personal digest)"}
     try:
         tok = requests.post("https://www.reddit.com/api/v1/access_token", auth=(cid, sec), data={"grant_type": "client_credentials"},
