@@ -1,5 +1,5 @@
 {
- "next": 4,
+ "next": 5,
  "chapters": [
   {
    "no": 1,
@@ -35,6 +35,20 @@
    "tier": 2,
    "subject_en": "Lee Kang-in",
    "team_en": "Atletico",
+   "rank": "기사",
+   "continent": "태양의 대륙"
+  },
+  {
+   "no": 4,
+   "at": "2026-11-26T11:58:51+09:00",
+   "subject": "크리스티아노 호날두",
+   "team": "레알 마드리드",
+   "title": "호날두 부심 조롱으로 / 출전 정지 위기",
+   "score": 0,
+   "scores": {},
+   "tier": 2,
+   "subject_en": "Cristiano Ronaldo",
+   "team_en": "Real Madrid",
    "rank": "기사",
    "continent": "태양의 대륙"
   }
@@ -85,6 +99,15 @@
      "tier": 2,
      "subject": "이강인",
      "team": "아틀레티코",
+     "rumor": false,
+     "transfer": false,
+     "request": true
+    },
+    {
+     "at": "2026-11-26T11:56:46+09:00",
+     "tier": 2,
+     "subject": "크리스티아노 호날두",
+     "team": "레알 마드리드",
      "rumor": false,
      "transfer": false,
      "request": true
@@ -4070,7 +4093,15 @@
    "url": "https://naver.me/5WUMQ1tH",
    "file_id": "",
    "note": "https://naver.me/5WUMQ1tH"
+  },
+  {
+   "id": 547,
+   "at": "2026-11-26T11:56:44",
+   "status": "done",
+   "url": "https://naver.me/5WUMQ1tH",
+   "file_id": "",
+   "note": "https://naver.me/5WUMQ1tH"
   }
  ],
- "updates_offset": 98137724
+ "updates_offset": 98137725
 }
