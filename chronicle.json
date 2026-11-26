@@ -1,5 +1,5 @@
 {
- "next": 2,
+ "next": 3,
  "chapters": [
   {
    "no": 1,
@@ -9,6 +9,20 @@
    "title": "“오피셜” 데뷔전 8분 만의 퇴장 / 결국 오심이었다",
    "subject_en": "Mauricio Pochettino",
    "team_en": "Manchester United"
+  },
+  {
+   "no": 2,
+   "at": "2026-11-26T11:30:16+09:00",
+   "subject": "이강인",
+   "team": "아틀레티코 마드리드",
+   "title": "이강인 선발 2-0 / 57분 교체, X득",
+   "score": 0,
+   "scores": {},
+   "tier": 2,
+   "subject_en": "Lee Kang-in",
+   "team_en": "Atletico Madrid",
+   "rank": "기사",
+   "continent": "태양의 대륙"
   }
  ],
  "days": {
@@ -42,7 +56,17 @@
    "err_sent": true
   },
   "2026-11-26": {
-   "made": [],
+   "made": [
+    {
+     "at": "2026-11-26T11:28:02+09:00",
+     "tier": 2,
+     "subject": "이강인",
+     "team": "아틀레티코 마드리드",
+     "rumor": false,
+     "transfer": false,
+     "request": true
+    }
+   ],
    "errors": {
     "레딧": "공식 API 키 없음 → 건너뜀(로그인 없는 RSS 는 레딧이 막음)"
    },
@@ -3991,5 +4015,15 @@
    "why": "사용자 운영 변경(자동은 HWG 만) 직전 옛 규칙으로 만든 편 → 폐기, 다음 제작부터 제2장"
   }
  ],
- "inbox": []
+ "inbox": [
+  {
+   "id": 531,
+   "at": "2026-11-26T11:28:01",
+   "status": "done",
+   "url": "https://naver.me/5DZYIJlE",
+   "file_id": "",
+   "note": "https://naver.me/5DZYIJlE"
+  }
+ ],
+ "updates_offset": 98137721
 }
