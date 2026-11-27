@@ -1471,6 +1471,69 @@
      "total": 25.0
     },
     {
+     "key": "arsenal-as-boss-champions-club-coach-contenders-league",
+     "titles": [
+      "[LBC] Renee Slegers: Arsenal Women's Champions League-winning manager leaves club",
+      "[news.bet365.com] Contenders to replace Renee Slegers as Arsenal Women manager",
+      "[The Independent] Arsenal part ways with Champions League-winning boss Renee Slegers",
+      "[TNT Sports] Arsenal Women part ways with Champions League-winning coach Renee Slegers",
+      "[The Times] Why Arsenal have sacked Champions League-winning coach Renée Slegers"
+     ],
+     "outlets": [
+      "LBC",
+      "news.bet365.com",
+      "The Independent",
+      "TNT Sports",
+      "The Times"
+     ],
+     "credible": [
+      "The Independent",
+      "The Times"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "아스널"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": true,
+     "latest": "2026-11-27T16:30:16+00:00",
+     "ids": [
+      "5e3791564f9f0866",
+      "838d00534fe7db3c",
+      "8867ac003e140d7c",
+      "dc18e76a3221042a",
+      "49ab05ca057972e6"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "르네 슬레거스",
+     "subject_en": "Renee Slegers",
+     "team_ko": "아스날 여자팀",
+     "team_en": "Arsenal Women",
+     "league_ko": "WSL",
+     "role": "감독",
+     "type": "경질",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 5,
+      "divide": 4,
+      "share": 4,
+      "surprise": 2,
+      "korea": 3
+     },
+     "reason": "감독 경질 소식, 팬 관심 높음",
+     "base": 23.0,
+     "bonus": 2,
+     "total": 25.0
+    },
+    {
      "key": "arsenal-as-breaking-by-coach-company-consent-departs",
      "titles": [
       "[BBC Sport] Arsenal head coach Slegers leaves by mutual consent",
@@ -1593,6 +1656,61 @@
      "reason": "감독 경질 소식",
      "base": 21.0,
      "bonus": 2,
+     "total": 23.0
+    },
+    {
+     "key": "18-arsenal-at-by-champions-day-following-glory",
+     "titles": [
+      "[Sky Sports] Renee Slegers sacked just 18-months after Champions League glory: 'A sad day at Arsenal'",
+      "[Sky Sports] Renee Slegers leaves Arsenal only 18 months after winning Champions League following poor start to WSL season",
+      "[V2 Radio] Renee Slegers sacked by Arsenal only 18 months after winning Champions League following poor start to WSL season"
+     ],
+     "outlets": [
+      "Sky Sports",
+      "V2 Radio"
+     ],
+     "credible": [
+      "Sky Sports"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "아스널"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T16:48:54+00:00",
+     "ids": [
+      "8892ea93b9e3e3d1",
+      "e941591b475a21f9",
+      "3256ca1abcc790c8"
+     ],
+     "i": 1,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "르네 슬레거스",
+     "subject_en": "Renee Slegers",
+     "team_ko": "아스날 여자팀",
+     "team_en": "Arsenal Women",
+     "league_ko": "WSL",
+     "role": "감독",
+     "type": "경질",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 5,
+      "divide": 4,
+      "share": 4,
+      "surprise": 2,
+      "korea": 3
+     },
+     "reason": "감독 해임 보도, 이슈 집중",
+     "base": 23.0,
+     "bonus": 0,
      "total": 23.0
     },
     {
@@ -2152,63 +2270,6 @@
      "base": 18.0,
      "bonus": 0,
      "total": 18.0
-    },
-    {
-     "key": "11-29-barcelona-deportivo-hotspur-la-league-liga",
-     "titles": [
-      "[Yahoo] PREVIEW | Deportivo vs Barcelona: team news, lineups, predictions (La Liga 29/11)",
-      "[Yahoo Sports] PREVIEW | Sunderland vs Tottenham: team news, lineups, predictions (Premier League 29/11)",
-      "[Cartilage Free Captain] Sunderland vs. Tottenham Hotspur Premier League Preview"
-     ],
-     "outlets": [
-      "Yahoo",
-      "Yahoo Sports",
-      "Cartilage Free Captain"
-     ],
-     "credible": [
-      "Yahoo Sports"
-     ],
-     "summaries": [],
-     "stars": [],
-     "clubs": [
-      "토트넘",
-      "바르셀로나"
-     ],
-     "hwg": false,
-     "hwg_posts": [],
-     "official": false,
-     "reddit_top": false,
-     "burst": false,
-     "latest": "2026-11-27T14:15:00+00:00",
-     "ids": [
-      "b38470a51d3cc1ff",
-      "571614c949022059",
-      "fae87bb96dc11376"
-     ],
-     "i": 1,
-     "exclude": false,
-     "why_exclude": "",
-     "subject_ko": "마이클 올리세",
-     "subject_en": "Michael Olise",
-     "team_ko": "바이에른 뮌헨",
-     "team_en": "Bayern Munich",
-     "league_ko": "분데스리가",
-     "role": "선수",
-     "type": "기타",
-     "rumor": false,
-     "transfer": false,
-     "scores": {
-      "name": 3,
-      "drama": 2,
-      "divide": 1,
-      "share": 3,
-      "surprise": 2,
-      "korea": 3
-     },
-     "reason": "선수 부상으로 경기 결장",
-     "base": 14.0,
-     "bonus": 0,
-     "total": 14.0
     }
    ],
    "judge_krw": 0.0
@@ -2756,11 +2817,29 @@
    "total": 25.0,
    "subject": "Renee Slegers",
    "title": "[LBC] Renee Slegers: Arsenal Women's Champions League-winning manager leaves club"
+  },
+  "arsenal-as-boss-champions-club-coach-contenders-league": {
+   "at": "2026-11-28T01:51:36+09:00",
+   "total": 25.0,
+   "subject": "르네 슬레거스",
+   "title": "[LBC] Renee Slegers: Arsenal Women's Champions League-winning manager leaves club"
+  },
+  "18-arsenal-at-by-champions-day-following-glory": {
+   "at": "2026-11-28T01:51:36+09:00",
+   "total": 23.0,
+   "subject": "르네 슬레거스",
+   "title": "[Sky Sports] Renee Slegers sacked just 18-months after Champions League glory: 'A sad day at Arsenal'"
+  },
+  "50-bets-chelsea-clash-forest-free-get-in": {
+   "at": "2026-11-28T01:51:36+09:00",
+   "total": 0.0,
+   "subject": "",
+   "title": "[Goal.com] Nottingham Forest vs Chelsea Offer: Get £50 in Free Bets for Premier League clash"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-28T01:36:33+09:00",
+ "last_run_at": "2026-11-28T01:51:36+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -12540,7 +12619,66 @@
   "3c5ea018894105ae": "2026-11-28T01:36:33+09:00",
   "6303de3210918af5": "2026-11-28T01:36:33+09:00",
   "f383a1322eee3405": "2026-11-28T01:36:33+09:00",
-  "b3fd55efcb08554a": "2026-11-28T01:36:33+09:00"
+  "b3fd55efcb08554a": "2026-11-28T01:36:33+09:00",
+  "eaa7d289c13e66da": "2026-11-28T01:51:36+09:00",
+  "1011f90eb7a726ac": "2026-11-28T01:51:36+09:00",
+  "f92a18636079a0c0": "2026-11-28T01:51:36+09:00",
+  "133f9c3ab5262a8d": "2026-11-28T01:51:36+09:00",
+  "8892ea93b9e3e3d1": "2026-11-28T01:51:36+09:00",
+  "9659a7ef2057bc06": "2026-11-28T01:51:36+09:00",
+  "aed09417d7cf491c": "2026-11-28T01:51:36+09:00",
+  "6ccc979fe79a1352": "2026-11-28T01:51:36+09:00",
+  "db8b8d3437f488df": "2026-11-28T01:51:36+09:00",
+  "98ff274bc2b4af27": "2026-11-28T01:51:36+09:00",
+  "55c0c32096c6c38e": "2026-11-28T01:51:36+09:00",
+  "16711c6cead88621": "2026-11-28T01:51:36+09:00",
+  "37b8f09b1fd94ed8": "2026-11-28T01:51:36+09:00",
+  "87db4d0974694e3f": "2026-11-28T01:51:36+09:00",
+  "e340c658c5134cc9": "2026-11-28T01:51:36+09:00",
+  "75e05bffdce60147": "2026-11-28T01:51:36+09:00",
+  "26a770d7db596da8": "2026-11-28T01:51:36+09:00",
+  "1c5a811a8cb58824": "2026-11-28T01:51:36+09:00",
+  "9337ed5238fa15a4": "2026-11-28T01:51:36+09:00",
+  "821f3f7a8053eff9": "2026-11-28T01:51:36+09:00",
+  "3ee8b429f5a3d5b3": "2026-11-28T01:51:36+09:00",
+  "750e0df28f8eadbd": "2026-11-28T01:51:36+09:00",
+  "4f4712f59a23ef13": "2026-11-28T01:51:36+09:00",
+  "6c7f7b4cb302ffea": "2026-11-28T01:51:36+09:00",
+  "9afebb781b6ff284": "2026-11-28T01:51:36+09:00",
+  "7a325fc88a5bc9eb": "2026-11-28T01:51:36+09:00",
+  "0b9e98f20365ad41": "2026-11-28T01:51:36+09:00",
+  "a95dbfa3fb504ff6": "2026-11-28T01:51:36+09:00",
+  "7c4ea7c7e1d14fae": "2026-11-28T01:51:36+09:00",
+  "838d00534fe7db3c": "2026-11-28T01:51:36+09:00",
+  "01fbd466eb88218f": "2026-11-28T01:51:36+09:00",
+  "9e6c2219bdf19649": "2026-11-28T01:51:36+09:00",
+  "f508aa430497585d": "2026-11-28T01:51:36+09:00",
+  "ef99f3fc566c6d1a": "2026-11-28T01:51:36+09:00",
+  "5150fda1d873b80d": "2026-11-28T01:51:36+09:00",
+  "493b7e92015b5a93": "2026-11-28T01:51:36+09:00",
+  "49f86b360e1ae85d": "2026-11-28T01:51:36+09:00",
+  "8ab3c9fa844960a7": "2026-11-28T01:51:36+09:00",
+  "9d509cb002989ae2": "2026-11-28T01:51:36+09:00",
+  "fa265ea5605a8d1a": "2026-11-28T01:51:36+09:00",
+  "8d5eb06f3c3090a2": "2026-11-28T01:51:36+09:00",
+  "1c3123cd418a9037": "2026-11-28T01:51:36+09:00",
+  "ea8457d7d6a5b27f": "2026-11-28T01:51:36+09:00",
+  "697dd5ca9c3b11b7": "2026-11-28T01:51:36+09:00",
+  "407e7b288f1fe98e": "2026-11-28T01:51:36+09:00",
+  "ad8956bb6b168dfa": "2026-11-28T01:51:36+09:00",
+  "c6991ab02b749a8b": "2026-11-28T01:51:36+09:00",
+  "24c842af1613ef62": "2026-11-28T01:51:36+09:00",
+  "d5516a8bb98a0e14": "2026-11-28T01:51:36+09:00",
+  "a3fb95b87c2e1f7d": "2026-11-28T01:51:36+09:00",
+  "6319baa8d8721d18": "2026-11-28T01:51:36+09:00",
+  "85133547fe652c2d": "2026-11-28T01:51:36+09:00",
+  "0bc559cc21910451": "2026-11-28T01:51:36+09:00",
+  "28bdefa6a7a5f908": "2026-11-28T01:51:36+09:00",
+  "a62a1b00bbb4d87b": "2026-11-28T01:51:36+09:00",
+  "8a577641518581eb": "2026-11-28T01:51:36+09:00",
+  "d25feab090664303": "2026-11-28T01:51:36+09:00",
+  "22bc3757fd022df7": "2026-11-28T01:51:36+09:00",
+  "5002a0a68f6b5966": "2026-11-28T01:51:36+09:00"
  },
  "discarded": [
   {
