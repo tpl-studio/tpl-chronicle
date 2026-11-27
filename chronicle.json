@@ -1845,6 +1845,60 @@
      "total": 23.0
     },
     {
+     "key": "arsenal-boss-champions-change-coach-draws-home-is",
+     "titles": [
+      "[Goal.com] 'Change is necessary' - Arsenal part ways with Champions League-winning coach Renee Slegers after six straight home draws",
+      "[The Independent] Arsenal part ways with Champions League-winning boss Renee Slegers"
+     ],
+     "outlets": [
+      "Goal.com",
+      "The Independent"
+     ],
+     "credible": [
+      "Goal.com",
+      "The Independent"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "아스널"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T16:08:13+00:00",
+     "ids": [
+      "08266e9ed70d86b5",
+      "8867ac003e140d7c"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "Renee Slegers",
+     "subject_en": "Renee Slegers",
+     "team_ko": "아스날",
+     "team_en": "Arsenal",
+     "league_ko": "프리미어리그",
+     "role": "감독",
+     "type": "경질",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 4,
+      "drama": 5,
+      "divide": 3,
+      "share": 4,
+      "surprise": 3,
+      "korea": 4
+     },
+     "reason": "감독 경질 소식",
+     "base": 23.0,
+     "bonus": 0,
+     "total": 23.0
+    },
+    {
      "key": "arsenal-by-consent-leaves-mutual-sacked-slegers-slump",
      "titles": [
       "[ESPN] Slegers leaves Arsenal by mutual consent after WSL slump",
@@ -2241,59 +2295,6 @@
      "base": 20.0,
      "bonus": 2,
      "total": 22.0
-    },
-    {
-     "key": "arsenal-champions-coach-league-part-renee-sacked-slegers",
-     "titles": [
-      "[TNT Sports] Arsenal Women part ways with Champions League-winning coach Renee Slegers",
-      "[The Times] Why Arsenal have sacked Champions League-winning coach Renée Slegers"
-     ],
-     "outlets": [
-      "TNT Sports",
-      "The Times"
-     ],
-     "credible": [
-      "The Times"
-     ],
-     "summaries": [],
-     "stars": [],
-     "clubs": [
-      "아스널"
-     ],
-     "hwg": false,
-     "hwg_posts": [],
-     "official": false,
-     "reddit_top": false,
-     "burst": false,
-     "latest": "2026-11-27T15:43:00+00:00",
-     "ids": [
-      "dc18e76a3221042a",
-      "49ab05ca057972e6"
-     ],
-     "i": 1,
-     "exclude": false,
-     "why_exclude": "",
-     "subject_ko": "레니 스레거스",
-     "subject_en": "Renée Slegers",
-     "team_ko": "아스날 여자팀",
-     "team_en": "Arsenal Women",
-     "league_ko": "잉글랜드 여자 슈퍼리그",
-     "role": "감독",
-     "type": "경질",
-     "rumor": false,
-     "transfer": false,
-     "scores": {
-      "name": 5,
-      "drama": 4,
-      "divide": 3,
-      "share": 4,
-      "surprise": 2,
-      "korea": 3
-     },
-     "reason": "감독 경질 소식",
-     "base": 21.0,
-     "bonus": 0,
-     "total": 21.0
     }
    ],
    "judge_krw": 0.0
@@ -2895,11 +2896,23 @@
    "total": 0.0,
    "subject": "",
    "title": "[The Guardian] Premier League team news: predicted lineups for the weekend action"
+  },
+  "arsenal-boss-champions-change-coach-draws-home-is": {
+   "at": "2026-11-28T03:51:37+09:00",
+   "total": 23.0,
+   "subject": "Renee Slegers",
+   "title": "[Goal.com] 'Change is necessary' - Arsenal part ways with Champions League-winning coach Renee Slegers after six straight home draws"
+  },
+  "be-city-clubs-forced-league-man-manchester-owners": {
+   "at": "2026-11-28T03:51:37+09:00",
+   "total": 0.0,
+   "subject": "",
+   "title": "[RealGM] Premier League Rivals Want Manchester City Owners Forced To Sell"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-28T03:36:36+09:00",
+ "last_run_at": "2026-11-28T03:51:37+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -12980,7 +12993,51 @@
   "5a33e47805ec59f2": "2026-11-28T03:36:36+09:00",
   "4e1dc6002488a97b": "2026-11-28T03:36:36+09:00",
   "6cb9f9fb5120be86": "2026-11-28T03:36:36+09:00",
-  "8a2fe5da9991768e": "2026-11-28T03:36:36+09:00"
+  "8a2fe5da9991768e": "2026-11-28T03:36:36+09:00",
+  "4b97119f762e739a": "2026-11-28T03:51:37+09:00",
+  "86e9e7bfbbba7445": "2026-11-28T03:51:37+09:00",
+  "a1da3186c5af1742": "2026-11-28T03:51:37+09:00",
+  "2149647751f9f8b8": "2026-11-28T03:51:37+09:00",
+  "41d4ac5b2f47172c": "2026-11-28T03:51:37+09:00",
+  "b89e8f3a8bc996cf": "2026-11-28T03:51:37+09:00",
+  "54953a80b1bce552": "2026-11-28T03:51:37+09:00",
+  "4ef04c975618989c": "2026-11-28T03:51:37+09:00",
+  "f2213c592bdcc80a": "2026-11-28T03:51:37+09:00",
+  "19f4491973ee2d72": "2026-11-28T03:51:37+09:00",
+  "148ec833df1f4efc": "2026-11-28T03:51:37+09:00",
+  "0bc8203115503f52": "2026-11-28T03:51:37+09:00",
+  "f98716a24fa91c90": "2026-11-28T03:51:37+09:00",
+  "0d6ac5c142b78fea": "2026-11-28T03:51:37+09:00",
+  "663812df38a60ea5": "2026-11-28T03:51:37+09:00",
+  "f9a0b3bd0a39f3f1": "2026-11-28T03:51:37+09:00",
+  "1d4df460d1f1a55d": "2026-11-28T03:51:37+09:00",
+  "e03b7a4c56721f94": "2026-11-28T03:51:37+09:00",
+  "0af1bef19f11e1bf": "2026-11-28T03:51:37+09:00",
+  "08266e9ed70d86b5": "2026-11-28T03:51:37+09:00",
+  "cb9b8a234f22c314": "2026-11-28T03:51:37+09:00",
+  "fe0144ad66272a38": "2026-11-28T03:51:37+09:00",
+  "613e5d1b9e747258": "2026-11-28T03:51:37+09:00",
+  "618d70c4f4f5f8ec": "2026-11-28T03:51:37+09:00",
+  "e7098d4ee86dab45": "2026-11-28T03:51:37+09:00",
+  "4cc22f1e315bcd45": "2026-11-28T03:51:37+09:00",
+  "30ae6d5f7744b9cd": "2026-11-28T03:51:37+09:00",
+  "71725c7a7b85a9d0": "2026-11-28T03:51:37+09:00",
+  "f410059cfd99ed9f": "2026-11-28T03:51:37+09:00",
+  "6cbc7712ce51f091": "2026-11-28T03:51:37+09:00",
+  "74c74b21fdfa1498": "2026-11-28T03:51:37+09:00",
+  "ebb29954580d292c": "2026-11-28T03:51:37+09:00",
+  "bbff8ff8d3afe950": "2026-11-28T03:51:37+09:00",
+  "bc9381e4f5fd3525": "2026-11-28T03:51:37+09:00",
+  "4986c4f3270e9160": "2026-11-28T03:51:37+09:00",
+  "097b8b571bac8869": "2026-11-28T03:51:37+09:00",
+  "822e32124b0a9326": "2026-11-28T03:51:37+09:00",
+  "816b9bbc97c406fe": "2026-11-28T03:51:37+09:00",
+  "ab3e169b069f9397": "2026-11-28T03:51:37+09:00",
+  "bf1c9359b4ab006a": "2026-11-28T03:51:37+09:00",
+  "571b7f669ac89346": "2026-11-28T03:51:37+09:00",
+  "8172562f54a16bf8": "2026-11-28T03:51:37+09:00",
+  "76f1c30c77f65457": "2026-11-28T03:51:37+09:00",
+  "a9c89609560b6cce": "2026-11-28T03:51:37+09:00"
  },
  "discarded": [
   {
