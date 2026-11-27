@@ -1277,6 +1277,61 @@
      "total": 17.0
     },
     {
+     "key": "activity-down-in-january-jose-madrid-mourinho-movement",
+     "titles": [
+      "[懂球帝] Mourinho Wants No Real Madrid Transfer Movement in January Window",
+      "[The New York Times] Jose Mourinho plays down Real Madrid January transfer activity"
+     ],
+     "outlets": [
+      "懂球帝",
+      "The New York Times"
+     ],
+     "credible": [
+      "The New York Times"
+     ],
+     "summaries": [],
+     "stars": [
+      "무리뉴"
+     ],
+     "clubs": [
+      "레알 마드리드"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T11:42:00+00:00",
+     "ids": [
+      "231cc3b7fdcb23d2",
+      "3501808160e5aadb"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "조세 무리뉴",
+     "subject_en": "Jose Mourinho",
+     "team_ko": "레알 마드리드",
+     "team_en": "Real Madrid",
+     "league_ko": "라리가",
+     "role": "감독",
+     "type": "충성·잔류",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 2,
+      "divide": 1,
+      "share": 4,
+      "surprise": 2,
+      "korea": 3
+     },
+     "reason": "무리뉴 감독, 이적 무관 선언",
+     "base": 17.0,
+     "bonus": 0,
+     "total": 17.0
+    },
+    {
      "key": "arsenal-boost-chelsea-deals-done-live-liverpool-man",
      "titles": [
       "[London Evening Standard on MSN] Transfer news live: Paz to Arsenal twist; Man Utd boost; Chelsea shock",
@@ -1795,11 +1850,17 @@
    "total": 0.0,
    "subject": "",
    "title": "[Star Sports] STAR FOOTBALL PREVIEW Fri: Nottingham Forest v Chelsea"
+  },
+  "activity-down-in-january-jose-madrid-mourinho-movement": {
+   "at": "2026-11-27T23:51:34+09:00",
+   "total": 17.0,
+   "subject": "조세 무리뉴",
+   "title": "[懂球帝] Mourinho Wants No Real Madrid Transfer Movement in January Window"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-27T23:41:51+09:00",
+ "last_run_at": "2026-11-27T23:51:34+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -11091,7 +11152,54 @@
   "52c3dcd44a50d0b0": "2026-11-27T23:41:51+09:00",
   "45659f9af008fb00": "2026-11-27T23:41:51+09:00",
   "5c7426962aecce39": "2026-11-27T23:41:51+09:00",
-  "0f922721e647087a": "2026-11-27T23:41:51+09:00"
+  "0f922721e647087a": "2026-11-27T23:41:51+09:00",
+  "802e78e8e8804db3": "2026-11-27T23:51:34+09:00",
+  "cbd81a71bb5dae52": "2026-11-27T23:51:34+09:00",
+  "0620c9cd9e9b5889": "2026-11-27T23:51:34+09:00",
+  "06ffba2e0192d946": "2026-11-27T23:51:34+09:00",
+  "63d2fca59544645e": "2026-11-27T23:51:34+09:00",
+  "6584dc969c48558d": "2026-11-27T23:51:34+09:00",
+  "3dba534dc2f141a0": "2026-11-27T23:51:34+09:00",
+  "db789aacbb39aa61": "2026-11-27T23:51:34+09:00",
+  "f83133e05c55b20b": "2026-11-27T23:51:34+09:00",
+  "231cc3b7fdcb23d2": "2026-11-27T23:51:34+09:00",
+  "102ece862edb34b2": "2026-11-27T23:51:34+09:00",
+  "d5a8e9442a798ea3": "2026-11-27T23:51:34+09:00",
+  "588e5d8bd858d965": "2026-11-27T23:51:34+09:00",
+  "e775d3c30fca4c98": "2026-11-27T23:51:34+09:00",
+  "dc8c2002765be6b3": "2026-11-27T23:51:34+09:00",
+  "045f3850bf5e2a85": "2026-11-27T23:51:34+09:00",
+  "0cf455e44cd056c9": "2026-11-27T23:51:34+09:00",
+  "412777739da57d45": "2026-11-27T23:51:34+09:00",
+  "8f1a0eaeecdfd152": "2026-11-27T23:51:34+09:00",
+  "f83fcc256ae07449": "2026-11-27T23:51:34+09:00",
+  "b348b902bc30b881": "2026-11-27T23:51:34+09:00",
+  "004accd4f0ca260d": "2026-11-27T23:51:34+09:00",
+  "3198b53209fba6b6": "2026-11-27T23:51:34+09:00",
+  "e602cc2a95aeb5b4": "2026-11-27T23:51:34+09:00",
+  "0cba2919c3f47203": "2026-11-27T23:51:34+09:00",
+  "c79227eee5e30a3c": "2026-11-27T23:51:34+09:00",
+  "a1f1e003119f0013": "2026-11-27T23:51:34+09:00",
+  "5210d062e5cee697": "2026-11-27T23:51:34+09:00",
+  "bcccccb66f03da11": "2026-11-27T23:51:34+09:00",
+  "286e288c3bffa2af": "2026-11-27T23:51:34+09:00",
+  "3a3feb23432c6e08": "2026-11-27T23:51:34+09:00",
+  "0ba2bb82575f9497": "2026-11-27T23:51:34+09:00",
+  "a8d1cba9402efd18": "2026-11-27T23:51:34+09:00",
+  "08767f0ed9a82fc7": "2026-11-27T23:51:34+09:00",
+  "c6fb3aa9eb65322d": "2026-11-27T23:51:34+09:00",
+  "be2eb3d03cb7d16e": "2026-11-27T23:51:34+09:00",
+  "75703f7ab5ce9da1": "2026-11-27T23:51:34+09:00",
+  "a97654403d0e5149": "2026-11-27T23:51:34+09:00",
+  "c0276b5aa78a2429": "2026-11-27T23:51:34+09:00",
+  "93542babdaf74393": "2026-11-27T23:51:34+09:00",
+  "cd654fa4274cb910": "2026-11-27T23:51:34+09:00",
+  "dd7568ea951198f2": "2026-11-27T23:51:34+09:00",
+  "b9dbc99834317036": "2026-11-27T23:51:34+09:00",
+  "548d660f4be7b5c4": "2026-11-27T23:51:34+09:00",
+  "73b8d63b0ac2eaff": "2026-11-27T23:51:34+09:00",
+  "292dfdbd62a50308": "2026-11-27T23:51:34+09:00",
+  "f9a7772fd201ee3d": "2026-11-27T23:51:34+09:00"
  },
  "discarded": [
   {
