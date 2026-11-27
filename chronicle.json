@@ -2219,17 +2219,17 @@
      "total": 21.0
     },
     {
-     "key": "arsenal-as-coach-departs-dismal-head-job-leaves",
+     "key": "arsenal-as-betting-confirm-contenders-exit-issued-manager",
      "titles": [
-      "[The Guardian] Renée Slegers leaves job as Arsenal Women’s coach after dismal run of results",
-      "[Arsenal.com] Renée Slegers departs as Arsenal Women head coach"
+      "[Sports & Betting News - bet365] Contenders to replace Renee Slegers as Arsenal Women manager - Sports & Betting News",
+      "[London Evening Standard] Renee Slegers: Arsenal confirm manager exit as statement issued"
      ],
      "outlets": [
-      "The Guardian",
-      "Arsenal.com"
+      "Sports & Betting News - bet365",
+      "London Evening Standard"
      ],
      "credible": [
-      "The Guardian"
+      "London Evening Standard"
      ],
      "summaries": [],
      "stars": [],
@@ -2241,35 +2241,35 @@
      "official": false,
      "reddit_top": false,
      "burst": false,
-     "latest": "2026-11-27T15:11:00+00:00",
+     "latest": "2026-11-27T16:16:00+00:00",
      "ids": [
-      "9484c7a835c1190b",
-      "adcc19478bdd152b"
+      "1c0144ddb57521e8",
+      "06b410380c7e7bc0"
      ],
      "i": 0,
      "exclude": false,
      "why_exclude": "",
-     "subject_ko": "Renée Slegers",
-     "subject_en": "Renée Slegers",
-     "team_ko": "Arsenal Women",
+     "subject_ko": "르네 슬레거스",
+     "subject_en": "Renee Slegers",
+     "team_ko": "아스날 여자팀",
      "team_en": "Arsenal Women",
-     "league_ko": "",
+     "league_ko": "잉글리시 여자 슈퍼리그",
      "role": "감독",
      "type": "경질",
      "rumor": false,
      "transfer": false,
      "scores": {
-      "name": 4,
+      "name": 5,
       "drama": 4,
       "divide": 2,
-      "share": 3,
+      "share": 4,
       "surprise": 2,
       "korea": 3
      },
-     "reason": "아스날 여자팀 감독 사임 소식",
-     "base": 18.0,
+     "reason": "감독 교체 확정",
+     "base": 20.0,
      "bonus": 0,
-     "total": 18.0
+     "total": 20.0
     }
    ],
    "judge_krw": 0.0
@@ -2841,11 +2841,17 @@
    "total": 0.0,
    "subject": "",
    "title": "[Yahoo Sports] Arsenal vs Manchester City Premier League preview: Injuries, suspensions, and predicted lineups"
+  },
+  "arsenal-as-betting-confirm-contenders-exit-issued-manager": {
+   "at": "2026-11-28T02:51:38+09:00",
+   "total": 20.0,
+   "subject": "르네 슬레거스",
+   "title": "[Sports & Betting News - bet365] Contenders to replace Renee Slegers as Arsenal Women manager - Sports & Betting News"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-28T02:31:39+09:00",
+ "last_run_at": "2026-11-28T02:51:38+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -12794,7 +12800,45 @@
   "da4d6ebe0d980a4e": "2026-11-28T02:31:39+09:00",
   "bbbae93cbbfe228c": "2026-11-28T02:31:39+09:00",
   "af9a3a259573dbda": "2026-11-28T02:31:39+09:00",
-  "adb7ef809e3fd318": "2026-11-28T02:31:39+09:00"
+  "adb7ef809e3fd318": "2026-11-28T02:31:39+09:00",
+  "6ef3623613ac3be4": "2026-11-28T02:51:38+09:00",
+  "9d880178d8194f61": "2026-11-28T02:51:38+09:00",
+  "60a54c6d4be0b08e": "2026-11-28T02:51:38+09:00",
+  "46a1fe6c9b065e41": "2026-11-28T02:51:38+09:00",
+  "143106251e8c6818": "2026-11-28T02:51:38+09:00",
+  "6c808553b6311f5f": "2026-11-28T02:51:38+09:00",
+  "566f3f10227c888c": "2026-11-28T02:51:38+09:00",
+  "056a5e1ac6e80b13": "2026-11-28T02:51:38+09:00",
+  "adcd319dd8137ddd": "2026-11-28T02:51:38+09:00",
+  "4255958a92accddb": "2026-11-28T02:51:38+09:00",
+  "634b884bc18744ea": "2026-11-28T02:51:38+09:00",
+  "4dae566078f8048c": "2026-11-28T02:51:38+09:00",
+  "42a2d85d4f57068d": "2026-11-28T02:51:38+09:00",
+  "44a43aabb28dab97": "2026-11-28T02:51:38+09:00",
+  "e676617624d16716": "2026-11-28T02:51:38+09:00",
+  "51f9ee014095017b": "2026-11-28T02:51:38+09:00",
+  "557e0cab4fa2e70b": "2026-11-28T02:51:38+09:00",
+  "be6bf755b39123cd": "2026-11-28T02:51:38+09:00",
+  "1c0144ddb57521e8": "2026-11-28T02:51:38+09:00",
+  "745e08021a19c82c": "2026-11-28T02:51:38+09:00",
+  "8fee778da4652349": "2026-11-28T02:51:38+09:00",
+  "f2799a903de7dd52": "2026-11-28T02:51:38+09:00",
+  "c248a059d84793bc": "2026-11-28T02:51:38+09:00",
+  "21899117d7eda0e6": "2026-11-28T02:51:38+09:00",
+  "7d6d9e55e7f86e6f": "2026-11-28T02:51:38+09:00",
+  "779f02b07fc74ec3": "2026-11-28T02:51:38+09:00",
+  "5fe17a3370dd22c8": "2026-11-28T02:51:38+09:00",
+  "5bacc420d446481a": "2026-11-28T02:51:38+09:00",
+  "4bc25f1c469f5c31": "2026-11-28T02:51:38+09:00",
+  "b55e6540b6c75b5c": "2026-11-28T02:51:38+09:00",
+  "737559c1f94013a3": "2026-11-28T02:51:38+09:00",
+  "f687b9a7295eaa28": "2026-11-28T02:51:38+09:00",
+  "6c4ed91adaf2a9cf": "2026-11-28T02:51:38+09:00",
+  "1ac4c38dff983414": "2026-11-28T02:51:38+09:00",
+  "73caa9cbc6e19852": "2026-11-28T02:51:38+09:00",
+  "3bb96cc8a2ef6976": "2026-11-28T02:51:38+09:00",
+  "223fb498e747bccc": "2026-11-28T02:51:38+09:00",
+  "68540a8414522a08": "2026-11-28T02:51:38+09:00"
  },
  "discarded": [
   {
