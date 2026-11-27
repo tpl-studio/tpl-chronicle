@@ -1600,6 +1600,66 @@
      "total": 25.0
     },
     {
+     "key": "booed-by-chelsea-defender-fans-fofana-here-interview",
+     "titles": [
+      "[BBC Sport] 'You're not welcome here' - Chelsea's Fofana booed by own fans",
+      "[The Sun] Chelsea fans sing ‘f*** off Fofana, you’re not welcome here’ after defender’s shock interview"
+     ],
+     "outlets": [
+      "BBC Sport",
+      "The Sun"
+     ],
+     "credible": [
+      "BBC Sport",
+      "The Sun"
+     ],
+     "summaries": [
+      "Chelsea defender Wesley Fofana is booed by his own fans during the Premier League game at Nottingham Forest after a controversial interview."
+     ],
+     "stars": [],
+     "clubs": [
+      "첼시"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T21:31:54+00:00",
+     "ids": [
+      "eb0b2228c14a441b",
+      "f1e1f31101ec0074"
+     ],
+     "links": [
+      "https://www.bbc.co.uk/sport/football/articles/cmqlqeqd4wg5o?at_medium=RSS&at_campaign=rss",
+      "https://news.google.com/rss/articles/CBMiggFBVV95cUxNSzIxT3pCdWU5QVZYTmY0Z0NBcnBESmdIZ3E5US14dFVUcGxuTWZ5b1dxY09NR2N3VmlYZXcyTXVnN0loNTFZbHJYWElpZkV2ckxSdERBc0ZTbU5CT2ZkZkxIZnhRMmwtWWhiTmVpS1A2XzhvYkhKOFVlV294aWJEUWp3?oc=5"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "웨슬리 포파나",
+     "subject_en": "Wesley Fofana",
+     "team_ko": "첼시",
+     "team_en": "Chelsea",
+     "league_ko": "프리미어리그",
+     "role": "선수",
+     "type": "몰락·위기",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 5,
+      "divide": 4,
+      "share": 4,
+      "surprise": 3,
+      "korea": 4
+     },
+     "reason": "팬에게 추방당한 포파나 상황",
+     "base": 25.0,
+     "bonus": 0,
+     "total": 25.0
+    },
+    {
      "key": "18-arsenal-champions-club-coach-explained-head-league",
      "titles": [
       "[LBC] Renee Slegers: Arsenal Women's Champions League-winning manager leaves club",
@@ -2241,65 +2301,6 @@
       "korea": 3
      },
      "reason": "감독이 상호 합의로 떠남",
-     "base": 20.0,
-     "bonus": 2,
-     "total": 22.0
-    },
-    {
-     "key": "arsenal-breaking-by-coach-company-consent-head-leaves",
-     "titles": [
-      "[BBC Sport] Arsenal head coach Slegers leaves by mutual consent",
-      "[BBC] Renee Slegers: Arsenal head coach leaves by mutual consent",
-      "[Online Gooner] BREAKING: Arsenal Women part company with head coach Renee Slegers"
-     ],
-     "outlets": [
-      "BBC Sport",
-      "BBC",
-      "Online Gooner"
-     ],
-     "credible": [
-      "BBC Sport",
-      "BBC"
-     ],
-     "summaries": [
-      "Arsenal part company with head coach Renee Slegers by mutual consent after a disappointing start to the season."
-     ],
-     "stars": [],
-     "clubs": [
-      "아스널"
-     ],
-     "hwg": false,
-     "hwg_posts": [],
-     "official": false,
-     "reddit_top": false,
-     "burst": true,
-     "latest": "2026-11-27T15:35:33+00:00",
-     "ids": [
-      "211c89eae1fb15da",
-      "6b6846034dae0450",
-      "cc4e868e4fa3262c"
-     ],
-     "i": 0,
-     "exclude": false,
-     "why_exclude": "",
-     "subject_ko": "레니 슬레거스",
-     "subject_en": "Renee Slegers",
-     "team_ko": "아스날 여자팀",
-     "team_en": "Arsenal Women",
-     "league_ko": "잉글랜드 여자 슈퍼리그",
-     "role": "감독",
-     "type": "경질",
-     "rumor": false,
-     "transfer": false,
-     "scores": {
-      "name": 5,
-      "drama": 4,
-      "divide": 2,
-      "share": 4,
-      "surprise": 2,
-      "korea": 3
-     },
-     "reason": "감독이 상호 합의로 퇴진, 팬 관심 높음",
      "base": 20.0,
      "bonus": 2,
      "total": 22.0
@@ -2970,11 +2971,17 @@
    "total": 23.0,
    "subject": "알렉시스 마칼리스터",
    "title": "[Goal.com] Chelsea showdown at risk! Liverpool duo Alexis Mac Allister and Bradley Barcola face potential Premier League suspensions"
+  },
+  "booed-by-chelsea-defender-fans-fofana-here-interview": {
+   "at": "2026-11-28T06:36:34+09:00",
+   "total": 25.0,
+   "subject": "웨슬리 포파나",
+   "title": "[BBC Sport] 'You're not welcome here' - Chelsea's Fofana booed by own fans"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-28T06:16:35+09:00",
+ "last_run_at": "2026-11-28T06:36:34+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -13586,7 +13593,49 @@
   "fd1ba147478d4063": "2026-11-28T06:16:35+09:00",
   "a5c2932ad1ff4399": "2026-11-28T06:16:35+09:00",
   "6a6d5cb6293df123": "2026-11-28T06:16:35+09:00",
-  "61aa5728d8b37ba9": "2026-11-28T06:16:35+09:00"
+  "61aa5728d8b37ba9": "2026-11-28T06:16:35+09:00",
+  "a42039e84905565d": "2026-11-28T06:36:34+09:00",
+  "771b937119c1be0e": "2026-11-28T06:36:34+09:00",
+  "eb0b2228c14a441b": "2026-11-28T06:36:34+09:00",
+  "b45e58adcc7b81f6": "2026-11-28T06:36:34+09:00",
+  "d5c2fbfffbc0356b": "2026-11-28T06:36:34+09:00",
+  "5c5a8b3af90f76e6": "2026-11-28T06:36:34+09:00",
+  "1f5f8c463f80e194": "2026-11-28T06:36:34+09:00",
+  "f3364b63f1b3ac8d": "2026-11-28T06:36:34+09:00",
+  "67f33714a2097b86": "2026-11-28T06:36:34+09:00",
+  "15c5fd21afd21ea7": "2026-11-28T06:36:34+09:00",
+  "ec52c8dcd2a5ed0d": "2026-11-28T06:36:34+09:00",
+  "217fc02f6185649e": "2026-11-28T06:36:34+09:00",
+  "6c11801f6a7653a5": "2026-11-28T06:36:34+09:00",
+  "d04a8a42272c7d88": "2026-11-28T06:36:34+09:00",
+  "66ba3b4263f21490": "2026-11-28T06:36:34+09:00",
+  "1d55aca46e4d863c": "2026-11-28T06:36:34+09:00",
+  "dee10f58c1cd3112": "2026-11-28T06:36:34+09:00",
+  "4c2868d5340e67d5": "2026-11-28T06:36:34+09:00",
+  "dd02daa9503292f8": "2026-11-28T06:36:34+09:00",
+  "ccf007e5e3221244": "2026-11-28T06:36:34+09:00",
+  "be8ced8de4c3b4bb": "2026-11-28T06:36:34+09:00",
+  "d1c79d7134ef702c": "2026-11-28T06:36:34+09:00",
+  "07a85806d14479d6": "2026-11-28T06:36:34+09:00",
+  "701923c303173b1e": "2026-11-28T06:36:34+09:00",
+  "fce9e54bfe856528": "2026-11-28T06:36:34+09:00",
+  "425e6e9569b3640d": "2026-11-28T06:36:34+09:00",
+  "f090b0231b166c4e": "2026-11-28T06:36:34+09:00",
+  "56af501cd15dde27": "2026-11-28T06:36:34+09:00",
+  "07ffecbb3f6ad6f1": "2026-11-28T06:36:34+09:00",
+  "eed789b68d01e7a0": "2026-11-28T06:36:34+09:00",
+  "20a5ed404e2d850a": "2026-11-28T06:36:34+09:00",
+  "b3479fef1e865c5c": "2026-11-28T06:36:34+09:00",
+  "3025c54f2e94772b": "2026-11-28T06:36:34+09:00",
+  "c310f154b6d8259a": "2026-11-28T06:36:34+09:00",
+  "b89a595e8864e286": "2026-11-28T06:36:34+09:00",
+  "06f2c2a016791f43": "2026-11-28T06:36:34+09:00",
+  "257c15dce659218c": "2026-11-28T06:36:34+09:00",
+  "73225823896e2ec6": "2026-11-28T06:36:34+09:00",
+  "5ba359d8bfa91c7e": "2026-11-28T06:36:34+09:00",
+  "10b1ef0a0af8f609": "2026-11-28T06:36:34+09:00",
+  "2e43954023a68f99": "2026-11-28T06:36:34+09:00",
+  "9f5d78f1a791254a": "2026-11-28T06:36:34+09:00"
  },
  "discarded": [
   {
