@@ -22,7 +22,8 @@ def main() -> int:
         try:
             with urllib.request.urlopen(f"https://api.telegram.org/bot{tok}/getUpdates?offset={off}&timeout=0", timeout=30) as r:
                 res = json.loads(r.read().decode()).get("result") or []
-            run = any(str(((u.get("message") or {}).get("chat") or {}).get("id")) == chat for u in res)
+            run = any(str(((u.get("message") or (u.get("callback_query") or {}).get("message") or {}).get("chat") or {}).get("id")) == chat
+                      for u in res)                     # 메시지 또는 버튼 누름(2026-11-28 위인 쇼츠 ✅)
         except Exception as e:  # noqa: BLE001 — 확인 실패면 본 실행으로 넘김(놓치지 않게)
             print(f"확인 실패({type(e).__name__}) → 본 실행")
             run = True
