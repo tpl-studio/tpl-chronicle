@@ -1018,7 +1018,7 @@ BREAK_RX = re.compile(r"\[?오피셜\]?|공식\s*발표|HERE\s*WE\s*GO|히어\s*
 def check_breaking(st: dict, d, c: dict, now: datetime, log=print) -> int:
     """5분마다: 전문지 최신 기사 중 속보(오피셜·HWG·경질·사임 등)면 매시간 보고를 기다리지 않고 바로 후보 1개씩(버튼)."""
     pc = c.get("propose") or {}
-    if not pc.get("breaking", True):
+    if not pc.get("on") or not pc.get("breaking", True):    # 후보 보고를 끄면 속보도 같이 끔
         return 0
     srcs = [str(x) for x in pc.get("sources") or []]
     feeds = [{**f, "outlet": f.get("outlet") or f["name"]} for f in c.get("feeds", []) if f["name"] in srcs]   # 최신 기사 피드만
