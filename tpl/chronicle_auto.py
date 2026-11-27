@@ -500,6 +500,22 @@ def check_corrections(st: dict, items: list[dict]) -> None:
                 break
 
 
+IG_TAP = re.compile(r"^ig:(ok|no):([A-Za-z0-9-]{1,40})$")
+
+
+def ig_tap(st: dict, data: str, cq: dict) -> str:
+    """쇼츠방(개인 봇)에서 누른 위인 쇼츠 ✅/❌ → 상태 ig_taps 에 기록(키당 마지막 누름 · 7일 보관) — 2026-11-28 대표님.
+    tpl-factory ig_reel.yml 이 공개 상태 파일(chronicle-state 브랜치 chronicle.json)의 ig_taps 를 읽어 22:00 예약·취소.
+    개인 봇은 연대기만 읽음(webhook 없음). 사용자 번호 같은 개인 정보는 적지 않음(채팅 확인은 read_views 가 함)."""
+    m = IG_TAP.match(data)
+    mode, key = ("approve" if m.group(1) == "ok" else "cancel"), m.group(2)
+    taps = st.setdefault("ig_taps", {})
+    taps[key] = {"mode": mode, "at": now_kst().isoformat(timespec="seconds"), "msg_id": ((cq.get("message") or {}).get("message_id"))}
+    lim = (now_kst() - timedelta(days=7)).isoformat()
+    st["ig_taps"] = {k: v for k, v in taps.items() if v.get("at", "") >= lim}
+    return "✅ 접수했어요 — 오늘 22:00에 인스타에 올라가요(22:00 지나면 내일 22:00)." if mode == "approve" else "❌ 알겠어요 — 이건 안 올려요."
+
+
 def read_views(st: dict) -> None:
     """개인 봇에 보낸 '제3장 12.3만' · '3장 45000' → 조회수 기록. '가중치 오케이' → 대기 중인 조정안 적용."""
     try:
@@ -510,6 +526,23 @@ def read_views(st: dict) -> None:
     r = requests.get(f"https://api.telegram.org/bot{tok}/getUpdates", params={"offset": off, "timeout": 0}, timeout=30).json()
     for u in r.get("result") or []:
         st["updates_offset"] = u["update_id"] + 1
+        cq = u.get("callback_query")
+        if cq:                                       # 버튼 누름(2026-11-28)
+            if str(((cq.get("message") or {}).get("chat") or {}).get("id")) != str(chat):
+                continue
+            data = str(cq.get("data") or "")
+            if IG_TAP.match(data):                   # 위인 쇼츠 인스타 ✅/❌ — 기록만, 게시는 tpl-factory ig_reel 이 읽어 감
+                reply = ig_tap(st, data, cq)
+                try:
+                    requests.post(f"https://api.telegram.org/bot{tok}/answerCallbackQuery",
+                                  data={"callback_query_id": cq.get("id"), "text": reply[:190]}, timeout=20)
+                except Exception:  # noqa: BLE001
+                    pass
+                say(reply)
+            else:                                    # 다른 버튼은 지우지 않고 보관
+                st.setdefault("foreign_callbacks", []).append({"at": now_kst().isoformat(timespec="seconds"), "update": u})
+                st["foreign_callbacks"] = st["foreign_callbacks"][-50:]
+            continue
         msg = u.get("message") or {}
         if str((msg.get("chat") or {}).get("id")) != str(chat):
             continue
