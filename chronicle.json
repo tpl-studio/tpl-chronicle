@@ -767,6 +767,59 @@
      "total": 21.0
     },
     {
+     "key": "36-another-chelsea-clothes-garnacho-in-league-loan",
+     "titles": [
+      "[AOL.co.uk] I played for Chelsea in the Premier League - now I'm 36 and sell clothes",
+      "[BBC] Premier League news: What now for Chelsea's Garnacho in another sour loan for Villa?"
+     ],
+     "outlets": [
+      "AOL.co.uk",
+      "BBC"
+     ],
+     "credible": [
+      "BBC"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "첼시"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T06:00:00+00:00",
+     "ids": [
+      "a3005d415253c88c",
+      "097a427c2a71e0c3"
+     ],
+     "i": 1,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "가르라초",
+     "subject_en": "Garnacho",
+     "team_ko": "첼시",
+     "team_en": "Chelsea",
+     "league_ko": "프리미어리그",
+     "role": "선수",
+     "type": "서러움·이탈",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 4,
+      "drama": 3,
+      "divide": 2,
+      "share": 4,
+      "surprise": 2,
+      "korea": 5
+     },
+     "reason": "첼시에서의 대출 상황이 안좋음",
+     "base": 20.0,
+     "bonus": 0,
+     "total": 20.0
+    },
+    {
      "key": "arsenal-chelsea-deal-decision-done-kroupi-latest-live",
      "titles": [
       "[London Evening Standard] Transfer news LIVE: Arsenal told Kroupi decision; Liverpool done deal; Man Utd twist; Chelsea latest",
@@ -1175,11 +1228,23 @@
    "total": 0.0,
    "subject": "",
    "title": "[The New York Times] Premier League predictions: Arsenal vs Man City, Everton vs Liverpool and rest of GW12"
+  },
+  "bet-builder-channel-chelsea-forest-how-in-league": {
+   "at": "2026-11-27T15:11:09+09:00",
+   "total": 0.0,
+   "subject": "",
+   "title": "[We Ain't Got No History] Nottingham Forest vs. Chelsea, Premier League: Preview, team news, how to watch"
+  },
+  "36-another-chelsea-clothes-garnacho-in-league-loan": {
+   "at": "2026-11-27T15:11:09+09:00",
+   "total": 20.0,
+   "subject": "가르라초",
+   "title": "[AOL.co.uk] I played for Chelsea in the Premier League - now I'm 36 and sell clothes"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-27T15:01:12+09:00",
+ "last_run_at": "2026-11-27T15:11:09+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -8767,7 +8832,41 @@
   "cfe7fa596f552091": "2026-11-27T15:01:12+09:00",
   "49ecd2d69fd70968": "2026-11-27T15:01:12+09:00",
   "6b2e46189336a11d": "2026-11-27T15:01:12+09:00",
-  "33cbf826432ddda8": "2026-11-27T15:01:12+09:00"
+  "33cbf826432ddda8": "2026-11-27T15:01:12+09:00",
+  "62617a7cd9dae633": "2026-11-27T15:11:09+09:00",
+  "3fea5bed5bf1809c": "2026-11-27T15:11:09+09:00",
+  "184c6e0b6cbb1eb9": "2026-11-27T15:11:09+09:00",
+  "ca036eff8ac691ec": "2026-11-27T15:11:09+09:00",
+  "81da4958da7cd2b9": "2026-11-27T15:11:09+09:00",
+  "5d481046f046c22a": "2026-11-27T15:11:09+09:00",
+  "d4f20cad3e76c42d": "2026-11-27T15:11:09+09:00",
+  "6cf56b88ae2a6501": "2026-11-27T15:11:09+09:00",
+  "940b41edba58f823": "2026-11-27T15:11:09+09:00",
+  "aa642caac0c680ac": "2026-11-27T15:11:09+09:00",
+  "ac1558ee6accf382": "2026-11-27T15:11:09+09:00",
+  "34503a38479a0360": "2026-11-27T15:11:09+09:00",
+  "297de4f4072cec49": "2026-11-27T15:11:09+09:00",
+  "032d5add85b7c542": "2026-11-27T15:11:09+09:00",
+  "e0c377860bcb95fa": "2026-11-27T15:11:09+09:00",
+  "90b7cffded477609": "2026-11-27T15:11:09+09:00",
+  "681faa78cef97706": "2026-11-27T15:11:09+09:00",
+  "6bdfe50d54229865": "2026-11-27T15:11:09+09:00",
+  "e0f450710db7c40f": "2026-11-27T15:11:09+09:00",
+  "27d0bfe433462fd4": "2026-11-27T15:11:09+09:00",
+  "a3005d415253c88c": "2026-11-27T15:11:09+09:00",
+  "ceb0f58739ba8a58": "2026-11-27T15:11:09+09:00",
+  "a298663444a1a8fc": "2026-11-27T15:11:09+09:00",
+  "be7a1ad4f3e9135b": "2026-11-27T15:11:09+09:00",
+  "a0489e4fc620d0ce": "2026-11-27T15:11:09+09:00",
+  "ac99d9949c766188": "2026-11-27T15:11:09+09:00",
+  "0bac3969be636453": "2026-11-27T15:11:09+09:00",
+  "46042c12a88c81a1": "2026-11-27T15:11:09+09:00",
+  "d9ac2a777e1716f2": "2026-11-27T15:11:09+09:00",
+  "7a87302de51ed8a0": "2026-11-27T15:11:09+09:00",
+  "7ec111c92242e6be": "2026-11-27T15:11:09+09:00",
+  "c987646874da7a7d": "2026-11-27T15:11:09+09:00",
+  "25e10f77af14e267": "2026-11-27T15:11:09+09:00",
+  "4ba7b61ea9445a05": "2026-11-27T15:11:09+09:00"
  },
  "discarded": [
   {
