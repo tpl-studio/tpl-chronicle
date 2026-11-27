@@ -13937,7 +13937,8 @@
   "4afb8ede8e3d1d20": "2026-11-28T06:01:51+09:00",
   "cd156257fd08a813": "2026-11-28T06:01:51+09:00",
   "cd91dbd4c5cf2986": "2026-11-28T06:01:51+09:00",
-  "b3b4ed2455e0d481": "2026-11-28T06:01:51+09:00"
+  "b3b4ed2455e0d481": "2026-11-28T06:01:51+09:00",
+  "366f75a1c5efbeec": "2026-11-28T07:18:00+09:00"
  },
  "breaking_links": [
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699411",
@@ -13949,7 +13950,9 @@
   "https://www.besteleven.com/news/articleView.html?idxno=314391",
   "https://www.besteleven.com/news/articleView.html?idxno=314386",
   "https://www.besteleven.com/news/articleView.html?idxno=314357",
-  "https://www.besteleven.com/news/articleView.html?idxno=314355"
+  "https://www.besteleven.com/news/articleView.html?idxno=314355",
+  "https://www.besteleven.com/news/articleView.html?idxno=314401",
+  "https://www.besteleven.com/news/articleView.html?idxno=314401"
  ],
  "offers": {
   "b61aa5728d8b37ba9": {
@@ -13957,6 +13960,12 @@
    "title": "[오피셜] 'PL 0명' 한국은 일본이 부럽다...다나카, 방출설 딛고 리즈 주전 확보→2029년까지 재계약",
    "n": "속보",
    "at": "2026-11-28T06:01:51+09:00"
+  },
+  "b366f75a1c5efbeec": {
+   "url": "https://www.besteleven.com/news/articleView.html?idxno=314401",
+   "title": "[오피셜] 포체티노 감독 '홈 데뷔전'인데 ‘캡틴’은 훈련 불참… 브루노 페르난데스, 몸 상태 문제로 예방 차원 제외",
+   "n": "속보",
+   "at": "2026-11-28T07:18:00+09:00"
   }
  },
  "proposal_log": [
@@ -13964,6 +13973,11 @@
    "at": "2026-11-28T06:01:51+09:00",
    "id": "61aa5728d8b37ba9",
    "title": "[오피셜] 'PL 0명' 한국은 일본이 부럽다...다나카, 방출설 딛고 리즈 주전 확보→2029년까지 재계약"
+  },
+  {
+   "at": "2026-11-28T07:18:00+09:00",
+   "id": "366f75a1c5efbeec",
+   "title": "[오피셜] 포체티노 감독 '홈 데뷔전'인데 ‘캡틴’은 훈련 불참… 브루노 페르난데스, 몸 상태 문제로 예방 차원 제외"
   }
  ]
 }
