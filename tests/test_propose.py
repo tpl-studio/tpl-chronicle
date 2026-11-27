@@ -233,6 +233,31 @@ check(A.check_breaking(st11, None, A.conf(), nb, quiet) == 0, "같은 속보 다
 check("만들게요" in A.button_tap(st11, btns[-1][0][0][0][1]), "속보 버튼 → 제작 대기")
 FD.collect = real_collect
 
+print("[12] 위인 쇼츠 ✅/❌ 를 쇼츠방에서 — 기록만(게시는 tpl-factory 가 읽어 감)")
+st12 = {}
+check("22:00" in A.ig_tap(st12, "ig:ok:w20261128", {"message": {"message_id": 77}}) and st12["ig_taps"]["w20261128"]["mode"] == "approve"
+      and st12["ig_taps"]["w20261128"]["msg_id"] == 77, "✅ → approve 기록 · 답장")
+check("안 올려요" in A.ig_tap(st12, "ig:no:w20261128", {}) and st12["ig_taps"]["w20261128"]["mode"] == "cancel", "❌ 다시 누르면 마지막 누름(cancel)")
+check(not A.IG_TAP.match("chr:mk:abc") and not A.IG_TAP.match("ig:ok:bad key!"), "다른 버튼·이상한 데이터는 무시")
+upd = [{"update_id": 5, "callback_query": {"id": "q", "data": "ig:ok:w1", "message": {"message_id": 9, "chat": {"id": 111}}}},
+       {"update_id": 6, "callback_query": {"id": "q2", "data": "ig:ok:w2", "message": {"message_id": 9, "chat": {"id": 999}}}}]
+A._bot = lambda: ("t", "111")
+
+
+class _R:
+    def __init__(s_, j):
+        s_.j = j
+
+    def json(s_):
+        return s_.j
+
+
+A.requests.get = lambda *a, **k: _R({"result": upd})
+A.requests.post = lambda *a, **k: _R({})
+st12b = {}
+A.read_views(st12b)
+check("w1" in st12b.get("ig_taps", {}) and "w2" not in st12b.get("ig_taps", {}) and st12b["updates_offset"] == 7, "내 채팅에서 누른 것만 기록 · 읽음 처리")
+
 print()
 print("실패:", len(fails))
 sys.exit(1 if fails else 0)

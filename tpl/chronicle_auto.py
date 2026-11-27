@@ -591,6 +591,14 @@ def read_views(st: dict) -> None:
                 except Exception:  # noqa: BLE001
                     pass
                 say(reply)
+            elif IG_TAP.match(data):                 # 위인 쇼츠 인스타 ✅/❌(2026-11-28 대표님: 쇼츠방에서) — 기록만, 게시는 tpl-factory ig_reel 이 읽어 감
+                reply = ig_tap(st, data, cq)
+                try:
+                    requests.post(f"https://api.telegram.org/bot{tok}/answerCallbackQuery",
+                                  data={"callback_query_id": cq.get("id"), "text": reply[:190]}, timeout=20)
+                except Exception:  # noqa: BLE001
+                    pass
+                say(reply)
             else:                                    # 연대기 버튼이 아님(예: 다른 자동화 버튼) — 지우지 않고 보관(다른 쪽이 가져가게)
                 st.setdefault("foreign_callbacks", []).append({"at": now_kst().isoformat(timespec="seconds"), "update": u})
                 st["foreign_callbacks"] = st["foreign_callbacks"][-50:]
@@ -984,6 +992,23 @@ def button_tap(st: dict, data: str) -> str:
     q.append({"at": now_kst().isoformat(timespec="seconds"), "status": "approved", "key": key, "url": o["url"], "file_id": "",
               "note": o.get("title", "")[:300], "proposal": o.get("n") or "버튼"})
     return f"👍 만들게요 — {o.get('title', '')[:40]} · 10분쯤 걸려요."
+
+
+IG_TAP = re.compile(r"^ig:(ok|no):([A-Za-z0-9-]{1,40})$")
+
+
+def ig_tap(st: dict, data: str, cq: dict) -> str:
+    """쇼츠방(개인 봇)에서 누른 위인 쇼츠 ✅/❌ → 상태 ig_taps 에 기록(키당 마지막 누름).
+    tpl-factory ig_reel.yml 이 공개 상태 파일(chronicle-state 브랜치 chronicle.json)의 ig_taps 를 읽어 예약·취소.
+    여기서는 내 채팅에서 누른 것만 받음(read_views 가 채팅 확인) · 사용자 번호 같은 개인 정보는 적지 않음."""
+    m = IG_TAP.match(data)
+    mode, key = ("approve" if m.group(1) == "ok" else "cancel"), m.group(2)
+    taps = st.setdefault("ig_taps", {})
+    taps[key] = {"mode": mode, "at": now_kst().isoformat(timespec="seconds"),
+                 "msg_id": ((cq.get("message") or {}).get("message_id"))}
+    lim = (now_kst() - timedelta(days=7)).isoformat()
+    st["ig_taps"] = {k: v for k, v in taps.items() if v.get("at", "") >= lim}
+    return "✅ 접수했어요 — 오늘 22:00에 인스타에 올라가요(22:00 지나면 내일 22:00)." if mode == "approve" else "❌ 알겠어요 — 이건 안 올려요."
 
 
 BREAK_RX = re.compile(r"\[?오피셜\]?|공식\s*발표|HERE\s*WE\s*GO|히어\s*위\s*고|경질|사임|전격\s*(?:이적|합류|영입|계약)|"
