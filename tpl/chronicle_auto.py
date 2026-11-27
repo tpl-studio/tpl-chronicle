@@ -32,6 +32,7 @@ ITEM_KO = {"name": "이름값", "drama": "감정·드라마", "divide": "편 갈
 FOOT = re.compile(r"football|soccer|premier league|la liga|bundesliga|serie a|ligue 1|champions league|fútbol|futbol|fußball|calcio|축구|프리미어|라리가|"
                   r"분데스|세리에|챔스|챔피언스리그|K리그|대표팀|감독|이적|here we go|transfer|striker|midfielder|defender|goalkeeper|manager|coach", re.I)
 NOT_FOOT = re.compile(r"\bNBA\b|\bMLB\b|\bKBO\b|\bUFC\b|\bNFL\b|\bNHL\b|야구|농구|배구|골프|테니스|tennis|cricket|크리켓|\bF1\b|baseball|basketball", re.I)
+FOOT_ONLY = {"인터풋볼", "풋볼리스트", "베스트일레븐", "인터풋볼 인기", "풋볼리스트 인기", "베스트일레븐 인기"}   # 축구 전문지 RSS(2026-11-28)
 CORRECTION = re.compile(r"정정|바로잡|오보|사실과 다르|correction|clarif|retract|denies report|false report|not true", re.I)
 
 
@@ -154,7 +155,7 @@ def collect(c: dict, errs: dict, log=print) -> list[dict]:
     def rec(name):
         return lambda m: errs.__setitem__(m.split(":")[0].replace("피드 실패 ", ""), m) if m.startswith("피드 실패") else None
     items = tn.collect(base, log=rec("기존"))
-    items += tn.collect({"feeds": [{**f, "outlet": f["name"]} for f in c.get("feeds", [])]}, log=rec("추가"))
+    items += tn.collect({"feeds": [{**f, "outlet": f.get("outlet") or f["name"]} for f in c.get("feeds", [])]}, log=rec("추가"))
     items += _reddit(c, errs)
     return items
 
@@ -172,8 +173,9 @@ def candidates(c: dict, items: list[dict], st: dict, log=print, ignore_seen: boo
             age = (now - datetime.fromisoformat(it.get("published", ""))).total_seconds() / 3600
         except (TypeError, ValueError):
             continue
+        foot = FOOT.search(t) or (ignore_seen and it.get("feed") in FOOT_ONLY)   # 축구 전문지는 제목에 '축구'가 없어도 축구 소식
         if age <= float(c.get("fresh_hours", 24)) and not tn.is_personal(t) and not F.EXCL.search(t) \
-                and FOOT.search(t) and not NOT_FOOT.search(it.get("title", "")):
+                and foot and not NOT_FOOT.search(it.get("title", "")):
             rel.append({**it, "category": "해외축구"})
     hwg = []
     try:                                                   # 1순위 확인: 로마노 본인 게시물(실시간 카드뉴스 방식, 읽기만)
@@ -823,6 +825,8 @@ def propose(st: dict, d, c: dict, now: datetime, slot: str, log=print) -> dict:
         items = [it for it in items if any(sname in (it.get("publisher") or "") or sname == it.get("feed") for sname in srcs)]
     if pc.get("skip_kleague", True):
         items = [it for it in items if not KLEAGUE.search(it.get("title", ""))]
+    pop_feeds = {f["name"] for f in c.get("feeds", []) if f.get("popular")}
+    pop_ids = {it.get("id") for it in items if it.get("feed") in pop_feeds}
     cands = candidates(c, items, st, log, ignore_seen=True, min_outlets=int(pc.get("min_outlets", 2)))
     bench = day_of(st, day).setdefault("bench", [])
     known = {x.get("key") for x in bench} | set(st.get("seen", {}))
@@ -838,7 +842,11 @@ def propose(st: dict, d, c: dict, now: datetime, slot: str, log=print) -> dict:
             st.setdefault("seen", {})[x["key"]] = {"at": now.isoformat(timespec="seconds"), "total": x["total"],
                                                    "subject": x.get("subject_ko", ""), "title": str((x.get("titles") or [""])[0])[:140]}
     links = {x["key"]: x.get("links", []) for x in cands}
-    pool = list({x["key"]: {**x, "links": x.get("links") or links.get(x["key"], [])} for x in bench + scored}.values())
+    hot = {x["key"] for x in cands if pop_ids & set(x.get("ids") or [])}            # 매체 '최근 인기기사'에 오른 소식
+    pool = list({x["key"]: {**x, "links": x.get("links") or links.get(x["key"], []), "popular": x["key"] in hot or bool(x.get("popular"))}
+                 for x in bench + scored}.values())
+    pb = float(pc.get("popular_bonus", 3))
+    pool = [{**x, "total": float(x.get("total", 0)) + (pb if x["popular"] and not x.get("_pop_added") else 0), "_pop_added": x["popular"]} for x in pool]
     keep = [x for x in scored if not x.get("exclude") and x.get("total", 0) >= float(c.get("fill_min_score", 14))]
     bench[:] = sorted({x["key"]: x for x in bench + keep}.values(), key=lambda x: -x.get("total", 0))[:15]
     picks = pick_proposals(pool, st, c, now)
@@ -856,7 +864,7 @@ def propose(st: dict, d, c: dict, now: datetime, slot: str, log=print) -> dict:
     for i, x in enumerate(picks):
         kind = "로마노 HWG" if x.get("hwg") else (x.get("type") or "")
         lines.append(f"{NUM_EMO[i]} {x.get('subject_ko', '')}" + (f" ({x['team_ko']})" if x.get("team_ko") else "")
-                     + f" · {float(x.get('total', 0)):.0f}점" + (f" · {kind}" if kind else ""))
+                     + f" · {float(x.get('total', 0)):.0f}점" + (" · 🔥인기" if x.get("popular") else "") + (f" · {kind}" if kind else ""))
         lines.append("   " + str((x.get("titles") or [""])[0])[:90])
         if x.get("reason"):
             lines.append("   💡 " + str(x["reason"])[:60])

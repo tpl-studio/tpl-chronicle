@@ -110,6 +110,39 @@ pc = A.conf()["propose"]
 check(pc["sources"] == ["인터풋볼", "풋볼리스트", "베스트일레븐"] and pc["min_outlets"] == 1, "후보 소스 = 전문 매체 3곳")
 check({"인터풋볼", "풋볼리스트", "베스트일레븐"} <= {f["name"] for f in A.conf()["feeds"]}, "RSS 3곳 등록")
 
+print("[8] 후보 보고 — 최신순 + 인기기사(🔥 +3점) · 전문 매체만")
+now8 = datetime.now(KST).replace(microsecond=0)
+iso = lambda h: (now8 - timedelta(hours=h)).astimezone(timezone.utc).isoformat()  # noqa: E731
+items = [
+    {"id": "1", "title": "손흥민 LAFC 결승골 폭발", "link": "https://www.interfootball.co.kr/a1", "publisher": "인터풋볼", "feed": "인터풋볼", "published": iso(2)},
+    {"id": "1", "title": "손흥민 LAFC 결승골 폭발", "link": "https://www.interfootball.co.kr/a1", "publisher": "인터풋볼", "feed": "인터풋볼 인기", "published": iso(2)},
+    {"id": "2", "title": "김민재 뮌헨 잔류 선언", "link": "https://www.footballist.co.kr/a2", "publisher": "풋볼리스트", "feed": "풋볼리스트", "published": iso(1)},
+    {"id": "3", "title": "[K-관전포인트] 울산 HD 우승 도전", "link": "https://www.besteleven.com/a3", "publisher": "베스트일레븐", "feed": "베스트일레븐", "published": iso(1)},
+    {"id": "4", "title": "케인 해트트릭 뮌헨 대승", "link": "https://news.google.com/x", "publisher": "연합뉴스", "feed": "구글 뉴스 · 해외축구", "published": iso(1)},
+]
+A.collect = lambda c, errs, log=print: list(items)
+seen_sc = []
+
+
+def fake_score(cands, m, w):
+    seen_sc.append([x["titles"][0] for x in cands])
+    return [{**x, "subject_ko": "손흥민" if "손흥민" in x["titles"][0] else "김민재" if "김민재" in x["titles"][0] else "케인",
+             "type": "빅클럽 스타 화제", "total": 15.0, "reason": "테스트", "scores": {}, "bonus": 0, "base": 15} for x in cands]
+
+
+A.score = fake_score
+A.art.record = lambda *a, **k: None
+A.art.Meter = lambda cap=0: type("M", (), {"krw": 0})()
+st8 = {}
+said.clear()
+r = A.propose(st8, None, A.conf(), now8, "13:00", quiet)
+titles = " ".join(sum(seen_sc, []))
+check("케인" not in titles, "구글 뉴스(일반 매체)는 후보에서 빠짐")
+check("울산" not in titles, "K리그 빠짐")
+msg = said[-1] if said else ""
+check(msg.index("손흥민") < msg.index("김민재") and "18점 · 🔥인기" in msg, "인기기사(손흥민)가 +3점으로 1번 · 🔥 표시")
+check(len(st8["proposal"]["items"]) == 2 and st8["proposed"][now8.strftime("%Y-%m-%d")] == ["13:00"], "후보 2개 저장 · 회차 기록")
+
 print()
 print("실패:", len(fails))
 sys.exit(1 if fails else 0)

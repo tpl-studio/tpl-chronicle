@@ -33,6 +33,7 @@ min_score = 12                         # 터질 각 30점 만점 중 이 점수 
 sources = ["인터풋볼", "풋볼리스트", "베스트일레븐"]   # 2026-11-28 대표님: 후보는 해외축구 전문 매체 기사만(아래 [[feeds]] RSS)
 min_outlets = 1                        # 전문 매체 1곳만 다뤄도 후보(점수로 거름)
 skip_kleague = true                    # K리그 소식은 빼고 해외축구만
+popular_bonus = 3                      # 매체 '최근 인기기사'에 오른 소식이면 후보 순위 점수 +3 (🔥 표시)
 
 # 터질 각 6항목(각 0~5, 30점 만점) — 2주마다 조정안을 봇으로 보내고 사용자 오케이 뒤 적용
 [weights]
@@ -100,3 +101,18 @@ url = "https://www.footballist.co.kr/rss/allArticle.xml"
 [[feeds]]
 name = "베스트일레븐"
 url = "https://www.besteleven.com/rss/allArticle.xml"
+[[feeds]]                       # 최근 인기기사(많이 본 기사) RSS — 후보 점수에 인기 가산
+name = "인터풋볼 인기"
+outlet = "인터풋볼"
+popular = true
+url = "https://www.interfootball.co.kr/rss/clickTop.xml"
+[[feeds]]
+name = "풋볼리스트 인기"
+outlet = "풋볼리스트"
+popular = true
+url = "https://www.footballist.co.kr/rss/clickTop.xml"
+[[feeds]]
+name = "베스트일레븐 인기"
+outlet = "베스트일레븐"
+popular = true
+url = "https://www.besteleven.com/rss/clickTop.xml"
