@@ -1567,6 +1567,65 @@
      "total": 22.0
     },
     {
+     "key": "arsenal-as-breaking-by-club-coach-company-consent",
+     "titles": [
+      "[The New York Times] Arsenal head coach Renee Slegers departs club by mutual consent",
+      "[Yahoo] Arsenal head coach Renee Slegers departs club by mutual consent",
+      "[Online Gooner] BREAKING: Arsenal Women part company with head coach Renee Slegers",
+      "[Arsenal.com] Renée Slegers departs as Arsenal Women head coach"
+     ],
+     "outlets": [
+      "The New York Times",
+      "Yahoo",
+      "Online Gooner",
+      "Arsenal.com"
+     ],
+     "credible": [
+      "The New York Times"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "아스널"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": true,
+     "latest": "2026-11-27T15:22:37+00:00",
+     "ids": [
+      "0f5d3aae5a814768",
+      "23e7d8eaf9d51407",
+      "cc4e868e4fa3262c",
+      "adcc19478bdd152b"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "레니 슬레거스",
+     "subject_en": "Renee Slegers",
+     "team_ko": "아스날 여자팀",
+     "team_en": "Arsenal Women",
+     "league_ko": "잉글랜드 슈퍼리그",
+     "role": "감독",
+     "type": "경질",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 4,
+      "drama": 4,
+      "divide": 3,
+      "share": 4,
+      "surprise": 2,
+      "korea": 3
+     },
+     "reason": "감독이 상호 합의로 떠남",
+     "base": 20.0,
+     "bonus": 2,
+     "total": 22.0
+    },
+    {
      "key": "arsenal-as-coach-departs-dismal-head-job-leaves",
      "titles": [
       "[The Guardian] Renée Slegers leaves job as Arsenal Women’s coach after dismal run of results",
@@ -1618,6 +1677,63 @@
      "base": 18.0,
      "bonus": 0,
      "total": 18.0
+    },
+    {
+     "key": "11-29-barcelona-deportivo-hotspur-la-league-liga",
+     "titles": [
+      "[Yahoo] PREVIEW | Deportivo vs Barcelona: team news, lineups, predictions (La Liga 29/11)",
+      "[Yahoo Sports] PREVIEW | Sunderland vs Tottenham: team news, lineups, predictions (Premier League 29/11)",
+      "[Cartilage Free Captain] Sunderland vs. Tottenham Hotspur Premier League Preview"
+     ],
+     "outlets": [
+      "Yahoo",
+      "Yahoo Sports",
+      "Cartilage Free Captain"
+     ],
+     "credible": [
+      "Yahoo Sports"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "토트넘",
+      "바르셀로나"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T14:15:00+00:00",
+     "ids": [
+      "b38470a51d3cc1ff",
+      "571614c949022059",
+      "fae87bb96dc11376"
+     ],
+     "i": 1,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "마이클 올리세",
+     "subject_en": "Michael Olise",
+     "team_ko": "바이에른 뮌헨",
+     "team_en": "Bayern Munich",
+     "league_ko": "분데스리가",
+     "role": "선수",
+     "type": "기타",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 3,
+      "drama": 2,
+      "divide": 1,
+      "share": 3,
+      "surprise": 2,
+      "korea": 3
+     },
+     "reason": "선수 부상으로 경기 결장",
+     "base": 14.0,
+     "bonus": 0,
+     "total": 14.0
     }
    ],
    "judge_krw": 0.0
@@ -2105,11 +2221,23 @@
    "total": 22.0,
    "subject": "레니 스레거스",
    "title": "[The Guardian] Renée Slegers leaves job as Arsenal Women’s coach after dismal run of results"
+  },
+  "arsenal-as-breaking-by-club-coach-company-consent": {
+   "at": "2026-11-28T00:31:39+09:00",
+   "total": 22.0,
+   "subject": "레니 슬레거스",
+   "title": "[The New York Times] Arsenal head coach Renee Slegers departs club by mutual consent"
+  },
+  "11-29-barcelona-deportivo-hotspur-la-league-liga": {
+   "at": "2026-11-28T00:31:39+09:00",
+   "total": 14.0,
+   "subject": "마이클 올리세",
+   "title": "[Yahoo] PREVIEW | Deportivo vs Barcelona: team news, lineups, predictions (La Liga 29/11)"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-28T00:21:30+09:00",
+ "last_run_at": "2026-11-28T00:31:39+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -11556,7 +11684,76 @@
   "32a02199b465cca6": "2026-11-28T00:21:30+09:00",
   "3b9f39ba476c43ac": "2026-11-28T00:21:30+09:00",
   "9bab3ac6c527537a": "2026-11-28T00:21:30+09:00",
-  "a3dea2bd9dde92a3": "2026-11-28T00:21:30+09:00"
+  "a3dea2bd9dde92a3": "2026-11-28T00:21:30+09:00",
+  "9f305614bd60b531": "2026-11-28T00:31:39+09:00",
+  "247b635a999046e0": "2026-11-28T00:31:39+09:00",
+  "48bbe291a505c23c": "2026-11-28T00:31:39+09:00",
+  "4a297fa7f765eb2a": "2026-11-28T00:31:39+09:00",
+  "44de1e845166fdda": "2026-11-28T00:31:39+09:00",
+  "cd1afd4005b8870a": "2026-11-28T00:31:39+09:00",
+  "d01606bfe7b5295b": "2026-11-28T00:31:39+09:00",
+  "86f87e5209d634e9": "2026-11-28T00:31:39+09:00",
+  "3a140f0c3565d2ba": "2026-11-28T00:31:39+09:00",
+  "5f1cec9c6b82b556": "2026-11-28T00:31:39+09:00",
+  "208c85861fe063a8": "2026-11-28T00:31:39+09:00",
+  "88bac6e8d11c23bd": "2026-11-28T00:31:39+09:00",
+  "ff554b4d751e030b": "2026-11-28T00:31:39+09:00",
+  "de797bae743dbd8c": "2026-11-28T00:31:39+09:00",
+  "59ec3485bd28f571": "2026-11-28T00:31:39+09:00",
+  "4fe7cc8fa7bad01d": "2026-11-28T00:31:39+09:00",
+  "851c3c108a5bfb8c": "2026-11-28T00:31:39+09:00",
+  "f0a68896573eb8e1": "2026-11-28T00:31:39+09:00",
+  "e2d91648897f027d": "2026-11-28T00:31:39+09:00",
+  "b38470a51d3cc1ff": "2026-11-28T00:31:39+09:00",
+  "ded09b865f62035e": "2026-11-28T00:31:39+09:00",
+  "65ecb14319d2dedb": "2026-11-28T00:31:39+09:00",
+  "11bb7bd787411bc6": "2026-11-28T00:31:39+09:00",
+  "44eb8bc3601fb349": "2026-11-28T00:31:39+09:00",
+  "cc4e868e4fa3262c": "2026-11-28T00:31:39+09:00",
+  "7113257ee5e704ca": "2026-11-28T00:31:39+09:00",
+  "b1e39e09825103bc": "2026-11-28T00:31:39+09:00",
+  "727d9e84fc5fd4dd": "2026-11-28T00:31:39+09:00",
+  "682f5d421efeb01d": "2026-11-28T00:31:39+09:00",
+  "9efda285b6a7b3ca": "2026-11-28T00:31:39+09:00",
+  "0f5d3aae5a814768": "2026-11-28T00:31:39+09:00",
+  "a8faf085a4629496": "2026-11-28T00:31:39+09:00",
+  "4189c24271a36d0d": "2026-11-28T00:31:39+09:00",
+  "fefc8f72e203023a": "2026-11-28T00:31:39+09:00",
+  "571614c949022059": "2026-11-28T00:31:39+09:00",
+  "23e7d8eaf9d51407": "2026-11-28T00:31:39+09:00",
+  "9823b1e2c24b46f4": "2026-11-28T00:31:39+09:00",
+  "70586ca2a93616ca": "2026-11-28T00:31:39+09:00",
+  "2b2574e67534536c": "2026-11-28T00:31:39+09:00",
+  "a996adadab7edfc3": "2026-11-28T00:31:39+09:00",
+  "557191f1cbb001fc": "2026-11-28T00:31:39+09:00",
+  "b8bd351fc0727d77": "2026-11-28T00:31:39+09:00",
+  "c1bde15be2b800f1": "2026-11-28T00:31:39+09:00",
+  "3f1bb5e16f95a68a": "2026-11-28T00:31:39+09:00",
+  "6ad5f62a1363f250": "2026-11-28T00:31:39+09:00",
+  "5fc5389fb81c28ce": "2026-11-28T00:31:39+09:00",
+  "2af690d343f29f62": "2026-11-28T00:31:39+09:00",
+  "a1226b3d6a81be47": "2026-11-28T00:31:39+09:00",
+  "eb92ff7d35cdc23c": "2026-11-28T00:31:39+09:00",
+  "5be8bdcfa59a01a0": "2026-11-28T00:31:39+09:00",
+  "000bc3752694a1a4": "2026-11-28T00:31:39+09:00",
+  "0e59d69e61b8acb4": "2026-11-28T00:31:39+09:00",
+  "803af2bccbf64fb0": "2026-11-28T00:31:39+09:00",
+  "7111c605453e0fb9": "2026-11-28T00:31:39+09:00",
+  "ebf5c08cd633bf8c": "2026-11-28T00:31:39+09:00",
+  "4b620636ea468e6a": "2026-11-28T00:31:39+09:00",
+  "372d72ba9df896cc": "2026-11-28T00:31:39+09:00",
+  "8e6178605b91379c": "2026-11-28T00:31:39+09:00",
+  "32ad94fe90062e37": "2026-11-28T00:31:39+09:00",
+  "4668c1cf9fef945d": "2026-11-28T00:31:39+09:00",
+  "96a99e9d9b84c794": "2026-11-28T00:31:39+09:00",
+  "0a34cfba11886bf4": "2026-11-28T00:31:39+09:00",
+  "058b26b7ce2922be": "2026-11-28T00:31:39+09:00",
+  "b2758569248b180f": "2026-11-28T00:31:39+09:00",
+  "7a15d1044f2f7b42": "2026-11-28T00:31:39+09:00",
+  "8bc74c04c36f96f7": "2026-11-28T00:31:39+09:00",
+  "56d2546a4dc6f60a": "2026-11-28T00:31:39+09:00",
+  "ad2a4ba4a7807bdf": "2026-11-28T00:31:39+09:00",
+  "b650266de82f47d4": "2026-11-28T00:31:39+09:00"
  },
  "discarded": [
   {
