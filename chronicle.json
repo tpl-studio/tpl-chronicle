@@ -13662,5 +13662,43 @@
    "at": "2026-11-26T17:51:52+09:00"
   }
  ],
- "updates_offset": 98137727
+ "updates_offset": 98137727,
+ "breaking_seen": {
+  "6a6d5cb6293df123": "2026-11-28T06:01:51+09:00",
+  "61aa5728d8b37ba9": "2026-11-28T06:01:51+09:00",
+  "9503e73c2233ba5d": "2026-11-28T06:01:51+09:00",
+  "e095a4b75fe206b9": "2026-11-28T06:01:51+09:00",
+  "01493efeb36bf5b5": "2026-11-28T06:01:51+09:00",
+  "4afb8ede8e3d1d20": "2026-11-28T06:01:51+09:00",
+  "cd156257fd08a813": "2026-11-28T06:01:51+09:00",
+  "cd91dbd4c5cf2986": "2026-11-28T06:01:51+09:00",
+  "b3b4ed2455e0d481": "2026-11-28T06:01:51+09:00"
+ },
+ "breaking_links": [
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699411",
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699407",
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699407",
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699391",
+  "http://www.footballist.co.kr/news/articleView.html?idxno=217277",
+  "https://www.besteleven.com/news/articleView.html?idxno=314396",
+  "https://www.besteleven.com/news/articleView.html?idxno=314391",
+  "https://www.besteleven.com/news/articleView.html?idxno=314386",
+  "https://www.besteleven.com/news/articleView.html?idxno=314357",
+  "https://www.besteleven.com/news/articleView.html?idxno=314355"
+ ],
+ "offers": {
+  "b61aa5728d8b37ba9": {
+   "url": "https://www.interfootball.co.kr/news/articleView.html?idxno=699407",
+   "title": "[오피셜] 'PL 0명' 한국은 일본이 부럽다...다나카, 방출설 딛고 리즈 주전 확보→2029년까지 재계약",
+   "n": "속보",
+   "at": "2026-11-28T06:01:51+09:00"
+  }
+ },
+ "proposal_log": [
+  {
+   "at": "2026-11-28T06:01:51+09:00",
+   "id": "61aa5728d8b37ba9",
+   "title": "[오피셜] 'PL 0명' 한국은 일본이 부럽다...다나카, 방출설 딛고 리즈 주전 확보→2029년까지 재계약"
+  }
+ ]
 }
