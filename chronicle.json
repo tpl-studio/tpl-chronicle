@@ -1404,6 +1404,169 @@
    "_seeded": true,
    "bench": [
     {
+     "key": "arsenal-by-consent-leaves-mutual-sacked-slegers-slump",
+     "titles": [
+      "[ESPN] Slegers leaves Arsenal by mutual consent after WSL slump",
+      "[Sky Sports] Slegers sacked by Arsenal"
+     ],
+     "outlets": [
+      "ESPN",
+      "Sky Sports"
+     ],
+     "credible": [
+      "ESPN",
+      "Sky Sports"
+     ],
+     "summaries": [
+      "Arsenal have parted ways with Champions League-winning head coach Renée Slegers.",
+      "Renee Slegers has been sacked as Arsenal head coach after a poor start to the Women's Super League season."
+     ],
+     "stars": [],
+     "clubs": [
+      "아스널"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T15:14:39+00:00",
+     "ids": [
+      "1887c4133c67c253",
+      "ab8e1a6bd585eae4"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "레니 스레거스",
+     "subject_en": "Renée Slegers",
+     "team_ko": "아스날 여자팀",
+     "team_en": "Arsenal Women",
+     "league_ko": "WSL",
+     "role": "감독",
+     "type": "경질",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 4,
+      "divide": 3,
+      "share": 4,
+      "surprise": 2,
+      "korea": 4
+     },
+     "reason": "코치 해임 소식",
+     "base": 22.0,
+     "bonus": 0,
+     "total": 22.0
+    },
+    {
+     "key": "arsenal-as-coach-confirm-departs-head-issued-manager",
+     "titles": [
+      "[London Evening Standard] Renee Slegers: Arsenal confirm manager sacking as statement issued",
+      "[Arsenal.com] Renée Slegers departs as Arsenal Women head coach"
+     ],
+     "outlets": [
+      "London Evening Standard",
+      "Arsenal.com"
+     ],
+     "credible": [
+      "London Evening Standard"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "아스널"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T15:17:13+00:00",
+     "ids": [
+      "9248da7f8a91c34d",
+      "adcc19478bdd152b"
+     ],
+     "i": 1,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "레니 스레거스",
+     "subject_en": "Renée Slegers",
+     "team_ko": "아스날 여자팀",
+     "team_en": "Arsenal Women",
+     "league_ko": "WSL",
+     "role": "감독",
+     "type": "경질",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 4,
+      "divide": 3,
+      "share": 4,
+      "surprise": 2,
+      "korea": 4
+     },
+     "reason": "코치 해임 확인",
+     "base": 22.0,
+     "bonus": 0,
+     "total": 22.0
+    },
+    {
+     "key": "arsenal-as-breaking-coach-company-dismal-head-job",
+     "titles": [
+      "[The Guardian] Renée Slegers leaves job as Arsenal Women’s coach after dismal run of results",
+      "[Online Gooner] BREAKING: Arsenal Women part company with head coach Renee Slegers"
+     ],
+     "outlets": [
+      "The Guardian",
+      "Online Gooner"
+     ],
+     "credible": [
+      "The Guardian"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "아스널"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T15:14:00+00:00",
+     "ids": [
+      "9484c7a835c1190b",
+      "3572b7910aa08cf6"
+     ],
+     "i": 2,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "레니 스레거스",
+     "subject_en": "Renée Slegers",
+     "team_ko": "아스날 여자팀",
+     "team_en": "Arsenal Women",
+     "league_ko": "WSL",
+     "role": "감독",
+     "type": "경질",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 4,
+      "divide": 3,
+      "share": 4,
+      "surprise": 2,
+      "korea": 4
+     },
+     "reason": "코치 퇴진 보도",
+     "base": 22.0,
+     "bonus": 0,
+     "total": 22.0
+    },
+    {
      "key": "arsenal-as-coach-departs-dismal-head-job-leaves",
      "titles": [
       "[The Guardian] Renée Slegers leaves job as Arsenal Women’s coach after dismal run of results",
@@ -1924,11 +2087,29 @@
    "total": 18.0,
    "subject": "Renée Slegers",
    "title": "[The Guardian] Renée Slegers leaves job as Arsenal Women’s coach after dismal run of results"
+  },
+  "arsenal-by-consent-leaves-mutual-sacked-slegers-slump": {
+   "at": "2026-11-28T00:21:30+09:00",
+   "total": 22.0,
+   "subject": "레니 스레거스",
+   "title": "[ESPN] Slegers leaves Arsenal by mutual consent after WSL slump"
+  },
+  "arsenal-as-coach-confirm-departs-head-issued-manager": {
+   "at": "2026-11-28T00:21:30+09:00",
+   "total": 22.0,
+   "subject": "레니 스레거스",
+   "title": "[London Evening Standard] Renee Slegers: Arsenal confirm manager sacking as statement issued"
+  },
+  "arsenal-as-breaking-coach-company-dismal-head-job": {
+   "at": "2026-11-28T00:21:30+09:00",
+   "total": 22.0,
+   "subject": "레니 스레거스",
+   "title": "[The Guardian] Renée Slegers leaves job as Arsenal Women’s coach after dismal run of results"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-28T00:11:54+09:00",
+ "last_run_at": "2026-11-28T00:21:30+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -11340,7 +11521,42 @@
   "8d7ad9fc9ce927cc": "2026-11-28T00:11:54+09:00",
   "4664af2ca0cf86fb": "2026-11-28T00:11:54+09:00",
   "b78f167c7d357f1b": "2026-11-28T00:11:54+09:00",
-  "332afd523c777d31": "2026-11-28T00:11:54+09:00"
+  "332afd523c777d31": "2026-11-28T00:11:54+09:00",
+  "7b5de5ac6307fe35": "2026-11-28T00:21:30+09:00",
+  "2b2c6616b8cec29d": "2026-11-28T00:21:30+09:00",
+  "77dc63be268daaa7": "2026-11-28T00:21:30+09:00",
+  "286234ebc0e8537a": "2026-11-28T00:21:30+09:00",
+  "a48bd56e4ad8b6b3": "2026-11-28T00:21:30+09:00",
+  "03713f711a9843f4": "2026-11-28T00:21:30+09:00",
+  "a6a84106702e43b3": "2026-11-28T00:21:30+09:00",
+  "48d6a3964fdcf856": "2026-11-28T00:21:30+09:00",
+  "9c2f780130be856e": "2026-11-28T00:21:30+09:00",
+  "7b2d4224e208ac4e": "2026-11-28T00:21:30+09:00",
+  "e3e0263942b12989": "2026-11-28T00:21:30+09:00",
+  "fbab2ad5493b2008": "2026-11-28T00:21:30+09:00",
+  "84716310a45e6321": "2026-11-28T00:21:30+09:00",
+  "a8a2e479a3eb9177": "2026-11-28T00:21:30+09:00",
+  "3572b7910aa08cf6": "2026-11-28T00:21:30+09:00",
+  "9248da7f8a91c34d": "2026-11-28T00:21:30+09:00",
+  "57dc94543efc7d35": "2026-11-28T00:21:30+09:00",
+  "adab1dfcd7821846": "2026-11-28T00:21:30+09:00",
+  "2ebe50471ea5ba15": "2026-11-28T00:21:30+09:00",
+  "281d07a4fa89adff": "2026-11-28T00:21:30+09:00",
+  "6ee6500b719b4eab": "2026-11-28T00:21:30+09:00",
+  "15d52fbf064838d9": "2026-11-28T00:21:30+09:00",
+  "634d1479fd11b537": "2026-11-28T00:21:30+09:00",
+  "268d78b5c359af7b": "2026-11-28T00:21:30+09:00",
+  "93925193038709f1": "2026-11-28T00:21:30+09:00",
+  "d2a418d16f2e9ca4": "2026-11-28T00:21:30+09:00",
+  "7164ec90a8b104a8": "2026-11-28T00:21:30+09:00",
+  "1887c4133c67c253": "2026-11-28T00:21:30+09:00",
+  "37d9928e947b4dae": "2026-11-28T00:21:30+09:00",
+  "0747c9401526dcd5": "2026-11-28T00:21:30+09:00",
+  "7004be621f0a5565": "2026-11-28T00:21:30+09:00",
+  "32a02199b465cca6": "2026-11-28T00:21:30+09:00",
+  "3b9f39ba476c43ac": "2026-11-28T00:21:30+09:00",
+  "9bab3ac6c527537a": "2026-11-28T00:21:30+09:00",
+  "a3dea2bd9dde92a3": "2026-11-28T00:21:30+09:00"
  },
  "discarded": [
   {
