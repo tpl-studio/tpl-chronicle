@@ -1965,6 +1965,65 @@
      "total": 23.0
     },
     {
+     "key": "alexis-allister-at-barcola-bradley-chelsea-duo-face",
+     "titles": [
+      "[Goal.com] Chelsea showdown at risk! Liverpool duo Alexis Mac Allister and Bradley Barcola face potential Premier League suspensions",
+      "[Yahoo Sports] Chelsea showdown at risk! Liverpool duo Alexis Mac Allister and Bradley Barcola face potential Premier League suspensions"
+     ],
+     "outlets": [
+      "Goal.com",
+      "Yahoo Sports"
+     ],
+     "credible": [
+      "Goal.com",
+      "Yahoo Sports"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "첼시",
+      "리버풀"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T20:59:43+00:00",
+     "ids": [
+      "47a72e612a00823a",
+      "fa129d318570f9e1"
+     ],
+     "links": [
+      "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPSm85Snp3c3FIOG4zMHhtc1JQbUJIblZUbUFmQm53S2EyenI2UldVVVU3cWwxNXFkN3R2YjVIZklKbmxtRE8ydFBqQUxSNmZiQU9yY2VGYlhOcUx3RnVuaHdfMC1WUnZxOEt1WTZ5YWFuWWxsUnV6WEtlU29nbXVuUGRMbVdKWjNxSllxbVU1WmdkSHNxbmlTZU92WlVJdG5sRldJWlllUUdWcXpMVkJpZTI4aTlYRzk0QWI3eWpVQ1FSUEx0aWRhRENabFpTQzl2WXBrb3hB?oc=5",
+      "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNRWlJYnlZaWlsZzFsZzc3QmktM0N5eTZBcGR6azlLS1AtdzczWG83c3FZSXNJbnBmRjY2OW5DSnctdnh3c3hNUFFvcHdianF5YUpmbFBsMm1WbFBLZUF3VVV4WnpTcGNGY2V5RjhxemJ3X2FodTRKb1FiX3lUREFNZ1hoOUE5LXptRFpv?oc=5"
+     ],
+     "i": 1,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "알렉시스 마칼리스터",
+     "subject_en": "Alexis Mac Allister",
+     "team_ko": "리버풀",
+     "team_en": "Liverpool",
+     "league_ko": "프리미어리그",
+     "role": "선수",
+     "type": "몰락·위기",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 4,
+      "divide": 2,
+      "share": 4,
+      "surprise": 3,
+      "korea": 5
+     },
+     "reason": "주요 선수 위험·드라마",
+     "base": 23.0,
+     "bonus": 0,
+     "total": 23.0
+    },
+    {
      "key": "arsenal-by-consent-leaves-mutual-sacked-slegers-slump",
      "titles": [
       "[ESPN] Slegers leaves Arsenal by mutual consent after WSL slump",
@@ -2241,66 +2300,6 @@
       "korea": 3
      },
      "reason": "감독이 상호 합의로 퇴진, 팬 관심 높음",
-     "base": 20.0,
-     "bonus": 2,
-     "total": 22.0
-    },
-    {
-     "key": "arsenal-breaking-champions-club-coach-company-explained-head",
-     "titles": [
-      "[Football London] Why Arsenal have let Champions League-winning head coach leave the club explained",
-      "[TNT Sports] Arsenal Women part ways with Champions League-winning coach Renee Slegers",
-      "[The Times] Why Arsenal have sacked Champions League-winning coach Renée Slegers",
-      "[Online Gooner] BREAKING: Arsenal Women part company with head coach Renee Slegers"
-     ],
-     "outlets": [
-      "Football London",
-      "TNT Sports",
-      "The Times",
-      "Online Gooner"
-     ],
-     "credible": [
-      "Football London",
-      "The Times"
-     ],
-     "summaries": [],
-     "stars": [],
-     "clubs": [
-      "아스널"
-     ],
-     "hwg": false,
-     "hwg_posts": [],
-     "official": false,
-     "reddit_top": false,
-     "burst": true,
-     "latest": "2026-11-27T16:05:43+00:00",
-     "ids": [
-      "5cb28f3fc98769a4",
-      "dc18e76a3221042a",
-      "49ab05ca057972e6",
-      "cc4e868e4fa3262c"
-     ],
-     "i": 0,
-     "exclude": false,
-     "why_exclude": "",
-     "subject_ko": "레니 슬레거스",
-     "subject_en": "Renee Slegers",
-     "team_ko": "아스날 여자팀",
-     "team_en": "Arsenal Women",
-     "league_ko": "WSL",
-     "role": "감독",
-     "type": "경질",
-     "rumor": false,
-     "transfer": false,
-     "scores": {
-      "name": 4,
-      "drama": 4,
-      "divide": 3,
-      "share": 4,
-      "surprise": 2,
-      "korea": 3
-     },
-     "reason": "감독 해고 소식",
      "base": 20.0,
      "bonus": 2,
      "total": 22.0
@@ -2959,11 +2958,23 @@
    "total": 0.0,
    "subject": "",
    "title": "[AS] Nottingham Forest - Chelsea, en directo: Premier League, hoy en vivo"
+  },
+  "chelsea-directo-en-forest-hoy-igor-jesus-lead": {
+   "at": "2026-11-28T06:16:35+09:00",
+   "total": 0.0,
+   "subject": "",
+   "title": "[AS] Nottingham Forest - Chelsea, en directo: Premier League, hoy en vivo"
+  },
+  "alexis-allister-at-barcola-bradley-chelsea-duo-face": {
+   "at": "2026-11-28T06:16:35+09:00",
+   "total": 23.0,
+   "subject": "알렉시스 마칼리스터",
+   "title": "[Goal.com] Chelsea showdown at risk! Liverpool duo Alexis Mac Allister and Bradley Barcola face potential Premier League suspensions"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-28T05:51:37+09:00",
+ "last_run_at": "2026-11-28T06:16:35+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -13528,7 +13539,54 @@
   "245545df0016169d": "2026-11-28T05:51:37+09:00",
   "85a0b1a81226b6f3": "2026-11-28T05:51:37+09:00",
   "08a6813c8a1375e1": "2026-11-28T05:51:37+09:00",
-  "4841d792e80c024f": "2026-11-28T05:51:37+09:00"
+  "4841d792e80c024f": "2026-11-28T05:51:37+09:00",
+  "7a6acbe1361a663f": "2026-11-28T06:16:35+09:00",
+  "50890e4767d2c375": "2026-11-28T06:16:35+09:00",
+  "bce25fc5aa13431a": "2026-11-28T06:16:35+09:00",
+  "eb9feda837454be8": "2026-11-28T06:16:35+09:00",
+  "de1af924e9a206bd": "2026-11-28T06:16:35+09:00",
+  "890367bbf42b1bee": "2026-11-28T06:16:35+09:00",
+  "a91052c6c4b009af": "2026-11-28T06:16:35+09:00",
+  "7d54c253b8abd511": "2026-11-28T06:16:35+09:00",
+  "40dd732cc90d749e": "2026-11-28T06:16:35+09:00",
+  "a653c5c70482aa8d": "2026-11-28T06:16:35+09:00",
+  "433e4e54742aeabb": "2026-11-28T06:16:35+09:00",
+  "37d58547bb9e6c60": "2026-11-28T06:16:35+09:00",
+  "8ab8c0445772935d": "2026-11-28T06:16:35+09:00",
+  "27d172a4d7230219": "2026-11-28T06:16:35+09:00",
+  "ad4a4b6b6d468a5a": "2026-11-28T06:16:35+09:00",
+  "13cd2ef360e00317": "2026-11-28T06:16:35+09:00",
+  "f1dc2edd86105fcc": "2026-11-28T06:16:35+09:00",
+  "f0d5d069e0920066": "2026-11-28T06:16:35+09:00",
+  "d9cb0c9d761bc242": "2026-11-28T06:16:35+09:00",
+  "b270f82c0195d0f6": "2026-11-28T06:16:35+09:00",
+  "4f2832e68c8fe089": "2026-11-28T06:16:35+09:00",
+  "4dd72ef2d25e6ed8": "2026-11-28T06:16:35+09:00",
+  "58b4ffd653a37e21": "2026-11-28T06:16:35+09:00",
+  "b42e4caa66c33be1": "2026-11-28T06:16:35+09:00",
+  "7cd5ed18ccaf76ba": "2026-11-28T06:16:35+09:00",
+  "f9d681f82801b8bb": "2026-11-28T06:16:35+09:00",
+  "eccf1a914ac553b4": "2026-11-28T06:16:35+09:00",
+  "47a72e612a00823a": "2026-11-28T06:16:35+09:00",
+  "aad8d0a622f29f1f": "2026-11-28T06:16:35+09:00",
+  "74dc0a8f521543a0": "2026-11-28T06:16:35+09:00",
+  "b94a375c0817f796": "2026-11-28T06:16:35+09:00",
+  "9830ffa985e89798": "2026-11-28T06:16:35+09:00",
+  "fa129d318570f9e1": "2026-11-28T06:16:35+09:00",
+  "cf01051d5f2a3875": "2026-11-28T06:16:35+09:00",
+  "f01bafdc97143306": "2026-11-28T06:16:35+09:00",
+  "583aebf0464fea05": "2026-11-28T06:16:35+09:00",
+  "339c8438715e8188": "2026-11-28T06:16:35+09:00",
+  "b63355b6dd3a63da": "2026-11-28T06:16:35+09:00",
+  "4d9498ed61ae5b00": "2026-11-28T06:16:35+09:00",
+  "6e0f674002117481": "2026-11-28T06:16:35+09:00",
+  "1d57f096d473db65": "2026-11-28T06:16:35+09:00",
+  "b3160885d7d75533": "2026-11-28T06:16:35+09:00",
+  "8ffaea0638f6ef94": "2026-11-28T06:16:35+09:00",
+  "fd1ba147478d4063": "2026-11-28T06:16:35+09:00",
+  "a5c2932ad1ff4399": "2026-11-28T06:16:35+09:00",
+  "6a6d5cb6293df123": "2026-11-28T06:16:35+09:00",
+  "61aa5728d8b37ba9": "2026-11-28T06:16:35+09:00"
  },
  "discarded": [
   {
