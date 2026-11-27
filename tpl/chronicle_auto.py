@@ -111,12 +111,18 @@ def say_once(st: dict, d, key: str, text: str) -> bool:
     return say(text)
 
 
-def say(text: str, preview: bool = True) -> bool:
+def say(text: str, preview: bool = True, buttons: list | None = None, silent: bool = False) -> bool:
+    """buttons: [[(글자, callback_data), ...], ...] — 텔레그램 버튼(2026-11-28 후보 승인용)."""
     try:
         tok, chat = _bot()
         data = {"chat_id": chat, "text": text[:4000]}
         if not preview:
             data["disable_web_page_preview"] = "true"
+        if silent:
+            data["disable_notification"] = "true"
+        if buttons:
+            data["reply_markup"] = json.dumps({"inline_keyboard": [[{"text": t, "callback_data": cb[:64]} for t, cb in row] for row in buttons]},
+                                              ensure_ascii=False)
         return requests.post(f"https://api.telegram.org/bot{tok}/sendMessage", data=data, timeout=30).ok
     except Exception:  # noqa: BLE001
         return False
@@ -155,7 +161,8 @@ def collect(c: dict, errs: dict, log=print) -> list[dict]:
     def rec(name):
         return lambda m: errs.__setitem__(m.split(":")[0].replace("피드 실패 ", ""), m) if m.startswith("피드 실패") else None
     items = tn.collect(base, log=rec("기존"))
-    items += tn.collect({"feeds": [{**f, "outlet": f.get("outlet") or f["name"]} for f in c.get("feeds", [])]}, log=rec("추가"))
+    extra = sorted(c.get("feeds", []), key=lambda f: not f.get("popular"))   # 인기기사 피드 먼저(같은 기사 중복 제거 때 '인기' 표시가 남게)
+    items += tn.collect({"feeds": [{**f, "outlet": f.get("outlet") or f["name"]} for f in extra]}, log=rec("추가"))
     items += _reddit(c, errs)
     return items
 
@@ -502,7 +509,7 @@ def produce(x: dict, st: dict, c: dict, log=print, redo: dict | None = None) -> 
     with open(out / "thumbnail.png", "rb") as f:
         requests.post(f"{api}/sendDocument", data={"chat_id": chat, "caption": f"🖼 썸네일 PNG (제{no}장)"},
                       files={"document": (f"ch{no:02d}_thumbnail.png", f, "image/png")}, timeout=120)
-    tier_ko = f"✅ 승인 후보 {x['proposal']}번" if x.get("proposal") else \
+    tier_ko = (f"✅ 승인 후보 {x['proposal']}번" if isinstance(x.get("proposal"), int) else f"✅ 승인 {x['proposal']}") if x.get("proposal") else \
         "📨 직접 요청" + (" · 로마노 HWG" if x.get("hwg") else "") if x.get("request") else \
         {1: "1순위 로마노 HWG", 2: "2순위 터진 유형", 3: "3순위 빅클럽 스타 화제"}.get(x["tier"], "")
     sc = x.get("scores") or {}
@@ -571,6 +578,23 @@ def read_views(st: dict) -> None:
     r = requests.get(f"https://api.telegram.org/bot{tok}/getUpdates", params={"offset": off, "timeout": 0}, timeout=30).json()
     for u in r.get("result") or []:
         st["updates_offset"] = u["update_id"] + 1
+        cq = u.get("callback_query")
+        if cq:                                       # 후보 버튼(2026-11-28)
+            if str(((cq.get("message") or {}).get("chat") or {}).get("id")) != str(chat):
+                continue
+            data = str(cq.get("data") or "")
+            if data.startswith("chr:"):
+                reply = button_tap(st, data)
+                try:
+                    requests.post(f"https://api.telegram.org/bot{tok}/answerCallbackQuery",
+                                  data={"callback_query_id": cq.get("id"), "text": reply[:190]}, timeout=20)
+                except Exception:  # noqa: BLE001
+                    pass
+                say(reply)
+            else:                                    # 연대기 버튼이 아님(예: 다른 자동화 버튼) — 지우지 않고 보관(다른 쪽이 가져가게)
+                st.setdefault("foreign_callbacks", []).append({"at": now_kst().isoformat(timespec="seconds"), "update": u})
+                st["foreign_callbacks"] = st["foreign_callbacks"][-50:]
+            continue
         msg = u.get("message") or {}
         if str((msg.get("chat") or {}).get("id")) != str(chat):
             continue
@@ -818,13 +842,20 @@ def propose(st: dict, d, c: dict, now: datetime, slot: str, log=print) -> dict:
     st["proposed"] = {k: v for k, v in st["proposed"].items() if k >= (now - timedelta(days=3)).strftime("%Y-%m-%d")}
     save_state(d, st, f"chronicle propose {slot} start")     # 먼저 기록: 실패해도 같은 시각에 되풀이하지 않음(비용)
     errs = day_of(st, day)["errors"]
-    items = collect(c, errs, log)
     pc = c.get("propose") or {}
     srcs = [str(x) for x in pc.get("sources") or []]
+    if pc.get("mode", "simple") == "simple" and srcs:    # 매시간 보고: 전문지 RSS 6개만 받음(빠르고 가벼움)
+        mine = [{**f, "outlet": f.get("outlet") or f["name"]} for f in sorted(c.get("feeds", []), key=lambda f: not f.get("popular"))
+                if (f.get("outlet") or f["name"]) in srcs]                 # 인기기사 피드 먼저(중복 제거 때 '인기' 표시 유지)
+        items = FD.collect({"feeds": mine}, log=lambda m: errs.__setitem__(m[:40], m) if m.startswith("피드 실패") else None)
+    else:
+        items = collect(c, errs, log)
     if srcs:                                           # 2026-11-28 대표님: 해외축구 전문 매체 기사만
         items = [it for it in items if any(sname in (it.get("publisher") or "") or sname == it.get("feed") for sname in srcs)]
     if pc.get("skip_kleague", True):
         items = [it for it in items if not KLEAGUE.search(it.get("title", ""))]
+    if pc.get("mode", "simple") == "simple":            # 2026-11-28 대표님: 점수 없이 매체 인기순·최신순 그대로
+        return propose_simple(st, d, c, now, slot, items, log)
     pop_feeds = {f["name"] for f in c.get("feeds", []) if f.get("popular")}
     pop_ids = {it.get("id") for it in items if it.get("feed") in pop_feeds}
     cands = candidates(c, items, st, log, ignore_seen=True, min_outlets=int(pc.get("min_outlets", 2)))
@@ -873,6 +904,166 @@ def propose(st: dict, d, c: dict, now: datetime, slot: str, log=print) -> dict:
         lines.append("")
     lines.append("안 만들 거면 그냥 두셔도 돼요. 번호는 가장 최근 후보 기준이에요.")
     say("\n".join(lines), preview=False)
+    save_state(d, st, f"chronicle propose {slot}")
+    return {"why": f"후보 보고 {slot}: {len(picks)}개"}
+
+
+def simple_picks(items: list[dict], st: dict, c: dict, now: datetime) -> list[dict]:
+    """매체 '최근 인기기사' 순위 그대로 + 최신 기사(시간 역순). AI 점수 없음(비용 0).
+    빼는 것: 범죄·사망·심각한 부상·사생활·18세 미만(안전 규칙) · K리그(위에서) · 최근 48시간에 보낸 같은 소식(비슷한 제목 포함)."""
+    pc = c.get("propose") or {}
+    pop_feeds = {f["name"] for f in c.get("feeds", []) if f.get("popular")}
+    fresh = float(pc.get("fresh_hours", 36))
+    lim48 = (now - timedelta(hours=48)).isoformat()
+    shown = [p for p in st.get("proposal_log", []) if p.get("at", "") >= lim48]
+    shown_ids = {p.get("id") for p in shown}
+    shown_tk = [FD.tokens(p.get("title", "")) for p in shown if p.get("title")]
+
+    def ok(it):
+        t = f"{it.get('title', '')} {it.get('summary', '')}"
+        if F.EXCL.search(t) or FD.is_personal(t) or Q.is_minor(t) or NOT_FOOT.search(it.get("title", "")):
+            return False
+        try:
+            if (now - datetime.fromisoformat(it.get("published", ""))).total_seconds() / 3600 > fresh:
+                return False
+        except (TypeError, ValueError):
+            return False
+        if it.get("id") in shown_ids:
+            return False
+        tk = FD.tokens(it.get("title", ""))
+        return not any(FD.jaccard(tk, s_) >= 0.5 for s_ in shown_tk)
+    pop, rank = [], {}
+    for it in items:                                     # 피드 순서 = 인기 순위
+        if it.get("feed") in pop_feeds:
+            rank[it["feed"]] = rank.get(it["feed"], 0) + 1
+            pop.append({**it, "pop_rank": rank[it["feed"]]})
+    pop.sort(key=lambda x: x["pop_rank"])               # 매체별 1위끼리 → 2위끼리 …
+    latest = sorted([it for it in items if it.get("feed") not in pop_feeds], key=lambda x: x.get("published", ""), reverse=True)
+    out, tks = [], []
+
+    def add(it, kind):
+        tk = FD.tokens(it.get("title", ""))
+        if not ok(it) or any(FD.jaccard(tk, t_) >= 0.5 for t_ in tks):
+            return False
+        tks.append(tk)
+        out.append({**it, "kind": kind})
+        return True
+    n_pop, n_all = int(pc.get("n_popular", 2)), int(pc.get("n", 3))
+    for it in pop:
+        if sum(1 for x in out if x["kind"] == "pop") >= n_pop:
+            break
+        add(it, "pop")
+    for it in latest:
+        if len(out) >= n_all:
+            break
+        add(it, "new")
+    for it in pop:                                       # 최신이 모자라면 인기로 채움
+        if len(out) >= n_all:
+            break
+        add(it, "pop")
+    return out[:n_all]
+
+
+def remember_offer(st: dict, key: str, url: str, title: str, n: int, now: datetime) -> None:
+    """버튼으로 승인할 후보(48시간 보관)."""
+    off = st.setdefault("offers", {})
+    off[key] = {"url": url, "title": title, "n": n, "at": now.isoformat(timespec="seconds")}
+    lim = (now - timedelta(hours=48)).isoformat()
+    st["offers"] = {k: v for k, v in off.items() if v.get("at", "") >= lim}
+
+
+def button_tap(st: dict, data: str) -> str:
+    """'chr:mk:<key>' → 그 후보 제작 대기 줄(승인). 답장 글을 돌려줌."""
+    key = data.split(":", 2)[2] if data.count(":") >= 2 else ""
+    o = (st.get("offers") or {}).get(key)
+    if not o:
+        return "이 후보는 시간이 지나 만들 수 없어요(48시간). 링크를 직접 보내 주세요."
+    q = st.setdefault("inbox", [])
+    if any(r.get("key") == key and r.get("status") in ("approved", "done") for r in q):
+        return "이미 승인한 후보예요 — 만들고 있어요."
+    q.append({"at": now_kst().isoformat(timespec="seconds"), "status": "approved", "key": key, "url": o["url"], "file_id": "",
+              "note": o.get("title", "")[:300], "proposal": o.get("n") or "버튼"})
+    return f"👍 만들게요 — {o.get('title', '')[:40]} · 10분쯤 걸려요."
+
+
+BREAK_RX = re.compile(r"\[?오피셜\]?|공식\s*발표|HERE\s*WE\s*GO|히어\s*위\s*고|경질|사임|전격\s*(?:이적|합류|영입|계약)|"
+                      r"\[속보\]|속보|입단\s*확정|이적\s*확정|완전\s*이적|은퇴\s*선언", re.I)
+
+
+def check_breaking(st: dict, d, c: dict, now: datetime, log=print) -> int:
+    """5분마다: 전문지 최신 기사 중 속보(오피셜·HWG·경질·사임 등)면 매시간 보고를 기다리지 않고 바로 후보 1개씩(버튼)."""
+    pc = c.get("propose") or {}
+    if not pc.get("breaking", True):
+        return 0
+    srcs = [str(x) for x in pc.get("sources") or []]
+    feeds = [{**f, "outlet": f.get("outlet") or f["name"]} for f in c.get("feeds", []) if f["name"] in srcs]   # 최신 기사 피드만
+    items = FD.collect({"feeds": feeds}, log=lambda m: None)
+    seen = st.setdefault("breaking_seen", {})
+    lim = (now - timedelta(hours=float(pc.get("breaking_hours", 3)))).isoformat()
+    sent = 0
+    log_tk = [FD.tokens(p.get("title", "")) for p in st.get("proposal_log", [])[-80:]]
+    for it in items:
+        t = it.get("title", "")
+        if it.get("id") in seen or not BREAK_RX.search(t):
+            continue
+        seen[it["id"]] = now.isoformat(timespec="seconds")
+        if it.get("link") not in st.setdefault("breaking_links", []):
+            st["breaking_links"].append(it.get("link", ""))   # 빼는 기사(K리그 등)도 기록(5분 확인이 같은 기사로 다시 돌지 않게)
+        if KLEAGUE.search(t) or F.EXCL.search(t) or Q.is_minor(t) or NOT_FOOT.search(t):
+            continue
+        try:
+            if datetime.fromisoformat(it.get("published", "")) < datetime.fromisoformat(lim):
+                continue
+        except (TypeError, ValueError):
+            continue
+        tk = FD.tokens(t)
+        if any(FD.jaccard(tk, s_) >= 0.5 for s_ in log_tk):       # 같은 소식 이미 보냄
+            continue
+        log_tk.append(tk)
+        key = "b" + str(it["id"])
+        remember_offer(st, key, it.get("link", ""), t, "속보", now)
+        st.setdefault("breaking_links", []).append(it.get("link", ""))
+        st["breaking_links"] = st["breaking_links"][-200:]
+        st.setdefault("proposal_log", []).append({"at": now.isoformat(timespec="seconds"), "id": it.get("id"), "title": t})
+        say(f"🚨 속보 후보 — {it.get('publisher', '')}\n{t[:110]}\n🔗 {it.get('link', '')}", preview=False,
+            buttons=[[("🎬 이걸로 만들기", f"chr:mk:{key}")]], silent=now.hour < 7)       # 새벽 00~07시는 소리 없이
+        sent += 1
+        if sent >= 2:                                           # 한 번에 최대 2개
+            break
+    st["breaking_seen"] = {k: v for k, v in seen.items() if v >= (now - timedelta(days=2)).isoformat()}
+    return sent
+
+
+def propose_simple(st: dict, d, c: dict, now: datetime, slot: str, items: list[dict], log=print) -> dict:
+    picks = simple_picks(items, st, c, now)
+    if not picks:
+        say(f"📋 연대기 후보 ({slot}) — 새로 보낼 기사가 없어요. 만들고 싶은 기사가 있으면 링크를 보내 주세요.")
+        save_state(d, st, f"chronicle propose {slot} none")
+        return {"why": f"후보 보고 {slot}: 없음"}
+    day = now.strftime("%Y-%m-%d")
+    st["proposal"] = {"batch": f"{day} {slot}", "at": now.isoformat(timespec="seconds"),
+                      "items": [{"n": i + 1, "key": "u" + str(x.get("id")), "url": x.get("link", ""), "title": x.get("title", "")}
+                                for i, x in enumerate(picks)]}
+    log_ = st.setdefault("proposal_log", [])
+    log_ += [{"at": now.isoformat(timespec="seconds"), "id": x.get("id"), "title": x.get("title", "")} for x in picks]
+    st["proposal_log"] = log_[-80:]
+    lines = [f"📋 연대기 후보 ({slot}) — 만들 번호를 보내 주세요 (예: 1 · 1 3)", ""]
+    for i, x in enumerate(picks):
+        if x["kind"] == "pop":
+            tag = f"🔥 {x.get('publisher', '')} 인기 {x['pop_rank']}위"
+        else:
+            try:
+                mins = int((now - datetime.fromisoformat(x.get("published", ""))).total_seconds() // 60)
+                ago = f"{mins}분 전" if mins < 60 else f"{mins // 60}시간 전"
+            except (TypeError, ValueError):
+                ago = "최신"
+            tag = f"🆕 {x.get('publisher', '')} · {ago}"
+        lines += [f"{NUM_EMO[i]} {tag}", "   " + str(x.get("title", ""))[:100], "   🔗 " + x.get("link", ""), ""]
+    lines.append("버튼을 누르거나 번호를 보내 주세요. 안 만들 거면 그냥 두셔도 돼요.")
+    for i, x in enumerate(picks):
+        remember_offer(st, "u" + str(x.get("id")), x.get("link", ""), x.get("title", ""), i + 1, now)
+    btn = [[(f"{NUM_EMO[i]} 만들기", f"chr:mk:u{x.get('id')}") for i, x in enumerate(picks)]]
+    say("\n".join(lines), preview=False, buttons=btn)
     save_state(d, st, f"chronicle propose {slot}")
     return {"why": f"후보 보고 {slot}: {len(picks)}개"}
 
@@ -940,6 +1131,8 @@ def process_inbox(st: dict, d, c: dict, now: datetime, log=print) -> dict | None
             if not (a.get("title") or a.get("text")):
                 raise RuntimeError("기사 글을 읽지 못했어요")
             x, why = IB.to_candidate(a, art.Meter(cap=float(c.get("video_cap_krw", 300))))
+            if x is not None and r.get("proposal"):
+                x = {**x, "proposal": r["proposal"]}
             if x is None:
                 r["status"] = "skipped"
                 say(f"🙅 보내 주신 기사는 만들지 않았어요 — {why}")
@@ -971,6 +1164,12 @@ def run_inbox(log=print) -> dict:
         except Exception as e:  # noqa: BLE001
             log(f"[연대기] 후보 보고 실패: {type(e).__name__}: {e}")
             say_once(st, d, f"propose:{type(e).__name__}", f"⚠️ 연대기 후보 보고 실패: {type(e).__name__}: {str(e)[:150]}")
+    try:
+        nb = check_breaking(st, d, c, now, log)          # 속보는 매시간 보고를 기다리지 않음(2026-11-28)
+        if nb:
+            log(f"[연대기] 속보 후보 {nb}개 보냄")
+    except Exception as e:  # noqa: BLE001
+        log(f"[연대기] 속보 확인 실패: {type(e).__name__}: {e}")
     r = process_inbox(st, d, c, now, log)
     if r is None:
         save_state(d, st, "chronicle inbox")

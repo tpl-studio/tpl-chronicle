@@ -21,17 +21,18 @@ def check(cond, msg):
 
 
 said = []
-A.say = lambda t, preview=True: said.append(t) or True
+btns = []
+A.say = lambda t, preview=True, buttons=None, silent=False: said.append(t) or btns.append((buttons, silent)) or True
 A.save_state = lambda d, st, msg="": None
 quiet = lambda m: None  # noqa: E731
 KST = timezone(timedelta(hours=9))
 c = {**A.conf(), "daily_max": 4, "video_cap_krw": 300}
 
-print("[1] 보고 시각 — 08:00 · 13:00 · 21:00 부터 90분 안, 하루 한 번")
+print("[1] 보고 시각 — 08~23시 매시 정각부터 50분 안, 회차마다 한 번")
 st = {}
 check(A.due_slot(st, c, datetime(2026, 11, 28, 13, 5, tzinfo=KST)) == "13:00", "13:05 → 13:00 회차")
 check(A.due_slot(st, c, datetime(2026, 11, 28, 12, 59, tzinfo=KST)) == "", "12:59 → 아직 아님")
-check(A.due_slot(st, c, datetime(2026, 11, 28, 14, 31, tzinfo=KST)) == "", "14:31 → 90분 지남")
+check(A.due_slot(st, c, datetime(2026, 11, 28, 14, 51, tzinfo=KST)) == "", "14:51 → 50분 지남(다음 회차 전)")
 st["proposed"] = {"2026-11-28": ["13:00"]}
 check(A.due_slot(st, c, datetime(2026, 11, 28, 13, 40, tzinfo=KST)) == "", "이미 보고한 회차는 다시 안 함")
 check(A.due_slot({}, {**c, "propose": {**c["propose"], "on": False}}, datetime(2026, 11, 28, 13, 5, tzinfo=KST)) == "", "on=false 면 안 함")
@@ -110,7 +111,7 @@ pc = A.conf()["propose"]
 check(pc["sources"] == ["인터풋볼", "풋볼리스트", "베스트일레븐"] and pc["min_outlets"] == 1, "후보 소스 = 전문 매체 3곳")
 check({"인터풋볼", "풋볼리스트", "베스트일레븐"} <= {f["name"] for f in A.conf()["feeds"]}, "RSS 3곳 등록")
 
-print("[8] 후보 보고 — 최신순 + 인기기사(🔥 +3점) · 전문 매체만")
+print("[8] (점수 모드) 후보 보고 — 최신순 + 인기기사(🔥 +3점) · 전문 매체만")
 now8 = datetime.now(KST).replace(microsecond=0)
 iso = lambda h: (now8 - timedelta(hours=h)).astimezone(timezone.utc).isoformat()  # noqa: E731
 items = [
@@ -135,13 +136,102 @@ A.art.record = lambda *a, **k: None
 A.art.Meter = lambda cap=0: type("M", (), {"krw": 0})()
 st8 = {}
 said.clear()
-r = A.propose(st8, None, A.conf(), now8, "13:00", quiet)
+c8 = A.conf()
+c8["propose"] = {**c8["propose"], "mode": "score"}
+r = A.propose(st8, None, c8, now8, "13:00", quiet)
 titles = " ".join(sum(seen_sc, []))
 check("케인" not in titles, "구글 뉴스(일반 매체)는 후보에서 빠짐")
 check("울산" not in titles, "K리그 빠짐")
 msg = said[-1] if said else ""
 check(msg.index("손흥민") < msg.index("김민재") and "18점 · 🔥인기" in msg, "인기기사(손흥민)가 +3점으로 1번 · 🔥 표시")
 check(len(st8["proposal"]["items"]) == 2 and st8["proposed"][now8.strftime("%Y-%m-%d")] == ["13:00"], "후보 2개 저장 · 회차 기록")
+
+print("[9] (기본 simple 모드) 매체 인기순·최신순 그대로 — AI 점수 없음")
+check(A.conf()["propose"]["mode"] == "simple", "기본은 simple")
+items9 = [
+    {"id": "p1", "title": "김민재 페네르바체행 가능성", "link": "https://www.interfootball.co.kr/p1", "publisher": "인터풋볼", "feed": "인터풋볼 인기", "published": iso(20)},
+    {"id": "p2", "title": "손흥민 LAFC 존재감 논란", "link": "https://www.interfootball.co.kr/p2", "publisher": "인터풋볼", "feed": "인터풋볼 인기", "published": iso(10)},
+    {"id": "q1", "title": "히샬리송 에버턴 영입망", "link": "https://www.besteleven.com/q1", "publisher": "베스트일레븐", "feed": "베스트일레븐 인기", "published": iso(15)},
+    {"id": "n1", "title": "포체티노 맨유 첫 홈경기 경고", "link": "https://www.footballist.co.kr/n1", "publisher": "풋볼리스트", "feed": "풋볼리스트", "published": iso(1)},
+    {"id": "n2", "title": "[K-관전포인트] 울산 HD 우승", "link": "https://www.besteleven.com/n2", "publisher": "베스트일레븐", "feed": "베스트일레븐", "published": iso(0.5)},
+    {"id": "n3", "title": "케인 해트트릭", "link": "https://news.google.com/x", "publisher": "연합뉴스", "feed": "구글 뉴스 · 해외축구", "published": iso(0.2)},
+    {"id": "old", "title": "옛날 기사", "link": "https://www.footballist.co.kr/old", "publisher": "풋볼리스트", "feed": "풋볼리스트", "published": iso(50)},
+]
+from tpl import feeds as FD  # noqa: E402,F811
+_real_fd_collect = FD.collect
+FD.collect = lambda conf, log=None: list(items9)          # simple 모드는 전문지 RSS 만 직접 받음
+A.score = lambda *a, **k: (_ for _ in ()).throw(AssertionError("simple 모드에서 AI 점수 호출"))
+st9 = {}
+said.clear()
+A.propose(st9, None, A.conf(), now8, "08:00", quiet)
+msg = said[-1]
+its = st9["proposal"]["items"]
+check([i["url"].split("/")[-1] for i in its] == ["p1", "q1", "n1"], f"인기 1위들(인터풋볼·베스트일레븐) + 최신 1개 ({[i['url'] for i in its]})")
+check("🔥 인터풋볼 인기 1위" in msg and "🆕 풋볼리스트 · 1시간 전" in msg, "인기 순위·최신 시간 표시")
+check("울산" not in msg and "케인" not in msg and "옛날" not in msg, "K리그·일반 매체·오래된 기사 빠짐")
+said.clear()
+A.propose(st9, None, A.conf(), now8.replace(hour=13), "13:00", quiet)
+its2 = st9["proposal"]["items"]
+check(not ({i["url"] for i in its} & {i["url"] for i in its2}), "다음 회차엔 이미 보낸 기사 안 보냄")
+check(IB.take({"message_id": 20, "text": "1"}, st9, A.say) and st9["inbox"][-1].get("url") == its2[0]["url"]
+      and st9["inbox"][-1]["status"] == "approved" and st9["inbox"][-1]["proposal"] == 1, "번호 승인 → 그 기사 링크로 제작 대기")
+
+FD.collect = _real_fd_collect
+
+print("[10] 매시간 보고 · 실제 RSS 읽기 흐름(같은 기사가 최신·인기 둘 다 있어도 🔥 유지)")
+pc = A.conf()["propose"]
+check(len(pc["times"]) == 16 and pc["times"][0] == "08:00" and pc["times"][-1] == "23:00" and pc["window_min"] < 60, "08~23시 매시간")
+check(A.due_slot({}, A.conf(), datetime(2026, 11, 28, 15, 10, tzinfo=KST)) == "15:00" and
+      A.due_slot({}, A.conf(), datetime(2026, 11, 28, 3, 10, tzinfo=KST)) == "", "15:10 → 15시 회차 · 새벽 3시는 쉼")
+ts = (now8 - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
+ts_new = (now8 - timedelta(minutes=30)).strftime("%Y-%m-%d %H:%M:%S")
+
+
+def rss(rows):
+    return "<rss><channel>" + "".join(f"<item><title>{t}</title><link>{u}</link><pubDate>{d}</pubDate></item>" for t, u, d in rows) + "</channel></rss>"
+
+
+pages = {
+    "https://www.interfootball.co.kr/rss/allArticle.xml": rss([("아스널 신입생 데뷔골", "https://i/2", ts_new), ("김민재 페네르바체행", "https://i/1", ts)]),
+    "https://www.interfootball.co.kr/rss/clickTop.xml": rss([("김민재 페네르바체행", "https://i/1", ts)]),
+    "https://www.footballist.co.kr/rss/allArticle.xml": rss([]), "https://www.footballist.co.kr/rss/clickTop.xml": rss([]),
+    "https://www.besteleven.com/rss/allArticle.xml": rss([]), "https://www.besteleven.com/rss/clickTop.xml": rss([]),
+}
+real_collect = FD.collect
+FD.collect = lambda conf, log=None: real_collect(conf, fetcher=lambda u: pages[u], log=log or (lambda m: None), sleep=lambda s_: None)
+st10 = {}
+said.clear()
+A.propose(st10, None, A.conf(), now8, "15:00", quiet)
+msg = said[-1]
+check("🔥 인터풋볼 인기 1위" in msg and "김민재" in msg.split("🔥")[1][:80], "최신 피드에도 있는 인기기사 → 🔥 표시 유지")
+check("🆕 인터풋볼 · 30분 전" in msg and "아스널" in msg, "최신 기사 🆕 · 몇 분 전")
+FD.collect = real_collect
+
+print("[11] 버튼 승인 · 속보 즉시 후보")
+check(btns[-1][0] and btns[-1][0][0][0][0] == "1️⃣ 만들기" and btns[-1][0][0][0][1].startswith("chr:mk:u"), "매시간 후보에 1️⃣2️⃣3️⃣ 버튼")
+cb = btns[-1][0][0][0][1]
+rep = A.button_tap(st10, cb)
+check("만들게요" in rep and st10["inbox"][-1]["status"] == "approved" and st10["inbox"][-1]["url"].startswith("https://"), "버튼 누름 → 그 기사 제작 대기")
+check("이미 승인" in A.button_tap(st10, cb), "두 번 눌러도 한 번만")
+check(IB.take({"message_id": 30, "text": "1"}, st10, A.say) and sum(1 for r in st10["inbox"] if r.get("key") == cb.split(":")[2]) == 1,
+      "버튼으로 승인한 걸 번호로 또 보내도 한 번만")
+check("시간이 지나" in A.button_tap(st10, "chr:mk:없는키"), "없는 후보 → 안내")
+nb = datetime(2026, 11, 28, 3, 0, tzinfo=KST)
+brk = (nb - timedelta(minutes=20)).strftime("%Y-%m-%d %H:%M:%S")
+old = (nb - timedelta(hours=5)).strftime("%Y-%m-%d %H:%M:%S")
+pages["https://www.interfootball.co.kr/rss/allArticle.xml"] = rss([
+    ("[오피셜] 맨유, 포체티노 경질 발표", "https://i/b1", brk), ("[오피셜] 울산 HD 새 감독", "https://i/k1", brk),
+    ("[오피셜] 옛날 소식 이적 확정", "https://i/o1", old), ("아스널 훈련 사진", "https://i/x", brk)])
+FD.collect = lambda conf, log=None: real_collect(conf, fetcher=lambda u: pages[u], log=log or (lambda m: None), sleep=lambda s_: None)
+st11 = {}
+said.clear(); btns.clear()
+n11 = A.check_breaking(st11, None, A.conf(), nb, quiet)
+check(n11 == 1 and "포체티노 경질" in said[-1] and btns[-1][0][0][0][1].startswith("chr:mk:b") and btns[-1][1] is True,
+      "속보 1개(K리그·오래된·속보 아닌 기사 빼고) · 버튼 · 새벽은 무음")
+check({"https://i/b1", "https://i/k1"} <= set(st11["breaking_links"]) or "https://i/b1" in st11["breaking_links"], "보낸 링크 기록")
+check(A.check_breaking(st11, None, A.conf(), nb, quiet) == 0, "같은 속보 다시 안 보냄")
+check("만들게요" in A.button_tap(st11, btns[-1][0][0][0][1]), "속보 버튼 → 제작 대기")
+FD.collect = real_collect
 
 print()
 print("실패:", len(fails))

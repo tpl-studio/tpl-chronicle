@@ -27,6 +27,49 @@ def propose_due(st: dict) -> bool:
     return False
 
 
+BREAK = r"\[?오피셜\]?|공식\s*발표|HERE\s*WE\s*GO|히어\s*위\s*고|경질|사임|전격\s*(?:이적|합류|영입|계약)|\[속보\]|속보|입단\s*확정|이적\s*확정|완전\s*이적|은퇴\s*선언"
+KLEAGUE = r"K리그|K-?League|코리아컵|\[K-"
+
+
+def breaking_new(st: dict) -> bool:
+    """전문지 최신 기사 RSS(3곳)에 3시간 안 속보가 있고 아직 안 보낸 링크면 True(표준 라이브러리만 · 몇 초)."""
+    import re
+    import tomllib
+    import xml.etree.ElementTree as ET
+    from datetime import datetime, timedelta, timezone
+    try:
+        c = tomllib.loads((Path(__file__).resolve().parents[1] / "config" / "chronicle.toml").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    pc = c.get("propose") or {}
+    if not pc.get("on") or not pc.get("breaking", True):
+        return False
+    srcs = set(pc.get("sources") or [])
+    done = set(st.get("breaking_links") or [])
+    kst = timezone(timedelta(hours=9))
+    lim = datetime.now(kst) - timedelta(hours=float(pc.get("breaking_hours", 3)))
+    for f in c.get("feeds", []):
+        if f.get("name") not in srcs:
+            continue
+        try:
+            req = urllib.request.Request(f["url"], headers={"User-Agent": "Mozilla/5.0 (tpl-chronicle)"})
+            with urllib.request.urlopen(req, timeout=15) as r:
+                root = ET.fromstring(r.read())
+        except Exception:  # noqa: BLE001 — 한 곳 실패해도 나머지
+            continue
+        for it in root.iter("item"):
+            t, link, d = (it.findtext("title") or ""), (it.findtext("link") or "").strip(), (it.findtext("pubDate") or "").strip()
+            if not re.search(BREAK, t, re.I) or re.search(KLEAGUE, t, re.I) or link in done:
+                continue
+            try:
+                when = datetime.fromisoformat(d.replace(" ", "T")[:19]).replace(tzinfo=kst)
+            except ValueError:
+                continue
+            if when >= lim:
+                return True
+    return False
+
+
 def main() -> int:
     tok, chat = os.environ.get("PERSONAL_BOT_TOKEN", "").strip(), os.environ.get("PERSONAL_CHAT_ID", "").strip()
     state = Path(os.environ.get("TPL_CHRONICLE_STATE", "state/chronicle.json"))
@@ -39,12 +82,15 @@ def main() -> int:
         run = True
     if not run and propose_due(st):            # 2026-11-28: 반자동 후보 보고 시각
         run = True
+    if not run and breaking_new(st):           # 2026-11-28: 전문지 속보(오피셜·HWG·경질 등)가 새로 올라옴
+        run = True
     if not run and tok and chat:
         off = int(st.get("updates_offset", 0))
         try:
             with urllib.request.urlopen(f"https://api.telegram.org/bot{tok}/getUpdates?offset={off}&timeout=0", timeout=30) as r:
                 res = json.loads(r.read().decode()).get("result") or []
-            run = any(str(((u.get("message") or {}).get("chat") or {}).get("id")) == chat for u in res)
+            run = any(str(((u.get("message") or (u.get("callback_query") or {}).get("message") or {}).get("chat") or {}).get("id")) == chat
+                      for u in res)                     # 메시지 또는 후보 버튼 누름(2026-11-28)
         except Exception as e:  # noqa: BLE001 — 확인 실패면 본 실행으로 넘김(놓치지 않게)
             print(f"확인 실패({type(e).__name__}) → 본 실행")
             run = True

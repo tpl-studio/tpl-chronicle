@@ -57,9 +57,14 @@ def take(msg: dict, st: dict, say) -> bool:
             key = items[n]["key"]
             if any(r.get("key") == key and r.get("status") in ("approved", "done") for r in q):
                 continue
-            q.append({"id": msg.get("message_id"), "at": datetime.now().isoformat(timespec="seconds"), "status": "approved",
-                      "key": key, "cand": items[n]["cand"], "proposal": n})
-        names = ", ".join(f"{n}번 {items[n]['cand'].get('subject_ko', '')}" for n in ok)
+            ent = {"id": msg.get("message_id"), "at": datetime.now().isoformat(timespec="seconds"), "status": "approved",
+                   "key": key, "proposal": n}
+            if items[n].get("cand"):
+                ent["cand"] = items[n]["cand"]
+            else:                              # 매체 인기·최신 후보(점수 없음): 링크로 기사 읽고 바로 제작
+                ent.update(url=items[n].get("url", ""), file_id="", note=items[n].get("title", "")[:300])
+            q.append(ent)
+        names = ", ".join(f"{n}번" + (f" {items[n]['cand'].get('subject_ko', '')}" if items[n].get("cand") else "") for n in ok)
         reply = ((f"👍 {names} 만들게요. 하나에 10분쯤 걸려요." if ok else "")
                  + (f"\n{', '.join(map(str, bad))}번은 후보에 없어요." if bad else "")).strip()
         say(reply or "이미 승인한 후보예요 — 만들고 있어요.")
