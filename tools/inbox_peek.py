@@ -29,6 +29,7 @@ def propose_due(st: dict) -> bool:
 
 BREAK = r"\[?오피셜\]?|공식\s*발표|HERE\s*WE\s*GO|히어\s*위\s*고|경질|사임|전격\s*(?:이적|합류|영입|계약)|\[속보\]|속보|입단\s*확정|이적\s*확정|완전\s*이적|은퇴\s*선언"
 KLEAGUE = r"K리그|K-?League|코리아컵|\[K-"
+OFFICIAL = r"\[\s*오피셜\s*\]|오피셜|공식\s*발표|HERE\s*WE\s*GO|히어\s*위\s*고"
 
 
 def breaking_new(st: dict) -> bool:
@@ -42,8 +43,9 @@ def breaking_new(st: dict) -> bool:
     except (OSError, ValueError):
         return False
     pc = c.get("propose") or {}
-    if not pc.get("on") or not pc.get("breaking", True):
+    if not pc.get("breaking", True):          # 매시간 후보(on)와 따로(2026-11-28 05:31)
         return False
+    brx = OFFICIAL if pc.get("breaking_only", "official") == "official" else BREAK
     srcs = set(pc.get("sources") or [])
     done = set(st.get("breaking_links") or [])
     kst = timezone(timedelta(hours=9))
@@ -59,7 +61,7 @@ def breaking_new(st: dict) -> bool:
             continue
         for it in root.iter("item"):
             t, link, d = (it.findtext("title") or ""), (it.findtext("link") or "").strip(), (it.findtext("pubDate") or "").strip()
-            if not re.search(BREAK, t, re.I) or re.search(KLEAGUE, t, re.I) or link in done:
+            if not re.search(brx, t, re.I) or re.search(KLEAGUE, t, re.I) or link in done:
                 continue
             try:
                 when = datetime.fromisoformat(d.replace(" ", "T")[:19]).replace(tzinfo=kst)
