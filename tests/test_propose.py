@@ -10,6 +10,8 @@ os.chdir(ROOT)
 sys.stdout.reconfigure(encoding="utf-8")
 
 from tpl import chronicle_auto as A, inbox as IB, quality as Q  # noqa: E402
+_conf = A.conf
+A.conf = lambda: {**_conf(), "propose": {**_conf()["propose"], "on": True}}   # 설정에서 꺼 둬도(보류) 기능 시험은 켠 상태로
 
 fails = []
 

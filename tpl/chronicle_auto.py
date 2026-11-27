@@ -1015,11 +1015,15 @@ BREAK_RX = re.compile(r"\[?오피셜\]?|공식\s*발표|HERE\s*WE\s*GO|히어\s*
                       r"\[속보\]|속보|입단\s*확정|이적\s*확정|완전\s*이적|은퇴\s*선언", re.I)
 
 
+OFFICIAL_RX = re.compile(r"\[\s*오피셜\s*\]|오피셜|공식\s*발표|HERE\s*WE\s*GO|히어\s*위\s*고", re.I)   # 2026-11-28 대표님: 오피셜·HWG 만
+
+
 def check_breaking(st: dict, d, c: dict, now: datetime, log=print) -> int:
     """5분마다: 전문지 최신 기사 중 속보(오피셜·HWG·경질·사임 등)면 매시간 보고를 기다리지 않고 바로 후보 1개씩(버튼)."""
     pc = c.get("propose") or {}
-    if not pc.get("breaking", True):
+    if not pc.get("breaking", True):                        # 매시간 후보(on)와 따로 켜고 끔(2026-11-28 05:31)
         return 0
+    rx = OFFICIAL_RX if pc.get("breaking_only", "official") == "official" else BREAK_RX
     srcs = [str(x) for x in pc.get("sources") or []]
     feeds = [{**f, "outlet": f.get("outlet") or f["name"]} for f in c.get("feeds", []) if f["name"] in srcs]   # 최신 기사 피드만
     items = FD.collect({"feeds": feeds}, log=lambda m: None)
@@ -1029,7 +1033,7 @@ def check_breaking(st: dict, d, c: dict, now: datetime, log=print) -> int:
     log_tk = [FD.tokens(p.get("title", "")) for p in st.get("proposal_log", [])[-80:]]
     for it in items:
         t = it.get("title", "")
-        if it.get("id") in seen or not BREAK_RX.search(t):
+        if it.get("id") in seen or not rx.search(t):
             continue
         seen[it["id"]] = now.isoformat(timespec="seconds")
         if it.get("link") not in st.setdefault("breaking_links", []):
