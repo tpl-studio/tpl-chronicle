@@ -767,6 +767,65 @@
      "total": 21.0
     },
     {
+     "key": "67m-against-como-favouring-madrid-man-move-news",
+     "titles": [
+      "[ESPN] Transfer rumors, news:Transfer rumors, news: Nico Paz open to Man United; against Real Madrid return",
+      "[The Sun] Nico Paz 'open to Man Utd transfer' with £67m Como star 'not favouring return to Real Madrid'",
+      "[Sports Illustrated] Transfer Rumors: Olise Wants Real Madrid; Man Utd Plot Paz Move"
+     ],
+     "outlets": [
+      "ESPN",
+      "The Sun",
+      "Sports Illustrated"
+     ],
+     "credible": [
+      "ESPN",
+      "The Sun",
+      "Sports Illustrated"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "맨유",
+      "레알 마드리드"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T08:55:00+00:00",
+     "ids": [
+      "b2dd4459de49dd71",
+      "1152878d3db2981f",
+      "8727057b6c164359"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "니코 파즈",
+     "subject_en": "Nico Paz",
+     "team_ko": "",
+     "team_en": "",
+     "league_ko": "",
+     "role": "선수",
+     "type": "이적+위트",
+     "rumor": true,
+     "transfer": true,
+     "scores": {
+      "name": 4,
+      "drama": 3,
+      "divide": 2,
+      "share": 4,
+      "surprise": 3,
+      "korea": 5
+     },
+     "reason": "이적 루머, 영국 구단 관심",
+     "base": 21.0,
+     "bonus": 0,
+     "total": 21.0
+    },
+    {
      "key": "36-another-chelsea-clothes-garnacho-in-league-loan",
      "titles": [
       "[AOL.co.uk] I played for Chelsea in the Premier League - now I'm 36 and sell clothes",
@@ -1345,11 +1404,23 @@
    "total": 0.0,
    "subject": "",
    "title": "[BBC] Nottingham Forest vs Chelsea predictions: Chris Sutton on Premier League game"
+  },
+  "67m-against-como-favouring-madrid-man-move-news": {
+   "at": "2026-11-27T18:06:37+09:00",
+   "total": 21.0,
+   "subject": "니코 파즈",
+   "title": "[ESPN] Transfer rumors, news:Transfer rumors, news: Nico Paz open to Man United; against Real Madrid return"
+  },
+  "bet-builder-chelsea-forest-game-how-injury-latest": {
+   "at": "2026-11-27T18:06:37+09:00",
+   "total": 0.0,
+   "subject": "",
+   "title": "[Goal.com] Nottingham Forest vs Chelsea Premier League game preview: Team news and injury latest"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-27T17:51:37+09:00",
+ "last_run_at": "2026-11-27T18:06:37+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -9455,7 +9526,56 @@
   "3636188e830fc57b": "2026-11-27T17:51:37+09:00",
   "af0f175792e9c9b2": "2026-11-27T17:51:37+09:00",
   "332c437dce96f19e": "2026-11-27T17:51:37+09:00",
-  "5dee9ebe9550f2d6": "2026-11-27T17:51:37+09:00"
+  "5dee9ebe9550f2d6": "2026-11-27T17:51:37+09:00",
+  "aa0dd2f17ef7e087": "2026-11-27T18:06:37+09:00",
+  "3f1da9ce5470e21b": "2026-11-27T18:06:37+09:00",
+  "b9a88cabc4383952": "2026-11-27T18:06:37+09:00",
+  "f1f9ea3f5a1d5d4f": "2026-11-27T18:06:37+09:00",
+  "0b9b619edebabf1b": "2026-11-27T18:06:37+09:00",
+  "31025c18d61aab71": "2026-11-27T18:06:37+09:00",
+  "cadbf30097918064": "2026-11-27T18:06:37+09:00",
+  "cfb1771e8477585b": "2026-11-27T18:06:37+09:00",
+  "ca7d083aed1f7995": "2026-11-27T18:06:37+09:00",
+  "2cfd50641a02648f": "2026-11-27T18:06:37+09:00",
+  "d04fbd6935b75ef3": "2026-11-27T18:06:37+09:00",
+  "7def120f3754c521": "2026-11-27T18:06:37+09:00",
+  "1dbf758df5baa3e9": "2026-11-27T18:06:37+09:00",
+  "3c832baa345a69dd": "2026-11-27T18:06:37+09:00",
+  "f69e0f3a60211624": "2026-11-27T18:06:37+09:00",
+  "cfa2cfa92f600c00": "2026-11-27T18:06:37+09:00",
+  "4d7f14bd87f716e5": "2026-11-27T18:06:37+09:00",
+  "78679c821c8a3842": "2026-11-27T18:06:37+09:00",
+  "bd527e6621087f61": "2026-11-27T18:06:37+09:00",
+  "348ef245a8de732f": "2026-11-27T18:06:37+09:00",
+  "dd115614f2b130e3": "2026-11-27T18:06:37+09:00",
+  "2ee23eab4e013606": "2026-11-27T18:06:37+09:00",
+  "5e570c8fbe4c9993": "2026-11-27T18:06:37+09:00",
+  "e523ac60e9e8b0f1": "2026-11-27T18:06:37+09:00",
+  "92ff3fd5d03b4c3a": "2026-11-27T18:06:37+09:00",
+  "f771767c33a50720": "2026-11-27T18:06:37+09:00",
+  "b2dd4459de49dd71": "2026-11-27T18:06:37+09:00",
+  "3ed5ec0d16d64f6c": "2026-11-27T18:06:37+09:00",
+  "2261a895de34b425": "2026-11-27T18:06:37+09:00",
+  "9c88b6b38e01b95e": "2026-11-27T18:06:37+09:00",
+  "d6680e2c9096111c": "2026-11-27T18:06:37+09:00",
+  "c32015972de119e8": "2026-11-27T18:06:37+09:00",
+  "09e759f3f183a3f0": "2026-11-27T18:06:37+09:00",
+  "bc786a840a557072": "2026-11-27T18:06:37+09:00",
+  "5c40c4bc8f4a7c15": "2026-11-27T18:06:37+09:00",
+  "d5470ce384c4047d": "2026-11-27T18:06:37+09:00",
+  "79987da576d3a69c": "2026-11-27T18:06:37+09:00",
+  "a16166e5fa269f13": "2026-11-27T18:06:37+09:00",
+  "ee89a8766b4a4ec7": "2026-11-27T18:06:37+09:00",
+  "3051a8d093844822": "2026-11-27T18:06:37+09:00",
+  "9f8a95fc4ff1206f": "2026-11-27T18:06:37+09:00",
+  "85162480f77c3545": "2026-11-27T18:06:37+09:00",
+  "24232fb259bf82e9": "2026-11-27T18:06:37+09:00",
+  "29f04f67e8800f9b": "2026-11-27T18:06:37+09:00",
+  "53993ce0e9a1250c": "2026-11-27T18:06:37+09:00",
+  "778420a9be0ee9de": "2026-11-27T18:06:37+09:00",
+  "cc0597b37e16498f": "2026-11-27T18:06:37+09:00",
+  "a0dd34c6e9d4e968": "2026-11-27T18:06:37+09:00",
+  "98a093c89d8c7e05": "2026-11-27T18:06:37+09:00"
  },
  "discarded": [
   {
