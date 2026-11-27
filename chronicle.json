@@ -1466,6 +1466,69 @@
      "total": 23.0
     },
     {
+     "key": "18-arsenal-boss-by-champions-coach-following-league",
+     "titles": [
+      "[The Independent] Arsenal part ways with Champions League-winning boss Renee Slegers",
+      "[TNT Sports] Arsenal Women part ways with Champions League-winning coach Renee Slegers",
+      "[The Times] Why Arsenal have sacked Champions League-winning coach Renée Slegers",
+      "[AllFootball] Renee Slegers sacked by Arsenal only 18 months after winning Champions League following poor start to WSL season",
+      "[Coast FM News] Renee Slegers sacked by Arsenal only 18 months after winning Champions League following poor start to WSL season"
+     ],
+     "outlets": [
+      "The Independent",
+      "TNT Sports",
+      "The Times",
+      "AllFootball",
+      "Coast FM News"
+     ],
+     "credible": [
+      "The Independent",
+      "The Times"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "아스널"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": true,
+     "latest": "2026-11-27T16:00:00+00:00",
+     "ids": [
+      "8867ac003e140d7c",
+      "dc18e76a3221042a",
+      "49ab05ca057972e6",
+      "0af6c34bb2f1f9e9",
+      "cc826819d3c33217"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "레니 슬레거스",
+     "subject_en": "Renee Slegers",
+     "team_ko": "아스날 여자팀",
+     "team_en": "Arsenal Women",
+     "league_ko": "WSL",
+     "role": "감독",
+     "type": "경질",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 4,
+      "drama": 5,
+      "divide": 3,
+      "share": 4,
+      "surprise": 2,
+      "korea": 3
+     },
+     "reason": "감독 경질 소식",
+     "base": 21.0,
+     "bonus": 2,
+     "total": 23.0
+    },
+    {
      "key": "arsenal-by-consent-leaves-mutual-sacked-slegers-slump",
      "titles": [
       "[ESPN] Slegers leaves Arsenal by mutual consent after WSL slump",
@@ -1906,6 +1969,60 @@
      "scores": {
       "name": 5,
       "drama": 4,
+      "divide": 3,
+      "share": 4,
+      "surprise": 2,
+      "korea": 3
+     },
+     "reason": "감독 경질 소식",
+     "base": 21.0,
+     "bonus": 0,
+     "total": 21.0
+    },
+    {
+     "key": "18-arsenal-champions-coach-following-league-leaves-months",
+     "titles": [
+      "[Reuters] Arsenal sack women's coach Slegers after poor start to WSL season",
+      "[Sky Sports] Renee Slegers leaves Arsenal only 18 months after winning Champions League following poor start to WSL season"
+     ],
+     "outlets": [
+      "Reuters",
+      "Sky Sports"
+     ],
+     "credible": [
+      "Reuters",
+      "Sky Sports"
+     ],
+     "summaries": [],
+     "stars": [],
+     "clubs": [
+      "아스널"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T15:55:43+00:00",
+     "ids": [
+      "a017525bb688d673",
+      "e941591b475a21f9"
+     ],
+     "i": 1,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "레니 슬레거스",
+     "subject_en": "Renee Slegers",
+     "team_ko": "아스날 여자팀",
+     "team_en": "Arsenal Women",
+     "league_ko": "WSL",
+     "role": "감독",
+     "type": "경질",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 4,
+      "drama": 5,
       "divide": 3,
       "share": 4,
       "surprise": 2,
@@ -2554,11 +2671,23 @@
    "total": 22.0,
    "subject": "레니 슬레거스",
    "title": "[The Independent] Arsenal part ways with Champions League-winning boss Renee Slegers"
+  },
+  "18-arsenal-boss-by-champions-coach-following-league": {
+   "at": "2026-11-28T01:16:40+09:00",
+   "total": 23.0,
+   "subject": "레니 슬레거스",
+   "title": "[The Independent] Arsenal part ways with Champions League-winning boss Renee Slegers"
+  },
+  "18-arsenal-champions-coach-following-league-leaves-months": {
+   "at": "2026-11-28T01:16:40+09:00",
+   "total": 21.0,
+   "subject": "레니 슬레거스",
+   "title": "[Reuters] Arsenal sack women's coach Slegers after poor start to WSL season"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-28T01:07:08+09:00",
+ "last_run_at": "2026-11-28T01:16:40+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -12228,7 +12357,46 @@
   "37eaeca72bccf72d": "2026-11-28T01:07:08+09:00",
   "30c1fe3a254810f6": "2026-11-28T01:07:08+09:00",
   "38bc8d461c5e4009": "2026-11-28T01:07:08+09:00",
-  "ab90d472527d739a": "2026-11-28T01:07:08+09:00"
+  "ab90d472527d739a": "2026-11-28T01:07:08+09:00",
+  "e23c959cf337ba61": "2026-11-28T01:16:40+09:00",
+  "0af6c34bb2f1f9e9": "2026-11-28T01:16:40+09:00",
+  "ec0ddecd799ae3d9": "2026-11-28T01:16:40+09:00",
+  "bcf50ffbc0f1da75": "2026-11-28T01:16:40+09:00",
+  "4ac47eb710f45248": "2026-11-28T01:16:40+09:00",
+  "b3dc9509e470efe8": "2026-11-28T01:16:40+09:00",
+  "f9e3ea03a6d3c6ae": "2026-11-28T01:16:40+09:00",
+  "2f320eec7c2d9308": "2026-11-28T01:16:40+09:00",
+  "e91423b48abb65cc": "2026-11-28T01:16:40+09:00",
+  "0e4315a28e9a0cbb": "2026-11-28T01:16:40+09:00",
+  "9636ff3d5a12d8a0": "2026-11-28T01:16:40+09:00",
+  "376b160c34cfb47d": "2026-11-28T01:16:40+09:00",
+  "86142e1504a82902": "2026-11-28T01:16:40+09:00",
+  "e382fdf999ca1ac3": "2026-11-28T01:16:40+09:00",
+  "b8fa168d3895d4c0": "2026-11-28T01:16:40+09:00",
+  "4e4ee2cf91f5b411": "2026-11-28T01:16:40+09:00",
+  "cc826819d3c33217": "2026-11-28T01:16:40+09:00",
+  "b9e37d2028eafdb2": "2026-11-28T01:16:40+09:00",
+  "28f2af6d2b063a2d": "2026-11-28T01:16:40+09:00",
+  "64c738ceee9beac1": "2026-11-28T01:16:40+09:00",
+  "a017525bb688d673": "2026-11-28T01:16:40+09:00",
+  "1ad51a1ed0789fe8": "2026-11-28T01:16:40+09:00",
+  "7766370414e716d2": "2026-11-28T01:16:40+09:00",
+  "c9146120c47b9704": "2026-11-28T01:16:40+09:00",
+  "09f91a1cd32eb68e": "2026-11-28T01:16:40+09:00",
+  "1bbdc832a4d651d1": "2026-11-28T01:16:40+09:00",
+  "5cf33fde1e20d70f": "2026-11-28T01:16:40+09:00",
+  "86d66f4ff27e8cda": "2026-11-28T01:16:40+09:00",
+  "7cb3c16646d21d5c": "2026-11-28T01:16:40+09:00",
+  "b4bfd964ad14b353": "2026-11-28T01:16:40+09:00",
+  "17ab18e5ddc5c8d2": "2026-11-28T01:16:40+09:00",
+  "adf514c037ad3957": "2026-11-28T01:16:40+09:00",
+  "6aac7785f6c9e696": "2026-11-28T01:16:40+09:00",
+  "f0b6411ff86852b2": "2026-11-28T01:16:40+09:00",
+  "8bf971aa7c7b53a6": "2026-11-28T01:16:40+09:00",
+  "afc24145c0435106": "2026-11-28T01:16:40+09:00",
+  "f0caaefdbdd60596": "2026-11-28T01:16:40+09:00",
+  "90f833abbea524e6": "2026-11-28T01:16:40+09:00",
+  "db9c1d2f92eb5b22": "2026-11-28T01:16:40+09:00"
  },
  "discarded": [
   {
