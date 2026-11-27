@@ -7,6 +7,26 @@ import urllib.request
 from pathlib import Path
 
 
+def propose_due(st: dict) -> bool:
+    """config/chronicle.toml [propose] 시각부터 window_min 분 안이고 오늘 그 시각 보고를 아직 안 했으면 True."""
+    import tomllib
+    from datetime import datetime, timedelta, timezone
+    try:
+        pc = tomllib.loads((Path(__file__).resolve().parents[1] / "config" / "chronicle.toml").read_text(encoding="utf-8")).get("propose") or {}
+    except (OSError, ValueError):
+        return False
+    if not pc.get("on"):
+        return False
+    now = datetime.now(timezone(timedelta(hours=9)))
+    done = (st.get("proposed") or {}).get(now.strftime("%Y-%m-%d"), [])
+    for t in pc.get("times", []):
+        h, mi = map(int, str(t).split(":"))
+        t0 = now.replace(hour=h, minute=mi, second=0, microsecond=0)
+        if t0 <= now < t0 + timedelta(minutes=float(pc.get("window_min", 90))) and t not in done:
+            return True
+    return False
+
+
 def main() -> int:
     tok, chat = os.environ.get("PERSONAL_BOT_TOKEN", "").strip(), os.environ.get("PERSONAL_CHAT_ID", "").strip()
     state = Path(os.environ.get("TPL_CHRONICLE_STATE", "state/chronicle.json"))
@@ -16,6 +36,8 @@ def main() -> int:
     except (OSError, ValueError):
         st = {}
     if any(r.get("status") in ("new", "approved") for r in st.get("inbox", [])):
+        run = True
+    if not run and propose_due(st):            # 2026-11-28: 반자동 후보 보고 시각
         run = True
     if not run and tok and chat:
         off = int(st.get("updates_offset", 0))

@@ -110,10 +110,13 @@ def say_once(st: dict, d, key: str, text: str) -> bool:
     return say(text)
 
 
-def say(text: str) -> bool:
+def say(text: str, preview: bool = True) -> bool:
     try:
         tok, chat = _bot()
-        return requests.post(f"https://api.telegram.org/bot{tok}/sendMessage", data={"chat_id": chat, "text": text[:4000]}, timeout=30).ok
+        data = {"chat_id": chat, "text": text[:4000]}
+        if not preview:
+            data["disable_web_page_preview"] = "true"
+        return requests.post(f"https://api.telegram.org/bot{tok}/sendMessage", data=data, timeout=30).ok
     except Exception:  # noqa: BLE001
         return False
 
@@ -157,7 +160,8 @@ def collect(c: dict, errs: dict, log=print) -> list[dict]:
 
 
 # ── 2) 후보(같은 소식 1건으로 합치기 · 제외 · 신호)
-def candidates(c: dict, items: list[dict], st: dict, log=print) -> list[dict]:
+def candidates(c: dict, items: list[dict], st: dict, log=print, ignore_seen: bool = False) -> list[dict]:
+    """ignore_seen: 반자동 후보 보고용 — 이미 본 기사·'켜진 뒤' 조건을 보지 않고 최근 24시간 소식 전체에서 고름."""
     hi = LR = tn = FD
     base = tn.load_conf()
     now = now_kst()
@@ -196,11 +200,11 @@ def candidates(c: dict, items: list[dict], st: dict, log=print) -> list[dict]:
                 continue
         else:
             # 코드 1차 거르기(Claude 부르기 전): 새 기사 · 빅클럽·스타·감독 명단 · 매체 2곳 이상 · 제외 낱말 없음(위에서) · PC 켜진 뒤 나온 소식
-            if not any(a.get("id") not in seen_items for a in g):
+            if not ignore_seen and not any(a.get("id") not in seen_items for a in g):
                 continue
             if not (stars or clubs) or len(outlets) < 2:
                 continue
-            if online and not any(a.get("published", "") >= online for a in g):
+            if not ignore_seen and online and not any(a.get("published", "") >= online for a in g):
                 continue
             if len(cred) < 1 and not official:
                 continue
@@ -220,7 +224,8 @@ def candidates(c: dict, items: list[dict], st: dict, log=print) -> list[dict]:
         out.append({"key": key, "titles": [f"[{a.get('publisher', '')}] {a['title']}" for a in g][:12], "outlets": outlets, "credible": cred,
                     "summaries": [a.get("summary", "")[:200] for a in g if a.get("summary")][:2],
                     "stars": stars, "clubs": clubs, "hwg": bool(ver), "hwg_posts": ver[:2], "official": official,
-                    "reddit_top": any(a.get("reddit_top") for a in g), "burst": burst, "latest": latest, "ids": [a.get("id") for a in g]})
+                    "reddit_top": any(a.get("reddit_top") for a in g), "burst": burst, "latest": latest, "ids": [a.get("id") for a in g],
+                    "links": [a.get("link", "") for a in g if a.get("link")][:4]})
     out.sort(key=lambda x: (x["hwg"], len(x["credible"]) + 2 * bool(x["stars"]) + 2 * bool(x["clubs"]), x["latest"]), reverse=True)
     return out[:12]
 
@@ -373,25 +378,8 @@ def pick_draft(w: dict, x: dict, log=print) -> dict:
     raise RuntimeError(f"쓸 수 있는 한국어 시안 없음({why}) → 이 기사는 건너뜀")
 
 
-def produce(x: dict, st: dict, c: dict, log=print) -> dict:
-    m = art.Meter(cap=float(c.get("video_cap_krw", 300)))
-    pk = {"subject_ko": x["subject_ko"], "subject_en": x["subject_en"], "team_ko": x["team_ko"], "team_en": x["team_en"], "role": x["role"],
-          "kind": "로마노 이적" if x["tier"] == 1 else x.get("type", ""), "rumor": x.get("rumor", False), "why": x.get("reason", ""),
-          "queries_ko": [f"{x['subject_ko']} {x['team_ko']}", x["subject_ko"]], "queries_en": [f"{x['subject_en']} {x['team_en']}", x["subject_en"]],
-          "cand": {"titles": x["titles"]}, "league_ko": x.get("league_ko", ""),
-          "body": ((x.get("article") or {}).get("text") or "")[:900]}
-    month = now_kst().strftime("%Y-%m")
-    mythic_used = sum(1 for ch in st.get("chapters", []) if ch.get("at", "").startswith(month) and str(ch.get("rank", "")).startswith("신화"))
-    w = F.write(pk, m, mythic_ok=mythic_used < 2)                        # 신화(날개·빛기둥)는 한 달 최대 2번
-    from . import safe
-    dr = pick_draft(w, x, log)
-    if x["tier"] == 1 and dr.get("tag") != "HERE WE GO":
-        dr["tag"] = "HERE WE GO"
-    if x.get("rumor") and dr.get("tag") != "RUMOR":
-        dr["tag"] = "RUMOR"
-    no = int(st.get("next", 1))
-    out = C.HOME / f"ch{no:02d}_{re.sub(r'[^0-9A-Za-z]+', '', x['subject_en'])[:20].lower() or 'story'}"
-    out.mkdir(parents=True, exist_ok=True)
+def draw(w: dict, x: dict, pk: dict, m, log=print) -> tuple[bytes, str, dict, bool]:
+    """그림: Gemini → 점검 → 실패·탈락이면 Gemini 1번 다시(정면·팀 색) → 그래도 안 되면 무료 FLUX 실루엣."""
     gem_failed = False
     try:
         png, prompt = F.image(w["prompt_en"], x["team_en"], m)
@@ -427,6 +415,65 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
             chk = {**chk, "ok": True, "redraw": "FLUX 실루엣(얼굴 안 보임)"}
         except Exception as e:  # noqa: BLE001 — 실패하면 첫 그림 그대로 + 표시
             chk = {**chk, "redraw": f"FLUX 다시 그리기 실패({type(e).__name__}) → 첫 그림 그대로"}
+    return png, prompt, chk, gem_failed
+
+
+ART_KEEP = os.environ.get("TPL_CHRONICLE_ART_KEEP", "")      # 클라우드: Actions 캐시 폴더(다시 글 만들 때 그림 재사용)
+
+
+def keep_art_path(no: int) -> Path | None:
+    return Path(ART_KEEP) / f"ch{int(no):03d}.png" if ART_KEEP else None
+
+
+def remember_inputs(st: dict, no: int, x: dict, w: dict, dr: dict) -> None:
+    """다시 만들기용: 최근 6편의 후보·글·시안(그림은 keep_art_path)."""
+    keep = {k: v for k, v in x.items() if k != "_losers"}
+    if isinstance(keep.get("article"), dict):
+        keep["article"] = {**keep["article"], "text": str(keep["article"].get("text", ""))[:3000]}
+    mi = st.setdefault("made_inputs", {})
+    mi[str(no)] = {"at": now_kst().isoformat(timespec="seconds"), "x": keep, "w": w, "dr": dr}
+    for k in sorted(mi, key=lambda k_: mi[k_].get("at", ""))[:-6]:
+        mi.pop(k, None)
+
+
+def produce(x: dict, st: dict, c: dict, log=print, redo: dict | None = None) -> dict:
+    """redo(2026-11-28 대표님 '다시 만들어'): {"no": 장 번호, "mode": "all|art|text", "w": 예전 글, "dr": 예전 시안}
+    all = 글·그림 전부 새로 · art = 글 그대로 그림만 새로 · text = 그림 그대로(보관본) 글만 새로. 장 번호는 그대로."""
+    mode = (redo or {}).get("mode", "")
+    m = art.Meter(cap=float(c.get("video_cap_krw", 300)))
+    pk = {"subject_ko": x["subject_ko"], "subject_en": x["subject_en"], "team_ko": x["team_ko"], "team_en": x["team_en"], "role": x["role"],
+          "kind": "로마노 이적" if x["tier"] == 1 else x.get("type", ""), "rumor": x.get("rumor", False), "why": x.get("reason", ""),
+          "queries_ko": [f"{x['subject_ko']} {x['team_ko']}", x["subject_ko"]], "queries_en": [f"{x['subject_en']} {x['team_en']}", x["subject_en"]],
+          "cand": {"titles": x["titles"]}, "league_ko": x.get("league_ko", ""),
+          "body": ((x.get("article") or {}).get("text") or "")[:900]}
+    month = now_kst().strftime("%Y-%m")
+    mythic_used = sum(1 for ch in st.get("chapters", []) if ch.get("at", "").startswith(month) and str(ch.get("rank", "")).startswith("신화"))
+    if mode == "art" and redo.get("w") and redo.get("dr"):
+        w, dr = redo["w"], dict(redo["dr"])                               # 다시 그림: 글은 그대로
+    else:
+        w = F.write(pk, m, mythic_ok=mythic_used < 2)                    # 신화(날개·빛기둥)는 한 달 최대 2번
+        dr = pick_draft(w, x, log)
+    if x["tier"] == 1 and dr.get("tag") != "HERE WE GO":
+        dr["tag"] = "HERE WE GO"
+    if x.get("rumor") and dr.get("tag") != "RUMOR":
+        dr["tag"] = "RUMOR"
+    no = int(redo["no"]) if redo else int(st.get("next", 1))
+    out = C.HOME / f"ch{no:02d}_{re.sub(r'[^0-9A-Za-z]+', '', x['subject_en'])[:20].lower() or 'story'}"
+    out.mkdir(parents=True, exist_ok=True)
+    gem_failed = False
+    kept = keep_art_path(no)
+    if mode == "text" and kept and kept.exists():                       # 다시 글: 보관해 둔 그림 그대로
+        png, prompt, chk = kept.read_bytes(), "보관 그림 재사용", {"ok": True, "likeness": True, "why": ""}
+    else:
+        png, prompt, chk, gem_failed = draw(w, x, pk, m, log)
+    if kept:
+        try:
+            kept.parent.mkdir(parents=True, exist_ok=True)
+            kept.write_bytes(png)
+            for old_ in sorted(kept.parent.glob("ch*.png"), key=lambda p_: p_.stat().st_mtime)[:-6]:
+                old_.unlink()                                            # 최근 6편 그림만 보관(다시 만들기용)
+        except OSError:
+            pass
     (out / "art.png").write_bytes(png)
     comp = C.compose(out / "art.png", dr, out / "thumbnail.png")
     if Q.render_overflow(comp.get("rects", {})):          # 렌더 뒤 넘침 검사 → 문장 짧게 다시 쓰고 다시 합성(1번)
@@ -439,6 +486,7 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     C.video(out / "art.png", dr, tmp, log=log)
     tmp.replace(vid) if tmp.exists() else None
     prev = [ch for ch in st.get("chapters", []) if ch.get("subject") in (x["subject_ko"],)]
+    prev = [ch for ch in prev if ch.get("no") != no]
     head = f"TPL 연대기 · 제{no}장" + (f" · 제{prev[-1]['no']}장 후속" if prev else "")
     cap = C.caption(no, w.get("question", ""), w.get("facts2", [])[:2], w.get("sources", []), w.get("hashtags", []))
     cap = cap.replace(f"TPL 연대기 · 제{no}장", head, 1)
@@ -452,11 +500,12 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
     with open(out / "thumbnail.png", "rb") as f:
         requests.post(f"{api}/sendDocument", data={"chat_id": chat, "caption": f"🖼 썸네일 PNG (제{no}장)"},
                       files={"document": (f"ch{no:02d}_thumbnail.png", f, "image/png")}, timeout=120)
-    tier_ko = "📨 직접 요청" + (" · 로마노 HWG" if x.get("hwg") else "") if x.get("request") else \
+    tier_ko = f"✅ 승인 후보 {x['proposal']}번" if x.get("proposal") else \
+        "📨 직접 요청" + (" · 로마노 HWG" if x.get("hwg") else "") if x.get("request") else \
         {1: "1순위 로마노 HWG", 2: "2순위 터진 유형", 3: "3순위 빅클럽 스타 화제"}.get(x["tier"], "")
     sc = x.get("scores") or {}
     lines = [f"🏷 {tier_ko}" + ("" if x.get("request") else f" · 터질 각 {x['total']:.0f}점") + f" — {x.get('reason', '')}"]
-    if not x.get("request"):
+    if not x.get("request") and x.get("scores"):
         lines.append("   " + " · ".join(f"{ITEM_KO[k]} {sc.get(k, 0)}" for k in ITEMS) + (f" · 가산 +{x['bonus']}" if x["bonus"] else ""))
     others_n = len({s_ for s_ in (w.get("sources") or []) if s_} - set((x.get("outlets") or [])[:1]))
     lines.append(f"🔎 교차 확인: 다른 매체 {others_n}곳" if others_n else "⚠️ 교차 확인 못 함 — 다른 매체 기사를 찾지 못했어요(사실 직접 확인 필요)")
@@ -474,10 +523,20 @@ def produce(x: dict, st: dict, c: dict, log=print) -> dict:
         lines.insert(0, "⚠️ 얼굴 닮음 낮음")
     if chk.get("redraw"):
         lines.insert(0, f"🔁 다시 그림: {chk['redraw']}")
+    if redo:
+        lines.insert(0, "♻️ 제{}장 다시 만듦 — {}".format(no, {"all": "글·그림 전부", "art": "그림만", "text": "글만"}.get(mode, mode)))
+    lines.append("🔁 마음에 안 들면: '다시'(전부) · '다시 그림' · '다시 글'")
     lines.insert(0, ("🎨 그림: 무료 FLUX 대체 — " + ("Gemini 그림 실패" if gem_failed else "Gemini 그림 점검 탈락") +
                      (f"({chk.get('why', '')[:60]})" if chk.get("why") else "")) if prompt.startswith("FLUX") else "🎨 그림: Gemini")
     say("\n".join(lines))
-    art.record(m, f"연대기 제{no}장 {x['subject_ko']}", True)
+    art.record(m, f"연대기 제{no}장 {x['subject_ko']}" + (" (다시)" if redo else ""), True)
+    remember_inputs(st, no, x, w, dr)
+    if redo:                                             # 다시 만들기: 장 번호·연재 기록은 그대로, 제목만 새 글로
+        for ch in st.get("chapters", []):
+            if ch.get("no") == no:
+                ch["title"] = " / ".join(dr["lines"])
+                ch["redo"] = int(ch.get("redo", 0)) + 1
+        return {"no": no, "folder": str(out), "krw": m.krw}
     C.record_chapter(no, x["subject_ko"], x["team_ko"], " / ".join(dr["lines"]))
     st.update({k: v for k, v in C.chapter_state().items() if k in ("next", "chapters")})
     st["chapters"][-1].update({"score": x["total"], "scores": sc, "tier": x["tier"], "subject_en": x["subject_en"], "team_en": x["team_en"],
@@ -586,6 +645,13 @@ def run_once(force: bool = False, dry: bool = False, log=print) -> dict:
     weekly(st, now)
     biweekly(st, now, weights)
     error_summary(st, now)
+    slot = due_slot(st, c, now)                           # 반자동 후보 보고 시각이면 먼저 보고(2026-11-28)
+    if slot:
+        try:
+            rep["propose"] = propose(st, d, c, now, slot, log).get("why")
+        except Exception as e:  # noqa: BLE001
+            log(f"[연대기] 후보 보고 실패: {type(e).__name__}: {e}")
+            say_once(st, d, f"propose:{type(e).__name__}", f"⚠️ 연대기 후보 보고 실패: {type(e).__name__}: {str(e)[:150]}")
     req = process_inbox(st, d, c, now, log)               # 직접 요청(개인 봇 기사)이 있으면 먼저 1건
     if req and req.get("made"):
         return {**rep, **req}
@@ -692,6 +758,125 @@ def _make(best: dict, others: list, st: dict, d, c: dict, day: str, now: datetim
 
 
 
+# ── 반자동 후보 보고(2026-11-28 대표님) — 정해진 시각에 후보 N개를 봇으로 → 번호로 승인한 것만 제작
+NUM_EMO = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"]
+
+
+def due_slot(st: dict, c: dict, now: datetime) -> str:
+    """지금 보고할 시각(예: '13:00')이면 그 시각, 아니면 ''. 같은 날 같은 시각은 한 번만."""
+    pc = c.get("propose") or {}
+    if not pc.get("on"):
+        return ""
+    day = now.strftime("%Y-%m-%d")
+    done = (st.get("proposed") or {}).get(day, [])
+    for t in pc.get("times", []):
+        h, mi = map(int, str(t).split(":"))
+        t0 = now.replace(hour=h, minute=mi, second=0, microsecond=0)
+        if t0 <= now < t0 + timedelta(minutes=float(pc.get("window_min", 90))) and t not in done:
+            return t
+    return ""
+
+
+def pick_proposals(pool: list[dict], st: dict, c: dict, now: datetime) -> list[dict]:
+    pc = c.get("propose") or {}
+    day = now.strftime("%Y-%m-%d")
+    made = day_of(st, day)["made"]
+    taken = {m.get("subject") for m in made} | {m.get("team") for m in made if m.get("team")}
+    lim48 = (now - timedelta(hours=48)).isoformat()
+    recent = {ch.get("subject") for ch in st.get("chapters", []) if ch.get("at", "") >= lim48}
+    shown = {p.get("key") for p in st.get("proposal_log", []) if p.get("at", "") >= lim48}
+    out, subj = [], set()
+    pool = sorted(pool, key=lambda x: str(x.get("latest", "")), reverse=True)          # 같은 점수면 최신 우선(안정 정렬)
+    for x in sorted(pool, key=lambda x: -float(x.get("total", 0))):
+        if x.get("exclude") or (x.get("transfer") and not x.get("hwg")):
+            continue
+        if float(x.get("total", 0)) < float(pc.get("min_score", 12)) and not x.get("hwg"):
+            continue
+        okn, _ = Q.name_ok(x)
+        if not okn:
+            continue
+        sj = x.get("subject_ko", "")
+        if not sj or sj in taken or sj in recent or sj in subj or x.get("key") in shown:
+            continue
+        subj.add(sj)
+        tier = 1 if x.get("hwg") else 2 if x.get("type") in TIER2 else 3
+        out.append({**x, "tier": tier})
+        if len(out) >= int(pc.get("n", 3)):
+            break
+    return out
+
+
+def propose(st: dict, d, c: dict, now: datetime, slot: str, log=print) -> dict:
+    """후보 모으기(기존 소스 · 키 추가 없음) → 터질 각 판정(이미 매긴 건 다시 안 매김) → 상위 N개를 봇으로."""
+    day = now.strftime("%Y-%m-%d")
+    st.setdefault("proposed", {}).setdefault(day, []).append(slot)
+    st["proposed"] = {k: v for k, v in st["proposed"].items() if k >= (now - timedelta(days=3)).strftime("%Y-%m-%d")}
+    save_state(d, st, f"chronicle propose {slot} start")     # 먼저 기록: 실패해도 같은 시각에 되풀이하지 않음(비용)
+    errs = day_of(st, day)["errors"]
+    items = collect(c, errs, log)
+    cands = candidates(c, items, st, log, ignore_seen=True)
+    bench = day_of(st, day).setdefault("bench", [])
+    known = {x.get("key") for x in bench} | set(st.get("seen", {}))
+    new = [x for x in cands if x["key"] not in known]
+    scored = []
+    if new:
+        m = art.Meter(cap=float(c.get("video_cap_krw", 300)))
+        scored = score(new, m, {**c.get("weights", {}), **(st.get("weights") or {})})
+        art.record(m, "연대기 후보 보고 판정", True)
+        dd = day_of(st, day)
+        dd["judge_krw"] = round(float(dd.get("judge_krw", 0)) + m.krw, 1)
+        for x in scored:
+            st.setdefault("seen", {})[x["key"]] = {"at": now.isoformat(timespec="seconds"), "total": x["total"],
+                                                   "subject": x.get("subject_ko", ""), "title": str((x.get("titles") or [""])[0])[:140]}
+    links = {x["key"]: x.get("links", []) for x in cands}
+    pool = list({x["key"]: {**x, "links": x.get("links") or links.get(x["key"], [])} for x in bench + scored}.values())
+    keep = [x for x in scored if not x.get("exclude") and x.get("total", 0) >= float(c.get("fill_min_score", 14))]
+    bench[:] = sorted({x["key"]: x for x in bench + keep}.values(), key=lambda x: -x.get("total", 0))[:15]
+    picks = pick_proposals(pool, st, c, now)
+    if not picks:
+        say(f"📋 연대기 후보 ({slot}) — 지금은 기준을 넘는 소식이 없어요. 만들고 싶은 기사가 있으면 링크를 보내 주세요.")
+        save_state(d, st, f"chronicle propose {slot} none")
+        return {"why": f"후보 보고 {slot}: 없음"}
+    batch = f"{day} {slot}"
+    st["proposal"] = {"batch": batch, "at": now.isoformat(timespec="seconds"),
+                      "items": [{"n": i + 1, "key": x["key"], "cand": {k: v for k, v in x.items() if k != "_losers"}} for i, x in enumerate(picks)]}
+    log_ = st.setdefault("proposal_log", [])
+    log_ += [{"at": now.isoformat(timespec="seconds"), "key": x["key"], "subject": x.get("subject_ko", "")} for x in picks]
+    st["proposal_log"] = log_[-60:]
+    lines = [f"📋 연대기 후보 ({slot}) — 만들 번호를 보내 주세요 (예: 1 · 1 3)", ""]
+    for i, x in enumerate(picks):
+        kind = "로마노 HWG" if x.get("hwg") else (x.get("type") or "")
+        lines.append(f"{NUM_EMO[i]} {x.get('subject_ko', '')}" + (f" ({x['team_ko']})" if x.get("team_ko") else "")
+                     + f" · {float(x.get('total', 0)):.0f}점" + (f" · {kind}" if kind else ""))
+        lines.append("   " + str((x.get("titles") or [""])[0])[:90])
+        if x.get("reason"):
+            lines.append("   💡 " + str(x["reason"])[:60])
+        if x.get("links"):
+            lines.append("   🔗 " + x["links"][0])
+        lines.append("")
+    lines.append("안 만들 거면 그냥 두셔도 돼요. 번호는 가장 최근 후보 기준이에요.")
+    say("\n".join(lines), preview=False)
+    save_state(d, st, f"chronicle propose {slot}")
+    return {"why": f"후보 보고 {slot}: {len(picks)}개"}
+
+
+def _with_article(x: dict) -> dict:
+    """승인한 후보: 기사 본문을 읽을 수 있으면 붙여서 글 품질을 높임(못 읽으면 제목·요약만)."""
+    if x.get("article"):
+        return x
+    from . import inbox as IB
+    for u in x.get("links") or []:
+        if "news.google." in u:
+            continue
+        try:
+            a = IB.read_url(u)
+            if a.get("text") and len(a["text"]) > 200:
+                return {**x, "article": a}
+        except Exception:  # noqa: BLE001
+            continue
+    return x
+
+
 # ── 직접 요청(개인 봇으로 받은 기사) — 2026-11-26 사용자
 def process_inbox(st: dict, d, c: dict, now: datetime, log=print) -> dict | None:
     """대기 줄에서 1건: 하루 최대(HWG + 직접 요청 합산)가 찼으면 물어봄 · 아니면 기사 읽기 → 후보 → 바로 제작."""
@@ -708,8 +893,29 @@ def process_inbox(st: dict, d, c: dict, now: datetime, log=print) -> dict | None
         say(f"❓ 오늘 {len(made)}편이 다 찼어요. 보내 주신 기사도 만들까요? '만들어'라고 답하면 바로 만들어요.")
         save_state(d, st, "chronicle inbox ask")
         return {"why": "하루 최대 → 물어봄"}
+    if r.get("redo"):                                     # '다시' · '다시 그림' · '다시 글' · '제5장 다시 그림'
+        mi = st.get("made_inputs") or {}
+        no = str(r.get("no") or max(mi, key=lambda k: mi[k].get("at", ""), default=""))
+        if not no or no not in mi:
+            r["status"] = "skipped"
+            say("🙅 다시 만들 편을 찾지 못했어요(최근 6편까지만 다시 만들 수 있어요).")
+            save_state(d, st, "chronicle redo none")
+            return {"why": "다시 만들 편 없음"}
+        try:
+            got = mi[no]
+            out = produce(got["x"], st, c, log, redo={"no": int(no), "mode": r["redo"], "w": got.get("w"), "dr": got.get("dr")})
+            r["status"] = "done"
+            save_state(d, st, f"chronicle redo ch{no}")
+            return {"why": f"제{no}장 다시 만듦({r['redo']})", "made": out}
+        except Exception as e:  # noqa: BLE001
+            r["status"] = "failed"
+            say(f"⚠️ 제{no}장 다시 만들기 실패: {type(e).__name__}: {str(e)[:150]}")
+            save_state(d, st, "chronicle redo fail")
+            return {"why": f"다시 만들기 실패: {e}"}
     try:
-        if r.get("cand"):                                  # 물어봤던 로마노 HWG
+        if r.get("cand") and r.get("proposal"):            # 승인한 후보(반자동)
+            x = _with_article({**r["cand"], "proposal": r["proposal"]})
+        elif r.get("cand"):                                # 물어봤던 로마노 HWG
             x = r["cand"]
         else:
             tok, _chat = _bot()
@@ -740,7 +946,15 @@ def run_inbox(log=print) -> dict:
     c = conf()
     d, st = load_state()
     read_views(st)
-    r = process_inbox(st, d, c, now_kst(), log)
+    now = now_kst()
+    slot = due_slot(st, c, now)                           # 5분 확인 때도 후보 보고 시각이면 보고(2026-11-28)
+    if slot:
+        try:
+            log(f"[연대기] {propose(st, d, c, now, slot, log).get('why')}")
+        except Exception as e:  # noqa: BLE001
+            log(f"[연대기] 후보 보고 실패: {type(e).__name__}: {e}")
+            say_once(st, d, f"propose:{type(e).__name__}", f"⚠️ 연대기 후보 보고 실패: {type(e).__name__}: {str(e)[:150]}")
+    r = process_inbox(st, d, c, now, log)
     if r is None:
         save_state(d, st, "chronicle inbox")
         return {"why": "새 요청 없음"}
