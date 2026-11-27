@@ -714,6 +714,62 @@
      "total": 22.0
     },
     {
+     "key": "at-bayern-jamal-liverpool-munich-musiala-on-pounce",
+     "titles": [
+      "[BBC] Liverpool transfer rumours: Jamal Musiala",
+      "[LiveScore] Transfer Rumours: Liverpool ready to pounce on Musiala uncertainty at Bayern Munich"
+     ],
+     "outlets": [
+      "BBC",
+      "LiveScore"
+     ],
+     "credible": [
+      "BBC"
+     ],
+     "summaries": [],
+     "stars": [
+      "무시알라"
+     ],
+     "clubs": [
+      "리버풀",
+      "바이에른 뮌헨"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T08:12:28+00:00",
+     "ids": [
+      "cff65654ce7cda23",
+      "170a6486aa673e1f"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "자말 무시알라",
+     "subject_en": "Jamal Musiala",
+     "team_ko": "바이에른 뮌헨",
+     "team_en": "Bayern Munich",
+     "league_ko": "분데스리가",
+     "role": "선수",
+     "type": "이적+위트",
+     "rumor": false,
+     "transfer": true,
+     "scores": {
+      "name": 5,
+      "drama": 3,
+      "divide": 2,
+      "share": 4,
+      "surprise": 3,
+      "korea": 5
+     },
+     "reason": "리버풀 이적 루머, 팬 관심 높음",
+     "base": 22.0,
+     "bonus": 0,
+     "total": 22.0
+    },
+    {
      "key": "answered-chelsea-danny-estevao-fofana-more-on-questions",
      "titles": [
       "[Sky Sports] Chelsea Q&A: Your questions answered on Wesley Fofana, transfers, Danny Welbeck, Estevao and more",
@@ -1416,11 +1472,17 @@
    "total": 0.0,
    "subject": "",
    "title": "[Goal.com] Nottingham Forest vs Chelsea Premier League game preview: Team news and injury latest"
+  },
+  "at-bayern-jamal-liverpool-munich-musiala-on-pounce": {
+   "at": "2026-11-27T18:36:39+09:00",
+   "total": 22.0,
+   "subject": "자말 무시알라",
+   "title": "[BBC] Liverpool transfer rumours: Jamal Musiala"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-27T18:26:48+09:00",
+ "last_run_at": "2026-11-27T18:36:39+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -9627,7 +9689,49 @@
   "eaa96365239fe394": "2026-11-27T18:26:48+09:00",
   "45d134d7c470050d": "2026-11-27T18:26:48+09:00",
   "ad3035f2b2194795": "2026-11-27T18:26:48+09:00",
-  "999c8305715d9785": "2026-11-27T18:26:48+09:00"
+  "999c8305715d9785": "2026-11-27T18:26:48+09:00",
+  "6ad00deb44cc7937": "2026-11-27T18:36:39+09:00",
+  "998c9cbee414d9b8": "2026-11-27T18:36:39+09:00",
+  "17b1dfb3b7874b22": "2026-11-27T18:36:39+09:00",
+  "90cfd8903346b8b7": "2026-11-27T18:36:39+09:00",
+  "d92e350ce01656ed": "2026-11-27T18:36:39+09:00",
+  "993f0d28323e68e7": "2026-11-27T18:36:39+09:00",
+  "f1df87121eca70bf": "2026-11-27T18:36:39+09:00",
+  "dd49f3c81b169ccc": "2026-11-27T18:36:39+09:00",
+  "a5196bd93bdb276e": "2026-11-27T18:36:39+09:00",
+  "e094d4d6ebe88f48": "2026-11-27T18:36:39+09:00",
+  "b39bf180f9bb8cc4": "2026-11-27T18:36:39+09:00",
+  "1f63730508b66dea": "2026-11-27T18:36:39+09:00",
+  "5136488f10debcab": "2026-11-27T18:36:39+09:00",
+  "df32507e37bad241": "2026-11-27T18:36:39+09:00",
+  "b5b0d14b81013820": "2026-11-27T18:36:39+09:00",
+  "53fb5cfa41cd6431": "2026-11-27T18:36:39+09:00",
+  "be5a1daa4376be3a": "2026-11-27T18:36:39+09:00",
+  "642d6875354bd1ed": "2026-11-27T18:36:39+09:00",
+  "485d9218204cb44b": "2026-11-27T18:36:39+09:00",
+  "743bb373b342d589": "2026-11-27T18:36:39+09:00",
+  "170a6486aa673e1f": "2026-11-27T18:36:39+09:00",
+  "38de442644f221ef": "2026-11-27T18:36:39+09:00",
+  "d793179770dce7df": "2026-11-27T18:36:39+09:00",
+  "9181ffb355d2cde9": "2026-11-27T18:36:39+09:00",
+  "fad0dcdefc7da385": "2026-11-27T18:36:39+09:00",
+  "68eba4adcd6af995": "2026-11-27T18:36:39+09:00",
+  "2962925ee8a215ab": "2026-11-27T18:36:39+09:00",
+  "a8ccb6012766f8e8": "2026-11-27T18:36:39+09:00",
+  "d5bffe4048d86d13": "2026-11-27T18:36:39+09:00",
+  "048c3da5a39d2f45": "2026-11-27T18:36:39+09:00",
+  "ec53da08d1b3023d": "2026-11-27T18:36:39+09:00",
+  "11d2269e1d95d7b5": "2026-11-27T18:36:39+09:00",
+  "daf79a4781613e3f": "2026-11-27T18:36:39+09:00",
+  "5386044860cb15bb": "2026-11-27T18:36:39+09:00",
+  "a46262af6d343821": "2026-11-27T18:36:39+09:00",
+  "ccbe2ed54de050a6": "2026-11-27T18:36:39+09:00",
+  "66e024a3d88862c5": "2026-11-27T18:36:39+09:00",
+  "f998668aaa519f55": "2026-11-27T18:36:39+09:00",
+  "3cd41c23e28119ef": "2026-11-27T18:36:39+09:00",
+  "eb6cc6f85c1f5020": "2026-11-27T18:36:39+09:00",
+  "a57e32caba50020a": "2026-11-27T18:36:39+09:00",
+  "1a2e8e087cd54e68": "2026-11-27T18:36:39+09:00"
  },
  "discarded": [
   {
