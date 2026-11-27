@@ -19,6 +19,9 @@ import requests
 
 URL_RX = re.compile(r"https?://\S+")
 YES_RX = re.compile(r"^\s*(만들어|만들어줘|응|ㅇㅇ|오케이|ok|go|진행)\s*[.!]?\s*$", re.I)
+PICK_RX = re.compile(r"^\s*([1-5](?:\s*(?:,|번|\s)\s*[1-5])*)\s*번?\s*(?:만들어|만들어줘|만들자|진행|가자|ㄱ|ㄱㄱ)?\s*[.!]?\s*$")
+REDO_RX = re.compile(r"^\s*(?:제?\s*(\d{1,4})\s*장\s*)?다시\s*(그림|글|전부|다)?\s*(?:만들어|만들어줘|해|해줘|그려|그려줘|써|써줘)?\s*[.!]?\s*$")
+REDO_MODE = {"그림": "art", "글": "text", "전부": "all", "다": "all", "": "all"}
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 
 
@@ -35,6 +38,37 @@ def take(msg: dict, st: dict, say) -> bool:
             say("👍 알겠어요, 지금 만들어서 10분 안에 보낼게요.")
             return True
         return False
+    rm = REDO_RX.match(t)
+    if rm:                                     # 2026-11-28 대표님: '다시' · '다시 그림' · '다시 글' · '제5장 다시 그림'
+        mode = REDO_MODE[rm.group(2) or ""]
+        q.append({"id": msg.get("message_id"), "at": datetime.now().isoformat(timespec="seconds"), "status": "approved",
+                  "redo": mode, "no": int(rm.group(1)) if rm.group(1) else None})
+        say(("제" + rm.group(1) + "장 " if rm.group(1) else "") + {"all": "글·그림 전부", "art": "그림만", "text": "글만"}[mode]
+            + " 다시 만들게요. 10분 안에 보낼게요.")
+        return True
+    pm = PICK_RX.match(t)
+    prop = st.get("proposal") or {}
+    if pm and prop.get("items"):               # 2026-11-28 대표님: 후보 보고에 번호로 승인
+        nums = sorted({int(n) for n in re.findall(r"[1-5]", pm.group(1))})
+        items = {it["n"]: it for it in prop["items"]}
+        ok = [n for n in nums if n in items]
+        bad = [n for n in nums if n not in items]
+        for n in ok:
+            key = items[n]["key"]
+            if any(r.get("key") == key and r.get("status") in ("approved", "done") for r in q):
+                continue
+            ent = {"id": msg.get("message_id"), "at": datetime.now().isoformat(timespec="seconds"), "status": "approved",
+                   "key": key, "proposal": n}
+            if items[n].get("cand"):
+                ent["cand"] = items[n]["cand"]
+            else:                              # 매체 인기·최신 후보(점수 없음): 링크로 기사 읽고 바로 제작
+                ent.update(url=items[n].get("url", ""), file_id="", note=items[n].get("title", "")[:300])
+            q.append(ent)
+        names = ", ".join(f"{n}번" + (f" {items[n]['cand'].get('subject_ko', '')}" if items[n].get("cand") else "") for n in ok)
+        reply = ((f"👍 {names} 만들게요. 하나에 10분쯤 걸려요." if ok else "")
+                 + (f"\n{', '.join(map(str, bad))}번은 후보에 없어요." if bad else "")).strip()
+        say(reply or "이미 승인한 후보예요 — 만들고 있어요.")
+        return True
     urls = URL_RX.findall(t)
     photos = msg.get("photo") or []
     doc = msg.get("document") or {}

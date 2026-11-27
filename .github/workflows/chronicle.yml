@@ -74,6 +74,13 @@ jobs:
           path: ~/.cache/tpl_reel
           key: isnet-v1
 
+      - name: 연대기 그림 보관(다시 글 만들 때 재사용 · 2026-11-28)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/tpl_chronicle_art
+          key: chronicle-art-${{ github.run_id }}
+          restore-keys: chronicle-art-
+
       - name: 설치
         run: pip install -q -r requirements.txt
 
@@ -92,6 +99,7 @@ jobs:
           TPL_CHRONICLE_STATE: ${{ github.workspace }}/state/chronicle.json
           TPL_REEL_LEDGER: ${{ github.workspace }}/state/ledger.json
           TPL_REEL_MODEL_DIR: /home/runner/.cache/tpl_reel
+          TPL_CHRONICLE_ART_KEEP: /home/runner/.cache/tpl_chronicle_art
           TZ: Asia/Seoul
         run: |
           MODE="${{ github.event.inputs.mode || 'run' }}"
