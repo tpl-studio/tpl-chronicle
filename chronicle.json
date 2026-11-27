@@ -1626,6 +1626,65 @@
      "total": 22.0
     },
     {
+     "key": "arsenal-breaking-by-coach-company-consent-head-leaves",
+     "titles": [
+      "[BBC Sport] Arsenal head coach Slegers leaves by mutual consent",
+      "[BBC] Renee Slegers: Arsenal head coach leaves by mutual consent",
+      "[Online Gooner] BREAKING: Arsenal Women part company with head coach Renee Slegers"
+     ],
+     "outlets": [
+      "BBC Sport",
+      "BBC",
+      "Online Gooner"
+     ],
+     "credible": [
+      "BBC Sport",
+      "BBC"
+     ],
+     "summaries": [
+      "Arsenal part company with head coach Renee Slegers by mutual consent after a disappointing start to the season."
+     ],
+     "stars": [],
+     "clubs": [
+      "아스널"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": true,
+     "latest": "2026-11-27T15:35:33+00:00",
+     "ids": [
+      "211c89eae1fb15da",
+      "6b6846034dae0450",
+      "cc4e868e4fa3262c"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "레니 슬레거스",
+     "subject_en": "Renee Slegers",
+     "team_ko": "아스날 여자팀",
+     "team_en": "Arsenal Women",
+     "league_ko": "잉글랜드 여자 슈퍼리그",
+     "role": "감독",
+     "type": "경질",
+     "rumor": false,
+     "transfer": false,
+     "scores": {
+      "name": 5,
+      "drama": 4,
+      "divide": 2,
+      "share": 4,
+      "surprise": 2,
+      "korea": 3
+     },
+     "reason": "감독이 상호 합의로 퇴진, 팬 관심 높음",
+     "base": 20.0,
+     "bonus": 2,
+     "total": 22.0
+    },
+    {
      "key": "arsenal-as-coach-departs-dismal-head-job-leaves",
      "titles": [
       "[The Guardian] Renée Slegers leaves job as Arsenal Women’s coach after dismal run of results",
@@ -2233,11 +2292,17 @@
    "total": 14.0,
    "subject": "마이클 올리세",
    "title": "[Yahoo] PREVIEW | Deportivo vs Barcelona: team news, lineups, predictions (La Liga 29/11)"
+  },
+  "arsenal-breaking-by-coach-company-consent-head-leaves": {
+   "at": "2026-11-28T00:41:43+09:00",
+   "total": 22.0,
+   "subject": "레니 슬레거스",
+   "title": "[BBC Sport] Arsenal head coach Slegers leaves by mutual consent"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-28T00:31:39+09:00",
+ "last_run_at": "2026-11-28T00:41:43+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -11753,7 +11818,55 @@
   "8bc74c04c36f96f7": "2026-11-28T00:31:39+09:00",
   "56d2546a4dc6f60a": "2026-11-28T00:31:39+09:00",
   "ad2a4ba4a7807bdf": "2026-11-28T00:31:39+09:00",
-  "b650266de82f47d4": "2026-11-28T00:31:39+09:00"
+  "b650266de82f47d4": "2026-11-28T00:31:39+09:00",
+  "d2df1df66579ceb6": "2026-11-28T00:41:43+09:00",
+  "31a5648723b84a67": "2026-11-28T00:41:43+09:00",
+  "081998264b407b38": "2026-11-28T00:41:43+09:00",
+  "c429f181f53b07c7": "2026-11-28T00:41:43+09:00",
+  "431e944789fb41b7": "2026-11-28T00:41:43+09:00",
+  "6fd3f92a875f9bbb": "2026-11-28T00:41:43+09:00",
+  "dd0a436af7235794": "2026-11-28T00:41:43+09:00",
+  "6c999d5c65dc27f5": "2026-11-28T00:41:43+09:00",
+  "211c89eae1fb15da": "2026-11-28T00:41:43+09:00",
+  "d5e00f8dbc060aa3": "2026-11-28T00:41:43+09:00",
+  "b20be2872f0a9241": "2026-11-28T00:41:43+09:00",
+  "8c92b66857862323": "2026-11-28T00:41:43+09:00",
+  "50d1ea732cb93f1b": "2026-11-28T00:41:43+09:00",
+  "8e626e1e335bdc20": "2026-11-28T00:41:43+09:00",
+  "e6099a5b29f8daf0": "2026-11-28T00:41:43+09:00",
+  "fc2c08b80d906998": "2026-11-28T00:41:43+09:00",
+  "cb6be2380dd3a190": "2026-11-28T00:41:43+09:00",
+  "3ab7252b23306aa9": "2026-11-28T00:41:43+09:00",
+  "8e3d180ff7b1a971": "2026-11-28T00:41:43+09:00",
+  "dcaec0baa7c9b453": "2026-11-28T00:41:43+09:00",
+  "d63c24da7ea3bcb3": "2026-11-28T00:41:43+09:00",
+  "6b6846034dae0450": "2026-11-28T00:41:43+09:00",
+  "4f89a9f2ebe6cced": "2026-11-28T00:41:43+09:00",
+  "479ab653e317d0b4": "2026-11-28T00:41:43+09:00",
+  "90fa6ac43f5c4455": "2026-11-28T00:41:43+09:00",
+  "29b002d495de24bd": "2026-11-28T00:41:43+09:00",
+  "a8de898ad03fa460": "2026-11-28T00:41:43+09:00",
+  "3a38303d9e56b290": "2026-11-28T00:41:43+09:00",
+  "51694df107809815": "2026-11-28T00:41:43+09:00",
+  "6213029bda1e3b57": "2026-11-28T00:41:43+09:00",
+  "9483c14f731e8f43": "2026-11-28T00:41:43+09:00",
+  "e3a742b908f0d722": "2026-11-28T00:41:43+09:00",
+  "0b2834520322d45f": "2026-11-28T00:41:43+09:00",
+  "29ef842b496c18ff": "2026-11-28T00:41:43+09:00",
+  "39cef0b965076d75": "2026-11-28T00:41:43+09:00",
+  "9962d182a507d99b": "2026-11-28T00:41:43+09:00",
+  "5ebcdb9974bfd3ad": "2026-11-28T00:41:43+09:00",
+  "54f290d062c98bf4": "2026-11-28T00:41:43+09:00",
+  "b9ede56571e46a14": "2026-11-28T00:41:43+09:00",
+  "832605847de9f503": "2026-11-28T00:41:43+09:00",
+  "b2e8d68e9cbb31bc": "2026-11-28T00:41:43+09:00",
+  "e47ba83d7b13fe6b": "2026-11-28T00:41:43+09:00",
+  "05f3980dd8390d3d": "2026-11-28T00:41:43+09:00",
+  "8c79aaaf330cfa17": "2026-11-28T00:41:43+09:00",
+  "834e5b488875190a": "2026-11-28T00:41:43+09:00",
+  "98883aa96e941ceb": "2026-11-28T00:41:43+09:00",
+  "7a31cf8c97aa6878": "2026-11-28T00:41:43+09:00",
+  "a5efc3e1775b9b54": "2026-11-28T00:41:43+09:00"
  },
  "discarded": [
   {
