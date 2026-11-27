@@ -97,6 +97,19 @@ r = A.process_inbox(st, None, c, now, quiet)
 check(calls[-1][0].get("proposal") == 1 and calls[-1][1] is None, "후보 1번으로 새 편 제작")
 check(st["inbox"][0]["status"] == "done", "완료 표시")
 
+print("[7] 해외축구 전문 매체 RSS — 국내 날짜 형식 · K리그 빼기 · 소스 설정")
+from tpl import feeds as FD  # noqa: E402
+xml = """<rss><channel><item><title>포체티노, 맨유 첫 홈경기 앞두고 경고</title><link>https://www.interfootball.co.kr/news/articleView.html?idxno=1</link>
+<pubDate>2026-11-28 03:15:00</pubDate></item></channel></rss>"""
+it = FD.parse_rss(xml, {"name": "인터풋볼", "outlet": "인터풋볼"})[0]
+check(it["published"].startswith("2026-11-27T18:15:00"), f"'2026-11-28 03:15:00'(한국) → UTC 18:15 ({it['published']})")
+check(it["publisher"] == "인터풋볼", "매체 이름")
+check(bool(A.KLEAGUE.search("[K-관전포인트] 수원 복덩이 루이스")) and bool(A.KLEAGUE.search("울산 HD, 우승 확정")), "K리그 소식 걸러냄")
+check(not A.KLEAGUE.search("손흥민 LAFC 결승골") and not A.KLEAGUE.search("맨유 포체티노 첫 홈경기"), "해외축구는 통과")
+pc = A.conf()["propose"]
+check(pc["sources"] == ["인터풋볼", "풋볼리스트", "베스트일레븐"] and pc["min_outlets"] == 1, "후보 소스 = 전문 매체 3곳")
+check({"인터풋볼", "풋볼리스트", "베스트일레븐"} <= {f["name"] for f in A.conf()["feeds"]}, "RSS 3곳 등록")
+
 print()
 print("실패:", len(fails))
 sys.exit(1 if fails else 0)

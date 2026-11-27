@@ -30,6 +30,9 @@ times = ["08:00", "13:00", "21:00"]   # 이 시각부터 window_min 분 안에 �
 window_min = 90
 n = 3                                  # 한 번에 후보 몇 개
 min_score = 12                         # 터질 각 30점 만점 중 이 점수 이상만 후보
+sources = ["인터풋볼", "풋볼리스트", "베스트일레븐"]   # 2026-11-28 대표님: 후보는 해외축구 전문 매체 기사만(아래 [[feeds]] RSS)
+min_outlets = 1                        # 전문 매체 1곳만 다뤄도 후보(점수로 거름)
+skip_kleague = true                    # K리그 소식은 빼고 해외축구만
 
 # 터질 각 6항목(각 0~5, 30점 만점) — 2주마다 조정안을 봇으로 보내고 사용자 오케이 뒤 적용
 [weights]
@@ -87,3 +90,13 @@ env_secret = "REDDIT_CLIENT_SECRET"
 "웅장" = []
 "신남" = []
 "here_we_go" = ["HERE WE GO! — Lil Nas X"]   # 로마노 'Here we go' 확정 이적 릴스 1순위(2024 · 베벌리힐스 캅 주제가)
+
+[[feeds]]                       # 2026-11-28 해외축구 전문 매체(국내) RSS — 반자동 후보 보고의 소스
+name = "인터풋볼"
+url = "https://www.interfootball.co.kr/rss/allArticle.xml"
+[[feeds]]
+name = "풋볼리스트"
+url = "https://www.footballist.co.kr/rss/allArticle.xml"
+[[feeds]]
+name = "베스트일레븐"
+url = "https://www.besteleven.com/rss/allArticle.xml"

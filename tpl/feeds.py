@@ -157,6 +157,14 @@ def parse_rss(xml_text: str, feed: dict) -> list[dict]:
             pub = parsedate_to_datetime(_text(it, "pubDate")).astimezone(timezone.utc).isoformat()
         except (TypeError, ValueError, IndexError):
             pub = ""
+        if not pub:                    # 국내 매체 RSS: '2026-11-28 04:26:06'(한국 시간) 형식(2026-11-28)
+            m_ = re.match(r"^\s*(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}(?::\d{2})?)", _text(it, "pubDate") or "")
+            if m_:
+                try:
+                    pub = datetime.fromisoformat(f"{m_.group(1)}T{m_.group(2)}").replace(
+                        tzinfo=timezone(timedelta(hours=9))).astimezone(timezone.utc).isoformat()
+                except ValueError:
+                    pub = ""
         out.append({"id": item_id(link, title), "title": title, "summary": summary[:400], "link": link,
                     "publisher": publisher or feed.get("name", ""), "published": pub, "feed": feed.get("name", "")})
     return out

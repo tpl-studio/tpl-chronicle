@@ -160,7 +160,7 @@ def collect(c: dict, errs: dict, log=print) -> list[dict]:
 
 
 # ── 2) 후보(같은 소식 1건으로 합치기 · 제외 · 신호)
-def candidates(c: dict, items: list[dict], st: dict, log=print, ignore_seen: bool = False) -> list[dict]:
+def candidates(c: dict, items: list[dict], st: dict, log=print, ignore_seen: bool = False, min_outlets: int = 2) -> list[dict]:
     """ignore_seen: 반자동 후보 보고용 — 이미 본 기사·'켜진 뒤' 조건을 보지 않고 최근 24시간 소식 전체에서 고름."""
     hi = LR = tn = FD
     base = tn.load_conf()
@@ -202,7 +202,7 @@ def candidates(c: dict, items: list[dict], st: dict, log=print, ignore_seen: boo
             # 코드 1차 거르기(Claude 부르기 전): 새 기사 · 빅클럽·스타·감독 명단 · 매체 2곳 이상 · 제외 낱말 없음(위에서) · PC 켜진 뒤 나온 소식
             if not ignore_seen and not any(a.get("id") not in seen_items for a in g):
                 continue
-            if not (stars or clubs) or len(outlets) < 2:
+            if not (stars or clubs) or len(outlets) < min_outlets:
                 continue
             if not ignore_seen and online and not any(a.get("published", "") >= online for a in g):
                 continue
@@ -760,6 +760,9 @@ def _make(best: dict, others: list, st: dict, d, c: dict, day: str, now: datetim
 
 # ── 반자동 후보 보고(2026-11-28 대표님) — 정해진 시각에 후보 N개를 봇으로 → 번호로 승인한 것만 제작
 NUM_EMO = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"]
+KLEAGUE = re.compile(r"K리그|K-?League|코리아컵|승강\s*PO|울산 ?HD|전북 ?현대|포항 ?스틸러스|FC ?서울|서울 이랜드|수원 ?삼성|수원 ?FC|대구 ?FC|강원 ?FC|"
+                     r"광주 ?FC|제주 ?(?:SK|유나이티드)|김천 ?상무|인천 ?유나이티드|대전 ?하나|FC ?안양|경남 ?FC|충북청주|부천 ?FC|성남 ?FC|부산 ?아이파크|"
+                     r"전남 ?드래곤즈|천안 ?시티|충남아산|화성 ?FC|김포 ?FC|안산 ?그리너스|\[K-", re.I)
 
 
 def due_slot(st: dict, c: dict, now: datetime) -> str:
@@ -814,7 +817,13 @@ def propose(st: dict, d, c: dict, now: datetime, slot: str, log=print) -> dict:
     save_state(d, st, f"chronicle propose {slot} start")     # 먼저 기록: 실패해도 같은 시각에 되풀이하지 않음(비용)
     errs = day_of(st, day)["errors"]
     items = collect(c, errs, log)
-    cands = candidates(c, items, st, log, ignore_seen=True)
+    pc = c.get("propose") or {}
+    srcs = [str(x) for x in pc.get("sources") or []]
+    if srcs:                                           # 2026-11-28 대표님: 해외축구 전문 매체 기사만
+        items = [it for it in items if any(sname in (it.get("publisher") or "") or sname == it.get("feed") for sname in srcs)]
+    if pc.get("skip_kleague", True):
+        items = [it for it in items if not KLEAGUE.search(it.get("title", ""))]
+    cands = candidates(c, items, st, log, ignore_seen=True, min_outlets=int(pc.get("min_outlets", 2)))
     bench = day_of(st, day).setdefault("bench", [])
     known = {x.get("key") for x in bench} | set(st.get("seen", {}))
     new = [x for x in cands if x["key"] not in known]
