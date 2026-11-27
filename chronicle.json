@@ -14181,7 +14181,8 @@
   "cd91dbd4c5cf2986": "2026-11-28T06:01:51+09:00",
   "b3b4ed2455e0d481": "2026-11-28T06:01:51+09:00",
   "366f75a1c5efbeec": "2026-11-28T07:18:00+09:00",
-  "0f9ec54153edbf51": "2026-11-28T08:03:31+09:00"
+  "0f9ec54153edbf51": "2026-11-28T08:03:31+09:00",
+  "59002299f9bdb2ce": "2026-11-28T08:36:47+09:00"
  },
  "breaking_links": [
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699411",
@@ -14197,7 +14198,9 @@
   "https://www.besteleven.com/news/articleView.html?idxno=314401",
   "https://www.besteleven.com/news/articleView.html?idxno=314401",
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699410",
-  "https://www.interfootball.co.kr/news/articleView.html?idxno=699410"
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699410",
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699409",
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699409"
  ],
  "offers": {
   "b61aa5728d8b37ba9": {
@@ -14217,6 +14220,12 @@
    "title": "[오피셜] 무리뉴가 외면→이적설 속 레알 마드리드와 2031년까지 장기 재계약...디아스, 주전 경쟁 본격적으로 뛰어든다",
    "n": "속보",
    "at": "2026-11-28T08:03:31+09:00"
+  },
+  "b59002299f9bdb2ce": {
+   "url": "https://www.interfootball.co.kr/news/articleView.html?idxno=699409",
+   "title": "[오피셜] '김민재 오열'...또 허벅지 근육 파열! 최대 6주 아웃→'월드클래스 공미' 무시알라의 추락! 유리몸 전락 위기",
+   "n": "속보",
+   "at": "2026-11-28T08:36:47+09:00"
   }
  },
  "proposal_log": [
@@ -14234,6 +14243,11 @@
    "at": "2026-11-28T08:03:31+09:00",
    "id": "0f9ec54153edbf51",
    "title": "[오피셜] 무리뉴가 외면→이적설 속 레알 마드리드와 2031년까지 장기 재계약...디아스, 주전 경쟁 본격적으로 뛰어든다"
+  },
+  {
+   "at": "2026-11-28T08:36:47+09:00",
+   "id": "59002299f9bdb2ce",
+   "title": "[오피셜] '김민재 오열'...또 허벅지 근육 파열! 최대 6주 아웃→'월드클래스 공미' 무시알라의 추락! 유리몸 전락 위기"
   }
  ]
 }
