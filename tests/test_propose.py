@@ -10,6 +10,7 @@ os.chdir(ROOT)
 sys.stdout.reconfigure(encoding="utf-8")
 
 from tpl import chronicle_auto as A, inbox as IB, quality as Q  # noqa: E402
+IB.requests_on = lambda: True   # 테스트는 연대기 중단 스위치(config requests_on)와 상관없이 받기 기능을 검사
 _conf = A.conf
 A.conf = lambda: {**_conf(), "propose": {**_conf()["propose"], "on": True}}   # 설정에서 꺼 둬도(보류) 기능 시험은 켠 상태로
 
