@@ -2203,6 +2203,66 @@
      "total": 23.0
     },
     {
+     "key": "activity-board-down-january-jose-madrid-message-mourinho",
+     "titles": [
+      "[Yahoo Sports] José Mourinho sends public transfer message to Real Madrid board",
+      "[The New York Times] Jose Mourinho plays down Real Madrid January transfer activity"
+     ],
+     "outlets": [
+      "Yahoo Sports",
+      "The New York Times"
+     ],
+     "credible": [
+      "Yahoo Sports",
+      "The New York Times"
+     ],
+     "summaries": [],
+     "stars": [
+      "무리뉴"
+     ],
+     "clubs": [
+      "레알 마드리드"
+     ],
+     "hwg": false,
+     "hwg_posts": [],
+     "official": false,
+     "reddit_top": false,
+     "burst": false,
+     "latest": "2026-11-27T21:57:00+00:00",
+     "ids": [
+      "d7255c25ee7f63e3",
+      "3501808160e5aadb"
+     ],
+     "links": [
+      "https://news.google.com/rss/articles/CBMilAFBVV95cUxPX1BoNVc4YkphUUtSSl9nN2ZDbk81dHdkbHN0N0xXS3VTSGxlUmJJX0s3ZXJjOGRyemxYTmNzYW5VMGVVbjRNSzNGMTVIcjdLQkozM1ZuOU9FOS1WUkZCazY5YjFpdFVhdTBhNEo0amRkWXlHT0VXalczUmlfYVlvYUdMWDVNNlVPREtoeER5Z0hHZVZK?oc=5",
+      "https://news.google.com/rss/articles/CBMilgFBVV95cUxQX2pmV2ZGTVZJVmlHV3Jtc09tQzZPLUgxa3QzZ1ptOWw0SXczczcyNWpLd2VVbGROU0ZMc2haS3hpWGo5NGZ4dHdGRXRrYmdjaE5jbGl3UTQ0ZkphMlQ0X1lXd3k3TUNtcGlHRGtqdHBTem5vbzE3c3pONUZZVHlvLVR3N0xtbkYxRzB6UFJlOTNXcmxWblE?oc=5"
+     ],
+     "i": 0,
+     "exclude": false,
+     "why_exclude": "",
+     "subject_ko": "조세 무리뉴",
+     "subject_en": "Jose Mourinho",
+     "team_ko": "레알 마드리드",
+     "team_en": "Real Madrid",
+     "league_ko": "라리가",
+     "role": "감독",
+     "type": "갈등·유머",
+     "rumor": true,
+     "transfer": false,
+     "scores": {
+      "name": 4,
+      "drama": 5,
+      "divide": 4,
+      "share": 4,
+      "surprise": 3,
+      "korea": 3
+     },
+     "reason": "무리뉴의 공개 이적 메시지",
+     "base": 23.0,
+     "bonus": 0,
+     "total": 23.0
+    },
+    {
      "key": "arsenal-by-consent-leaves-mutual-sacked-slegers-slump",
      "titles": [
       "[ESPN] Slegers leaves Arsenal by mutual consent after WSL slump",
@@ -2255,59 +2315,6 @@
       "korea": 4
      },
      "reason": "코치 해임 소식",
-     "base": 22.0,
-     "bonus": 0,
-     "total": 22.0
-    },
-    {
-     "key": "arsenal-as-coach-confirm-departs-head-issued-manager",
-     "titles": [
-      "[London Evening Standard] Renee Slegers: Arsenal confirm manager sacking as statement issued",
-      "[Arsenal.com] Renée Slegers departs as Arsenal Women head coach"
-     ],
-     "outlets": [
-      "London Evening Standard",
-      "Arsenal.com"
-     ],
-     "credible": [
-      "London Evening Standard"
-     ],
-     "summaries": [],
-     "stars": [],
-     "clubs": [
-      "아스널"
-     ],
-     "hwg": false,
-     "hwg_posts": [],
-     "official": false,
-     "reddit_top": false,
-     "burst": false,
-     "latest": "2026-11-27T15:17:13+00:00",
-     "ids": [
-      "9248da7f8a91c34d",
-      "adcc19478bdd152b"
-     ],
-     "i": 1,
-     "exclude": false,
-     "why_exclude": "",
-     "subject_ko": "레니 스레거스",
-     "subject_en": "Renée Slegers",
-     "team_ko": "아스날 여자팀",
-     "team_en": "Arsenal Women",
-     "league_ko": "WSL",
-     "role": "감독",
-     "type": "경질",
-     "rumor": false,
-     "transfer": false,
-     "scores": {
-      "name": 5,
-      "drama": 4,
-      "divide": 3,
-      "share": 4,
-      "surprise": 2,
-      "korea": 4
-     },
-     "reason": "코치 해임 확인",
      "base": 22.0,
      "bonus": 0,
      "total": 22.0
@@ -3056,11 +3063,29 @@
    "total": 15.0,
    "subject": "깁스-화이트",
    "title": "[ABC News - Breaking News, Latest News and Videos] Gibbs-White’s double powers Nottingham Forest past Chelsea 3-2 in Premier League - ABC Ne"
+  },
+  "activity-board-down-january-jose-madrid-message-mourinho": {
+   "at": "2026-11-28T11:36:42+09:00",
+   "total": 23.0,
+   "subject": "조세 무리뉴",
+   "title": "[Yahoo Sports] José Mourinho sends public transfer message to Real Madrid board"
+  },
+  "14-ahead-alaves-deportivo-head-la-liga-madrid": {
+   "at": "2026-11-28T11:36:42+09:00",
+   "total": 0.0,
+   "subject": "",
+   "title": "[Yahoo Sports] Three talking points ahead of Real Madrid vs Deportivo Alaves | La Liga MD 14"
+  },
+  "bayern-bundesliga-cable-chelsea-details-football-forest-free": {
+   "at": "2026-11-28T11:36:42+09:00",
+   "total": 0.0,
+   "subject": "",
+   "title": "[Goal.com] Hamburger SV vs Bayern Munich Bundesliga: How to watch and live stream for FREE and without cable"
   }
  },
  "last_score_at": "2026-11-25T14:56:16+09:00",
  "online_since": "2026-11-26T10:53:28+09:00",
- "last_run_at": "2026-11-28T11:06:42+09:00",
+ "last_run_at": "2026-11-28T11:36:42+09:00",
  "item_seen": {
   "a54251c4cdac03d3": "2026-11-25T15:04:05+09:00",
   "5381cb9c57ff267c": "2026-11-25T15:04:05+09:00",
@@ -14295,7 +14320,48 @@
   "665620dfc713eead": "2026-11-28T11:06:42+09:00",
   "731808d95a2d1615": "2026-11-28T11:06:42+09:00",
   "93c0cd0b41cb53a2": "2026-11-28T11:06:42+09:00",
-  "bf41ac5b72ef8f62": "2026-11-28T11:06:42+09:00"
+  "bf41ac5b72ef8f62": "2026-11-28T11:06:42+09:00",
+  "a822b663d5296693": "2026-11-28T11:36:42+09:00",
+  "73d57980247e12e9": "2026-11-28T11:36:42+09:00",
+  "44712dca358128b7": "2026-11-28T11:36:42+09:00",
+  "efc6711b89d913c1": "2026-11-28T11:36:42+09:00",
+  "3ec18fbe6644155c": "2026-11-28T11:36:42+09:00",
+  "2f88f5543df863c8": "2026-11-28T11:36:42+09:00",
+  "64dfbcc75bd2d0d6": "2026-11-28T11:36:42+09:00",
+  "4023123e8af9b64e": "2026-11-28T11:36:42+09:00",
+  "1162bc6a93095aa8": "2026-11-28T11:36:42+09:00",
+  "199c144f1eedb919": "2026-11-28T11:36:42+09:00",
+  "5899857161fa3e90": "2026-11-28T11:36:42+09:00",
+  "4c2a4b305f43651f": "2026-11-28T11:36:42+09:00",
+  "1ad32cedac986f26": "2026-11-28T11:36:42+09:00",
+  "04ee94bd5fbaba25": "2026-11-28T11:36:42+09:00",
+  "ec038ca1642c21f2": "2026-11-28T11:36:42+09:00",
+  "f4d279639b97415e": "2026-11-28T11:36:42+09:00",
+  "6bf8164ea1f27bfe": "2026-11-28T11:36:42+09:00",
+  "7576277bba4b3ba2": "2026-11-28T11:36:42+09:00",
+  "8b817d4c63b3f532": "2026-11-28T11:36:42+09:00",
+  "513b08e7a2f8edbf": "2026-11-28T11:36:42+09:00",
+  "89f0f6bafdac654d": "2026-11-28T11:36:42+09:00",
+  "873c13ab55a305a2": "2026-11-28T11:36:42+09:00",
+  "6f5a686e7e009748": "2026-11-28T11:36:42+09:00",
+  "3d3825aa64313737": "2026-11-28T11:36:42+09:00",
+  "472b9f280913bb77": "2026-11-28T11:36:42+09:00",
+  "a77d23c797ec4ef0": "2026-11-28T11:36:42+09:00",
+  "d7255c25ee7f63e3": "2026-11-28T11:36:42+09:00",
+  "2cdd1e3c3a588f00": "2026-11-28T11:36:42+09:00",
+  "563f6cecdbea5244": "2026-11-28T11:36:42+09:00",
+  "ca052d729aa9a709": "2026-11-28T11:36:42+09:00",
+  "47aab69f60b22b6e": "2026-11-28T11:36:42+09:00",
+  "514635780699f0ff": "2026-11-28T11:36:42+09:00",
+  "3f5334739ce60687": "2026-11-28T11:36:42+09:00",
+  "5e6c3d3ef62b6d01": "2026-11-28T11:36:42+09:00",
+  "da38dfe23a3d0394": "2026-11-28T11:36:42+09:00",
+  "b463bf80de13124f": "2026-11-28T11:36:42+09:00",
+  "d08349e7246046b1": "2026-11-28T11:36:42+09:00",
+  "65c54d4b37f627fb": "2026-11-28T11:36:42+09:00",
+  "3127cd1052233600": "2026-11-28T11:36:42+09:00",
+  "e23560b0939586ea": "2026-11-28T11:36:42+09:00",
+  "cd3c822391e6c0c9": "2026-11-28T11:36:42+09:00"
  },
  "discarded": [
   {
