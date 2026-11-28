@@ -25,11 +25,32 @@ REDO_MODE = {"그림": "art", "글": "text", "전부": "all", "다": "all", "": 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 
 
+def requests_on() -> bool:
+    """config/chronicle.toml requests_on — false 면 기사 요청·다시 만들기를 받지 않음(2026-11-28 대표님 연대기 중단)."""
+    try:
+        import tomllib
+        from pathlib import Path
+        c = tomllib.loads((Path(__file__).resolve().parents[1] / "config" / "chronicle.toml").read_text(encoding="utf-8"))
+        return bool(c.get("requests_on", True))
+    except Exception:  # noqa: BLE001 — 설정을 못 읽으면 예전처럼 받음
+        return True
+
+
+PAUSED_MSG = "⏸ 연대기는 지금 잠시 중단 중이에요. 다시 시작하면 그때 만들어 드릴게요."
+
+
 # ── 받기(read_views 가 부름): 링크·캡처 → 대기 줄
 def take(msg: dict, st: dict, say) -> bool:
     """메시지 하나 → 요청이면 st['inbox'] 에 넣고 답장. 처리했으면 True."""
     t = (msg.get("text") or msg.get("caption") or "").strip()
     q = st.setdefault("inbox", [])
+    if not requests_on():                      # 중단 중: 기사·다시·번호·만들어 요청은 답장만 하고 줄에 넣지 않음
+        has_req = bool(URL_RX.findall(t) or msg.get("photo") or str((msg.get("document") or {}).get("mime_type", "")).startswith("image/")
+                       or YES_RX.match(t) or REDO_RX.match(t) or (PICK_RX.match(t) and (st.get("proposal") or {}).get("items")))
+        if has_req:
+            say(PAUSED_MSG)
+            return True
+        return False
     if YES_RX.match(t):
         asking = [r for r in q if r.get("status") == "ask"]
         if asking:
@@ -198,4 +219,6 @@ def to_candidate(a: dict, meter) -> tuple[dict | None, str]:
 
 
 def pending(st: dict) -> list[dict]:
+    if not requests_on():                      # 중단 중이면 남아 있던 요청도 만들지 않음
+        return []
     return [r for r in st.get("inbox", []) if r.get("status") in ("new", "approved")]

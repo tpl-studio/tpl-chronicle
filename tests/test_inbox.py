@@ -10,6 +10,7 @@ os.chdir(ROOT)
 sys.stdout.reconfigure(encoding="utf-8")
 
 from tpl import chronicle_auto as A, inbox as IB, quality as Q  # noqa: E402
+IB.requests_on = lambda: True   # 테스트는 연대기 중단 스위치(config requests_on)와 상관없이 받기 기능을 검사
 
 fails = []
 
@@ -87,3 +88,13 @@ check(_I.current_team({"subject_en": "Lee Kang-in", "team_ko": "PSG", "team_en":
 check(_I.current_team({"subject_en": "Bukayo Saka", "team_ko": "아스널", "team_en": "Arsenal"}, "아스널 사카 결승골")[0] == {}, "기사에 나온 팀이면 그대로")
 print("\n결과:", "모두 통과" if not fails else f"실패 {len(fails)}건: {fails}")
 sys.exit(1 if fails else 0)
+
+
+# 2026-11-28 연대기 중단: requests_on 이 false 면 기사 요청은 답장만, 줄에 넣지 않음 · 대기 요청도 만들지 않음
+IB.requests_on = lambda: False
+_said, _st = [], {}
+check(IB.take({"text": "https://www.bbc.com/sport/x"}, _st, _said.append) and _said == [IB.PAUSED_MSG] and not _st.get("inbox"),
+      "중단 중: 기사 링크는 답장만")
+check(IB.pending({"inbox": [{"status": "new"}]}) == [], "중단 중: 대기 요청 안 만듦")
+IB.requests_on = lambda: True
+print("중단 스위치 검사 통과")
