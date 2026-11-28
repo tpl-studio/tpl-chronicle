@@ -14293,7 +14293,8 @@
   "b3b4ed2455e0d481": "2026-11-28T06:01:51+09:00",
   "366f75a1c5efbeec": "2026-11-28T07:18:00+09:00",
   "0f9ec54153edbf51": "2026-11-28T08:03:31+09:00",
-  "59002299f9bdb2ce": "2026-11-28T08:36:47+09:00"
+  "59002299f9bdb2ce": "2026-11-28T08:36:47+09:00",
+  "865546ecc6f03c0e": "2026-11-28T10:01:49+09:00"
  },
  "breaking_links": [
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699411",
@@ -14311,7 +14312,9 @@
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699410",
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699410",
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699409",
-  "https://www.interfootball.co.kr/news/articleView.html?idxno=699409"
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699409",
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699412",
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699412"
  ],
  "offers": {
   "b61aa5728d8b37ba9": {
@@ -14337,6 +14340,12 @@
    "title": "[오피셜] '김민재 오열'...또 허벅지 근육 파열! 최대 6주 아웃→'월드클래스 공미' 무시알라의 추락! 유리몸 전락 위기",
    "n": "속보",
    "at": "2026-11-28T08:36:47+09:00"
+  },
+  "b865546ecc6f03c0e": {
+   "url": "https://www.interfootball.co.kr/news/articleView.html?idxno=699412",
+   "title": "[오피셜] 1280억 공중 분해! 손흥민 후계자 칭호 아깝다...사비우 햄스트링 부상으로 장기간 결장→18살 윌리엄스 바넷이 대체 예정",
+   "n": "속보",
+   "at": "2026-11-28T10:01:49+09:00"
   }
  },
  "proposal_log": [
@@ -14359,6 +14368,11 @@
    "at": "2026-11-28T08:36:47+09:00",
    "id": "59002299f9bdb2ce",
    "title": "[오피셜] '김민재 오열'...또 허벅지 근육 파열! 최대 6주 아웃→'월드클래스 공미' 무시알라의 추락! 유리몸 전락 위기"
+  },
+  {
+   "at": "2026-11-28T10:01:49+09:00",
+   "id": "865546ecc6f03c0e",
+   "title": "[오피셜] 1280억 공중 분해! 손흥민 후계자 칭호 아깝다...사비우 햄스트링 부상으로 장기간 결장→18살 윌리엄스 바넷이 대체 예정"
   }
  ]
 }
