@@ -121,3 +121,12 @@ jobs:
           git add -A
           git -c user.name="tpl-chronicle-bot" -c user.email="tpl-chronicle-bot@users.noreply.github.com" commit -q -m "state $(date +%m-%d_%H:%M)" || exit 0
           git push -q origin HEAD:chronicle-state
+
+      - name: 인스타 버튼 누름 저장 실패 알림(2026-11-28)
+        if: failure()
+        env:
+          PERSONAL_BOT_TOKEN: ${{ secrets.PERSONAL_BOT_TOKEN }}
+          PERSONAL_CHAT_ID: ${{ secrets.PERSONAL_CHAT_ID }}
+        run: |
+          [ -f /tmp/ig_tap_new ] || exit 0
+          curl -s -o /dev/null --form-string "chat_id=$PERSONAL_CHAT_ID"             --form-string "text=⚠️ 인스타 버튼 누름 못 받음(저장 실패) — 다시 눌러주세요"             "https://api.telegram.org/bot$PERSONAL_BOT_TOKEN/sendMessage" || true

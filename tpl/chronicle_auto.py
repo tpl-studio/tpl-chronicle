@@ -591,14 +591,8 @@ def read_views(st: dict) -> None:
                 except Exception:  # noqa: BLE001
                     pass
                 say(reply)
-            elif IG_TAP.match(data):                 # 위인 쇼츠 인스타 ✅/❌(2026-11-28 대표님: 쇼츠방에서) — 기록만, 게시는 tpl-factory ig_reel 이 읽어 감
-                reply = ig_tap(st, data, cq)
-                try:
-                    requests.post(f"https://api.telegram.org/bot{tok}/answerCallbackQuery",
-                                  data={"callback_query_id": cq.get("id"), "text": reply[:190]}, timeout=20)
-                except Exception:  # noqa: BLE001
-                    pass
-                say(reply)
+            elif IG_TAP.match(data) or IG_INFO.match(data):   # 위인 쇼츠 인스타 ✅/❌(2026-11-28 대표님: 쇼츠방에서) — 기록만, 게시는 tpl-factory ig_reel
+                ig_button(st, tok, chat, data, cq)
             else:                                    # 연대기 버튼이 아님(예: 다른 자동화 버튼) — 지우지 않고 보관(다른 쪽이 가져가게)
                 st.setdefault("foreign_callbacks", []).append({"at": now_kst().isoformat(timespec="seconds"), "update": u})
                 st["foreign_callbacks"] = st["foreign_callbacks"][-50:]
@@ -995,6 +989,91 @@ def button_tap(st: dict, data: str) -> str:
 
 
 IG_TAP = re.compile(r"^ig:(ok|no):([A-Za-z0-9-]{1,40})$")
+IG_INFO = re.compile(r"^ig:info:([A-Za-z0-9-]{1,40})$")       # '접수됨' 표시 버튼(누르면 안내만)
+IG_MARK = os.environ.get("TPL_IG_TAP_MARK", "/tmp/ig_tap_new")   # 이번 실행에서 누름을 받았다는 표시(상태 저장 실패 알림용)
+
+
+def _next22(t: datetime) -> datetime:
+    d = t.replace(hour=22, minute=0, second=0, microsecond=0)
+    return d if t < d else d + timedelta(days=1)
+
+
+def _made(key: str, at: str) -> str:
+    """키 → 만든 순서(위인 '20261128-wisdom' · 음악 'music-11281930-…' · 그 밖엔 누른 시각)."""
+    m = re.match(r"^(\d{8})-", key)
+    if m:
+        return m.group(1) + "0000"
+    m = re.match(r"^music-(\d{8})-", key)
+    if m:
+        return (at[:4] or "2026") + m.group(1)
+    return re.sub(r"\D", "", at)[:12]
+
+
+def ig_expected(st: dict, key: str, now: datetime | None = None) -> datetime | None:
+    """tpl-factory ig_reel.plan 과 같은 규칙(하루 1편 · 그날 올릴 수 있는 편 중 먼저 만든 편부터)으로 이 편의 22:00 날짜 추정.
+    지난 자리에 배정된 편은 올라간 것으로 봄. 정확한 날짜는 21:30·22:00 에 factory 가 버튼 글을 고침."""
+    taps = [(k, v) for k, v in (st.get("ig_taps") or {}).items() if v.get("mode") == "approve"]
+    pend = []
+    for k, v in taps:
+        try:
+            pend.append((_made(k, v.get("at", "")), k, _next22(datetime.fromisoformat(v["at"]))))
+        except (KeyError, ValueError):
+            continue
+    if not pend:
+        return None
+    pend.sort()
+    day, out = min(e for _m, _k, e in pend), {}
+    for _ in range(60):
+        if not pend:
+            break
+        pick = next((x for x in pend if x[2] <= day), None)
+        if pick:
+            out[pick[1]] = day
+            pend.remove(pick)
+        day += timedelta(days=1)
+    return out.get(key)
+
+
+def ig_button(st: dict, tok: str, chat: str, data: str, cq: dict) -> None:
+    """누름 → 기록 → 버튼 자리에 '📥 접수됨 — ○월○일 22:00 게시 예정' · 못 하면 '누름 못 받음, 다시 눌러주세요'."""
+    mid = (cq.get("message") or {}).get("message_id")
+    api = f"https://api.telegram.org/bot{tok}"
+
+    def answer(text: str) -> None:
+        try:
+            requests.post(f"{api}/answerCallbackQuery", data={"callback_query_id": cq.get("id"), "text": text[:190]}, timeout=20)
+        except Exception:  # noqa: BLE001 — 오래된 누름이면 텔레그램이 거절 · 버튼 글로 알림
+            pass
+
+    m = IG_INFO.match(data)
+    if m:
+        answer("이미 접수됐어요")
+        return
+    try:
+        reply = ig_tap(st, data, cq)
+        key = IG_TAP.match(data).group(2)
+        if st["ig_taps"][key]["mode"] == "approve":
+            d = ig_expected(st, key)
+            label = f"{d.month}월{d.day}일 22:00" if d else "22:00"
+            reply = f"📥 접수됨 — {label} 게시 예정"
+            kb = [[{"text": reply, "callback_data": f"ig:info:{key}"}], [{"text": "❌ 취소(안 올림)", "callback_data": f"ig:no:{key}"}]]
+        else:
+            reply = "📥 접수됨 — 안 올려요"
+            kb = [[{"text": reply, "callback_data": f"ig:info:{key}"}], [{"text": "✅ 다시 올리기", "callback_data": f"ig:ok:{key}"}]]
+        answer(reply)
+        ok = False
+        if mid:
+            r = requests.post(f"{api}/editMessageReplyMarkup", timeout=20,
+                              data={"chat_id": chat, "message_id": mid, "reply_markup": json.dumps({"inline_keyboard": kb}, ensure_ascii=False)})
+            ok = bool(getattr(r, "ok", False)) or bool((r.json() or {}).get("ok"))
+        if not ok:
+            say(reply)                                  # 버튼 글을 못 고쳤으면 메시지로
+        try:
+            Path(IG_MARK).write_text(key, encoding="utf-8")
+        except OSError:
+            pass
+    except Exception as e:  # noqa: BLE001
+        say(f"⚠️ 인스타 버튼 누름 못 받음({type(e).__name__}) — 다시 눌러주세요")
 
 
 def ig_tap(st: dict, data: str, cq: dict) -> str:
