@@ -79,6 +79,15 @@ check(Q.korean_name("Kylian Mbappé", "킬리안 음바페") in ("킬리안 음�
 check(Q.korean_name("Unknown Player", "알수없음") == "알수없음", "명단에 없으면 기사 한국어 이름")
 check(Q.korean_name("Unknown Player", "Unknown") == "", "한국어 이름이 없으면 빈칸(시안 이름 그대로)")
 
+# 2026-11-28 연대기 중단: requests_on 이 false 면 기사 요청은 답장만, 줄에 넣지 않음 · 대기 요청도 만들지 않음
+IB.requests_on = lambda: False
+_said, _st = [], {}
+check(IB.take({"text": "https://www.bbc.com/sport/x"}, _st, _said.append) and _said == [IB.PAUSED_MSG] and not _st.get("inbox"),
+      "중단 중: 기사 링크는 답장만")
+check(IB.pending({"inbox": [{"status": "new"}]}) == [], "중단 중: 대기 요청 안 만듦")
+IB.requests_on = lambda: True
+print("중단 스위치 검사 통과")
+
 print("[+] 팀은 기사 시점 현재 소속팀(호날두 레알 오류)")
 from tpl import inbox as _I
 check(_I.current_team({"subject_en": "Cristiano Ronaldo", "team_ko": "레알 마드리드", "team_en": "Real Madrid"},
@@ -89,12 +98,3 @@ check(_I.current_team({"subject_en": "Bukayo Saka", "team_ko": "아스널", "tea
 print("\n결과:", "모두 통과" if not fails else f"실패 {len(fails)}건: {fails}")
 sys.exit(1 if fails else 0)
 
-
-# 2026-11-28 연대기 중단: requests_on 이 false 면 기사 요청은 답장만, 줄에 넣지 않음 · 대기 요청도 만들지 않음
-IB.requests_on = lambda: False
-_said, _st = [], {}
-check(IB.take({"text": "https://www.bbc.com/sport/x"}, _st, _said.append) and _said == [IB.PAUSED_MSG] and not _st.get("inbox"),
-      "중단 중: 기사 링크는 답장만")
-check(IB.pending({"inbox": [{"status": "new"}]}) == [], "중단 중: 대기 요청 안 만듦")
-IB.requests_on = lambda: True
-print("중단 스위치 검사 통과")
