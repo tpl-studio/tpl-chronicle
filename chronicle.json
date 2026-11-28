@@ -14186,7 +14186,8 @@
   "59002299f9bdb2ce": "2026-11-28T08:36:47+09:00",
   "865546ecc6f03c0e": "2026-11-28T10:01:49+09:00",
   "fd15ae7d689c0d3c": "2026-11-28T14:43:16+09:00",
-  "419dcd5e3a60b70e": "2026-11-28T15:16:33+09:00"
+  "419dcd5e3a60b70e": "2026-11-28T15:16:33+09:00",
+  "3bfd6d0a96bfe32b": "2026-11-28T18:36:52+09:00"
  },
  "breaking_links": [
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699411",
@@ -14210,7 +14211,9 @@
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699426",
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699426",
   "https://www.besteleven.com/news/articleView.html?idxno=314416",
-  "https://www.besteleven.com/news/articleView.html?idxno=314416"
+  "https://www.besteleven.com/news/articleView.html?idxno=314416",
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699439",
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699439"
  ],
  "offers": {
   "b61aa5728d8b37ba9": {
@@ -14254,6 +14257,12 @@
    "title": "[오피셜] 은퇴할 나이? 티아고 실바에게는 남 얘기… 42세 브라질 전설, 플루미넨시서 1년 더 뛴다",
    "n": "속보",
    "at": "2026-11-28T15:16:33+09:00"
+  },
+  "b3bfd6d0a96bfe32b": {
+   "url": "https://www.interfootball.co.kr/news/articleView.html?idxno=699439",
+   "title": "[오피셜] 맨유 대형 악재 발생! 1000억 MF, 최소 2개월 결장…포체티노는 “의료진은 10주~12주 전망”",
+   "n": "속보",
+   "at": "2026-11-28T18:36:52+09:00"
   }
  },
  "proposal_log": [
@@ -14291,6 +14300,11 @@
    "at": "2026-11-28T15:16:33+09:00",
    "id": "419dcd5e3a60b70e",
    "title": "[오피셜] 은퇴할 나이? 티아고 실바에게는 남 얘기… 42세 브라질 전설, 플루미넨시서 1년 더 뛴다"
+  },
+  {
+   "at": "2026-11-28T18:36:52+09:00",
+   "id": "3bfd6d0a96bfe32b",
+   "title": "[오피셜] 맨유 대형 악재 발생! 1000억 MF, 최소 2개월 결장…포체티노는 “의료진은 10주~12주 전망”"
   }
  ]
 }
