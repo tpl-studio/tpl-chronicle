@@ -14820,7 +14820,8 @@
   "366f75a1c5efbeec": "2026-11-28T07:18:00+09:00",
   "0f9ec54153edbf51": "2026-11-28T08:03:31+09:00",
   "59002299f9bdb2ce": "2026-11-28T08:36:47+09:00",
-  "865546ecc6f03c0e": "2026-11-28T10:01:49+09:00"
+  "865546ecc6f03c0e": "2026-11-28T10:01:49+09:00",
+  "fd15ae7d689c0d3c": "2026-11-28T14:43:16+09:00"
  },
  "breaking_links": [
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699411",
@@ -14840,7 +14841,9 @@
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699409",
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699409",
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699412",
-  "https://www.interfootball.co.kr/news/articleView.html?idxno=699412"
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699412",
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699426",
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699426"
  ],
  "offers": {
   "b61aa5728d8b37ba9": {
@@ -14872,6 +14875,12 @@
    "title": "[오피셜] 1280억 공중 분해! 손흥민 후계자 칭호 아깝다...사비우 햄스트링 부상으로 장기간 결장→18살 윌리엄스 바넷이 대체 예정",
    "n": "속보",
    "at": "2026-11-28T10:01:49+09:00"
+  },
+  "bfd15ae7d689c0d3c": {
+   "url": "https://www.interfootball.co.kr/news/articleView.html?idxno=699426",
+   "title": "HERE WE GO 기자 피셜! ‘메시 후계자’ 초신성 니코 파스, 1월 이적 절대 없다...“레알보다 맨유행 선호하는건 확실!”",
+   "n": "속보",
+   "at": "2026-11-28T14:43:16+09:00"
   }
  },
  "proposal_log": [
@@ -14899,6 +14908,11 @@
    "at": "2026-11-28T10:01:49+09:00",
    "id": "865546ecc6f03c0e",
    "title": "[오피셜] 1280억 공중 분해! 손흥민 후계자 칭호 아깝다...사비우 햄스트링 부상으로 장기간 결장→18살 윌리엄스 바넷이 대체 예정"
+  },
+  {
+   "at": "2026-11-28T14:43:16+09:00",
+   "id": "fd15ae7d689c0d3c",
+   "title": "HERE WE GO 기자 피셜! ‘메시 후계자’ 초신성 니코 파스, 1월 이적 절대 없다...“레알보다 맨유행 선호하는건 확실!”"
   }
  ]
 }
