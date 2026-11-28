@@ -13735,7 +13735,8 @@
   "0f9ec54153edbf51": "2026-11-28T08:03:31+09:00",
   "59002299f9bdb2ce": "2026-11-28T08:36:47+09:00",
   "865546ecc6f03c0e": "2026-11-28T10:01:49+09:00",
-  "fd15ae7d689c0d3c": "2026-11-28T14:43:16+09:00"
+  "fd15ae7d689c0d3c": "2026-11-28T14:43:16+09:00",
+  "419dcd5e3a60b70e": "2026-11-28T15:16:33+09:00"
  },
  "breaking_links": [
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699411",
@@ -13757,7 +13758,9 @@
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699412",
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699412",
   "https://www.interfootball.co.kr/news/articleView.html?idxno=699426",
-  "https://www.interfootball.co.kr/news/articleView.html?idxno=699426"
+  "https://www.interfootball.co.kr/news/articleView.html?idxno=699426",
+  "https://www.besteleven.com/news/articleView.html?idxno=314416",
+  "https://www.besteleven.com/news/articleView.html?idxno=314416"
  ],
  "offers": {
   "b61aa5728d8b37ba9": {
@@ -13795,6 +13798,12 @@
    "title": "HERE WE GO 기자 피셜! ‘메시 후계자’ 초신성 니코 파스, 1월 이적 절대 없다...“레알보다 맨유행 선호하는건 확실!”",
    "n": "속보",
    "at": "2026-11-28T14:43:16+09:00"
+  },
+  "b419dcd5e3a60b70e": {
+   "url": "https://www.besteleven.com/news/articleView.html?idxno=314416",
+   "title": "[오피셜] 은퇴할 나이? 티아고 실바에게는 남 얘기… 42세 브라질 전설, 플루미넨시서 1년 더 뛴다",
+   "n": "속보",
+   "at": "2026-11-28T15:16:33+09:00"
   }
  },
  "proposal_log": [
@@ -13827,6 +13836,11 @@
    "at": "2026-11-28T14:43:16+09:00",
    "id": "fd15ae7d689c0d3c",
    "title": "HERE WE GO 기자 피셜! ‘메시 후계자’ 초신성 니코 파스, 1월 이적 절대 없다...“레알보다 맨유행 선호하는건 확실!”"
+  },
+  {
+   "at": "2026-11-28T15:16:33+09:00",
+   "id": "419dcd5e3a60b70e",
+   "title": "[오피셜] 은퇴할 나이? 티아고 실바에게는 남 얘기… 42세 브라질 전설, 플루미넨시서 1년 더 뛴다"
   }
  ]
 }
