@@ -57,9 +57,14 @@ at = lambda d, hm: datetime(2026, 12, d, int(hm[:2]), int(hm[3:]), tzinfo=KST).i
 st3 = {"ig_taps": {"20261202-wisdom": {"mode": "approve", "at": at(2, "19:10")},
                    "20261201-wisdom": {"mode": "approve", "at": at(2, "20:00")},
                    "20261130-wisdom": {"mode": "cancel", "at": at(1, "20:00")}}}
-d1, d2 = A.ig_expected(st3, "20261201-wisdom"), A.ig_expected(st3, "20261202-wisdom")
-check((d1.day, d2.day) == (2, 3), f"먼저 만든 편이 먼저(12/1편 → 12/2, 12/2편 → 12/3) {d1.day},{d2.day}")
+d2 = A.ig_expected(st3, "20261202-wisdom")
+check(d2 is not None and d2.day == 2, "그날 온 편을 그날 22:00 전에 ✅ → 그날 22:00")
+check(A.ig_expected(st3, "20261201-wisdom") is None, "어제 온 편 ✅ → 날짜 없음(밀린 편 안 올림)")
+check(A.ig_expected({"ig_taps": {"20261202-wisdom": {"mode": "approve", "at": at(2, "22:10")}}}, "20261202-wisdom") is None,
+      "그날 22:00 지나서 ✅ → 날짜 없음")
 check(A.ig_expected(st3, "20261130-wisdom") is None, "❌ 누른 편은 날짜 없음")
+_now = A.now_kst
+A.now_kst = lambda: datetime(2026, 12, 5, 19, 10, tzinfo=KST)
 posts, said2 = [], []
 A.say = lambda t, *a, **k: said2.append(t) or True
 
@@ -77,8 +82,8 @@ A.IG_MARK = str(ROOT / "tests" / "_ig_mark_tmp")
 st4 = {}
 A.ig_button(st4, "t", "111", "ig:ok:20261205-wisdom", {"id": "q", "message": {"message_id": 42}})
 ed = [d for m, d in posts if m == "editMessageReplyMarkup"]
-check(ed and "📥 접수됨 — 12월5일 22:00 게시 예정" in ed[0]["reply_markup"] and ed[0]["message_id"] == 42
-      or (ed and "접수됨 —" in ed[0]["reply_markup"] and "22:00 게시 예정" in ed[0]["reply_markup"]), "✅ → 버튼 자리에 '📥 접수됨 — ○월○일 22:00 게시 예정'")
+check(ed and "📥 접수됨 — 12월5일 22:00 게시 예정" in ed[0]["reply_markup"] and ed[0]["message_id"] == 42,
+      "✅ → 버튼 자리에 '📥 접수됨 — 12월5일 22:00 게시 예정'")
 check(any(m == "answerCallbackQuery" and "접수됨" in d["text"] for m, d in posts) and not said2, "누름 답장 · 따로 메시지 안 보냄")
 check(Path(A.IG_MARK).read_text(encoding="utf-8") == "20261205-wisdom", "누름 받은 표시(저장 실패 알림용)")
 Path(A.IG_MARK).unlink()
@@ -94,6 +99,17 @@ A.ig_tap = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("x"))
 A.ig_button(st4, "t", "111", "ig:ok:20261205-wisdom", {"id": "q"})
 check("누름 못 받음" in said2[-1] and "다시 눌러주세요" in said2[-1], "처리 실패 → '누름 못 받음, 다시 눌러주세요'")
 A.ig_tap = _tap
+A.requests.post = lambda url, data=None, **k: posts.append((url.rsplit("/", 1)[-1], data)) or _P(True)
+posts.clear()
+A.now_kst = lambda: datetime(2026, 12, 6, 9, 0, tzinfo=KST)
+A.ig_button({}, "t", "111", "ig:ok:20261205-wisdom", {"id": "q", "message": {"message_id": 43}})
+ed = [d for m, d in posts if m == "editMessageReplyMarkup"]
+check(ed and "밀린 편은 안 올려요" in ed[0]["reply_markup"] and "ig:no:" not in ed[0]["reply_markup"], "어제 온 편 ✅ → 버튼 자리 '⏸ 안 올림 — 밀린 편은 안 올려요'")
+A.now_kst = _now
+try:
+    Path(A.IG_MARK).unlink()
+except OSError:
+    pass
 
 print("\n실패:", len(fails))
 sys.exit(1 if fails else 0)

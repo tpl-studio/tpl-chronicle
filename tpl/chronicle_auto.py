@@ -1010,28 +1010,17 @@ def _made(key: str, at: str) -> str:
 
 
 def ig_expected(st: dict, key: str, now: datetime | None = None) -> datetime | None:
-    """tpl-factory ig_reel.plan 과 같은 규칙(하루 1편 · 그날 올릴 수 있는 편 중 먼저 만든 편부터)으로 이 편의 22:00 날짜 추정.
-    지난 자리에 배정된 편은 올라간 것으로 봄. 정확한 날짜는 21:30·22:00 에 factory 가 버튼 글을 고침."""
-    taps = [(k, v) for k, v in (st.get("ig_taps") or {}).items() if v.get("mode") == "approve"]
-    pend = []
-    for k, v in taps:
-        try:
-            pend.append((_made(k, v.get("at", "")), k, _next22(datetime.fromisoformat(v["at"]))))
-        except (KeyError, ValueError):
-            continue
-    if not pend:
+    """tpl-factory ig_reel 과 같은 규칙(2026-11-28 23:29 대표님 · 밀린 편 없음): 그 편이 온 날 22:00 전에 ✅ 면 그날 22:00,
+    지났으면 None(안 올림). 같은 날 두 편이면 factory 가 먼저 온 편만 올리고 버튼 글을 고침."""
+    v = (st.get("ig_taps") or {}).get(key) or {}
+    if v.get("mode") != "approve":
         return None
-    pend.sort()
-    day, out = min(e for _m, _k, e in pend), {}
-    for _ in range(60):
-        if not pend:
-            break
-        pick = next((x for x in pend if x[2] <= day), None)
-        if pick:
-            out[pick[1]] = day
-            pend.remove(pick)
-        day += timedelta(days=1)
-    return out.get(key)
+    try:
+        due = _next22(datetime.fromisoformat(v["at"]))
+    except (KeyError, ValueError):
+        return None
+    made = _made(key, v.get("at", ""))[:8]
+    return due if due.strftime("%Y%m%d") == made else None
 
 
 def ig_button(st: dict, tok: str, chat: str, data: str, cq: dict) -> None:
@@ -1054,9 +1043,12 @@ def ig_button(st: dict, tok: str, chat: str, data: str, cq: dict) -> None:
         key = IG_TAP.match(data).group(2)
         if st["ig_taps"][key]["mode"] == "approve":
             d = ig_expected(st, key)
-            label = f"{d.month}월{d.day}일 22:00" if d else "22:00"
-            reply = f"📥 접수됨 — {label} 게시 예정"
-            kb = [[{"text": reply, "callback_data": f"ig:info:{key}"}], [{"text": "❌ 취소(안 올림)", "callback_data": f"ig:no:{key}"}]]
+            if d:
+                reply = f"📥 접수됨 — {d.month}월{d.day}일 22:00 게시 예정"
+                kb = [[{"text": reply, "callback_data": f"ig:info:{key}"}], [{"text": "❌ 취소(안 올림)", "callback_data": f"ig:no:{key}"}]]
+            else:
+                reply = "⏸ 안 올림 — 그날 22:00이 지난 편(밀린 편은 안 올려요)"
+                kb = [[{"text": reply, "callback_data": f"ig:info:{key}"}]]
         else:
             reply = "📥 접수됨 — 안 올려요"
             kb = [[{"text": reply, "callback_data": f"ig:info:{key}"}], [{"text": "✅ 다시 올리기", "callback_data": f"ig:ok:{key}"}]]
